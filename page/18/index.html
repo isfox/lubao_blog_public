@@ -194,6 +194,307 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/like%E8%AF%AD%E5%8F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/like%E8%AF%AD%E5%8F%A5/" class="post-title-link" itemprop="url">like语法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-25 13:54:30" itemprop="dateCreated datePublished" datetime="2020-12-25T13:54:30+08:00">2020-12-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-01 17:25:57" itemprop="dateModified" datetime="2021-01-01T17:25:57+08:00">2021-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/like%E8%AF%AD%E5%8F%A5/" class="post-meta-item leancloud_visitors" data-flag-title="like语法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/like%E8%AF%AD%E5%8F%A5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/like%E8%AF%AD%E5%8F%A5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>like与通配符搭配使用进行模糊查询</p>
+<p><strong>通配符</strong></p>
+<ul>
+<li>%  表示任意多个字符</li>
+<li>_   表示任意单个字符</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#用户名中包含a的</span><br><span class="line">select * from user where name like &#39;%a%&#39;</span><br><span class="line">#用户名中第二个字符为a的</span><br><span class="line">select * from user where name like &#39;_a%&#39;</span><br><span class="line">#用户名中第二个字符为_的(需要使用转义字符)</span><br><span class="line">select * from user where name like &#39;_\_%&#39;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E6%B3%A8%E9%87%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E6%B3%A8%E9%87%8A/" class="post-title-link" itemprop="url">MySQL注释</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-23 16:40:30 / 修改时间：16:40:46" itemprop="dateCreated datePublished" datetime="2020-12-23T16:40:30+08:00">2020-12-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E6%B3%A8%E9%87%8A/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL注释" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E6%B3%A8%E9%87%8A/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E6%B3%A8%E9%87%8A/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="MySQL注释"><a href="#MySQL注释" class="headerlink" title="MySQL注释"></a>MySQL注释</h2><p>单行注释： #注释文字</p>
+<p>单行注释：– 注释文字</p>
+<p>多行注释：/* 注释文字 */</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">MySQL常用命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-23 16:26:30" itemprop="dateCreated datePublished" datetime="2020-12-23T16:26:30+08:00">2020-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-25 16:09:40" itemprop="dateModified" datetime="2020-12-25T16:09:40+08:00">2020-12-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL常用命令" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="MySQL常用命令"><a href="#MySQL常用命令" class="headerlink" title="MySQL常用命令"></a>MySQL常用命令</h2><p><strong>查看数据库</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+
+<p><strong>选择数据库</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 注意： test是数据库的名称</span><br><span class="line">use test;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/hash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -880,310 +1181,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/xml/xml%E7%9A%84%E6%A0%BC%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/xml/xml%E7%9A%84%E6%A0%BC%E5%BC%8F/" class="post-title-link" itemprop="url">验证xml格式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-20 22:36:23" itemprop="dateCreated datePublished" datetime="2020-12-20T22:36:23+08:00">2020-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-29 11:37:33" itemprop="dateModified" datetime="2020-12-29T11:37:33+08:00">2020-12-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/xml/" itemprop="url" rel="index"><span itemprop="name">xml</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/xml/xml%E7%9A%84%E6%A0%BC%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="验证xml格式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/xml/xml%E7%9A%84%E6%A0%BC%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/xml/xml%E7%9A%84%E6%A0%BC%E5%BC%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="验证xml格式"><a href="#验证xml格式" class="headerlink" title="验证xml格式"></a>验证xml格式</h2><h3 id="DTD验证"><a href="#DTD验证" class="headerlink" title="DTD验证"></a>DTD验证</h3><p>可以使用DTD来定义XML文档的合法构建模块。DTD可以写在文档内部，也可以另外写一个文件</p>
-<h4 id="文档内部"><a href="#文档内部" class="headerlink" title="文档内部"></a>文档内部</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">note</span> [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">note</span> (<span class="meta-keyword">to</span>,<span class="meta-keyword">from</span>,<span class="meta-keyword">body</span>)&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">to</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">from</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">body</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">to</span>&gt;</span>ll<span class="tag">&lt;/<span class="name">to</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">from</span>&gt;</span>zh<span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/xml/xml%E7%9A%84%E6%A0%BC%E5%BC%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/JMS/JMS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/JMS/JMS/" class="post-title-link" itemprop="url">JMS</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-19 10:03:23" itemprop="dateCreated datePublished" datetime="2020-12-19T10:03:23+08:00">2020-12-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-18 17:14:53" itemprop="dateModified" datetime="2020-12-18T17:14:53+08:00">2020-12-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JMS/" itemprop="url" rel="index"><span itemprop="name">JMS</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/JMS/JMS/" class="post-meta-item leancloud_visitors" data-flag-title="JMS" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/JMS/JMS/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/JMS/JMS/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h2><p>Java消息服务(JMS)定义了java中一组创建、发送、接收和读取消息的应用程序接口</p>
-<p>消息系统是用来为各个应用程序提供可靠的异步通信服务。解耦合性，发送方的请求发送到消息系统，再由消息系统转发给接收方。</p>
-<p>JMS支持两种消息类型PTP和Pub/Sub。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/JMS/JMS/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/javaweb/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/javaweb/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">事务处理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-12-18 21:40:23 / 修改时间：17:16:44" itemprop="dateCreated datePublished" datetime="2020-12-18T21:40:23+08:00">2020-12-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/javaweb/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="事务处理" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/javaweb/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/javaweb/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>J2EE包括了两套规范用来支持分布式事务：一种是Java Transcation API(JTA)，一种是Java Transcation Service(JTS)</p>
-<p>JTA是一种高层的、与实现无关的、与协议无关的标准API。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/javaweb/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1255,20 +1252,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">326</span>
+          <span class="site-state-item-count">329</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">52</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
