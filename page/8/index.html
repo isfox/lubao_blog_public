@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/3.HDFS%E6%96%87%E4%BB%B6%E5%9D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">会话管理</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/3.HDFS%E6%96%87%E4%BB%B6%E5%9D%97/" class="post-title-link" itemprop="url">HDFS文件块</a>
         </h2>
 
         <div class="post-meta">
@@ -218,14 +218,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-19 22:30:19" itemprop="dateCreated datePublished" datetime="2021-03-19T22:30:19+08:00">2021-03-19</time>
+              <time title="创建时间：2021-03-26 21:11:30" itemprop="dateCreated datePublished" datetime="2021-03-26T21:11:30+08:00">2021-03-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-06 21:56:07" itemprop="dateModified" datetime="2021-04-06T21:56:07+08:00">2021-04-06</time>
+                <time title="修改时间：2021-04-13 11:26:00" itemprop="dateModified" datetime="2021-04-13T11:26:00+08:00">2021-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,12 +233,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="会话管理" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/3.HDFS%E6%96%87%E4%BB%B6%E5%9D%97/" class="post-meta-item leancloud_visitors" data-flag-title="HDFS文件块" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -253,8 +253,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/3.HDFS%E6%96%87%E4%BB%B6%E5%9D%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/3.HDFS%E6%96%87%E4%BB%B6%E5%9D%97/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -269,15 +269,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="会话管理"><a href="#会话管理" class="headerlink" title="会话管理"></a>会话管理</h2><p>HTTP是无状态的协议，每次客户端访问web页面时，都会打开一个单独的连接到web服务器，服务器不会自动保存客户端请求的任何记录，需要使用cookie和session来将一系列的请求和响应关联起来，维持客户端和服务器之间的会话</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h2 id="HDFS文件块"><a href="#HDFS文件块" class="headerlink" title="HDFS文件块"></a>HDFS文件块</h2><p>HDFS中的文件是分块(Block)存储的，可以使用dfs.blocksize来设置块的大小，默认是128M</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 可以用k/m/g/t/p/e作为后缀，也可以使用字节</span></span><br><span class="line"><span class="comment">134217728就是 128 MB </span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.blocksize    <span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>134217728<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>HDFS块的大小设置主要取决于磁盘的传输速度</p>
+</blockquote>
+<p>如果块的大小太小的话，会导致块的数量特别多，增加了寻址时间</p>
+<p>如果块的大小太大的话，程序在处理数据块的时候会非常慢</p>
+
       
     </div>
 
@@ -296,7 +296,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/13.Nginx%E6%90%AD%E5%BB%BA%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -310,7 +310,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/" class="post-title-link" itemprop="url">请求转发和重定向</a>
+            <a href="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/13.Nginx%E6%90%AD%E5%BB%BA%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">Nginx搭建文件服务器</a>
         </h2>
 
         <div class="post-meta">
@@ -320,14 +320,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-19 21:30:19" itemprop="dateCreated datePublished" datetime="2021-03-19T21:30:19+08:00">2021-03-19</time>
+              <time title="创建时间：2021-03-24 21:11:23" itemprop="dateCreated datePublished" datetime="2021-03-24T21:11:23+08:00">2021-03-24</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-04 22:35:16" itemprop="dateModified" datetime="2021-04-04T22:35:16+08:00">2021-04-04</time>
+                <time title="修改时间：2021-04-11 11:53:49" itemprop="dateModified" datetime="2021-04-11T11:53:49+08:00">2021-04-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -335,12 +335,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
+                  <a href="/categories/Nginx/" itemprop="url" rel="index"><span itemprop="name">Nginx</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/" class="post-meta-item leancloud_visitors" data-flag-title="请求转发和重定向" title="阅读次数">
+            <span id="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/13.Nginx%E6%90%AD%E5%BB%BA%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="Nginx搭建文件服务器" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -355,8 +355,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/13.Nginx%E6%90%AD%E5%BB%BA%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/13.Nginx%E6%90%AD%E5%BB%BA%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -371,15 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="请求转发和重定向"><a href="#请求转发和重定向" class="headerlink" title="请求转发和重定向"></a>请求转发和重定向</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求转发</span></span><br><span class="line">request.getRequestDispatcher(url).forward(req,resp)</span><br><span class="line"><span class="comment">// 请求重定向</span></span><br><span class="line">response.sendRedirect(url)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h2 id="Nginx搭建文件服务器"><a href="#Nginx搭建文件服务器" class="headerlink" title="Nginx搭建文件服务器"></a>Nginx搭建文件服务器</h2><p>使用文件服务器可以进行归档一些资料和数据，可以使用nginx来快速的搭建一个简易的文件服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 显示目录，默认不开启</span><br><span class="line">autoindex on;</span><br><span class="line"># 显示文件大小</span><br><span class="line">autoindex_exact_size on;</span><br><span class="line"># 显示文件修改时间</span><br><span class="line">autoindex_localtime on;</span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">    charset  utf-8;</span><br><span class="line">    listen   9090 default_server;</span><br><span class="line">    server_name _;</span><br><span class="line">    root     &#x2F;share&#x2F;file;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
 
@@ -398,7 +393,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/%E8%AF%B7%E6%B1%82/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/scp%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -412,7 +407,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/javaweb/%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">请求</a>
+            <a href="/2021/linux/%E5%9F%BA%E7%A1%80/scp%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">scp命令</a>
         </h2>
 
         <div class="post-meta">
@@ -423,218 +418,8 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-19 20:30:19 / 修改时间：16:40:00" itemprop="dateCreated datePublished" datetime="2021-03-19T20:30:19+08:00">2021-03-19</time>
+              <time title="创建时间：2021-03-24 20:09:30 / 修改时间：10:01:34" itemprop="dateCreated datePublished" datetime="2021-03-24T20:09:30+08:00">2021-03-24</time>
             </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/javaweb/%E8%AF%B7%E6%B1%82/" class="post-meta-item leancloud_visitors" data-flag-title="请求" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/javaweb/%E8%AF%B7%E6%B1%82/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/%E8%AF%B7%E6%B1%82/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p>HTTP的请求消息分为三部分：请求行、请求头、请求正文。</p>
-<p>在Servlet API中一般使用HttpServletRequest来表示HTTP请求</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/javaweb/%E8%AF%B7%E6%B1%82/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/%E5%93%8D%E5%BA%94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/javaweb/%E5%93%8D%E5%BA%94/" class="post-title-link" itemprop="url">响应</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-18 21:30:19" itemprop="dateCreated datePublished" datetime="2021-03-18T21:30:19+08:00">2021-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-19 15:57:44" itemprop="dateModified" datetime="2021-03-19T15:57:44+08:00">2021-03-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/javaweb/%E5%93%8D%E5%BA%94/" class="post-meta-item leancloud_visitors" data-flag-title="响应" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/javaweb/%E5%93%8D%E5%BA%94/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/%E5%93%8D%E5%BA%94/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>HTTP的响应消息分为三部分：状态行、响应头、响应正文。</p>
-<p>Servlet API中一般使用HttpServletResponse来表示响应。</p>
-<p>状态行对应的方法是</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStatus</span><span class="params">(<span class="keyword">int</span> sc)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>响应头对应的方法为</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addHeader</span><span class="params">(String name, String value)</span></span>;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHeader</span><span class="params">(String name, String value)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>响应正文对应的方法为</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ServletOutputStream <span class="title">getOutputStream</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> PrintWriter <span class="title">getWriter</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">定时任务</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-18 21:20:30" itemprop="dateCreated datePublished" datetime="2021-03-18T21:20:30+08:00">2021-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-11 11:51:49" itemprop="dateModified" datetime="2021-04-11T11:51:49+08:00">2021-04-11</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -646,7 +431,7 @@
             </span>
 
           
-            <span id="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-meta-item leancloud_visitors" data-flag-title="定时任务" title="阅读次数">
+            <span id="/2021/linux/%E5%9F%BA%E7%A1%80/scp%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="scp命令" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -661,8 +446,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/linux/%E5%9F%BA%E7%A1%80/scp%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%9F%BA%E7%A1%80/scp%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -677,13 +462,310 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><h3 id="at一次性执行定时任务"><a href="#at一次性执行定时任务" class="headerlink" title="at一次性执行定时任务"></a>at一次性执行定时任务</h3><p>依赖于atd服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service atd start</span><br></pre></td></tr></table></figure>
+          <h2 id="scp命令"><a href="#scp命令" class="headerlink" title="scp命令"></a>scp命令</h2><p>在开发时经常会遇到两台机器之间传文件或者安装包，这就用到了scp命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> scp [参数] 文件源 文件目标</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 本地复制到远程         root@remote2:/opt/data/hadoop-----&gt;表示 用户@地址:文件目录</span></span><br><span class="line">scp -r /opt/data/hadoop root@remote2:/opt/data/hadoop</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 远程复制到本地</span></span><br><span class="line">scp -r root@remote1:/opt/data/hadoop /opt/data/hadoop</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 远程复制到远程</span></span><br><span class="line">scp -r root@remote1:/opt/data/hadoop root@remote2:/opt/data/hadoop</span><br><span class="line"></span><br><span class="line">---------------</span><br><span class="line">-r  递归复制整个目录</span><br><span class="line">-v  显示复制过程</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> at [选项] 时间</span></span><br><span class="line">----------</span><br><span class="line">-m  at工作完成后，使用email通知执行at命令的用户</span><br><span class="line">-c 工作号  显示该at工作的实际内容</span><br><span class="line"></span><br><span class="line">时间格式</span><br><span class="line">HH:MM</span><br><span class="line">HH:MM YYYY-MM-DD</span><br><span class="line">HH:MM[am|pm] [month] [date]</span><br><span class="line">HH:MM[am|pm] + [minutes|hours|days|weeks]  </span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/5.%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/5.%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB/" class="post-title-link" itemprop="url">关系分类</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-23 23:00:30" itemprop="dateCreated datePublished" datetime="2021-03-23T23:00:30+08:00">2021-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-14 10:09:46" itemprop="dateModified" datetime="2021-04-14T10:09:46+08:00">2021-04-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/5.%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="关系分类" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/5.%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/5.%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="关系分类"><a href="#关系分类" class="headerlink" title="关系分类"></a>关系分类</h2><p>SQL区分为三类关系</p>
+<ul>
+<li>表     在数据库中存储，可以对其进行增删改查</li>
+<li>视图  通过计算定义的关系，并不在数据库中存储，只在需要的使用进行构造</li>
+<li>临时表  在执行查询或更新时由SQL程序临时构造的，处理结束后就会删除</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/2.%E6%97%A5%E5%BF%97%E8%81%9A%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/2.%E6%97%A5%E5%BF%97%E8%81%9A%E9%9B%86/" class="post-title-link" itemprop="url">日志聚集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-23 21:20:30" itemprop="dateCreated datePublished" datetime="2021-03-23T21:20:30+08:00">2021-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:23:31" itemprop="dateModified" datetime="2021-04-13T11:23:31+08:00">2021-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/2.%E6%97%A5%E5%BF%97%E8%81%9A%E9%9B%86/" class="post-meta-item leancloud_visitors" data-flag-title="日志聚集" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/2.%E6%97%A5%E5%BF%97%E8%81%9A%E9%9B%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/2.%E6%97%A5%E5%BF%97%E8%81%9A%E9%9B%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="日志聚集"><a href="#日志聚集" class="headerlink" title="日志聚集"></a>日志聚集</h2><p>日志聚集功能默认是关闭的，需要在yarn-site.xml中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开启日志聚集  默认false --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.log-aggregation-enable<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 保留时间  默认-1即不保留 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.log-aggregation.retain-seconds<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>3600<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>该配置对于ResourceManager 和 NodeManager生效，所以这两个需要重启(即yarn重启)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/3.%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/3.%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">历史服务器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-23 20:55:30" itemprop="dateCreated datePublished" datetime="2021-03-23T20:55:30+08:00">2021-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:23:37" itemprop="dateModified" datetime="2021-04-13T11:23:37+08:00">2021-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/3.%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="历史服务器" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/3.%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/3.%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="历史服务器"><a href="#历史服务器" class="headerlink" title="历史服务器"></a>历史服务器</h2><p>在资源管理ResourceManager的web页面中有一个History，默认该链接无法访问</p>
+<img src="/images/大数据/hadoop/历史服务器.png" alt="历史服务器" style="zoom:50%;">
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/mapred --daemon start historyserver</span><br></pre></td></tr></table></figure>
+
+<p>使用jps可以发现多了一个JobHistoryServer进程</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/3.%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -707,7 +789,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/1.%E4%B8%89%E7%A7%8D%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -721,7 +803,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">JWT介绍</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/1.%E4%B8%89%E7%A7%8D%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">三种运行模式</a>
         </h2>
 
         <div class="post-meta">
@@ -730,22 +812,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-18 21:00:19 / 修改时间：16:04:49" itemprop="dateCreated datePublished" datetime="2021-03-18T21:00:19+08:00">2021-03-18</time>
+              <time title="创建时间：2021-03-23 20:11:30" itemprop="dateCreated datePublished" datetime="2021-03-23T20:11:30+08:00">2021-03-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:23:25" itemprop="dateModified" datetime="2021-04-13T11:23:25+08:00">2021-04-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/" class="post-meta-item leancloud_visitors" data-flag-title="JWT介绍" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/1.%E4%B8%89%E7%A7%8D%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="三种运行模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -760,8 +848,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/1.%E4%B8%89%E7%A7%8D%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/1.%E4%B8%89%E7%A7%8D%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -776,15 +864,120 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="JWT介绍"><a href="#JWT介绍" class="headerlink" title="JWT介绍"></a>JWT介绍</h2><p>JWT由三部分组成</p>
+          <h2 id="三种运行模式"><a href="#三种运行模式" class="headerlink" title="三种运行模式"></a>三种运行模式</h2><p>hadoop分为三种运行模式，分别为单机模式、伪分布式模式和完全分布式模式</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/1.%E4%B8%89%E7%A7%8D%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">MapReduce简介</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-22 21:31:30" itemprop="dateCreated datePublished" datetime="2021-03-22T21:31:30+08:00">2021-03-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:24:02" itemprop="dateModified" datetime="2021-04-13T11:24:02+08:00">2021-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/" class="post-meta-item leancloud_visitors" data-flag-title="MapReduce简介" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="MapReduce简介"><a href="#MapReduce简介" class="headerlink" title="MapReduce简介"></a>MapReduce简介</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>MapReduce是Hadoop中的计算部分，将计算分为了两个阶段：Map和Reduce</p>
+<h4 id="Map阶段"><a href="#Map阶段" class="headerlink" title="Map阶段"></a>Map阶段</h4><p>Map阶段任务拆分并行处理输入数据</p>
 <ul>
-<li>头部(header)</li>
-<li>载荷(payload)</li>
-<li>签证(signature)</li>
+<li>Map阶段将任务拆分为MapTask，并行运行，相互不会影响</li>
+</ul>
+<h4 id="Reduce阶段"><a href="#Reduce阶段" class="headerlink" title="Reduce阶段"></a>Reduce阶段</h4><p>Reduce阶段对Map结果进行汇总</p>
+<ul>
+<li>Reduce阶段的ReduceTask也互不相干，数据来源是MapTask</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -808,7 +1001,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E6%80%BB%E5%BC%80/2.hadoop%E7%89%88%E6%9C%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -822,7 +1015,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">系统资源命令</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E6%80%BB%E5%BC%80/2.hadoop%E7%89%88%E6%9C%AC/" class="post-title-link" itemprop="url">hadoop版本</a>
         </h2>
 
         <div class="post-meta">
@@ -831,22 +1024,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-18 20:30:30 / 修改时间：11:14:20" itemprop="dateCreated datePublished" datetime="2021-03-18T20:30:30+08:00">2021-03-18</time>
+              <time title="创建时间：2021-03-22 21:11:30" itemprop="dateCreated datePublished" datetime="2021-03-22T21:11:30+08:00">2021-03-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:23:08" itemprop="dateModified" datetime="2021-04-13T11:23:08+08:00">2021-04-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="系统资源命令" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E6%80%BB%E5%BC%80/2.hadoop%E7%89%88%E6%9C%AC/" class="post-meta-item leancloud_visitors" data-flag-title="hadoop版本" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -861,8 +1060,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E6%80%BB%E5%BC%80/2.hadoop%E7%89%88%E6%9C%AC/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E6%80%BB%E5%BC%80/2.hadoop%E7%89%88%E6%9C%AC/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -877,12 +1076,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="系统资源命令"><a href="#系统资源命令" class="headerlink" title="系统资源命令"></a>系统资源命令</h2><h3 id="系统资源查看"><a href="#系统资源查看" class="headerlink" title="系统资源查看"></a>系统资源查看</h3><h4 id="vmstat命令"><a href="#vmstat命令" class="headerlink" title="vmstat命令"></a>vmstat命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">vmstat [刷新延时 刷新次数]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用vmstat检测，每1秒刷新一次，一共刷新3次</span></span><br><span class="line">vmstat 1 3</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/linux/vmstat%E5%91%BD%E4%BB%A4%E7%BB%93%E6%9E%9C.png" alt="vmstat命令结果"></p>
+          <h2 id="Hadoop版本"><a href="#Hadoop版本" class="headerlink" title="Hadoop版本"></a>Hadoop版本</h2><h3 id="hadoop1-x版本"><a href="#hadoop1-x版本" class="headerlink" title="hadoop1.x版本"></a>hadoop1.x版本</h3><p>由三部分组成</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E6%80%BB%E5%BC%80/2.hadoop%E7%89%88%E6%9C%AC/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -906,7 +1103,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/1.Yarn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -920,7 +1117,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">后台运行命令</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/1.Yarn/" class="post-title-link" itemprop="url">Yarn</a>
         </h2>
 
         <div class="post-meta">
@@ -929,22 +1126,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-18 20:20:30 / 修改时间：10:28:17" itemprop="dateCreated datePublished" datetime="2021-03-18T20:20:30+08:00">2021-03-18</time>
+              <time title="创建时间：2021-03-22 21:11:30" itemprop="dateCreated datePublished" datetime="2021-03-22T21:11:30+08:00">2021-03-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:23:46" itemprop="dateModified" datetime="2021-04-13T11:23:46+08:00">2021-04-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="后台运行命令" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/1.Yarn/" class="post-meta-item leancloud_visitors" data-flag-title="Yarn" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -959,8 +1162,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/1.Yarn/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/1.Yarn/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -975,205 +1178,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="后台运行命令"><a href="#后台运行命令" class="headerlink" title="后台运行命令"></a>后台运行命令</h2><p>很多时候需要将命令放在后台执行，那么如何让命令在后台运行呢，只需要在命令后加上&amp;即可</p>
-<p>如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar test.jar &amp;</span><br></pre></td></tr></table></figure>
+          <h2 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h2><p>Yarn是Hadoop的资源调度部分，作用主要是进行资源调度，相当于一个分布式的操作系统平台，MapReduce相当于运行在操作系统的应用程序，所以内部存在了一个ResourceManager(RM)来进行资源的管理</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">进程管理命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-03-18 20:00:30 / 修改时间：10:28:10" itemprop="dateCreated datePublished" datetime="2021-03-18T20:00:30+08:00">2021-03-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="进程管理命令" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="进程管理命令"><a href="#进程管理命令" class="headerlink" title="进程管理命令"></a>进程管理命令</h2><h3 id="查看进程命令"><a href="#查看进程命令" class="headerlink" title="查看进程命令"></a>查看进程命令</h3><h4 id="ps命令"><a href="#ps命令" class="headerlink" title="ps命令"></a>ps命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看系统中所有正在运行的系统</span></span><br><span class="line">ps aux</span><br><span class="line"></span><br><span class="line">------------</span><br><span class="line">a  显示一个终端的所有进程，除了会话引线</span><br><span class="line">u  显示进程的归属用户及内存的使用情况</span><br><span class="line">x  显示没有控制终端的进程</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/" class="post-title-link" itemprop="url">服务开机自启</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-03-17 22:00:30 / 修改时间：18:13:32" itemprop="dateCreated datePublished" datetime="2021-03-17T22:00:30+08:00">2021-03-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/" class="post-meta-item leancloud_visitors" data-flag-title="服务开机自启" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="服务开机自启"><a href="#服务开机自启" class="headerlink" title="服务开机自启"></a>服务开机自启</h2><p>Centos有两种方式，一是修改/etc/rc.local文件，二是使用chkconfig来管理开机自启(chkconfig无法自启动源码包)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /etc/init.d/目录下必须有启动脚本</span></span><br><span class="line">ls /etc/init.d/httpd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加服务，以便让chkconfig指令管理它</span></span><br><span class="line">chkconfig --add httpd</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除指定的服务，不再让chkconfig指令管理它</span></span><br><span class="line">chkconfig --del httpd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置开机运行该服务，默认是设置2345等级开机运行服务</span></span><br><span class="line">chkconfig httpd on</span><br><span class="line"><span class="meta">#</span><span class="bash"> 指定等级</span></span><br><span class="line">chkconfig --level 35 httpd on</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置开机不运行服务</span></span><br><span class="line">chkconfig httpd off           </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出所有被chkconfig管理的服务</span></span><br><span class="line">chkconfig --list</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/1.Yarn/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1196,7 +1204,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1264,7 +1272,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">386</span>
+          <span class="site-state-item-count">397</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

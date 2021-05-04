@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/4.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/1.redis%E5%AE%89%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/4.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/" class="post-title-link" itemprop="url">初始化</a>
+            <a href="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/1.redis%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">redis安装</a>
         </h2>
 
         <div class="post-meta">
@@ -218,14 +218,225 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-29 15:00:23" itemprop="dateCreated datePublished" datetime="2020-04-29T15:00:23+08:00">2020-04-29</time>
+              <time title="创建时间：2020-05-19 14:44:30" itemprop="dateCreated datePublished" datetime="2020-05-19T14:44:30+08:00">2020-05-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-23 09:36:29" itemprop="dateModified" datetime="2021-04-23T09:36:29+08:00">2021-04-23</time>
+                <time title="修改时间：2021-04-11 11:56:53" itemprop="dateModified" datetime="2021-04-11T11:56:53+08:00">2021-04-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index"><span itemprop="name">redis</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/1.redis%E5%AE%89%E8%A3%85/" class="post-meta-item leancloud_visitors" data-flag-title="redis安装" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/1.redis%E5%AE%89%E8%A3%85/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/1.redis%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="redis安装"><a href="#redis安装" class="headerlink" title="redis安装"></a>redis安装</h2><p>mac下安装redis还是很简单的(其实mac下安装什么软件都挺简单的，brew啥都有)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install redis</span><br></pre></td></tr></table></figure>
+
+<p>之后就是漫长的等待，下了好久，终于下载完了</p>
+<p>启动服务端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+
+<p>启动客户端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br></pre></td></tr></table></figure>
+
+<p>齐活</p>
+<blockquote>
+<p>可能使用brew安装之后你不知道东西都下载到哪了(我刚下载完就不知道去哪里找redis.conf文件)</p>
+<p>可以使用 brew list redis来查看</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/2.kafka%20API%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/2.kafka%20API%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">kafka API操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-19 14:44:30" itemprop="dateCreated datePublished" datetime="2020-05-19T14:44:30+08:00">2020-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:29:44" itemprop="dateModified" datetime="2021-04-13T11:29:44+08:00">2021-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/2.kafka%20API%E4%BD%BF%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="kafka API操作" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/2.kafka%20API%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/2.kafka%20API%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>kafka提供了4类核心API</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/2.kafka%20API%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/IO/2.NIO%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/java%E5%9F%BA%E7%A1%80/IO/2.NIO%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">NIO基本操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-18 15:00:30" itemprop="dateCreated datePublished" datetime="2020-05-18T15:00:30+08:00">2020-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-23 09:37:55" itemprop="dateModified" datetime="2021-04-23T09:37:55+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,7 +449,7 @@
             </span>
 
           
-            <span id="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/4.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="初始化" title="阅读次数">
+            <span id="/2020/java%E5%9F%BA%E7%A1%80/IO/2.NIO%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-meta-item leancloud_visitors" data-flag-title="NIO基本操作" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -253,8 +464,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/4.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/4.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/java%E5%9F%BA%E7%A1%80/IO/2.NIO%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/java%E5%9F%BA%E7%A1%80/IO/2.NIO%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -269,10 +480,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="初始化顺序"><a href="#初始化顺序" class="headerlink" title="初始化顺序"></a>初始化顺序</h2><p>在类中变量定义的顺序决定了它们初始化的顺序。  </p>
+          <h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><p>NIO早在JDK1.4中就已经提出来了(JSR51)，在JDK1.7中对NIO进行了补充类库NIO.2(JSR 203)</p>
+<p>同步非阻塞</p>
+<p><strong>阻塞与非阻塞的区别：</strong></p>
+<ul>
+<li><strong>阻塞时，在调用结果返回时，当前线程会被挂起，并在得到结果之后返回</strong></li>
+<li><strong>非阻塞时，如不能立即得到结果，该调用不会阻塞当前线程，调用者需要定时轮询查看处理状态</strong></li>
+</ul>
+<p>Channel(通道)和Buffer(缓冲区)</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/4.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/#more" rel="contents">
+              <a class="btn" href="/2020/java%E5%9F%BA%E7%A1%80/IO/2.NIO%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -296,7 +514,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AF%B9%E8%B1%A1/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/IO/1.java%E5%9F%BA%E7%A1%80%E4%B9%8BIO%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -310,7 +528,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">万事万物皆对象</a>
+            <a href="/2020/java%E5%9F%BA%E7%A1%80/IO/1.java%E5%9F%BA%E7%A1%80%E4%B9%8BIO%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">IO操作</a>
         </h2>
 
         <div class="post-meta">
@@ -320,14 +538,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-26 19:40:23" itemprop="dateCreated datePublished" datetime="2020-04-26T19:40:23+08:00">2020-04-26</time>
+              <time title="创建时间：2020-05-18 15:00:30" itemprop="dateCreated datePublished" datetime="2020-05-18T15:00:30+08:00">2020-05-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-23 09:35:59" itemprop="dateModified" datetime="2021-04-23T09:35:59+08:00">2021-04-23</time>
+                <time title="修改时间：2021-04-23 09:37:50" itemprop="dateModified" datetime="2021-04-23T09:37:50+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -340,7 +558,7 @@
             </span>
 
           
-            <span id="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AF%B9%E8%B1%A1/" class="post-meta-item leancloud_visitors" data-flag-title="万事万物皆对象" title="阅读次数">
+            <span id="/2020/java%E5%9F%BA%E7%A1%80/IO/1.java%E5%9F%BA%E7%A1%80%E4%B9%8BIO%E6%93%8D%E4%BD%9C/" class="post-meta-item leancloud_visitors" data-flag-title="IO操作" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -355,8 +573,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AF%B9%E8%B1%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AF%B9%E8%B1%A1/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/java%E5%9F%BA%E7%A1%80/IO/1.java%E5%9F%BA%E7%A1%80%E4%B9%8BIO%E6%93%8D%E4%BD%9C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/java%E5%9F%BA%E7%A1%80/IO/1.java%E5%9F%BA%E7%A1%80%E4%B9%8BIO%E6%93%8D%E4%BD%9C/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -371,10 +589,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="操作对象"><a href="#操作对象" class="headerlink" title="操作对象"></a>操作对象</h2><p>所有编程语言都会操作内存中的元素，java通过对象的引用来操作对象<br>创建一个String引用，代码示例：</p>
+          <p>用户进程发起请求，内核接收到请求后，从I/O设备中获取数据到buffer中，再将buffer中的数据copy到用户进程的地址空间，该用户进程获取到数据后再响应客户端。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AF%B9%E8%B1%A1/#more" rel="contents">
+              <a class="btn" href="/2020/java%E5%9F%BA%E7%A1%80/IO/1.java%E5%9F%BA%E7%A1%80%E4%B9%8BIO%E6%93%8D%E4%BD%9C/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -398,7 +616,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/5.mybatis%E4%B9%8BstatementHandler/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/java8/2.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -412,7 +630,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/5.mybatis%E4%B9%8BstatementHandler/" class="post-title-link" itemprop="url">mybatis之statementHandler</a>
+            <a href="/2020/java%E5%9F%BA%E7%A1%80/java8/2.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">函数式编程</a>
         </h2>
 
         <div class="post-meta">
@@ -422,14 +640,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-25 18:30:30" itemprop="dateCreated datePublished" datetime="2020-04-25T18:30:30+08:00">2020-04-25</time>
+              <time title="创建时间：2020-05-11 22:15:30" itemprop="dateCreated datePublished" datetime="2020-05-11T22:15:30+08:00">2020-05-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 17:10:22" itemprop="dateModified" datetime="2021-04-13T17:10:22+08:00">2021-04-13</time>
+                <time title="修改时间：2021-04-23 09:38:15" itemprop="dateModified" datetime="2021-04-23T09:38:15+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -437,12 +655,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a>
+                  <a href="/categories/java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">java基础</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/5.mybatis%E4%B9%8BstatementHandler/" class="post-meta-item leancloud_visitors" data-flag-title="mybatis之statementHandler" title="阅读次数">
+            <span id="/2020/java%E5%9F%BA%E7%A1%80/java8/2.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="函数式编程" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -457,8 +675,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/5.mybatis%E4%B9%8BstatementHandler/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/5.mybatis%E4%B9%8BstatementHandler/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/java%E5%9F%BA%E7%A1%80/java8/2.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/java%E5%9F%BA%E7%A1%80/java8/2.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -473,10 +691,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>statementHandler接口是mybatis的核心接口之一，statementHandler接口中功能很多，例如创建Statement对象，为SQL语句绑定实参，执行select、insert、update、delete等多种类型的SQL语句，批量执行SQL语句，将结果集映射成结果对象。</p>
+          <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程强加了额外的约束，即所有数据必须是不可变的：设置一次，永不改变。将值传递给函数，该函数然后生成新值但从不修改自身外部的任何东西，不可变对象和无副作用范式解决了并发编程中最基本和最棘手的问题之一。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/5.mybatis%E4%B9%8BstatementHandler/#more" rel="contents">
+              <a class="btn" href="/2020/java%E5%9F%BA%E7%A1%80/java8/2.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -500,7 +718,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/2.mybatis%E4%B9%8BSqlSession/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -514,7 +732,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/2.mybatis%E4%B9%8BSqlSession/" class="post-title-link" itemprop="url">mybatis之SqlSession</a>
+            <a href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">集合</a>
         </h2>
 
         <div class="post-meta">
@@ -524,14 +742,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-25 16:45:20" itemprop="dateCreated datePublished" datetime="2020-04-25T16:45:20+08:00">2020-04-25</time>
+              <time title="创建时间：2020-05-11 10:36:30" itemprop="dateCreated datePublished" datetime="2020-05-11T10:36:30+08:00">2020-05-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 14:55:43" itemprop="dateModified" datetime="2021-04-13T14:55:43+08:00">2021-04-13</time>
+                <time title="修改时间：2021-04-23 09:34:20" itemprop="dateModified" datetime="2021-04-23T09:34:20+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -539,12 +757,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a>
+                  <a href="/categories/java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">java基础</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/2.mybatis%E4%B9%8BSqlSession/" class="post-meta-item leancloud_visitors" data-flag-title="mybatis之SqlSession" title="阅读次数">
+            <span id="/2020/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88/" class="post-meta-item leancloud_visitors" data-flag-title="集合" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -559,8 +777,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/2.mybatis%E4%B9%8BSqlSession/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/2.mybatis%E4%B9%8BSqlSession/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -575,10 +793,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>SqlSession是mybatis的核心接口，SqlSessionFactory负责创建SqlSession对象，包含多个openSession()方法的重载。<br>在SqlSession中定义了常用的数据库操作以及事务操作，接口定义如下</p>
+          <p>有时候需要存储一组数据，之前使用数组，但是数组具有固定的容量，但是在写程序时并不知道需要多少对象，在java.util包下提供了一套完整的集合类，包含List、Set、Queue、Map。java集合类都可以自动地调整自己的大小。  </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/2.mybatis%E4%B9%8BSqlSession/#more" rel="contents">
+              <a class="btn" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/1.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -602,7 +820,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/10.mybatis%E4%B8%BB%E9%94%AE%E7%94%9F%E6%88%90/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/9.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%86%85%E9%83%A8%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -616,7 +834,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/10.mybatis%E4%B8%BB%E9%94%AE%E7%94%9F%E6%88%90/" class="post-title-link" itemprop="url">mybatis之KeyGenerator生成主键</a>
+            <a href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/9.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%86%85%E9%83%A8%E7%B1%BB/" class="post-title-link" itemprop="url">内部类</a>
         </h2>
 
         <div class="post-meta">
@@ -626,14 +844,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-24 16:03:19" itemprop="dateCreated datePublished" datetime="2020-04-24T16:03:19+08:00">2020-04-24</time>
+              <time title="创建时间：2020-05-10 21:00:23" itemprop="dateCreated datePublished" datetime="2020-05-10T21:00:23+08:00">2020-05-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 14:57:14" itemprop="dateModified" datetime="2021-04-13T14:57:14+08:00">2021-04-13</time>
+                <time title="修改时间：2021-04-23 09:37:02" itemprop="dateModified" datetime="2021-04-23T09:37:02+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -641,12 +859,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a>
+                  <a href="/categories/java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">java基础</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/10.mybatis%E4%B8%BB%E9%94%AE%E7%94%9F%E6%88%90/" class="post-meta-item leancloud_visitors" data-flag-title="mybatis之KeyGenerator生成主键" title="阅读次数">
+            <span id="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/9.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%86%85%E9%83%A8%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="内部类" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -661,8 +879,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/10.mybatis%E4%B8%BB%E9%94%AE%E7%94%9F%E6%88%90/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/10.mybatis%E4%B8%BB%E9%94%AE%E7%94%9F%E6%88%90/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/9.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%86%85%E9%83%A8%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/9.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%86%85%E9%83%A8%E7%B1%BB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -677,10 +895,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>默认情况下，mybatis的insert语句不会返回自动生成的主键，而是返回插入的条数，如果需要获取到产生的自增主键，可以使用KeyGenerator接口</p>
+          <p>定义在另一个类中的类，叫做内部类，可以把一些逻辑相关的类组织在一起，并控制位于内部的类的可见性。</p>
+<p>内部类分为</p>
+<ul>
+<li>静态内部类</li>
+<li>成员内部类</li>
+<li>局部内部类</li>
+<li>匿名内部类</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%A1%86%E6%9E%B6/mybatis/%E7%BB%84%E4%BB%B6%E5%88%86%E6%9E%90/10.mybatis%E4%B8%BB%E9%94%AE%E7%94%9F%E6%88%90/#more" rel="contents">
+              <a class="btn" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/9.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%86%85%E9%83%A8%E7%B1%BB/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -704,7 +929,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/idea/idea%E4%B9%8B%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/6.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -718,7 +943,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/idea/idea%E4%B9%8B%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">idea启动build过慢</a>
+            <a href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/6.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/" class="post-title-link" itemprop="url">接口和抽象类</a>
         </h2>
 
         <div class="post-meta">
@@ -728,14 +953,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-17 10:30:23" itemprop="dateCreated datePublished" datetime="2020-04-17T10:30:23+08:00">2020-04-17</time>
+              <time title="创建时间：2020-05-08 10:00:00" itemprop="dateCreated datePublished" datetime="2020-05-08T10:00:00+08:00">2020-05-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-06 09:38:33" itemprop="dateModified" datetime="2020-12-06T09:38:33+08:00">2020-12-06</time>
+                <time title="修改时间：2021-04-23 09:36:42" itemprop="dateModified" datetime="2021-04-23T09:36:42+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -743,12 +968,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/idea/" itemprop="url" rel="index"><span itemprop="name">idea</span></a>
+                  <a href="/categories/java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">java基础</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/idea/idea%E4%B9%8B%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="idea启动build过慢" title="阅读次数">
+            <span id="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/6.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="接口和抽象类" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -763,8 +988,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/idea/idea%E4%B9%8B%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/idea/idea%E4%B9%8B%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/6.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/6.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -779,10 +1004,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>之前使用idea的时候每次启动项目都会build很长时间，如果启动的项目过大，在build时还会出现GC的情况，查了很多资料都是说修改idea.exe.vmoptions中的内存分配</p>
+          <h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p>抽象方法的声明没有方法体。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/idea/idea%E4%B9%8B%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98/#more" rel="contents">
+              <a class="btn" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/6.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -806,7 +1031,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/7.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -820,7 +1045,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/" class="post-title-link" itemprop="url">win10开机自启动</a>
+            <a href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/7.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">组合和继承</a>
         </h2>
 
         <div class="post-meta">
@@ -830,14 +1055,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-14 20:30:23" itemprop="dateCreated datePublished" datetime="2020-04-14T20:30:23+08:00">2020-04-14</time>
+              <time title="创建时间：2020-05-06 21:00:23" itemprop="dateCreated datePublished" datetime="2020-05-06T21:00:23+08:00">2020-05-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-16 18:23:27" itemprop="dateModified" datetime="2020-08-16T18:23:27+08:00">2020-08-16</time>
+                <time title="修改时间：2021-04-23 09:36:49" itemprop="dateModified" datetime="2021-04-23T09:36:49+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -845,12 +1070,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a>
+                  <a href="/categories/java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">java基础</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/" class="post-meta-item leancloud_visitors" data-flag-title="win10开机自启动" title="阅读次数">
+            <span id="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/7.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/" class="post-meta-item leancloud_visitors" data-flag-title="组合和继承" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -865,8 +1090,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/7.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/7.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -881,10 +1106,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近由于项目启动依赖于consul，写完代码之后想启动服务，还要去启动consul，有的时候会忘记所以将consul启动设置为了开机自启</p>
+          <p>为了避免重复代码太多，导致代码不好维护，大家需要学会如何复用代码，代码复用的两种方式，组合和继承 </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/#more" rel="contents">
+              <a class="btn" href="/2020/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/7.java%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -908,7 +1133,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/9.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThreadLocal/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/1.kafka%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -922,7 +1147,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/9.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThreadLocal/" class="post-title-link" itemprop="url">ThreadLocal线程本地存储</a>
+            <a href="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/1.kafka%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">kafka简介</a>
         </h2>
 
         <div class="post-meta">
@@ -932,14 +1157,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-11 20:30:23" itemprop="dateCreated datePublished" datetime="2020-04-11T20:30:23+08:00">2020-04-11</time>
+              <time title="创建时间：2020-05-06 10:23:40" itemprop="dateCreated datePublished" datetime="2020-05-06T10:23:40+08:00">2020-05-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-18 09:22:07" itemprop="dateModified" datetime="2021-04-18T09:22:07+08:00">2021-04-18</time>
+                <time title="修改时间：2021-04-13 11:29:39" itemprop="dateModified" datetime="2021-04-13T11:29:39+08:00">2021-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -947,12 +1172,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/9.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThreadLocal/" class="post-meta-item leancloud_visitors" data-flag-title="ThreadLocal线程本地存储" title="阅读次数">
+            <span id="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/1.kafka%E7%AE%80%E4%BB%8B/" class="post-meta-item leancloud_visitors" data-flag-title="kafka简介" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -967,8 +1192,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/9.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThreadLocal/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/9.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThreadLocal/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/1.kafka%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/1.kafka%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -983,214 +1208,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="ThreadLocal是什么"><a href="#ThreadLocal是什么" class="headerlink" title="ThreadLocal是什么"></a>ThreadLocal是什么</h2><p>该类提供了线程局部变量，为每一个线程创建一个单独的变量副本，使得每个线程都可以独立的改变自己所拥有的变量副本，而不会影响其他线程所对应的副本，消除了竞争条件。</p>
+          <p>kafka是一个高吞吐量、分布式的发布-订阅系统，核心模块使用Scala语言开发，开源的、轻量级的、分布式的、可分区和有复制备份的、基于zookeeper协调管理的分布式流平台的功能强大的消息系统。  </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/9.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThreadLocal/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/1.zookeeper/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/1.zookeeper/" class="post-title-link" itemprop="url">zookeeper介绍</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-09 17:12:23" itemprop="dateCreated datePublished" datetime="2020-04-09T17:12:23+08:00">2020-04-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 11:30:59" itemprop="dateModified" datetime="2021-04-13T11:30:59+08:00">2021-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/zookeeper/" itemprop="url" rel="index"><span itemprop="name">zookeeper</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/1.zookeeper/" class="post-meta-item leancloud_visitors" data-flag-title="zookeeper介绍" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/1.zookeeper/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/1.zookeeper/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="为什么需要zookeeper"><a href="#为什么需要zookeeper" class="headerlink" title="为什么需要zookeeper"></a>为什么需要zookeeper</h2><p>对于多线程的弊端，看下图</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/1.zookeeper/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/" class="post-title-link" itemprop="url">windows端口占用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-08 12:03:19" itemprop="dateCreated datePublished" datetime="2020-04-08T12:03:19+08:00">2020-04-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-16 18:23:27" itemprop="dateModified" datetime="2020-08-16T18:23:27+08:00">2020-08-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="windows端口占用" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.查看当前端口被哪个进程占用了（进入到CMD中）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/#more" rel="contents">
+              <a class="btn" href="/2020/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/1.kafka%E7%AE%80%E4%BB%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1213,7 +1234,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/37/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><span class="page-number current">38</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/39/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/37/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><span class="page-number current">38</span><a class="page-number" href="/page/39/">39</a><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/39/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1281,7 +1302,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">386</span>
+          <span class="site-state-item-count">397</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

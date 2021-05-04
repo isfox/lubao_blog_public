@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/5.scala%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/scala/5.scala%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" class="post-title-link" itemprop="url">scala流程控制</a>
+            <a href="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/" class="post-title-link" itemprop="url">scala抽象类</a>
         </h2>
 
         <div class="post-meta">
@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-29 10:58:19 / 修改时间：11:35:34" itemprop="dateCreated datePublished" datetime="2021-04-29T10:58:19+08:00">2021-04-29</time>
+              <time title="创建时间：2021-05-02 21:10:19 / 修改时间：21:20:30" itemprop="dateCreated datePublished" datetime="2021-05-02T21:10:19+08:00">2021-05-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +232,7 @@
             </span>
 
           
-            <span id="/2021/scala/5.scala%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="scala流程控制" title="阅读次数">
+            <span id="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="scala抽象类" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -247,8 +247,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/scala/5.scala%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/5.scala%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -263,18 +263,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="scala流程控制"><a href="#scala流程控制" class="headerlink" title="scala流程控制"></a>scala流程控制</h2><p>主要有三大流程控制语句</p>
-<ul>
-<li>顺序控制</li>
-<li>分支控制</li>
-<li>循环控制</li>
-</ul>
-<h3 id="顺序控制"><a href="#顺序控制" class="headerlink" title="顺序控制"></a>顺序控制</h3><p>顺序控制就是按照代码所写顺序从上到下依次执行，这个和java是一样的</p>
-<h3 id="分支控制"><a href="#分支控制" class="headerlink" title="分支控制"></a>分支控制</h3><p>分支控制与java也大致相同，使用if…else if…else来执行</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> age = <span class="number">19</span></span><br><span class="line"><span class="keyword">if</span>(age &gt; <span class="number">22</span>)&#123;</span><br><span class="line">  println(<span class="string">&quot;这么大岁数了，什么时候结婚生孩子呀&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(age &gt; <span class="number">18</span>) &#123;</span><br><span class="line">  println(<span class="string">&quot;有对象了吗&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(age &gt; <span class="number">16</span>) &#123;</span><br><span class="line">  println(<span class="string">&quot;好好学习，可不能早恋耽误学习&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  println(<span class="string">&quot;你还小&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="scala抽象类"><a href="#scala抽象类" class="headerlink" title="scala抽象类"></a>scala抽象类</h2><p>java中有抽象类概念，scala中同样也有，且同样是abstract关键字</p>
+<p>在scala中抽象方法不需要使用abstract修饰，只是不写方法体而已，而抽象字段需要使用abstract修饰(抽象字段是指没有初始化的字段)</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span></span>&#123;</span><br><span class="line">  <span class="comment">// 抽象字段</span></span><br><span class="line">  <span class="keyword">var</span> age:<span class="type">Int</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> name:<span class="type">String</span> = _</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 抽象方法</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">breath</span></span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/scala/5.scala%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/#more" rel="contents">
+              <a class="btn" href="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -298,7 +292,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/7.%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -312,7 +306,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/7.%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">HBase配置优化</a>
+            <a href="/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/" class="post-title-link" itemprop="url">scala类型检查</a>
         </h2>
 
         <div class="post-meta">
@@ -323,7 +317,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-28 20:32:23 / 修改时间：17:58:53" itemprop="dateCreated datePublished" datetime="2021-04-28T20:32:23+08:00">2021-04-28</time>
+              <time title="创建时间：2021-05-02 14:10:19 / 修改时间：14:30:42" itemprop="dateCreated datePublished" datetime="2021-05-02T14:10:19+08:00">2021-05-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -331,12 +325,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a>
+                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/7.%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="HBase配置优化" title="阅读次数">
+            <span id="/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/" class="post-meta-item leancloud_visitors" data-flag-title="scala类型检查" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -351,8 +345,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/7.%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/7.%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -367,17 +361,121 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="HBase配置优化"><a href="#HBase配置优化" class="headerlink" title="HBase配置优化"></a>HBase配置优化</h2><ul>
-<li><p>允许在HDFS的文件中追加内容</p>
-<p>​      hdfs-site.xml、hbase-site.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开启HDFS追加同步，可以优秀的配合HBase的数据同步和持久化。默认值为true。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.support.append<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h2 id="scala类型检查"><a href="#scala类型检查" class="headerlink" title="scala类型检查"></a>scala类型检查</h2><p>要测试某个对象是否属于某个给定的类，可以用 isInstanceOf方法。用asInstanceOf方法将引用转 换为子类的引用。classOf获取对象的类名。 </p>
+<ul>
+<li><p>classOf[String]就如同Java的 String.class</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// classOf获取类</span></span><br><span class="line"><span class="keyword">val</span> clazz:<span class="type">Class</span>[<span class="type">Tiger</span>] = classOf[<span class="type">Tiger</span>]</span><br><span class="line"><span class="comment">// class com.zhanghe.study.study_scala.oop.Tiger</span></span><br><span class="line">println(clazz)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>优化DataNode允许的最大文件打开数</p>
-<p>​      hdfs-site.xml    </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HBase一般都会同一时间操作大量的文件，根据集群的数量和规模以及数据动作，设置为4096或者更高。默认值：4096 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.max.transfer.threads<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>4096<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ul>
+<li><p>也可以使用反射来获取类</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> tiger:<span class="type">Animal</span> = <span class="keyword">new</span> <span class="type">Tiger</span></span><br><span class="line"><span class="comment">// class com.zhanghe.study.study_scala.oop.Tiger</span></span><br><span class="line">println(tiger.getClass)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>obj.isInstanceOf[T]就如同Java的obj instanceof T 判断obj是不是T类型</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> tiger:<span class="type">Animal</span> = <span class="keyword">new</span> <span class="type">Tiger</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">println(tiger.isInstanceOf[<span class="type">Animal</span>])</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">println(tiger.isInstanceOf[<span class="type">Tiger</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>obj.asInstanceOf[T]就如同Java的(T)obj 将obj强 转成T类型 </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> tiger:<span class="type">Animal</span> = <span class="keyword">new</span> <span class="type">Tiger</span></span><br><span class="line"><span class="comment">// 判断类型是否为Tiger，如果是的话进行强转</span></span><br><span class="line"><span class="keyword">if</span>(tiger.isInstanceOf[<span class="type">Tiger</span>])&#123;</span><br><span class="line">  tiger.asInstanceOf[<span class="type">Tiger</span>].run</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/16.scala%E7%89%B9%E5%BE%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/scala/16.scala%E7%89%B9%E5%BE%81/" class="post-title-link" itemprop="url">scala特征</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-02 13:42:19" itemprop="dateCreated datePublished" datetime="2021-05-02T13:42:19+08:00">2021-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-03 17:40:12" itemprop="dateModified" datetime="2021-05-03T17:40:12+08:00">2021-05-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/scala/16.scala%E7%89%B9%E5%BE%81/" class="post-meta-item leancloud_visitors" data-flag-title="scala特征" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/scala/16.scala%E7%89%B9%E5%BE%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/16.scala%E7%89%B9%E5%BE%81/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="scala特征"><a href="#scala特征" class="headerlink" title="scala特征"></a>scala特征</h2><p>在java中是存在接口interface的，而scala中使用特征trait来代替接口，多个类具有相同的特征时，就可以将这个特征独立出来，采用关键字 trait声明。 理解trait 等价于(interface + abstract class)</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义特征</span></span><br><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Breathable</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">breath</span></span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Flyable</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">fly</span></span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Swimmable</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">swig</span></span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 没有父类，直接继承特征</span></span><br><span class="line"><span class="comment">// class 类名 extends 特征</span></span><br><span class="line"><span class="comment">// 如果同时继承多个特征的话需要使用with     class 类名 extends 特征1 with 特征2 with 特征3</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> <span class="keyword">extends</span> <span class="title">Breathable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">&quot;动物&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sayHello</span></span>: <span class="type">Unit</span> = &#123;</span><br><span class="line">    println(<span class="string">&quot;你好，我是&quot;</span> + name)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">breath</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    println(<span class="string">&quot;我会呼吸&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 有父类，需要先继承父类，再继承特征</span></span><br><span class="line"><span class="comment">//  class 类名 extends 父类 with 特征1 with 特征2 with 特征3</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span> <span class="keyword">extends</span> <span class="title">Animal</span> <span class="keyword">with</span> <span class="title">Flyable</span></span>&#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">fly</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    println(<span class="string">&quot;我会飞&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> <span class="keyword">with</span> <span class="title">Swimmable</span></span>&#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">swig</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    </span><br><span class="line">    println(<span class="string">&quot;我会狗刨&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/7.%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/#more" rel="contents">
+              <a class="btn" href="/2021/scala/16.scala%E7%89%B9%E5%BE%81/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -401,7 +499,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/1.FastDateFormat%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/13.scala%E7%BB%A7%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -415,7 +513,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/1.FastDateFormat%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" class="post-title-link" itemprop="url">FastDateFormat为什么线程安全</a>
+            <a href="/2021/scala/13.scala%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">scala继承</a>
         </h2>
 
         <div class="post-meta">
@@ -426,7 +524,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-28 20:30:30 / 修改时间：17:30:10" itemprop="dateCreated datePublished" datetime="2021-04-28T20:30:30+08:00">2021-04-28</time>
+              <time title="创建时间：2021-05-02 13:40:19 / 修改时间：21:06:47" itemprop="dateCreated datePublished" datetime="2021-05-02T13:40:19+08:00">2021-05-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -434,12 +532,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">工具类</span></a>
+                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/1.FastDateFormat%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" class="post-meta-item leancloud_visitors" data-flag-title="FastDateFormat为什么线程安全" title="阅读次数">
+            <span id="/2021/scala/13.scala%E7%BB%A7%E6%89%BF/" class="post-meta-item leancloud_visitors" data-flag-title="scala继承" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -454,8 +552,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/1.FastDateFormat%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/1.FastDateFormat%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/scala/13.scala%E7%BB%A7%E6%89%BF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/13.scala%E7%BB%A7%E6%89%BF/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -470,15 +568,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="FastDateFormat为什么线程安全"><a href="#FastDateFormat为什么线程安全" class="headerlink" title="FastDateFormat为什么线程安全"></a>FastDateFormat为什么线程安全</h2><h3 id="SimpleDateFormat的线程不安全"><a href="#SimpleDateFormat的线程不安全" class="headerlink" title="SimpleDateFormat的线程不安全"></a>SimpleDateFormat的线程不安全</h3><p>大家都知道SimpleDateFormat是线程不安全的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Calendar calendar;</span><br></pre></td></tr></table></figure>
-
-<p>SimpleDateFormat中的calendar是成员变量，同实例多个线程下会共享该calendar对象</p>
-<p>而在进行格式化的时候可能会由于第一个线程还没有格式化完成，而第二个线程已经将时间修改了的情况</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> StringBuffer <span class="title">format</span><span class="params">(Date date, StringBuffer toAppendTo,</span></span></span><br><span class="line"><span class="function"><span class="params">                                FieldDelegate delegate)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果第一个线程设置了时间之后还没有格式化为字符串，此时第二个线程将时间覆盖掉，就会出现线程安全问题</span></span><br><span class="line">        calendar.setTime(date);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> useDateFormatSymbols = useDateFormatSymbols();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; compiledPattern.length; ) &#123;</span><br><span class="line">            <span class="keyword">int</span> tag = compiledPattern[i] &gt;&gt;&gt; <span class="number">8</span>;</span><br><span class="line">            <span class="keyword">int</span> count = compiledPattern[i++] &amp; <span class="number">0xff</span>;</span><br><span class="line">            <span class="keyword">if</span> (count == <span class="number">255</span>) &#123;</span><br><span class="line">                count = compiledPattern[i++] &lt;&lt; <span class="number">16</span>;</span><br><span class="line">                count |= compiledPattern[i++];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">switch</span> (tag) &#123;</span><br><span class="line">            <span class="keyword">case</span> TAG_QUOTE_ASCII_CHAR:</span><br><span class="line">                toAppendTo.append((<span class="keyword">char</span>)count);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">case</span> TAG_QUOTE_CHARS:</span><br><span class="line">                toAppendTo.append(compiledPattern, i, count);</span><br><span class="line">                i += count;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                subFormat(tag, count, delegate, toAppendTo, useDateFormatSymbols);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> toAppendTo;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="scala继承"><a href="#scala继承" class="headerlink" title="scala继承"></a>scala继承</h2><p>scala与java一样，也存在继承，同样使用extends关键字</p>
+<p>class 子类名 extends 父类名 { 类体 }</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">TestExtends</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> tiger = <span class="keyword">new</span> <span class="type">Tiger</span></span><br><span class="line">    tiger.name = <span class="string">&quot;东北虎&quot;</span></span><br><span class="line">    tiger.sayHello</span><br><span class="line">    tiger.run</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span> = _</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sayHello</span></span>: <span class="type">Unit</span> = &#123;</span><br><span class="line">    println(<span class="string">&quot;你好，我是&quot;</span> + name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tiger</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">run</span></span>: <span class="type">Unit</span> = &#123;</span><br><span class="line">    println(<span class="string">&quot;I can run&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/1.FastDateFormat%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/#more" rel="contents">
+              <a class="btn" href="/2021/scala/13.scala%E7%BB%A7%E6%89%BF/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -502,7 +597,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/12.scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -516,7 +611,111 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">scala数据类型</a>
+            <a href="/2021/scala/12.scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">scala伴生类和伴生对象</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-02 10:36:19" itemprop="dateCreated datePublished" datetime="2021-05-02T10:36:19+08:00">2021-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-03 13:41:10" itemprop="dateModified" datetime="2021-05-03T13:41:10+08:00">2021-05-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/scala/12.scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/" class="post-meta-item leancloud_visitors" data-flag-title="scala伴生类和伴生对象" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/scala/12.scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/12.scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="scala伴生类和伴生对象"><a href="#scala伴生类和伴生对象" class="headerlink" title="scala伴生类和伴生对象"></a>scala伴生类和伴生对象</h2><p>在之前的例子中也看到过有的文件中既声明了class又声明了object，这两个有什么区别呢，为什么main方法要在object中而不能和java一样在class中呢？</p>
+<p>这是因为scala中将static关键字去掉了，采用了伴生类和伴生对象的概念来区分静态和非静态，在伴生类中的都是非静态的，而在伴生对象中声明的都是静态的</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伴生类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span>&#123;</span><br><span class="line">  <span class="comment">// _表示赋默认值</span></span><br><span class="line">  <span class="keyword">var</span> name:<span class="type">String</span> = _</span><br><span class="line">  <span class="keyword">var</span> color:<span class="type">String</span> = _</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 伴生对象</span></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Cat</span></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> count:<span class="type">Int</span> = _</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> cat= <span class="keyword">new</span> <span class="type">Cat</span></span><br><span class="line">    cat.name = <span class="string">&quot;小花&quot;</span></span><br><span class="line">    cat.color = <span class="string">&quot;黄白&quot;</span></span><br><span class="line">    <span class="comment">// 可以直接使用类来调用伴生对象中的字段和方法</span></span><br><span class="line">    <span class="type">Cat</span>.count</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/scala/12.scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="post-title-link" itemprop="url">scala访问修饰符</a>
         </h2>
 
         <div class="post-meta">
@@ -527,7 +726,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-27 21:36:19 / 修改时间：17:29:44" itemprop="dateCreated datePublished" datetime="2021-04-27T21:36:19+08:00">2021-04-27</time>
+              <time title="创建时间：2021-05-02 10:30:19 / 修改时间：14:01:30" itemprop="dateCreated datePublished" datetime="2021-05-02T10:30:19+08:00">2021-05-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -540,7 +739,7 @@
             </span>
 
           
-            <span id="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="scala数据类型" title="阅读次数">
+            <span id="/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="post-meta-item leancloud_visitors" data-flag-title="scala访问修饰符" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -555,8 +754,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -571,13 +770,127 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="scala数据类型"><a href="#scala数据类型" class="headerlink" title="scala数据类型"></a>scala数据类型</h2><p>scala中的数据类型都是对象，没有像java那种的基本数据类型，不过scala数据类型分为两类，一类是AnyVal(值类型)，一类为AnyRef(引用类型)</p>
-<img src="/images/scala/数据类型.png" alt="数据类型" style="zoom:50%;">
+          <h2 id="scala访问修饰符"><a href="#scala访问修饰符" class="headerlink" title="scala访问修饰符"></a>scala访问修饰符</h2><p>在java中有四种访问修饰符，public、protected、default、private，那么scala中呢？</p>
+<ul>
+<li><p>当属性访问权限为默认时，从底层看属性是private的，但是因为提供了 xxx_$eq()[类似setter]/xxx()[类似getter] 方法，因此从使用效果看是任何地方 都可以访问) </p>
+</li>
+<li><p>当方法访问权限为默认时，默认为public访问权限 </p>
+</li>
+<li><p>private为私有权限，只在类的内部和伴生对象中可用 </p>
+</li>
+<li><p>protected为受保护权限，scala中受保护权限比Java中更严格，只能子类访问， 同包无法访问(这里是编译器限制的，编译完成java之后其实是public的)</p>
+</li>
+<li><p>在scala中没有public关键字,即不能用public显式的修饰属性和方法</p>
+</li>
+<li><p>包访问权限（表示属性有了限制。同时包也有了限制），这点和Java不一样， 体现出Scala包使用的灵活性</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 包访问权限 表示service包可以使用</span></span><br><span class="line">  <span class="keyword">private</span>[service] <span class="keyword">var</span> name: <span class="type">String</span> = _</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>与java类似，scala有一个根类型Any，是所有类的父类</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/10.scala%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/scala/10.scala%E5%8C%85/" class="post-title-link" itemprop="url">scala包</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-01 22:04:19" itemprop="dateCreated datePublished" datetime="2021-05-01T22:04:19+08:00">2021-05-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-02 11:20:43" itemprop="dateModified" datetime="2021-05-02T11:20:43+08:00">2021-05-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/scala/10.scala%E5%8C%85/" class="post-meta-item leancloud_visitors" data-flag-title="scala包" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/scala/10.scala%E5%8C%85/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/10.scala%E5%8C%85/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="scala包"><a href="#scala包" class="headerlink" title="scala包"></a>scala包</h2><p>scala也像java一样与包这个概念，但是功能更加强大<br>Scala包的三大作用(和Java一样)</p>
+<ul>
+<li>区分相同名字的类</li>
+<li>当类很多时,可以很好的管理类</li>
+<li>控制访问范围</li>
+</ul>
+<h3 id="包定义方式"><a href="#包定义方式" class="headerlink" title="包定义方式"></a>包定义方式</h3><p>scala中包名和源码所在系统文件目录结构可以不一致，这点与java不一样<br>这也就意味着scala中一个源文件可以包含多个包<br>且scala有三种包定义方式</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#more" rel="contents">
+              <a class="btn" href="/2021/scala/10.scala%E5%8C%85/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -601,7 +914,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/4.scala%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/9.scala%E6%9E%84%E9%80%A0%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -615,7 +928,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/scala/4.scala%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">scala方法</a>
+            <a href="/2021/scala/9.scala%E6%9E%84%E9%80%A0%E5%99%A8/" class="post-title-link" itemprop="url">scala构造器</a>
         </h2>
 
         <div class="post-meta">
@@ -624,16 +937,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-04-27 21:36:19" itemprop="dateCreated datePublished" datetime="2021-04-27T21:36:19+08:00">2021-04-27</time>
+              <time title="创建时间：2021-05-01 17:32:19 / 修改时间：22:00:17" itemprop="dateCreated datePublished" datetime="2021-05-01T17:32:19+08:00">2021-05-01</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-28 11:22:40" itemprop="dateModified" datetime="2021-04-28T11:22:40+08:00">2021-04-28</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -645,7 +952,7 @@
             </span>
 
           
-            <span id="/2021/scala/4.scala%E6%96%B9%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="scala方法" title="阅读次数">
+            <span id="/2021/scala/9.scala%E6%9E%84%E9%80%A0%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="scala构造器" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -660,8 +967,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/scala/4.scala%E6%96%B9%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/4.scala%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/scala/9.scala%E6%9E%84%E9%80%A0%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/9.scala%E6%9E%84%E9%80%A0%E5%99%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -676,10 +983,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="scala方法"><a href="#scala方法" class="headerlink" title="scala方法"></a>scala方法</h2><p>scala中如果一个方法没有形参列表，则在调用时可以省略()</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">  sayHello</span><br><span class="line">  sayHello()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sayHello</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">  println(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+          <h2 id="scala构造器"><a href="#scala构造器" class="headerlink" title="scala构造器"></a>scala构造器</h2><p>scala与java相似，也存在构造器，且同样的一个类可以有多个构造器，支持构造器的重载，在构造对象时需要调用构造器，但是与java不同的是scala分为主构造器和辅助构造器</p>
+<p>语法</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">类名</span>(<span class="params">形参列表</span>) </span>&#123; <span class="comment">// 主构造器 </span></span><br><span class="line">  <span class="comment">// 类体 </span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">this</span></span>(形参列表) &#123; <span class="comment">// 辅助构造器 </span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">this</span></span>(形参列表) &#123; <span class="comment">//辅助构造器</span></span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/scala/9.scala%E6%9E%84%E9%80%A0%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -698,7 +1012,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/2.scala%E5%8F%98%E9%87%8F/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/8.scala%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -712,7 +1026,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/scala/2.scala%E5%8F%98%E9%87%8F/" class="post-title-link" itemprop="url">scala变量</a>
+            <a href="/2021/scala/8.scala%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">scala类和对象</a>
         </h2>
 
         <div class="post-meta">
@@ -721,16 +1035,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-04-27 20:36:19" itemprop="dateCreated datePublished" datetime="2021-04-27T20:36:19+08:00">2021-04-27</time>
+              <time title="创建时间：2021-05-01 12:02:19 / 修改时间：21:47:23" itemprop="dateCreated datePublished" datetime="2021-05-01T12:02:19+08:00">2021-05-01</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-28 11:19:09" itemprop="dateModified" datetime="2021-04-28T11:19:09+08:00">2021-04-28</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -742,7 +1050,7 @@
             </span>
 
           
-            <span id="/2021/scala/2.scala%E5%8F%98%E9%87%8F/" class="post-meta-item leancloud_visitors" data-flag-title="scala变量" title="阅读次数">
+            <span id="/2021/scala/8.scala%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="post-meta-item leancloud_visitors" data-flag-title="scala类和对象" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -757,8 +1065,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/scala/2.scala%E5%8F%98%E9%87%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/2.scala%E5%8F%98%E9%87%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/scala/8.scala%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/8.scala%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -773,20 +1081,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="scala变量"><a href="#scala变量" class="headerlink" title="scala变量"></a>scala变量</h2><p>scala的变量声明方式和java不同，scala声明变量必须对变量进行初始化</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明语法  var|val 变量名[:变量类型] = 变量值</span></span><br><span class="line"><span class="comment">// 类型是可以省略的，编译器可以进行类型推导</span></span><br><span class="line"><span class="keyword">var</span> age: <span class="type">Int</span> = <span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>var和val的区别</strong></p>
-<p>在声明变量时可以使用var或者val来声明</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sex:<span class="type">Int</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> age:<span class="type">Int</span> = <span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<p>var修饰的变量可以改变，val修饰的变量不可改变，相当于java中使用final修饰的变量</p>
+          <h2 id="scala类和对象"><a href="#scala类和对象" class="headerlink" title="scala类和对象"></a>scala类和对象</h2><p>scala是面向对象的语言，且比java更加的面向对象，而且更加简洁，很多东西都是在编译期间生成的</p>
+<p>声明一个类</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span>&#123;</span><br><span class="line">  <span class="comment">// 属性语法  [访问修饰符] var 属性名称 [：类型] = 属性值</span></span><br><span class="line">  <span class="comment">// _表示赋默认值</span></span><br><span class="line">  <span class="keyword">var</span> name:<span class="type">String</span> = _</span><br><span class="line">  <span class="keyword">var</span> color:<span class="type">String</span> = _</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>val是线程安全的，效率更高</p>
+<p>类的声明默认是public的，且在同一个源文件中可以包含多个类</p>
+<p>类中的属性必须进行显式的初始化，如果暂时不想赋值，可以使用_来赋默认值</p>
 </blockquote>
+<p>编译之后生成的java代码为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ScalaSignature(bytes = &quot;\u0006\u0005e2A\u0001C\u0005\u0001)</span>!)<span class="number">1</span>\u0004\u0001C\u00019!Iq\u0004\u0001a\u0001\u0002\u0004%\t\u0001\t\u0005\nY\u0001\u0001\r\u00111A\u0005\u00025B\u0011b\r\u0001A\u0002\u0003\u0005\u000b\u0015B\u0011\t\u0013Q\u0002\u0001\u0019!a\u0001\n\u0003\u0001\u0003\<span class="string">&quot;C\u001b\u0001\u0001\u0004\u0005\r\u0011\&quot;\u00017\u0011%A\u0004\u00011A\u0001B\u0003&amp;\u0011EA\u0002DCRT!AC\u0006\u0002\u0007=|\u0007O\u0003\u0002\r\u001b\u0005Y1\u000f^;es~\u001b8-\u00197b\u0015\tqq\&quot;A\u0003tiV$\u0017P\u0003\u0002\u0011#\u00059!\u0010[1oO\&quot;,&#x27;\&quot;\u0001\n\u0002\u0007\r|Wn\u0001\u0001\u0014\u0005\u0001)\u0002C\u0001\f\u001a\u001b\u00059\&quot;\&quot;\u0001\r\u0002\u000bM\u001c\u0017\r\\1\n\u0005i9\&quot;AB!osJ+g-\u0001\u0004=S:LGO\u0010\u000b\u0002;A\u0011a\u0004A\u0007\u0002\u0013\u0005!a.Y7f+\u0005\t\u0003C\u0001\u0012*\u001d\t\u0019s\u0005\u0005\u0002%/5\tQE\u0003\u0002&#x27;&#x27;\u00051AH]8pizJ!\u0001K\f\u0002\rA\u0013X\rZ3g\u0013\tQ3F\u0001\u0004TiJLgn\u001a\u0006\u0003Q]\t\u0001B\\1nK~#S-\u001d\u000b\u0003]E\u0002\&quot;AF\u0018\n\u0005A:\&quot;\u0001B+oSRDqAM\u0002\u0002\u0002\u0003\u0007\u0011%A\u0002yIE\nQA\\1nK\u0002\nQaY8m_J\f\u0011bY8m_J|F%Z9\u0015\u00059:\u0004b\u0002\u001a\u0007\u0003\u0003\u0005\r!I\u0001\u0007G&gt;dwN\u001d\u0011&quot;</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">      <span class="comment">// 访问修饰符是private</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String color;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">      <span class="comment">//相当于name属性的getter方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 相当于name属性的setter方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> name_$eq(<span class="keyword">final</span> String x$<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = x$<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//相当于color属性的getter方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">color</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.color;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//相当于color属性的setter方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> color_$eq(<span class="keyword">final</span> String x$<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.color = x$<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/scala/2.scala%E5%8F%98%E9%87%8F/#more" rel="contents">
+              <a class="btn" href="/2021/scala/8.scala%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -810,7 +1116,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/5.HBase%E8%AF%BB%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/7.scala%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -824,7 +1130,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/5.HBase%E8%AF%BB%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">HBase读数据过程</a>
+            <a href="/2021/scala/7.scala%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">scala异常处理</a>
         </h2>
 
         <div class="post-meta">
@@ -835,7 +1141,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-27 20:32:23 / 修改时间：15:36:00" itemprop="dateCreated datePublished" datetime="2021-04-27T20:32:23+08:00">2021-04-27</time>
+              <time title="创建时间：2021-05-01 11:02:19 / 修改时间：21:47:17" itemprop="dateCreated datePublished" datetime="2021-05-01T11:02:19+08:00">2021-05-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -843,12 +1149,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a>
+                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/5.HBase%E8%AF%BB%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="HBase读数据过程" title="阅读次数">
+            <span id="/2021/scala/7.scala%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="scala异常处理" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -863,8 +1169,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/5.HBase%E8%AF%BB%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/5.HBase%E8%AF%BB%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/scala/7.scala%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/7.scala%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -879,336 +1185,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="HBase读数据过程"><a href="#HBase读数据过程" class="headerlink" title="HBase读数据过程"></a>HBase读数据过程</h2><ul>
-<li>Client先访问zookeeper，从meta表读取region的位置，然后读取meta表中的数据，meta中又存储了用户表的region信息</li>
-<li>根据namespace、表名和rowkey在meta表中找到对应的region信息</li>
-<li>找到这个region对应的regionserver</li>
-<li>查找对应的region</li>
-<li>先从MemStore找数据，如果没有，再到BlockCache里面读</li>
-<li>BlockCache还没有，再到StoreFile上读(为了读取的效率)</li>
-<li>如果是从StoreFile里面读取的数据，不是直接返回给客户端，而是先写入BlockCache，再返回给客户端</li>
-</ul>
+          <h2 id="scala异常处理"><a href="#scala异常处理" class="headerlink" title="scala异常处理"></a>scala异常处理</h2><p>在scala中也要使用异常处理，与java类似，也是使用try…catch来进行异常处理和捕获，但是语法上有些地方是不同的，scala中只能包含一个catch，但是一个catch中可以使用case来操作匹配异常</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span> / <span class="number">0</span></span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">  <span class="comment">// case可以匹配异常进行处理</span></span><br><span class="line">  <span class="comment">// =&gt; 后为匹配后所执行的操作</span></span><br><span class="line">  <span class="keyword">case</span> e: <span class="type">ArithmeticException</span> =&gt; println(<span class="string">&quot;操作出错了&quot;</span> + e.getMessage)</span><br><span class="line">  <span class="keyword">case</span> e: <span class="type">Exception</span> =&gt; &#123;</span><br><span class="line">    println(<span class="string">&quot;出现了不知道的异常&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  println(<span class="string">&quot;不管报没报错，总得干点啥&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/6.HBase%E5%86%99%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/6.HBase%E5%86%99%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">HBase写数据过程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-27 20:32:23 / 修改时间：15:42:16" itemprop="dateCreated datePublished" datetime="2021-04-27T20:32:23+08:00">2021-04-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/6.HBase%E5%86%99%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="HBase写数据过程" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/6.HBase%E5%86%99%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/6.HBase%E5%86%99%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="HBase写数据过程"><a href="#HBase写数据过程" class="headerlink" title="HBase写数据过程"></a>HBase写数据过程</h2><ul>
-<li>Client向HregionServer发送写请求</li>
-<li>HregionServer将数据写到HLog（write ahead log），这一步是为了数据的持久化和恢复</li>
-<li>HregionServer将数据写到内存（MemStore）</li>
-<li>反馈Client写成功</li>
-</ul>
-<p>为了提升性能，写完数据之后由于数据是写在内存的，需要将内存中的数据flush到硬盘</p>
-<p><strong>数据flush的过程如下</strong></p>
-<ul>
-<li>当MemStore数据达到阈值（默认是128M），将数据刷到硬盘，将内存中的数据删除，同时删除HLog中的历史数据</li>
-<li>并将数据存储到HDFS中</li>
-<li>在HLog中做标记点</li>
-</ul>
-<p>为了减少小文件数量，会进行小文件的合并操作</p>
-<p><strong>数据合并过程如下</strong></p>
-<ul>
-<li>当数据块达到4块，Hmaster触发合并操作，Region将数据块加载到本地，进行合并</li>
-<li>当合并的数据超过256M，进行拆分，将拆分后的Region分配给不同的HregionServer管理</li>
-<li>当HregionServer宕机后，将HregionServer上的hlog拆分，然后分配给不同的HregionServer加载，修改.META.</li>
-<li>HLog会同步到HDFS</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">HBase数据结构</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-26 20:32:23 / 修改时间：10:50:42" itemprop="dateCreated datePublished" datetime="2021-04-26T20:32:23+08:00">2021-04-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="HBase数据结构" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="HBase数据结构"><a href="#HBase数据结构" class="headerlink" title="HBase数据结构"></a>HBase数据结构</h2><h3 id="命名空间NameSpace"><a href="#命名空间NameSpace" class="headerlink" title="命名空间NameSpace"></a>命名空间NameSpace</h3><p>HBase的命名空间类似于mysql中的database，一个mysql下可以有多个database，同样的一个HBase下也可以有多个命名空间，命名空间中包括</p>
-<ul>
-<li>Table表，所有的表都是命名空间的成员，即表必属于某个命名空间，如果没有指定，则在default默认的命名空间中。</li>
-<li>RegionServer group，一个命名空间包含了默认的RegionServer Group。</li>
-<li>Permission权限，命名空间能够让我们来定义访问控制列表ACL（Access Control List）。例如，创建表，读取表，删除，更新等等操作。</li>
-<li>Quota限额，可以强制一个命名空间可包含的region的数量。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/" class="post-title-link" itemprop="url">HBase部署启动</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-23 22:32:23" itemprop="dateCreated datePublished" datetime="2021-04-23T22:32:23+08:00">2021-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-26 10:31:42" itemprop="dateModified" datetime="2021-04-26T10:31:42+08:00">2021-04-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/" class="post-meta-item leancloud_visitors" data-flag-title="HBase部署启动" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="HBase部署启动"><a href="#HBase部署启动" class="headerlink" title="HBase部署启动"></a>HBase部署启动</h2><blockquote>
-<p>使用的版本为2.2.7</p>
+<blockquote>
+<p>catch中case是从上到下依次匹配的，所以推荐将小异常放在上面，大异常放在下边</p>
 </blockquote>
-<h3 id="单机模式"><a href="#单机模式" class="headerlink" title="单机模式"></a>单机模式</h3><p>肯定先从简单地开始，先来个单机版的，出现问题也比较好解决，首先配置hbase-env.sh</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确保配置了java环境</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/1.8</span><br></pre></td></tr></table></figure>
 
-<p>修改hbase-site.xml配置文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- hbase的跟目录 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- hbase的zookeeper数据目录 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.property.dataDir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/myself/hbase-2.2.7/zkData<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- hbase集群模式关闭 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -1226,7 +1209,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1294,7 +1277,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">386</span>
+          <span class="site-state-item-count">397</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
