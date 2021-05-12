@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/22.scala%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/scala/22.scala%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">scala并发编程模型</a>
+            <a href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Eureka配置</a>
         </h2>
 
         <div class="post-meta">
@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-10 21:09:19 / 修改时间：09:46:52" itemprop="dateCreated datePublished" datetime="2021-05-10T21:09:19+08:00">2021-05-10</time>
+              <time title="创建时间：2021-05-11 21:36:19 / 修改时间：12:06:20" itemprop="dateCreated datePublished" datetime="2021-05-11T21:36:19+08:00">2021-05-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,12 +227,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/scala/22.scala%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="scala并发编程模型" title="阅读次数">
+            <span id="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="Eureka配置" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -247,8 +247,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/scala/22.scala%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/22.scala%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -263,7 +263,242 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="scala并发编程模型"><a href="#scala并发编程模型" class="headerlink" title="scala并发编程模型"></a>scala并发编程模型</h2>
+          <h2 id="Eureka配置"><a href="#Eureka配置" class="headerlink" title="Eureka配置"></a>Eureka配置</h2><p>Eureka注册中心配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">localhost</span></span><br><span class="line">    <span class="comment"># 过期时间，默认90s, 可不配置</span></span><br><span class="line">    <span class="attr">lease-expiration-duration-in-seconds:</span> <span class="number">90</span></span><br><span class="line">    <span class="comment"># 续约时间，默认30s，可不配置</span></span><br><span class="line">    <span class="attr">lease-renewal-interval-in-seconds:</span> <span class="number">30</span></span><br><span class="line">    <span class="comment"># ip地址优先</span></span><br><span class="line">    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="comment"># 关闭注册中心自我保护模式，避免注册中心不移除失效的服务，默认为true</span></span><br><span class="line">    <span class="attr">enable-self-preservation:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 去除失效服务的时间间隔（毫秒）</span></span><br><span class="line">    <span class="attr">eviction-interval-timer-in-ms:</span> <span class="number">4000</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="comment"># 启用eureka客户端，默认为true, 可不配置</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 取注册信息，默认为true，可不配置</span></span><br><span class="line">    <span class="attr">fetchRegistry:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># 两个心跳参数，默认都是30s,可不配置</span></span><br><span class="line">    <span class="attr">instance-info-replication-interval-seconds:</span> <span class="number">30</span></span><br><span class="line">    <span class="attr">registry-fetch-interval-seconds:</span> <span class="number">30</span></span><br><span class="line">    <span class="comment"># 注册到注册中心，默认为true,可不配置</span></span><br><span class="line">    <span class="attr">registerWithEureka:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">serviceUrl:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br></pre></td></tr></table></figure>
+
+<p>业务微服务配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">serviceUrl:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://localhost:8761/eureka</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">instance-id:</span> <span class="string">$&#123;spring.cloud.client.ip-address&#125;:$&#123;server.port&#125;</span></span><br><span class="line">    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span>   <span class="comment">#以IP地址注册到服务中心</span></span><br><span class="line">    <span class="attr">ip-address:</span> <span class="number">192.168</span><span class="number">.217</span><span class="number">.211</span></span><br><span class="line">    <span class="attr">non-secure-port:</span> <span class="number">8767</span></span><br><span class="line">    <span class="comment">#Eureka客户端向服务端发送心跳的时间间隔，单位为秒（客户端告诉服务端自己会按照该规则），默认30</span></span><br><span class="line">    <span class="attr">lease-renewal-interval-in-seconds:</span> <span class="number">10</span></span><br><span class="line">    <span class="comment">#Eureka服务端在收到最后一次心跳之后等待的时间上限，单位为秒，超过则剔除（客户端告诉服务端按照此规则等待自己），默认90</span></span><br><span class="line">    <span class="attr">lease-expiration-duration-in-seconds:</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/" class="post-title-link" itemprop="url">Eureka服务下线</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-11 20:36:19 / 修改时间：12:11:36" itemprop="dateCreated datePublished" datetime="2021-05-11T20:36:19+08:00">2021-05-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/" class="post-meta-item leancloud_visitors" data-flag-title="Eureka服务下线" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Eureka服务下线"><a href="#Eureka服务下线" class="headerlink" title="Eureka服务下线"></a>Eureka服务下线</h2><p>默认情况下，如果Eureka Server在90s内没有收到Eureka客户端的续约，会将实例从注册表中删除，这样就会导致有时候客户端已经停止了运行，但是依然在注册中心列表中，导致访问该客户端报错</p>
+<h3 id="手动下线"><a href="#手动下线" class="headerlink" title="手动下线"></a>手动下线</h3><p>可以向Eureka注册中心发送delete请求来删除服务  /eureka/apps/{application.name}/</p>
+<h3 id="客户端通知注册中心下线"><a href="#客户端通知注册中心下线" class="headerlink" title="客户端通知注册中心下线"></a>客户端通知注册中心下线</h3><p>也可以在客户端显式的通知注册中心下线</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DiscoveryManager.getInstance().shutdownComponent();</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/" class="post-title-link" itemprop="url">查询map字段</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-10 20:24:23 / 修改时间：14:57:42" itemprop="dateCreated datePublished" datetime="2021-05-10T20:24:23+08:00">2021-05-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/" class="post-meta-item leancloud_visitors" data-flag-title="查询map字段" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="查询map字段"><a href="#查询map字段" class="headerlink" title="查询map字段"></a>查询map字段</h2><p>建表语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test_map(<span class="keyword">name</span> <span class="keyword">string</span>, score <span class="keyword">map</span>&lt;<span class="keyword">string</span>,<span class="built_in">int</span>&gt;)</span><br><span class="line"><span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span></span><br><span class="line"><span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&#x27;\t&#x27;</span></span><br><span class="line">COLLECTION ITEMS <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line"><span class="keyword">MAP</span> <span class="keyword">KEYS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&#x27;:&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Collection-Functions"><a href="#Collection-Functions" class="headerlink" title="Collection Functions"></a>Collection Functions</h3><p>The following built-in collection functions are supported in Hive:</p>
+<table>
+<thead>
+<tr>
+<th align="left">返回类型</th>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">int</td>
+<td align="left">size(Map&lt;K.V&gt;)</td>
+<td align="left">返回map的元素数量</td>
+</tr>
+<tr>
+<td align="left">int</td>
+<td align="left">size(Array<T>)</T></td>
+<td align="left">返回数组的元素数量</td>
+</tr>
+<tr>
+<td align="left">array<K></K></td>
+<td align="left">map_keys(Map&lt;K.V&gt;)</td>
+<td align="left">数组形式返回map中所有的key</td>
+</tr>
+<tr>
+<td align="left">array<V></V></td>
+<td align="left">map_values(Map&lt;K.V&gt;)</td>
+<td align="left">数组形式返回map中所有的value</td>
+</tr>
+<tr>
+<td align="left">boolean</td>
+<td align="left">array_contains(Array<T>, value)</T></td>
+<td align="left">如果数组中包含该value则返回true</td>
+</tr>
+<tr>
+<td align="left">array<t></t></td>
+<td align="left">sort_array(Array<T>)</T></td>
+<td align="left">按照自然排序对数组进行排序</td>
+</tr>
+</tbody></table>
+<p>查询张三的成绩单中有数学的记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,score <span class="keyword">from</span> user_profile <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">&#x27;张三&#x27;</span> <span class="keyword">and</span> array_contains(map_keys(score),<span class="string">&#x27;数学&#x27;</span>) <span class="keyword">limit</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
       
     </div>
 
@@ -313,7 +548,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-10 09:32:15" itemprop="dateModified" datetime="2021-05-10T09:32:15+08:00">2021-05-10</time>
+                <time title="修改时间：2021-05-11 11:39:30" itemprop="dateModified" datetime="2021-05-11T11:39:30+08:00">2021-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -985,208 +1220,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/" class="post-title-link" itemprop="url">scala抽象类</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-02 21:10:19 / 修改时间：21:20:30" itemprop="dateCreated datePublished" datetime="2021-05-02T21:10:19+08:00">2021-05-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="scala抽象类" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="scala抽象类"><a href="#scala抽象类" class="headerlink" title="scala抽象类"></a>scala抽象类</h2><p>java中有抽象类概念，scala中同样也有，且同样是abstract关键字</p>
-<p>在scala中抽象方法不需要使用abstract修饰，只是不写方法体而已，而抽象字段需要使用abstract修饰(抽象字段是指没有初始化的字段)</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span></span>&#123;</span><br><span class="line">  <span class="comment">// 抽象字段</span></span><br><span class="line">  <span class="keyword">var</span> age:<span class="type">Int</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> name:<span class="type">String</span> = _</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 抽象方法</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">breath</span></span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/scala/15.scala%E6%8A%BD%E8%B1%A1%E7%B1%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/" class="post-title-link" itemprop="url">scala类型检查</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-02 14:10:19 / 修改时间：14:30:42" itemprop="dateCreated datePublished" datetime="2021-05-02T14:10:19+08:00">2021-05-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/" class="post-meta-item leancloud_visitors" data-flag-title="scala类型检查" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/14.scala%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="scala类型检查"><a href="#scala类型检查" class="headerlink" title="scala类型检查"></a>scala类型检查</h2><p>要测试某个对象是否属于某个给定的类，可以用 isInstanceOf方法。用asInstanceOf方法将引用转 换为子类的引用。classOf获取对象的类名。 </p>
-<ul>
-<li><p>classOf[String]就如同Java的 String.class</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// classOf获取类</span></span><br><span class="line"><span class="keyword">val</span> clazz:<span class="type">Class</span>[<span class="type">Tiger</span>] = classOf[<span class="type">Tiger</span>]</span><br><span class="line"><span class="comment">// class com.zhanghe.study.study_scala.oop.Tiger</span></span><br><span class="line">println(clazz)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>也可以使用反射来获取类</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> tiger:<span class="type">Animal</span> = <span class="keyword">new</span> <span class="type">Tiger</span></span><br><span class="line"><span class="comment">// class com.zhanghe.study.study_scala.oop.Tiger</span></span><br><span class="line">println(tiger.getClass)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>obj.isInstanceOf[T]就如同Java的obj instanceof T 判断obj是不是T类型</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> tiger:<span class="type">Animal</span> = <span class="keyword">new</span> <span class="type">Tiger</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">println(tiger.isInstanceOf[<span class="type">Animal</span>])</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">println(tiger.isInstanceOf[<span class="type">Tiger</span>])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>obj.asInstanceOf[T]就如同Java的(T)obj 将obj强 转成T类型 </p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> tiger:<span class="type">Animal</span> = <span class="keyword">new</span> <span class="type">Tiger</span></span><br><span class="line"><span class="comment">// 判断类型是否为Tiger，如果是的话进行强转</span></span><br><span class="line"><span class="keyword">if</span>(tiger.isInstanceOf[<span class="type">Tiger</span>])&#123;</span><br><span class="line">  tiger.asInstanceOf[<span class="type">Tiger</span>].run</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1258,20 +1291,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">405</span>
+          <span class="site-state-item-count">407</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
