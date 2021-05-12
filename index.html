@@ -194,6 +194,211 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/" class="post-title-link" itemprop="url">spark敲门砖之WordCount</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-12 21:10:30 / 修改时间：15:19:26" itemprop="dateCreated datePublished" datetime="2021-05-12T21:10:30+08:00">2021-05-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/" class="post-meta-item leancloud_visitors" data-flag-title="spark敲门砖之WordCount" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="spark敲门砖之WordCount"><a href="#spark敲门砖之WordCount" class="headerlink" title="spark敲门砖之WordCount"></a>spark敲门砖之WordCount</h2><p>首先要确定好scala和spark的版本，可以去看一下maven中的对应关系(我原本用的是scala2.13版本的，由于spark没有与之对应的版本，降回到2.12了)</p>
+<img src="/source/images/大数据/spark/maven版本对应.png" alt="maven版本对应" style="zoom:33%;">
+
+
+
+<p>maven依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 添加scala的依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.scala-lang<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>scala-library<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.13<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 这里注意scala的版本和spark的版本，不然会出现问题 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/" class="post-title-link" itemprop="url">spark与hadoop对比</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-12 20:10:30 / 修改时间：11:58:01" itemprop="dateCreated datePublished" datetime="2021-05-12T20:10:30+08:00">2021-05-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/" class="post-meta-item leancloud_visitors" data-flag-title="spark与hadoop对比" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="spark与hadoop对比"><a href="#spark与hadoop对比" class="headerlink" title="spark与hadoop对比"></a>spark与hadoop对比</h2><p>spark就相当于是Hadoop的升级版本，对于MapReduce进行了再一次的优化</p>
+<p>Hadoop</p>
+<ul>
+<li>Hadoop 是由 java 语言编写的，在分布式服务器集群上存储海量数据并运行分布式分析应用的开源框架</li>
+<li>作为 Hadoop 分布式文件系统，HDFS 处于 Hadoop 生态圈的最下层，存储着所有的数据 ，支持着 Hadoop的所有 服务。它的理论基础源于Google的TheGoogleFileSystem这篇论文，它是GFS的开源实现</li>
+<li>MapReduce是一种编程模型，Hadoop根据Google的MapReduce论文将其实现，作为Hadoop的分布式计算模型，是 Hadoop的核心。基于这个框架，分布式并行程序的编写变得异常简单。综合了 HDFS 的分布式存储和MapReduce 的分布式计算，Hadoop在处理海量数据时，性能横向扩展变得非常容易</li>
+</ul>
+<p>Spark</p>
+<ul>
+<li>Spark 是一种由 Scala 语言开发的快速、通用、可扩展的大数据分析引擎</li>
+<li>Spark Core 中提供了 Spark 最基础与最核心的功能</li>
+<li>Spark SQL 是 Spark 用来操作结构化数据的组件。通过 Spark SQL，用户可以使用SQL 或者 Apache Hive 版本的 SQL 方言（HQL）来查询数据</li>
+<li>Spark Streaming 是 Spark 平台上针对实时数据进行流式计算的组件，提供了丰富的处理数据流的 API</li>
+</ul>
+<p>根本区别在于：Spark多个作业之间数据通信是基于内存，而Hadoop是基于磁盘，但是由于Spark是基于内存的，由于内存的限制，有时候会由于内存资源不足导致Job执行失败，所以Spark并不能完全的替代MapReduce</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1016,210 +1221,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/18.scala%E9%9B%86%E5%90%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/scala/18.scala%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">scala集合</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-07 21:42:19" itemprop="dateCreated datePublished" datetime="2021-05-07T21:42:19+08:00">2021-05-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-08 17:05:18" itemprop="dateModified" datetime="2021-05-08T17:05:18+08:00">2021-05-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/scala/18.scala%E9%9B%86%E5%90%88/" class="post-meta-item leancloud_visitors" data-flag-title="scala集合" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/scala/18.scala%E9%9B%86%E5%90%88/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/18.scala%E9%9B%86%E5%90%88/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="scala集合"><a href="#scala集合" class="headerlink" title="scala集合"></a>scala集合</h2><p>scala同时支持不可变集合和可变集合，不可变集合可以安全的并发访问，包含有三大类，Seq序列、Set集合、Map映射<br>不可变集合：scala.collection.immutable</p>
-<img src="/images/scala/不可变集合.png" alt="不可变集合" style="zoom:50%;">
-
-<p>可变集合：scala.collection.mutable</p>
-<img src="/images/scala/可变集合层级关系.png" alt="可变集合层级关系" style="zoom:50%;">
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/scala/18.scala%E9%9B%86%E5%90%88/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/17.scala%E9%9A%90%E5%BC%8F%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/scala/17.scala%E9%9A%90%E5%BC%8F%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">scala隐式函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-07 20:42:19 / 修改时间：11:47:02" itemprop="dateCreated datePublished" datetime="2021-05-07T20:42:19+08:00">2021-05-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/scala/17.scala%E9%9A%90%E5%BC%8F%E5%87%BD%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="scala隐式函数" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/scala/17.scala%E9%9A%90%E5%BC%8F%E5%87%BD%E6%95%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/17.scala%E9%9A%90%E5%BC%8F%E5%87%BD%E6%95%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="scala隐式函数"><a href="#scala隐式函数" class="headerlink" title="scala隐式函数"></a>scala隐式函数</h2><p>在低精度数值向高精度数值转换时是自动进行转换的，而高精度数值向低精度数值转换时就需要手动的进行强制类型转换，可以使用隐式函数来优雅的解决这种问题</p>
-<h3 id="隐式函数implicit"><a href="#隐式函数implicit" class="headerlink" title="隐式函数implicit"></a>隐式函数implicit</h3><p>隐式函数是以implicit关键字声明的单个参数的函数，这种函数将会自动应用，将值从一种类型转为另一种类型</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 隐式函数  将Double自动转化为Int</span></span><br><span class="line"><span class="keyword">implicit</span> <span class="function"><span class="keyword">def</span> <span class="title">f1</span></span>(d:<span class="type">Double</span>): <span class="type">Int</span> =&#123;</span><br><span class="line">  d.toInt</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i:<span class="type">Int</span> = <span class="number">2.0</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/scala/17.scala%E9%9A%90%E5%BC%8F%E5%87%BD%E6%95%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1291,7 +1292,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">407</span>
+          <span class="site-state-item-count">409</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

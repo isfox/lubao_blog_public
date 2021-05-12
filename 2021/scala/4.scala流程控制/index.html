@@ -30,7 +30,7 @@
 <meta property="og:description" content="scala流程控制主要有三大流程控制语句  顺序控制 分支控制 循环控制  顺序控制顺序控制就是按照代码所写顺序从上到下依次执行，这个和java是一样的 分支控制分支控制与java也大致相同，使用if…else if…else来执行 12345678910val age &#x3D; 19if(age &gt; 22)&amp;#123;  println(&quot;这么大岁数了，什么时候结婚生孩子呀&quot;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-29T02:58:19.000Z">
-<meta property="article:modified_time" content="2021-05-01T13:46:59.338Z">
+<meta property="article:modified_time" content="2021-05-12T07:32:23.296Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="scala">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-01 21:46:59" itemprop="dateModified" datetime="2021-05-01T21:46:59+08:00">2021-05-01</time>
+                <time title="修改时间：2021-05-12 15:32:23" itemprop="dateModified" datetime="2021-05-12T15:32:23+08:00">2021-05-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -296,12 +296,12 @@
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myArray:<span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>)</span><br><span class="line"><span class="keyword">for</span>(item &lt;- myArray)&#123;</span><br><span class="line">  print(item+<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>for循环中的循环守卫</strong></p>
-<p>在遍历的同时增加判断条件，如果判断条件为true，则执行语句，否则，则进行下一个循环，相当于continue</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只有i不等于2的时候才会执行</span></span><br><span class="line"><span class="keyword">for</span> (i &lt;- <span class="number">1</span> to <span class="number">3</span> <span class="keyword">if</span> i != <span class="number">2</span>) &#123;</span><br><span class="line">  <span class="comment">// 1 3</span></span><br><span class="line">  print(i+<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在遍历的同时增加判断条件，如果判断条件为true，则进入循环，否则，跳过此次循环，进行下一次循环，相当于continue</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只有i不等于2的时候才会执行</span></span><br><span class="line"><span class="keyword">for</span> (i &lt;- <span class="number">1</span> to <span class="number">3</span> <span class="keyword">if</span> i != <span class="number">2</span>) &#123;</span><br><span class="line">  <span class="comment">// 1 3</span></span><br><span class="line">  print(i+<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面得操作等价于</span></span><br><span class="line"><span class="keyword">for</span> (i &lt;- <span class="number">1</span> to <span class="number">3</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (i != <span class="number">2</span>)&#123;</span><br><span class="line">    <span class="comment">// 1 3</span></span><br><span class="line">      print(i+<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>for循环中引入变量</strong></p>
 <p>可以在遍历元素的同时，对元素进行其他操作</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i &lt;- <span class="number">1</span> to <span class="number">3</span>; j = i + <span class="number">4</span>) &#123;</span><br><span class="line">  <span class="comment">// 5 6  7</span></span><br><span class="line">  print(j + <span class="string">&quot;\t&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意两个操作之间有; 不然编译器不知道逻辑</span></span><br><span class="line"><span class="keyword">for</span> (i &lt;- <span class="number">1</span> to <span class="number">3</span>; j = i + <span class="number">4</span>) &#123;</span><br><span class="line">  <span class="comment">// 5 6  7</span></span><br><span class="line">  print(j + <span class="string">&quot;\t&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><p>while循环与java的用法相似，不过scala不推荐使用while循环，而推荐使用for循环（由于scala不推荐使用外部变量）</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">10</span>) &#123;</span><br><span class="line">  println(<span class="string">&quot;line&quot;</span> + i)</span><br><span class="line">  i += <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -316,6 +316,8 @@
 <p>可以看到break()中就是抛出一个异常，而由于异常没有处理，所以导致执行中断了，但是这个操作不只是中断了循环，直接将程序中断了</p>
 <p>可以使用breakable()来捕获该异常，这样后续程序就可以执行了</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// def breakable(op: =&gt; Unit): Unit =</span></span><br><span class="line"><span class="comment">//    try op catch &#123; case ex: BreakControl if ex eq breakException =&gt; &#125;</span></span><br><span class="line"><span class="comment">// breakable是专门来捕获breakException异常的，并且捕获之后什么都不做</span></span><br><span class="line">breakable(</span><br><span class="line">  <span class="keyword">for</span>(i&lt;- <span class="number">1</span> to <span class="number">10</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(i % <span class="number">5</span> == <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="comment">// def break(): Nothing = throw breakException</span></span><br><span class="line">      <span class="keyword">break</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">&quot;i=&quot;</span>+i+<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
     </div>
 
     
@@ -417,7 +419,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">407</span>
+          <span class="site-state-item-count">409</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
