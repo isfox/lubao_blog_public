@@ -30,7 +30,7 @@
 <meta property="og:description" content="RDD编程RDD的创建方式从集合（内存）中创建RDD使用parallelize或者makeRDD方法传入序列即可 123456789&#x2F;&#x2F; 准备集合val list &#x3D; List(1,2,3,4)&#x2F;&#x2F; 创建RDDval rdd &#x3D; context.parallelize(list)&#x2F;&#x2F; 该方法内部也是直接调用的parallelize(seq, numSlices)context.makeRDD(li">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-15T00:35:30.000Z">
-<meta property="article:modified_time" content="2021-05-16T06:41:46.583Z">
+<meta property="article:modified_time" content="2021-05-17T10:18:37.898Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="spark">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-16 14:41:46" itemprop="dateModified" datetime="2021-05-16T14:41:46+08:00">2021-05-16</time>
+                <time title="修改时间：2021-05-17 18:18:37" itemprop="dateModified" datetime="2021-05-17T18:18:37+08:00">2021-05-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,8 +287,8 @@
 
 <h3 id="RDD操作"><a href="#RDD操作" class="headerlink" title="RDD操作"></a>RDD操作</h3><p>RDD中的方法又叫做RDD算子，可以将计算逻辑发送到Executor执行</p>
 <p>RDD分为两种类型的操作，一种是转换，一种是执行(行动)</p>
-<p>转换就代表着对于RDD的功能的补充和封装(即由一个RDD转换为另一个RDD)，如map、flatmap方法</p>
-<p>执行就代表着触发任务的调度和作业的执行，如collect方法</p>
+<p>转换就代表着对于RDD的功能的补充和封装(即由一个RDD转换为另一个RDD)，如map、flatmap方法，转化出来的RDD是惰性求值的，只有在行动算子中用到这些RDD才会进行计算</p>
+<p>执行就代表着触发任务的调度和作业的执行，并将结果返回给Driver端，如collect方法</p>
 <h4 id="RDD转换算子"><a href="#RDD转换算子" class="headerlink" title="RDD转换算子"></a>RDD转换算子</h4><p>RDD的转换算子根据数据处理方式不同分为单值类型、双值类型和键值类型</p>
 <h5 id="单值类型"><a href="#单值类型" class="headerlink" title="单值类型"></a>单值类型</h5><h6 id="map操作"><a href="#map操作" class="headerlink" title="map操作"></a>map操作</h6><p>map操作是将处理的数据逐条进行映射转换，这里的转换可以是类型的转换，也可以是值的转换。</p>
 <p><strong>map操作的定义</strong></p>
@@ -547,7 +547,10 @@
     <a href="/2021/scala/23.scala%E6%A0%B7%E4%BE%8B%E7%B1%BB/" rel="prev" title="scala样例类">
       <i class="fa fa-chevron-left"></i> scala样例类
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/4.RDD%E5%BA%8F%E5%88%97%E5%8C%96/" rel="next" title="RDD序列化">
+      RDD序列化 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -623,7 +626,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">417</span>
+          <span class="site-state-item-count">422</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -636,7 +639,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">62</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
