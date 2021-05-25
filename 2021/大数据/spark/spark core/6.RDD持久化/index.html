@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="RDD持久化默认情况下，Spark的RDD会在进行行动算子时重新计算，那么有时候如果多个行动算子想要重用一个RDD怎么办呢？可以使用rdd的持久化 使用cache方法或者persist方法来进行持久化 123&#x2F;&#x2F; 该方法内部调用的是persist(StorageLevel.MEMORY_ONLY)，即缓存在内存中&#x2F;&#x2F; 内存如果不够，会采用LRU的缓存策略把最老的分区从内存中移除rdd.cache(">
+  <meta name="description" content="RDD持久化默认情况下，Spark的RDD会在进行行动算子时重新计算，那么有时候如果多个行动算子想要重用一个RDD怎么办呢？可以使用rdd的持久化 缓存使用cache方法或者persist方法来进行持久化 123&#x2F;&#x2F; 该方法内部调用的是persist(StorageLevel.MEMORY_ONLY)，即缓存在内存中&#x2F;&#x2F; 内存如果不够，会采用LRU的缓存策略把最老的分区从内存中移除rdd.cach">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RDD持久化">
 <meta property="og:url" content="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/6.RDD%E6%8C%81%E4%B9%85%E5%8C%96/index.html">
 <meta property="og:site_name" content="小菜鸟">
-<meta property="og:description" content="RDD持久化默认情况下，Spark的RDD会在进行行动算子时重新计算，那么有时候如果多个行动算子想要重用一个RDD怎么办呢？可以使用rdd的持久化 使用cache方法或者persist方法来进行持久化 123&#x2F;&#x2F; 该方法内部调用的是persist(StorageLevel.MEMORY_ONLY)，即缓存在内存中&#x2F;&#x2F; 内存如果不够，会采用LRU的缓存策略把最老的分区从内存中移除rdd.cache(">
+<meta property="og:description" content="RDD持久化默认情况下，Spark的RDD会在进行行动算子时重新计算，那么有时候如果多个行动算子想要重用一个RDD怎么办呢？可以使用rdd的持久化 缓存使用cache方法或者persist方法来进行持久化 123&#x2F;&#x2F; 该方法内部调用的是persist(StorageLevel.MEMORY_ONLY)，即缓存在内存中&#x2F;&#x2F; 内存如果不够，会采用LRU的缓存策略把最老的分区从内存中移除rdd.cach">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-17T13:37:30.000Z">
-<meta property="article:modified_time" content="2021-05-17T10:32:40.542Z">
+<meta property="article:modified_time" content="2021-05-18T02:51:29.362Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="spark">
 <meta name="twitter:card" content="summary">
@@ -220,10 +220,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-05-17 21:37:30 / 修改时间：18:32:40" itemprop="dateCreated datePublished" datetime="2021-05-17T21:37:30+08:00">2021-05-17</time>
+              <time title="创建时间：2021-05-17 21:37:30" itemprop="dateCreated datePublished" datetime="2021-05-17T21:37:30+08:00">2021-05-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-18 10:51:29" itemprop="dateModified" datetime="2021-05-18T10:51:29+08:00">2021-05-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -267,10 +273,12 @@
 
       
         <h2 id="RDD持久化"><a href="#RDD持久化" class="headerlink" title="RDD持久化"></a>RDD持久化</h2><p>默认情况下，Spark的RDD会在进行行动算子时重新计算，那么有时候如果多个行动算子想要重用一个RDD怎么办呢？可以使用rdd的持久化</p>
-<p>使用cache方法或者persist方法来进行持久化</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>使用cache方法或者persist方法来进行持久化</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该方法内部调用的是persist(StorageLevel.MEMORY_ONLY)，即缓存在内存中</span></span><br><span class="line"><span class="comment">// 内存如果不够，会采用LRU的缓存策略把最老的分区从内存中移除</span></span><br><span class="line">rdd.cache()</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// persist方法可以传不同的存储级别来进行缓存  </span></span><br><span class="line"><span class="comment">// 使用StorageLevel</span></span><br><span class="line">rdd.persist(<span class="type">StorageLevel</span>.<span class="type">DISK_ONLY</span>)</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <p>由于RDD中并不存储数据，所以在调用持久化方法时并没有进行持久化，而是在执行后续的行动算子时，将该RDD执行的数据计算结果进行的持久化</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把持久化的RDD从缓存中移除</span></span><br><span class="line">rdd.unpersist()</span><br></pre></td></tr></table></figure>
@@ -280,6 +288,30 @@
 <li>持久化存储一个RDD时，计算出RDD的节点会分别保存它们所求出的分区数据，如果一个有持久化数据的节点发生故障，Spark会在需要用到缓存的数据时重新计算丢失的数据分区</li>
 </ul>
 <p>持久化也可以防止任务执行失败导致从头开始计算，所以在不进行RDD重用时，对于需要长时间计算的RDD操作也可以进行持久化</p>
+<h3 id="检查点"><a href="#检查点" class="headerlink" title="检查点"></a>检查点</h3><p>还可以使用检查点来进行持久化，检查点将中间结果写入磁盘</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置检查点的存储路径</span></span><br><span class="line">sc.setCheckpointDir(<span class="string">&quot;./checkpoint&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 缓存持久化，避免重新跑一个job做checkpoint</span></span><br><span class="line">wordToOne.cache()</span><br><span class="line"><span class="comment">// 数据检查点，进行检查点计算</span></span><br><span class="line">wordToOne.checkpoint()</span><br></pre></td></tr></table></figure>
+
+<p>如果检查点之后的节点出现问题，可以从检查点重做血缘关系，减少开销</p>
+<blockquote>
+<p>checkpoint也是在执行行动算子的时候才会触发</p>
+</blockquote>
+<p>缓存和检查点的区别是什么的？</p>
+<ul>
+<li><p>缓存只是将数据存储起来进行数据重用，会在血缘关系中添加新的依赖CachedPartitions，并不会切断血缘关系，而检查点会切断血缘关系，在血缘关系中添加新的依赖ReliableCheckpointRDD，并重新建立血缘关系(即改变了数据源)</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 缓存后最终的血缘关系</span></span><br><span class="line">(<span class="number">1</span>) <span class="type">ShuffledRDD</span>[<span class="number">4</span>] at reduceByKey at <span class="type">TestPersist</span>.scala:<span class="number">41</span> []</span><br><span class="line"> +-(<span class="number">1</span>) <span class="type">MapPartitionsRDD</span>[<span class="number">3</span>] at map at <span class="type">TestPersist</span>.scala:<span class="number">28</span> []</span><br><span class="line">    |      <span class="type">CachedPartitions</span>: <span class="number">1</span>; <span class="type">MemorySize</span>: <span class="number">616.0</span> <span class="type">B</span>; <span class="type">DiskSize</span>: <span class="number">0.0</span> <span class="type">B</span></span><br><span class="line">    |  <span class="type">MapPartitionsRDD</span>[<span class="number">2</span>] at flatMap at <span class="type">TestPersist</span>.scala:<span class="number">25</span> []</span><br><span class="line">    |  data/test.txt <span class="type">MapPartitionsRDD</span>[<span class="number">1</span>] at textFile at <span class="type">TestPersist</span>.scala:<span class="number">22</span> []</span><br><span class="line">    |  data/test.txt <span class="type">HadoopRDD</span>[<span class="number">0</span>] at textFile at <span class="type">TestPersist</span>.scala:<span class="number">22</span> []</span><br><span class="line"><span class="comment">// 检查点后最终的血缘关系</span></span><br><span class="line">(<span class="number">1</span>) <span class="type">ShuffledRDD</span>[<span class="number">4</span>] at reduceByKey at <span class="type">TestPersist</span>.scala:<span class="number">41</span> []</span><br><span class="line"> +-(<span class="number">1</span>) <span class="type">MapPartitionsRDD</span>[<span class="number">3</span>] at map at <span class="type">TestPersist</span>.scala:<span class="number">28</span> []</span><br><span class="line">    |  <span class="type">ReliableCheckpointRDD</span>[<span class="number">5</span>] at collect at <span class="type">TestPersist</span>.scala:<span class="number">43</span> []</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>缓存数据通常存储在内存或者磁盘(临时文件，作业执行完毕则删除)，而检查点通常存于HDFS等高可用的分布式文件系统(可以长久的保存进行数据重用)</p>
+</li>
+<li><p>检查点会单独在执行一次RDD任务，所以做检查点的同时做缓存，这样检查点的任务就可以从缓存中读取数据，不需要从头计算一次RDD</p>
+</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行任务的源码</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runJob</span></span>[<span class="type">T</span>, <span class="type">U</span>: <span class="type">ClassTag</span>](</span><br><span class="line">    rdd: <span class="type">RDD</span>[<span class="type">T</span>],</span><br><span class="line">    func: (<span class="type">TaskContext</span>, <span class="type">Iterator</span>[<span class="type">T</span>]) =&gt; <span class="type">U</span>,</span><br><span class="line">    partitions: <span class="type">Seq</span>[<span class="type">Int</span>],</span><br><span class="line">    resultHandler: (<span class="type">Int</span>, <span class="type">U</span>) =&gt; <span class="type">Unit</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">  <span class="keyword">if</span> (stopped.get()) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">IllegalStateException</span>(<span class="string">&quot;SparkContext has been shutdown&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">val</span> callSite = getCallSite</span><br><span class="line">  <span class="keyword">val</span> cleanedFunc = clean(func)</span><br><span class="line">  logInfo(<span class="string">&quot;Starting job: &quot;</span> + callSite.shortForm)</span><br><span class="line">  <span class="keyword">if</span> (conf.getBoolean(<span class="string">&quot;spark.logLineage&quot;</span>, <span class="literal">false</span>)) &#123;</span><br><span class="line">    logInfo(<span class="string">&quot;RDD&#x27;s recursive dependencies:\n&quot;</span> + rdd.toDebugString)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 执行任务</span></span><br><span class="line">  dagScheduler.runJob(rdd, cleanedFunc, partitions, callSite, resultHandler, localProperties.get)</span><br><span class="line">  progressBar.foreach(_.finishAll())</span><br><span class="line">  <span class="comment">// 任务执行完之后还需要在进行检查点执行，再次执行一次任务</span></span><br><span class="line">  rdd.doCheckpoint()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -366,7 +398,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">RDD持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">作用</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">RDD持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98"><span class="nav-number">1.1.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E7%82%B9"><span class="nav-number">1.3.</span> <span class="nav-text">检查点</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -382,7 +414,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">422</span>
+          <span class="site-state-item-count">427</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

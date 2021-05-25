@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="目录操作命令文件列表ls命令文件列表 12345678910ls [选项] [参数]-------------------------------l 详细信息-a 所有文件，包含隐藏文件-d 查看目录信息，而不是子目录信息-h 人性化设置-i 查看文件节点号多个参数可以拼接，且没有先后顺序">
+  <meta name="description" content="目录操作命令文件列表ls命令文件列表 12345678910111213ls [选项] [参数]-------------------------------l 详细信息-a 所有文件，包含隐藏文件-A 与-a相同，但是不会列出来. 和 ..-c 根据创建时间排序显示-t 根据文件修改时间排序-d 查看目录信息，而不是子目录信息-h 人性化设置-i 查看文件节点号多个参数可以拼接，且没有先后顺序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux目录操作命令">
 <meta property="og:url" content="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="小菜鸟">
-<meta property="og:description" content="目录操作命令文件列表ls命令文件列表 12345678910ls [选项] [参数]-------------------------------l 详细信息-a 所有文件，包含隐藏文件-d 查看目录信息，而不是子目录信息-h 人性化设置-i 查看文件节点号多个参数可以拼接，且没有先后顺序">
+<meta property="og:description" content="目录操作命令文件列表ls命令文件列表 12345678910111213ls [选项] [参数]-------------------------------l 详细信息-a 所有文件，包含隐藏文件-A 与-a相同，但是不会列出来. 和 ..-c 根据创建时间排序显示-t 根据文件修改时间排序-d 查看目录信息，而不是子目录信息-h 人性化设置-i 查看文件节点号多个参数可以拼接，且没有先后顺序">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-14T09:52:30.000Z">
-<meta property="article:modified_time" content="2021-03-16T03:34:17.350Z">
+<meta property="article:modified_time" content="2021-05-24T07:46:37.236Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 11:34:17" itemprop="dateModified" datetime="2021-03-16T11:34:17+08:00">2021-03-16</time>
+                <time title="修改时间：2021-05-24 15:46:37" itemprop="dateModified" datetime="2021-05-24T15:46:37+08:00">2021-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,7 +273,7 @@
 
       
         <h2 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令"></a>目录操作命令</h2><h3 id="文件列表"><a href="#文件列表" class="headerlink" title="文件列表"></a>文件列表</h3><p>ls命令文件列表</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ls [选项] [参数]</span><br><span class="line"></span><br><span class="line">------------------------------</span><br><span class="line">-l 详细信息</span><br><span class="line">-a 所有文件，包含隐藏文件</span><br><span class="line">-d 查看目录信息，而不是子目录信息</span><br><span class="line">-h 人性化设置</span><br><span class="line">-i 查看文件节点号</span><br><span class="line"></span><br><span class="line">多个参数可以拼接，且没有先后顺序</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ls [选项] [参数]</span><br><span class="line"></span><br><span class="line">------------------------------</span><br><span class="line">-l 详细信息</span><br><span class="line">-a 所有文件，包含隐藏文件</span><br><span class="line">-A 与-a相同，但是不会列出来. 和 ..</span><br><span class="line">-c 根据创建时间排序显示</span><br><span class="line">-t 根据文件修改时间排序</span><br><span class="line">-d 查看目录信息，而不是子目录信息</span><br><span class="line">-h 人性化设置</span><br><span class="line">-i 查看文件节点号</span><br><span class="line"></span><br><span class="line">多个参数可以拼接，且没有先后顺序</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 
@@ -281,10 +281,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd home</span><br></pre></td></tr></table></figure>
 
 <h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><p>mkdir命令创建目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir test</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir test</span><br><span class="line"></span><br><span class="line">---------------</span><br><span class="line">-p  递归创建目录</span><br><span class="line">-m  自定义创建目录权限，如mkdir -m 777 a.txt</span><br><span class="line">-v  显示创建目录的详细信息</span><br></pre></td></tr></table></figure>
 
 <h3 id="删除目录"><a href="#删除目录" class="headerlink" title="删除目录"></a>删除目录</h3><p>rmdir命令删除目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir test</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rmdir test</span><br><span class="line"></span><br><span class="line">--------------</span><br><span class="line">-v  显示删除过程</span><br><span class="line">-p  如果父目录为空，则一并删除</span><br></pre></td></tr></table></figure>
 
 <h3 id="当前所在位置"><a href="#当前所在位置" class="headerlink" title="当前所在位置"></a>当前所在位置</h3><p>pwd命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
@@ -391,7 +391,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">422</span>
+          <span class="site-state-item-count">427</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
