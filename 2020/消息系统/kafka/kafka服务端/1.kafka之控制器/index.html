@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="jic7QSLJ3G" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="控制器 controller_epoch:用于记录控制器发生变更次数，即记录当前控制器是第几代控制器，初始值为0，每选出一个新的控制器该字段加一，每个控制器发送请求都会带上这个字段，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka之控制器">
+<meta property="og:url" content="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/index.html">
+<meta property="og:site_name" content="小菜鸟">
+<meta property="og:description" content="控制器 controller_epoch:用于记录控制器发生变更次数，即记录当前控制器是第几代控制器，初始值为0，每选出一个新的控制器该字段加一，每个控制器发送请求都会带上这个字段，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-08T01:23:30.000Z">
+<meta property="article:modified_time" content="2021-04-19T02:49:26.875Z">
+<meta property="article:author" content="ZH">
+<meta property="article:tag" content="kafka">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>kafka之控制器 | 小菜鸟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小菜鸟</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/isfox" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          kafka之控制器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-08 09:23:30" itemprop="dateCreated datePublished" datetime="2020-09-08T09:23:30+08:00">2020-09-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-19 10:49:26" itemprop="dateModified" datetime="2021-04-19T10:49:26+08:00">2021-04-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="kafka之控制器" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h2><ul>
+<li><p>controller_epoch:用于记录控制器发生变更次数，即记录当前控制器是第几代控制器，初始值为0，每选出一个新的控制器该字段加一，每个控制器发送请求都会带上这个字段，<a id="more"></a>如果请求的controller_epoch小于内存中的controller_epoch，责任无这个请求是已过期的控制器发送的请求，此请求无效。若该值大于内存中的controller_epoch的值，说明已经有新的控制器当选了。通过该值来保证集群控制器的唯一性，进而保证相关操作的一致性。该字段可以使用zookeeper执行get/controller_epoch查看</p>
+</li>
+<li><p>zkVersion：类似于数据库的乐观锁，用于更新zookeeper路径下相应元数据信息</p>
+</li>
+<li><p>leader_epoch:分区Leader更新次数。controller_epoch是相对代理而言的，而leader_epoch是相对分区来说的，由于各请求到达顺序不同，控制器通过controller_epoch和leader_epoch来确定具体执行哪个命令操作</p>
+</li>
+<li><p>已分配副本(assigned replica):每个分区的所有副本集合被称为已分配副本(AR)</p>
+</li>
+<li><p>LeaderAndIsr:kafka将Leader对应的brokeId和ISR列表(In-Sync-Replicas 副本同步队列)封装为一个LeaderAndIsr类</p>
+</li>
+<li><p>优先副本(preferred replica):在AR(Assigned Replicas 所有副本)中，第一个副本称为优先副本。理想情况下，优先副本应该是该分区的Leader，kafka要确保所有主题的优先副本在kafka集群中均衡分布，这样就保证了所有分区的Leader均衡分布。保证Leader在集群中均衡分布很重要，因为所有的读写请求都由分区Leader副本处理，如果Leader过于集中，就会造成集群负载不均衡。为了保证优先副本的均衡分布，kafka提供了5种分区选举器(PartitionLeaderSelector)，当分区数发生变化或是分区Leader宕机时就会通过分区选举器及时选出分区新的Leader</p>
+</li>
+</ul>
+<p>在启动kafka集群时，每一个代理都会实例化并启动一个KafkaController，并将该代理的brokerId注册到zookeeper的相应节点中。kafka集群中各代理会根据选举及只选出其中一个代理作为Leader，即Leader控制器。当控制器发生宕机后其他代理再次竞选出新的控制器。控制器负责主题的创建与删除、分区和副本的管理以及代理故障转移处理等。当一个代理被选举称为控制器时，该代理对应的KafkaController就会注册(Register)控制器相应的操作权限，同时标记自己是Leader。当代理不再是控制器时，就要注销掉(DeRegist)相应的权限。</p>
+<p>这些功能的入口是在kafka核心core工程下的kafka.controller.KafkaController类</p>
+<h3 id="控制器初始化"><a href="#控制器初始化" class="headerlink" title="控制器初始化"></a>控制器初始化</h3><p>每个代理在启动时都会实例化并启动一个KafkaController。初始化过程如下</p>
+<ul>
+<li><p>创建ControllerContext实例对象，用于缓存控制器各种处理操作所需要的数据结构(epoch、zkVersion、代理列表、主题列表、各主题对应的分区和副本的AR列表等)</p>
+</li>
+<li><p>实例化用于维护和管理分区状态的状态机PartitionStateMachine。kafka分区有四种状态</p>
+<ul>
+<li><p>NewPartition状态值0，分区被创建后为0，该状态下已得到副本分配，但还没有Leader和ISR信息</p>
+</li>
+<li><p>OnlinePartition状态值1，分区的Leader被选举出来后为1</p>
+</li>
+<li><p>OfflinePratition状态值2， 分区Leader成功选举出来之后，Leader的代理仍处于宕机状态，则该分区转为离线状态</p>
+</li>
+<li><p>NonExistentPartition状态值3，分区可能还没有创建，也可能是曾经创建过但是被删除了</p>
+</li>
+</ul>
+<p>分区状态机会注册两个监听器(<strong>//TODO不过后续版本主题不存储在zookeeper了，处理逻辑变了</strong>)</p>
+<ul>
+<li>TopicChangeListener用于监听/brokers/topics路径下子节点变化，当创建一个主题时，会在该路径下创建一个与该主题相同名称的子节点。主题发生变化时会触发该监听器，handleChildChange()方法会更新ControllerContext中维护的主题列表信息以及各主题对应分区的AR信息</li>
+<li>DeleteTopicsListener用于监听/admin/delete_topics子节点的变更，当删除一个主题时，会在该路径下创建一个与待删除主体名称相同的子节点，发生变化时触发该监听器，该监听器中的handleChildChange()方法会将待删除的主题从/brokers/topic路径下移除，并将该主题加入到TopicDeletionManager维护的记录待删除主题队列中，交给TopicDeletionManager执行删除</li>
+</ul>
+</li>
+<li><p>实例化一个对副本状态管理的状态机ReplicaStateMachine,kafka定义了7种状态</p>
+<ul>
+<li><p>NewRelica状态值为1，新创建的副本状态，该状态的副本只能接收成为Follower副本的转换请求</p>
+</li>
+<li><p>OnlineReplica状态值为2，副本被启动或者已是分区AR的一部分时，该副本处于在线状态，该状态下的副本可以接受Leader或Follower的转换请求</p>
+</li>
+<li><p>OfflineReplica状态值为3，副本所在代理已宕机，则该副本被设置为离线状态，表示该副本将要从ISR中下线</p>
+</li>
+<li><p>ReplicaDeletionStarted状态值为4，对处于离线状态的副本进行删除操作时，先将副本状态标记为此状态，表示正在进行删除离线副本的操作</p>
+</li>
+<li><p>ReplicaDeletionSucessful状态值为5，删除副本成功，删除请求没有错误码应答</p>
+</li>
+<li><p>ReplicaDeletionInelgible状态值为6，副本删除失败</p>
+</li>
+<li><p>NonExistentReplica状态值为7，副本删除成功</p>
+</li>
+</ul>
+<p>在副本状态机内有一个BrokerChangeListen监听器，监听zookeeper的brokers/ids/路径下各代理对应的brokeId节点的变化</p>
+</li>
+<li><p>创建用于将当前代理选举为控制器的ZookeeperLeaderElector选举器对象，有两个回调函数</p>
+<ul>
+<li><p>完成控制器相应初始化操作的onControllerFailover()方法</p>
+</li>
+<li><p>当新的控制器当选时让先前的控制器注销控制器权限的onControllerResignation()方法</p>
+</li>
+</ul>
+<p>kafka控制器的选举策略是在zookeeper的/controller路径下创建临时节点，并注册一个LeaderChangeListener，通过该监听器监听该临时节点，当临时节点信息发生变更时，触发监听器。</p>
+</li>
+<li><p>创建一个独立定时任务KafkaScheduler，用于控制器进行平衡操作，生命周期只有在代理成为Leader控制器期间有效</p>
+</li>
+<li><p>声明一个对主题操作管理的TopicDeletionManager对象。</p>
+</li>
+<li><p>创建一个用于在分区状态发生变化时为分区选举出Leader副本的分区选举器PartitionLeaderSelector，kafka提供了5种分区选举器</p>
+<ul>
+<li><p>OfflinePartitionLeaderSelector:分区状态机宕机、新创建一个分区或是将一个分区状态由NewPartition状态、OfflinePartition状态转换到OnlinePartition状态会使用该选举器。该选举器的策略是首先判断是否有存活的ISR，若ISR中至少有一个存活的代理，则从ISR列表中选第一个存活的代理作为Leader，存活的ISR作为新的ISR；否则，若配置项unclean.leader.election.enable为true，则表示允许从不在ISR列表中的副本选举Leader，同时AR中若有存活的副本，则从AR列表中选第一个代理作为Leader，存活的AR作为新的ISR。</p>
+</li>
+<li><p>ReassignedPartitionLeaderSelector:当分区进行重分配时会调用该选举器。该选举器的选举策略是从AR列表中找出存活的副本列表，若有存活的副本则去存活副本列表中的第一个副本作为Leader，将当前ISR作为新的ISR，将AR作为接受LeaderAndIsr请求的副本集合。</p>
+</li>
+<li><p>PreferredReplicaPartitionLeaderSelector:该选举器直接将优先副本设置为分区的Leader。</p>
+</li>
+<li><p>ControllerdShutdownLeaderSelector:该选举器将从ISR中剔除已关闭的节点，将剔除后的ISR作为新的ISR，同时从新的ISR中选举第一个作为Leader副本。将AR中剔除已关闭节点的副本节点作为接受LeaderAndIsr请求的副本集合</p>
+</li>
+<li><p>NoOpLeaderSelector:该选举器只返回当前分区的Leader和ISR</p>
+</li>
+</ul>
+</li>
+<li><p>实例化ControllerBrokerRequestBatch，用来记录和缓存分区状态机以及副本状态机中handleStateChange()方法中产生的request，控制器将这些request交给ControllerBrokerRequestBatch.sendRequestsToBrokers()方法批量发送出去，交由KafkaApis调用相应的handle方法进行处理</p>
+</li>
+<li><p>实例化3个监听器，用于监听分区重分配的PartitionsReassignedListener，用于监听当分区变化时触发的PreferredReplicaPartitionLeaderSelector选举器将优先副本选举为Leader的PerferredReplicaElectionListener、用于监听当ISR发生变化时将ISR变化通知给Zookeeper进行更新操作，同时向所有的代理节点发送元数据修改请求的IsrChangeNotificationListener</p>
+</li>
+</ul>
+<h3 id="控制器选举过程"><a href="#控制器选举过程" class="headerlink" title="控制器选举过程"></a>控制器选举过程</h3><p>每个代理启动时都会创建一个KafkaController实例，当kafkaController启动后就会从所有代理中选择一个代理作为Leader，称为Leader选举。除了在启动时选举外，当控制器所在代理发生故障或zookeeper通过心跳机制感知控制器与自己的连接Session已过期时，也会再次进行选举。</p>
+<p>ZookeeperLeaderElector这个类负责控制器选举(0.11版本，之后换了)，ZookeeperLeaderElector启动时首先注册一个LeaderChangeListener，负责监听zookeeper的/controller节点数据变化，该节点存储了当前Leader的brokerId，数据格式为json。当该节点数据发生变化时，比较当前代理的brokeId与当前Leader的brokeId是否相同，若不同，表示当前代理已不是Leader，则回调onControllerResignnation退位，注销Leader的权限，表示当前代理状态设置为RunningAsBroker，同时将代理的leader_epoch和zkVersion设置为0.当该节点数据被删除时，若当前代理是Leader，则先退位，然后再触发选举，否则直接触发选举</p>
+<p>控制器选举算法入口为ZooKeeperLeaderElector.select()方法</p>
+<p>每个代理先从zookeeper的/controller节点获取Leader信息，解析当前Leader的leaderId，若leaderId等于-1，表示还没有成功选举出Leader，则该代理将封装有自己brokeId的信息请求zookeeper将该数据写入/controller节点。如果leaderId不为-1，则表示已有代理抢先成为了Leader，则停止选举。若写入代理信息成功，则当前代理即为所选出的Leader。</p>
+<p>在抢占写/controller节点时若发生非ZkNodeExistsException异常，则会将leaderId设置为-1，同时删除存储在/controller节点的元数据信息，以便让请求最先到达zookeeper的代理成为Leader，由于删除了/controller节点将会触发LeaderChangeListener.handleDataDelete()方法，就会重新选举Leader。同时/controller节点数据变化，会触发LeaderChangeListener.handleDataChange()方法，其他代理通过当前的leaderId与自己的brokerId比较，若在节点数据发生前自己是Leader，现在leaderId与自己的brokeId不同,则自己退位,回调onControllerResignation函数</p>
+<h3 id="故障转移"><a href="#故障转移" class="headerlink" title="故障转移"></a>故障转移</h3><p>触发控制器进行选举的3种情况：一是控制器启动的时候，二是当控制器发生故障转移的时候，三是当心跳检测超时的时候</p>
+<p>控制器故障转移的本质是控制权的转移，重新选出新的控制器。还是ZookeeperLeaderElector对象的两个回调方法</p>
+<ul>
+<li>onControllerFailover()当选为控制器时注册相应权限<ul>
+<li>从zookeeper的/controller_epoch路径读取当前控制器的轮值次数，并更新到ControllerContext中</li>
+<li>将控制器轮值数加一，并尝试更新/controller_epoch中记录的次数值，若更新失败表示当前控制器已经被其他控制器替代</li>
+<li>注册分区管理相关的监听器。用于监听zookeeper下的/admin/reassign_partitions节点引发分区重分配操作的PartitionsReassignedListener；用于监听zookeeper的/isr_change_notification节点用于处理分区ISR发生变化的IsrChangeNotificationListener；用于监听/admin/preferred_replica_election节点将优先副本选为分区Leader操作的PreferredReplicaElectionListner</li>
+<li>注册主题管理的监听器。</li>
+<li>注册代理变化处理的监听器</li>
+<li>初始化ControllerContext，当一个代理称为控制器后，原控制器所持有的ControllerContext会被重新赋值</li>
+<li>启动分区状态机和副本状态机</li>
+<li>从ControllerContext中读取所有主题，为每个主题添加用于监听分区变化的PartitionModificationsListener</li>
+<li>检测当前是否有分区需要触发分区重分配操作</li>
+<li>检测当前是否又需要将优先副本选举为Leader的分区</li>
+<li>向kafka集群中所有存活的代理发送更新元数据请求</li>
+<li>根据auto.leader.reblance.enable配置决定是否创建用于分区平衡的定时任务。</li>
+<li>启动TopicDeletionManager组件</li>
+</ul>
+</li>
+<li>onControllerResignation()不再是控制器时注销权限的<ul>
+<li>取消该控制器在zookeeper中注册的用于对分区及副本变化感知的监听器的监听</li>
+<li>关闭删除主题操作的TopicDeletionManager组件，并关闭分区平衡的定时任务</li>
+<li>在获取ControllerContext维护的重入锁的条件下取消对ISR变化的监听，关闭分区状态机和副本状态机，关闭控制器与其他代理之间进行通信的ControllerChannelManager</li>
+<li>将ControllerContext中用于记录控制器轮值次数以及轮值数对应的epochZkVersion字段置零，并将当前代理状态设置为RunningAsBroker</li>
+</ul>
+</li>
+</ul>
+<h3 id="代理上下线"><a href="#代理上下线" class="headerlink" title="代理上下线"></a>代理上下线</h3><p>代理上下线操作BrokerChangeListener进行处理</p>
+<ul>
+<li><p>代理上线</p>
+<p>代理上线时，在代理启动时会向Zookeeper的/broker/ids节点下注册该代理的brokerId，此时会被副本状态机在Zookeeper所注册的BrokerChangeListener监听器监听到该节点信息的变化，通过zookeeper中记录的信息以及ControllerContext缓存的节点信息，计算出新上线的节点集合，对新上线的代理节点调用ControllerChangeManager.addBroker()方法完成新上线代理网络层相关初始化处理。然后调用KafkaController.onBrokerStartup()方法进行处理</p>
+<ul>
+<li>向集群当前所有代理发送UpdateMetadataRequest请求，使得代理知道有新的代理加入</li>
+<li>查找被分配到新上线节点的副本集合，通过副本状态机对副本状态进行相应变迁处理，将这些副本变成OnlineReplica，并通过分区状态机对分区状态为NewPartition和OfflinePartition的分区进行处理，将其状态转至OnlinePartition状态，并触发一次分区Leader选举，以确认新增的代理是否为Leader</li>
+<li>轮询被分配到新上线代理的副本，进行分区副本操作</li>
+<li>恢复由于新代理上线而被暂停的删除主题操作线程</li>
+</ul>
+</li>
+</ul>
+<h3 id="代理下线"><a href="#代理下线" class="headerlink" title="代理下线"></a>代理下线</h3><p>代理下线时，该代理在zookeeper的brokers/ids节点中注册的与该代理对应的节点将被删除，BrokerChangeListener的handleChildChange()方法被触发</p>
+<ul>
+<li>查找下线节点集合</li>
+<li>轮询下线节点，调用ControllerChannelManager.removeBroker()方法，关闭每个下线节点的网络连接，清空下线节点的消息队列，关闭下线节点发送Request请求的线程</li>
+<li>最后调用KafkaController的onBrokerFailure()方法进行处理<ul>
+<li>查找Leader副本下线节点上的分区，将这些分区状态设置为OfflinePartition,并处理相应状态变迁，调用分区状态机的triggerOnlinePartitionStateChange()方法将处于分区选举器为分区选出Leader，并将Leader和ISR信息写入到zookeeper中，同时发送UpdateMatadataRequest请求更新元数据信息</li>
+<li>查找所有下线节点上的副本集合，将该集合分成两部分，一部分是待删除主题副本，将这些副本状态转换为ReplicaDeletionInteligible，标记副本对应的主题暂时不可被删除。另一部分为当前处于正常使用的主题的副本，将副本状态由OnlineReplica转化为OfflineReplica，将该副本节点从分区ISR中删除，并发送StopReplicaRequest请求，停止该副本从Leader副本同步消息的操作，发送LeaderAndIsrRequest请求，该分区Leader副本和Follower副本根据角色不同分别进行相应处理，同时发送UpdateMatadataRequest请求，更新当前所有存活代理的缓存的元数据信息</li>
+<li>若分区Leader副本分配在下线节点上的所有分区状态转换操作执行完成，则向集群所有存活的代理发送更新元数据的UpdateMetadataRequest请求，执行元数据更新操作</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/kafka/" rel="tag"># kafka</a>
+          </div>
+
+        
+
+
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/6.kafka%E4%B9%8B%E5%BB%B6%E8%BF%9F%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/" rel="prev" title="kafka之延迟操作组件">
+      <i class="fa fa-chevron-left"></i> kafka之延迟操作组件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/9.tomcat%E4%B9%8Bserver%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" rel="next" title="tomcat之server配置文件">
+      tomcat之server配置文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">控制器初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E9%80%89%E4%B8%BE%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">控制器选举过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB"><span class="nav-number">1.3.</span> <span class="nav-text">故障转移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E4%B8%8A%E4%B8%8B%E7%BA%BF"><span class="nav-number">1.4.</span> <span class="nav-text">代理上下线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E4%B8%8B%E7%BA%BF"><span class="nav-number">1.5.</span> <span class="nav-text">代理下线</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZH"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">ZH</p>
+  <div class="site-description" itemprop="description">java菜鸟号正在起航</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">454</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/isfox" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;isfox" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/SiXiangPiaoFuZhe" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;SiXiangPiaoFuZhe" rel="noopener" target="_blank"><i class="fa fa-git fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhanghe1996hy@163.com" title="E-Mail → mailto:zhanghe1996hy@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'MURUEmkUEoDdKOq3baW5Ofoh-gzGzoHsz',
+      appKey     : 'AsR88DCeCWHyTu5jFQkAA6g6',
+      placeholder: "来说一句吧",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

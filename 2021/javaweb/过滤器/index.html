@@ -30,7 +30,7 @@
 <meta property="og:description" content="过滤器Filter依赖于servlet容器，基于函数回调，可以对请求和响应进行拦截，在访问后端资源之前，拦截这些来自客户端的请求，在发送回客户端之前，处理这些响应 过滤器的类型 身份验证过滤器 数据压缩过滤器 加密过滤器 触发访问事件资源的过滤器 图像转换过滤器 日志记录和审核过滤器 MIME-类型链过滤器 Tokenizing过滤器 转换XML内容的XSL&#x2F;T过滤器">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-22T12:30:19.000Z">
-<meta property="article:modified_time" content="2021-03-31T01:27:20.770Z">
+<meta property="article:modified_time" content="2021-05-30T10:41:21.964Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="javaweb">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-31 09:27:20" itemprop="dateModified" datetime="2021-03-31T09:27:20+08:00">2021-03-31</time>
+                <time title="修改时间：2021-05-30 18:41:21" itemprop="dateModified" datetime="2021-05-30T18:41:21+08:00">2021-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,10 +287,11 @@
 <a id="more"></a>
 
 <h3 id="过滤器的使用"><a href="#过滤器的使用" class="headerlink" title="过滤器的使用"></a>过滤器的使用</h3><p>需要实现Filter接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 由servlet容器调用，指示一个过滤器被放入服务</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig var1)</span> <span class="keyword">throws</span> ServletException</span>;</span><br><span class="line">        <span class="comment">// 在每次一个请求或响应在所对应的资源下时通过链传递，由容器调用</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest var1, ServletResponse var2, FilterChain var3)</span> <span class="keyword">throws</span> IOException, ServletException</span>;</span><br><span class="line">        <span class="comment">// 由servlet容器调用，指示一个过滤器从服务去除</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 由servlet容器调用，指示一个过滤器被放入服务，可以获取web.xml中过滤器的参数</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig config)</span> <span class="keyword">throws</span> ServletException</span>;</span><br><span class="line">        <span class="comment">// 在每次一个请求或响应在所对应的资源下时通过链传递，由容器调用</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest var1, ServletResponse var2, FilterChain var3)</span> <span class="keyword">throws</span> IOException, ServletException</span>;</span><br><span class="line">        <span class="comment">// 由servlet容器调用，指示一个过滤器从服务去除</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>​    在web.xml中配置写好的Filter</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>security<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.zhanghe.study.webstudy.filter.SecurityFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--用户名--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>userName<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>john<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 拦截的顺序与在web.xml中 filter-mapping的配置顺序有关，靠前的先被调用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>security<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 在filter-mapping中有一个dispatcher标签，指定过滤器所拦截的资源被Servlet容器的调用方式</span></span><br><span class="line"><span class="comment">                可以是REQUEST,INCLUDE,FORWARD和ERROR,默认是REQUEST</span></span><br><span class="line"><span class="comment">                可以指定多个dispatcher来指定Filter对资源的多种调用方式进行拦截 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dispatcher</span>&gt;</span>REQUEST<span class="tag">&lt;/<span class="name">dispatcher</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -393,20 +394,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">450</span>
+          <span class="site-state-item-count">454</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

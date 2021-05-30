@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="jic7QSLJ3G" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="kafka Streamskafka Streams是一个用来构建流处理程序的java库，基于Kafka的分区水平扩展来对数据进行有序高效的处理，利用kafka的并发模型来实现透明的负载均衡。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka streams">
+<meta property="og:url" content="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/5.kafka%20Streams/index.html">
+<meta property="og:site_name" content="小菜鸟">
+<meta property="og:description" content="kafka Streamskafka Streams是一个用来构建流处理程序的java库，基于Kafka的分区水平扩展来对数据进行有序高效的处理，利用kafka的并发模型来实现透明的负载均衡。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-19T08:22:30.000Z">
+<meta property="article:modified_time" content="2021-05-30T09:55:16.545Z">
+<meta property="article:author" content="ZH">
+<meta property="article:tag" content="kafka">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/5.kafka%20Streams/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>kafka streams | 小菜鸟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小菜鸟</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/isfox" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/5.kafka%20Streams/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          kafka streams
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-19 16:22:30" itemprop="dateCreated datePublished" datetime="2020-10-19T16:22:30+08:00">2020-10-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-30 17:55:16" itemprop="dateModified" datetime="2021-05-30T17:55:16+08:00">2021-05-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/5.kafka%20Streams/" class="post-meta-item leancloud_visitors" data-flag-title="kafka streams" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/5.kafka%20Streams/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/5.kafka%20Streams/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="kafka-Streams"><a href="#kafka-Streams" class="headerlink" title="kafka Streams"></a>kafka Streams</h2><p>kafka Streams是一个用来构建流处理程序的java库，基于Kafka的分区水平扩展来对数据进行有序高效的处理，利用kafka的并发模型来实现透明的负载均衡。</p>
+<a id="more"></a>
+
+<h3 id="可以解决的问题"><a href="#可以解决的问题" class="headerlink" title="可以解决的问题"></a>可以解决的问题</h3><ul>
+<li>一次一件事件的处理而不是微批处理</li>
+<li>有状态的处理，包括连接操作(join)和聚合类操作</li>
+<li>提供了必要的流处理原语，包括高级流处理DSL和低级处理器API<ul>
+<li>高级流处理DSL 提供了常用流处理变换操作</li>
+<li>低级流处理API  支持客户端自定义处理器并与状态仓库交互</li>
+</ul>
+</li>
+<li>使用类似于DataFlow的模型来处理乱序数据的时间窗口问题</li>
+<li>分布式处理，并且有容错机制，可以快速地实现容错</li>
+<li>有重新处理数据的能力</li>
+</ul>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="流"><a href="#流" class="headerlink" title="流"></a>流</h4><p>流(stream)是kafka Streams提供的最重要的抽象，它代表的是一个无限的、不断更新的数据集。</p>
+<p>一个流就是由一个有序的、可重放的、支持故障转移的不可变的数据记录序列，其中每个记录被定义为一个键值对。</p>
+<h4 id="流处理器"><a href="#流处理器" class="headerlink" title="流处理器"></a>流处理器</h4><p>一个流处理器(stream processor)是处理拓扑的一个节点，它代表了拓扑中的处理步骤。一个流处理器从它所在的拓扑上游接收数据，通过kafka streams提供的流处理的基本方法，如map()、filter()、join()以及聚合等方法，对数据进行处理，然后将处理后的一个或多个输出结果发送给下游流处理器。一个拓扑中的流处理器当中有Source处理器和Sink处理器两个特殊的流处理器。</p>
+<ul>
+<li>Source处理器：在一个处理拓扑中该处理器没有任何上游处理器。该处理器从kafka的一个或多个主题消费数据作为处理拓扑的输入流，将该输入流发送到下游处理器。</li>
+<li>Sink处理器：在一个处理拓扑中该处理器没有任何下游处理器。该处理器将从上游处理器接收到的任何数据发送到指定的主题当中。</li>
+</ul>
+<h4 id="处理器拓扑"><a href="#处理器拓扑" class="headerlink" title="处理器拓扑"></a>处理器拓扑</h4><p>处理器拓扑(processor topology)是流处理应用程序进行数据处理的计算逻辑。一个处理器拓扑是由流处理器和相连接的流组成的有向无环图，其中流处理器是图的节点，流是图的边。</p>
+<p>kafka提供两种定义流处理拓扑的API。</p>
+<ul>
+<li>kafka streams DSL API：提供了一些开箱即用的数据转换操作算子，如map、filter、join和聚合类算子，操作简单，但是不够灵活</li>
+<li>Low-Level Processor API：允许开发者自定义处理器，构造处理器拓扑，还可以与状态仓库进行交互操作。由于可定制处理器，该类API相对来说更加灵活，开发者根据自己业务需要定制开发相应的处理逻辑，但同时涉及底层的操作处理，开发成本相对较高</li>
+</ul>
+<h4 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h4><p>流处理定义了通用3种类型的时间</p>
+<ul>
+<li>事件时间(event time)：指事件或数据记录产生的时间，即kafka消息源对应的时间</li>
+<li>处理时间(processing time)：指事件或数据记录被流处理应用处理的时间点，也就是对消息源进行处理时的时间。处理时间一般晚于事件时间。</li>
+<li>摄入时间(ingestion time)：指消息被处理后保存到kafka主题时间。有可能消息不会被处理而直接保存到主题当中，此时指的是存储时间。</li>
+</ul>
+<p>kafka有时间戳类型，每条消息都会被附加一个时间戳，可以根据配置来设置消息的时间戳类型。通过message.timestamp.type配置来设置时间戳类型是LogAppendTime还是CreateTime，分别对应处理时间和存储时间。</p>
+<p>Kafka Streams通过TimestampExtractor接口给每个数据记录赋一个时间戳，开发者可以根据不同的需要来确定时间戳的实现。每个数据记录赋予时间戳之后就可以对数据进行聚合操作，实现窗口功能，能够方便地解决数据乱序的问题。</p>
+<h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4><p>一些流处理并不关注状态，即对每个消息的处理都是相互独立的，如对消息进行简单的转换操作或者基于某些条件对消息进行筛选操作等。</p>
+<p>某些场景可能需要保存流处理的中间结果，即流的中间状态。同时保存状态的话可以提供更多复杂的操作，如对流进行join，group和聚合操作等。Kafka Streams DSL提供了很多这样的包含状态的DSL。Kafka Streams提供了一种状态仓库，被流处理应用用来存储和查询状态数据，默认状态存储在本地RocksDB当中，存储路径通过参数state.dir配置，默认路径是/tmp/kafka-streams。Kafka Streams的每个Task使用一个或多个状态仓库，可通过API来访问和存储流处理需要的数据。这种状态仓库可以是持久化的键值对引擎，也可以是内存中的HashMap或其他方便合理的数据结构。</p>
+<p>Kafka Streams对本地状态仓库提供了容错和自动恢复，这是由于本地状态本身是通过kafka进行复制的，所以当一个机器出现故障时，其他机器可以自动恢复本地状态，并且从故障出错点继续处理。</p>
+<h4 id="KStream和KTable"><a href="#KStream和KTable" class="headerlink" title="KStream和KTable"></a>KStream和KTable</h4><p>Kafka Stream定义了KStream和KTable两种基本抽象。两者的区别在于，KStream是一个由键值对构成的抽象记录流，每个键值对是一个独立单元，即使相同的key也不会被覆盖，类似数据库的插入操作；KTable可以理解为一个基于表主键的日志更新流，相同key的每条记录只保存最新的一条记录，类似数据库基于主键更新。</p>
+<p>无论是记录流(用KStream定义)还是更新日志流(用KTable定义)，都可以从一个或多个Kafka主题数据源来创建。一个KStream可以与另一个KStream或者KTable进行join操作，或者聚合成一个KTable，一个KTable也可以转换成一个KStream。KStream和KTable都提供了一系列的转换操作，每个转换操作都可以转化为一个KStream或者KTable对象，将这些转换操作连接在一起就构成了一个处理器拓扑。</p>
+<h4 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h4><p>对流处理时可能需要把数据记录按时间分组。窗口是流处理状态转换操作的基本条件，一个窗口相关操作通常需要存储中间状态，根据窗口的设置旧的状态在窗口中持续时间大于窗口大小之后就会被删除。一个窗口包括<strong>窗口大小</strong>和<strong>滑动步长</strong>两个属性。</p>
+<p><strong>窗口大小</strong>是指一条记录在窗口中持续的时间，持续时间超过窗口大小的记录就会被删除。</p>
+<p><strong>滑动步长</strong>指定了一个窗口每次相对于前一个窗口向前移动的距离。滑动步长不可以大于窗口大小，否则会导致部分记录不属于任何窗口而不被处理。</p>
+<h5 id="跳跃时间窗口"><a href="#跳跃时间窗口" class="headerlink" title="跳跃时间窗口"></a>跳跃时间窗口</h5><p>滑动步长小于窗口大小，基于时间间隔，大小固定，可能会重叠的窗口模型。</p>
+<h5 id="翻转时间窗口"><a href="#翻转时间窗口" class="headerlink" title="翻转时间窗口"></a>翻转时间窗口</h5><p>滑动步长等于窗口大小，基于时间间隔，大小固定，不可重叠，无间隙的窗口模型。一条记录仅属于唯一的窗口。</p>
+<h5 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h5><p>大小固定并沿着时间轴连续滑动的窗口模型。如果两条数据的时间戳之差在窗口大小之内，则两条数据记录属于同一个窗口。</p>
+<h3 id="使用介绍"><a href="#使用介绍" class="headerlink" title="使用介绍"></a>使用介绍</h3><h4 id="maven依赖"><a href="#maven依赖" class="headerlink" title="maven依赖"></a>maven依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.kafka<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>kafka-streams<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="KStream-与-KTable"><a href="#KStream-与-KTable" class="headerlink" title="KStream 与 KTable"></a>KStream 与 KTable</h4><h5 id="KStream"><a href="#KStream" class="headerlink" title="KStream"></a>KStream</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KStreamTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Properties prop = init();</span><br><span class="line">        StreamsBuilder builder = <span class="keyword">new</span> StreamsBuilder();</span><br><span class="line">        <span class="comment">// 构造kstream日志流（数据来源来自  kafka的主题stream-input）</span></span><br><span class="line">        KStream&lt;String,String&gt; source = builder.stream(<span class="string">&quot;stream-input&quot;</span>);</span><br><span class="line">        <span class="comment">// 打印到控制台</span></span><br><span class="line">        source.print(Printed.&lt;String, String&gt;toSysOut());</span><br><span class="line">        Topology topology = builder.build();</span><br><span class="line">        System.out.println(topology.describe());</span><br><span class="line">        <span class="keyword">final</span> KafkaStreams kafkaStreams = <span class="keyword">new</span> KafkaStreams(topology,prop);</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">        Runtime.getRuntime().addShutdownHook(<span class="keyword">new</span> Thread(<span class="string">&quot;hook&quot;</span>)&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;线程停止&quot;</span>);</span><br><span class="line">                kafkaStreams.close();</span><br><span class="line">                latch.countDown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            kafkaStreams.start();</span><br><span class="line">            latch.await();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">            System.exit(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;项目终止&quot;</span>);</span><br><span class="line">        System.exit(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Properties <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        <span class="comment">// 流处理应用的id，必须指定</span></span><br><span class="line">        properties.put(StreamsConfig.APPLICATION_ID_CONFIG,<span class="string">&quot;KStream-test&quot;</span>);</span><br><span class="line">        properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,<span class="string">&quot;localhost:9092&quot;</span>);</span><br><span class="line">        <span class="comment">// key序列化反序列化</span></span><br><span class="line">        properties.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());</span><br><span class="line">        <span class="comment">//value序列化反序列化</span></span><br><span class="line">        properties.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG,Serdes.String().getClass());</span><br><span class="line">        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,<span class="string">&quot;earliest&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> properties;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> kafka-console-producer --bootstrap-server localhost:9092 --topic stream-input --property parse.key=true                         </span><br><span class="line"><span class="meta">&gt;</span><span class="bash">aa    bb</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">aa    cc</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">aa    dd</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">KSTREAM-SOURCE-0000000000</span>]: <span class="link">aa, bb</span></span><br><span class="line">[<span class="symbol">KSTREAM-SOURCE-0000000000</span>]: <span class="link">aa, cc</span></span><br><span class="line">[<span class="symbol">KSTREAM-SOURCE-0000000000</span>]: <span class="link">aa, dd</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="KTable"><a href="#KTable" class="headerlink" title="KTable"></a>KTable</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造kstream日志流（数据来源来自  kafka的主题stream-input）</span></span><br><span class="line">KTable&lt;String,String&gt; kTable = builder.table(<span class="string">&quot;stream-input&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="计数程序"><a href="#计数程序" class="headerlink" title="计数程序"></a>计数程序</h4><p>此程序是用来进行统计value出现的次数的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestCount</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Properties prop = init();</span><br><span class="line">        StreamsBuilder builder = <span class="keyword">new</span> StreamsBuilder();</span><br><span class="line">        KStream&lt;String,String&gt; stream = builder.stream(<span class="string">&quot;testCountInputTopic&quot;</span>);</span><br><span class="line">        stream.print(Printed.toSysOut());</span><br><span class="line">        KTable&lt;String,Long&gt; table = stream</span><br><span class="line"><span class="comment">//                .flatMapValues(line -&gt; Arrays.asList(line.split(&quot;\\t&quot;)))</span></span><br><span class="line">                .groupBy((key,value) -&gt; value)</span><br><span class="line">                <span class="comment">//指定状态仓库的名称  （路径默认在/tmp/kafka-streams中）防止重启之后数据从头开始</span></span><br><span class="line">                .count(Materialized.as(<span class="string">&quot;counts-store&quot;</span>));</span><br><span class="line">        <span class="comment">// 指定序列化</span></span><br><span class="line">        table.toStream().to(<span class="string">&quot;testCountOutputTopic&quot;</span>, Produced.with(Serdes.String(),Serdes.Long()));</span><br><span class="line">        KafkaStreams kafkaStreams = <span class="keyword">new</span> KafkaStreams(builder.build(),prop);</span><br><span class="line">        kafkaStreams.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Properties <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        <span class="comment">// 流处理应用的id，必须指定</span></span><br><span class="line">        properties.put(StreamsConfig.APPLICATION_ID_CONFIG,<span class="string">&quot;KStream-test&quot;</span>);</span><br><span class="line">        properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,<span class="string">&quot;localhost:9092&quot;</span>);</span><br><span class="line">        <span class="comment">// key序列化反序列化</span></span><br><span class="line">        properties.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());</span><br><span class="line">        <span class="comment">//value序列化反序列化</span></span><br><span class="line">        properties.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG,Serdes.String().getClass());</span><br><span class="line">        <span class="keyword">return</span> properties;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/kafka/" rel="tag"># kafka</a>
+          </div>
+
+        
+
+
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/3.kafka%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6/" rel="prev" title="kafka自定义组件">
+      <i class="fa fa-chevron-left"></i> kafka自定义组件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E5%BA%94%E7%94%A8/1.log4j2%E4%B8%8Ekafka/" rel="next" title="log4j2与kafka集成">
+      log4j2与kafka集成 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kafka-Streams"><span class="nav-number">1.</span> <span class="nav-text">kafka Streams</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">可以解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">流处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8%E6%8B%93%E6%89%91"><span class="nav-number">1.2.3.</span> <span class="nav-text">处理器拓扑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%97%B4"><span class="nav-number">1.2.4.</span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81"><span class="nav-number">1.2.5.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KStream%E5%92%8CKTable"><span class="nav-number">1.2.6.</span> <span class="nav-text">KStream和KTable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3"><span class="nav-number">1.2.7.</span> <span class="nav-text">窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B7%B3%E8%B7%83%E6%97%B6%E9%97%B4%E7%AA%97%E5%8F%A3"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">跳跃时间窗口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BF%BB%E8%BD%AC%E6%97%B6%E9%97%B4%E7%AA%97%E5%8F%A3"><span class="nav-number">1.2.7.2.</span> <span class="nav-text">翻转时间窗口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="nav-number">1.2.7.3.</span> <span class="nav-text">滑动窗口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.3.</span> <span class="nav-text">使用介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#maven%E4%BE%9D%E8%B5%96"><span class="nav-number">1.3.1.</span> <span class="nav-text">maven依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KStream-%E4%B8%8E-KTable"><span class="nav-number">1.3.2.</span> <span class="nav-text">KStream 与 KTable</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#KStream"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">KStream</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#KTable"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">KTable</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.3.3.</span> <span class="nav-text">计数程序</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZH"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">ZH</p>
+  <div class="site-description" itemprop="description">java菜鸟号正在起航</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">454</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/isfox" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;isfox" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/SiXiangPiaoFuZhe" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;SiXiangPiaoFuZhe" rel="noopener" target="_blank"><i class="fa fa-git fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhanghe1996hy@163.com" title="E-Mail → mailto:zhanghe1996hy@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'MURUEmkUEoDdKOq3baW5Ofoh-gzGzoHsz',
+      appKey     : 'AsR88DCeCWHyTu5jFQkAA6g6',
+      placeholder: "来说一句吧",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
