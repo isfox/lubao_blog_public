@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/9.tomcat%E4%B9%8Bserver%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%93%8D%E4%BD%9C/1.kafka%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/9.tomcat%E4%B9%8Bserver%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">tomcat之server配置文件</a>
+            <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%93%8D%E4%BD%9C/1.kafka%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD/" class="post-title-link" itemprop="url">kafka启动和关闭</a>
         </h2>
 
         <div class="post-meta">
@@ -218,120 +218,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-14 22:57:19" itemprop="dateCreated datePublished" datetime="2020-09-14T22:57:19+08:00">2020-09-14</time>
+              <time title="创建时间：2020-10-09 11:10:40" itemprop="dateCreated datePublished" datetime="2020-10-09T11:10:40+08:00">2020-10-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-18 09:26:46" itemprop="dateModified" datetime="2021-04-18T09:26:46+08:00">2021-04-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index"><span itemprop="name">tomcat</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/9.tomcat%E4%B9%8Bserver%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat之server配置文件" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/9.tomcat%E4%B9%8Bserver%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/9.tomcat%E4%B9%8Bserver%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="server-xml配置文件"><a href="#server-xml配置文件" class="headerlink" title="server.xml配置文件"></a>server.xml配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Server</span> <span class="attr">port</span>=<span class="string">&quot;8005&quot;</span> <span class="attr">shutdown</span>=<span class="string">&quot;SHUTDOWN&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Service</span> <span class="attr">name</span>=<span class="string">&quot;Catalina&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Connector</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Engine</span> <span class="attr">name</span>=<span class="string">&quot;Catalina&quot;</span> <span class="attr">defaultHost</span>=<span class="string">&quot;localhost&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">&quot;localhost&quot;</span>  <span class="attr">appBase</span>=<span class="string">&quot;webapps&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">unpackWARs</span>=<span class="string">&quot;true&quot;</span> <span class="attr">autoDeploy</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Context</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Engine</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Service</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Server</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Server节点"><a href="#Server节点" class="headerlink" title="Server节点"></a>Server节点</h3><p>Server节点是server.xml的根元素，用于创建Server实例，代表整个Servlet容器组件，可包含一个或多个Service元素</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/9.tomcat%E4%B9%8Bserver%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/" class="post-title-link" itemprop="url">kafka之控制器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-08 09:23:30" itemprop="dateCreated datePublished" datetime="2020-09-08T09:23:30+08:00">2020-09-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-19 10:49:26" itemprop="dateModified" datetime="2021-04-19T10:49:26+08:00">2021-04-19</time>
+                <time title="修改时间：2021-06-01 11:35:38" itemprop="dateModified" datetime="2021-06-01T11:35:38+08:00">2021-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -344,7 +238,7 @@
             </span>
 
           
-            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="kafka之控制器" title="阅读次数">
+            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%93%8D%E4%BD%9C/1.kafka%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD/" class="post-meta-item leancloud_visitors" data-flag-title="kafka启动和关闭" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -359,8 +253,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%93%8D%E4%BD%9C/1.kafka%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%93%8D%E4%BD%9C/1.kafka%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -375,11 +269,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h2><ul>
-<li><p>controller_epoch:用于记录控制器发生变更次数，即记录当前控制器是第几代控制器，初始值为0，每选出一个新的控制器该字段加一，每个控制器发送请求都会带上这个字段，</p></li></ul>
+          <h2 id="kafka启动"><a href="#kafka启动" class="headerlink" title="kafka启动"></a>kafka启动</h2><p>kafka依赖于zookeeper，在启动kafka之前需要先启动zookeeper，kafka中包含有zookeeper启动脚本，为防止kafka与zookeeper版本问题，使用kafka中自带的zookeeper。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/1.kafka%E4%B9%8B%E6%8E%A7%E5%88%B6%E5%99%A8/#more" rel="contents">
+              <a class="btn" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%93%8D%E4%BD%9C/1.kafka%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -403,7 +296,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/6.kafka%E4%B9%8B%E5%BB%B6%E8%BF%9F%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/7.kafka%E7%9B%91%E6%8E%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -417,7 +310,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/6.kafka%E4%B9%8B%E5%BB%B6%E8%BF%9F%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/" class="post-title-link" itemprop="url">kafka之延迟操作组件</a>
+            <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/7.kafka%E7%9B%91%E6%8E%A7/" class="post-title-link" itemprop="url">kafka监控</a>
         </h2>
 
         <div class="post-meta">
@@ -427,14 +320,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-07 09:52:30" itemprop="dateCreated datePublished" datetime="2020-09-07T09:52:30+08:00">2020-09-07</time>
+              <time title="创建时间：2020-09-23 18:20:30" itemprop="dateCreated datePublished" datetime="2020-09-23T18:20:30+08:00">2020-09-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 11:29:14" itemprop="dateModified" datetime="2021-04-13T11:29:14+08:00">2021-04-13</time>
+                <time title="修改时间：2021-04-13 11:29:20" itemprop="dateModified" datetime="2021-04-13T11:29:20+08:00">2021-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -447,7 +340,7 @@
             </span>
 
           
-            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/6.kafka%E4%B9%8B%E5%BB%B6%E8%BF%9F%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="kafka之延迟操作组件" title="阅读次数">
+            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/7.kafka%E7%9B%91%E6%8E%A7/" class="post-meta-item leancloud_visitors" data-flag-title="kafka监控" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -462,8 +355,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/6.kafka%E4%B9%8B%E5%BB%B6%E8%BF%9F%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/6.kafka%E4%B9%8B%E5%BB%B6%E8%BF%9F%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/7.kafka%E7%9B%91%E6%8E%A7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/7.kafka%E7%9B%91%E6%8E%A7/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -478,10 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="延迟操作组件"><a href="#延迟操作组件" class="headerlink" title="延迟操作组件"></a>延迟操作组件</h2><p>该组件可以辅助kafka其他组件完成相应的功能</p>
+          <h2 id="kafka监控"><a href="#kafka监控" class="headerlink" title="kafka监控"></a>kafka监控</h2><p>kafka使用Yammer Metrics进行内部状态的监控，用来收集报告KafkaServer端和客户端的metrics信息,可以将信息通过JMX、控制台、CSV、日志等形式发布出来。kafka默认通过JMX来报告metrics信息，可以通过JConsole或者Visual VM来查看metrics信息</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/6.kafka%E4%B9%8B%E5%BB%B6%E8%BF%9F%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/#more" rel="contents">
+              <a class="btn" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/7.kafka%E7%9B%91%E6%8E%A7/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -505,7 +398,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/7.tomcat%E4%B9%8BCoyote/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/4.kafka%E4%B9%8B%E5%89%AF%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -519,7 +412,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/7.tomcat%E4%B9%8BCoyote/" class="post-title-link" itemprop="url">tomcat之Coyote</a>
+            <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/4.kafka%E4%B9%8B%E5%89%AF%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-title-link" itemprop="url">kafka之副本管理器</a>
         </h2>
 
         <div class="post-meta">
@@ -529,14 +422,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-06 19:31:19" itemprop="dateCreated datePublished" datetime="2020-09-06T19:31:19+08:00">2020-09-06</time>
+              <time title="创建时间：2020-09-23 09:30:30" itemprop="dateCreated datePublished" datetime="2020-09-23T09:30:30+08:00">2020-09-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-18 09:26:24" itemprop="dateModified" datetime="2021-04-18T09:26:24+08:00">2021-04-18</time>
+                <time title="修改时间：2021-04-13 11:28:59" itemprop="dateModified" datetime="2021-04-13T11:28:59+08:00">2021-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -544,12 +437,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index"><span itemprop="name">tomcat</span></a>
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/7.tomcat%E4%B9%8BCoyote/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat之Coyote" title="阅读次数">
+            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/4.kafka%E4%B9%8B%E5%89%AF%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="kafka之副本管理器" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -564,8 +457,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/7.tomcat%E4%B9%8BCoyote/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/7.tomcat%E4%B9%8BCoyote/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/4.kafka%E4%B9%8B%E5%89%AF%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/4.kafka%E4%B9%8B%E5%89%AF%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -580,10 +473,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Catalina是Tomcat提供的Servlet容器，负责处理来自客户端的请求并输出响应，但是仅有Servlet容器服务器无法对外提供服务，还需要由链接器接收来自客户端的请求，并按照既定协议进行解析，然后交给Servlet容器处理。</p>
+          <h2 id="副本管理器"><a href="#副本管理器" class="headerlink" title="副本管理器"></a>副本管理器</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/7.tomcat%E4%B9%8BCoyote/#more" rel="contents">
+              <a class="btn" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/4.kafka%E4%B9%8B%E5%89%AF%E6%9C%AC%E7%AE%A1%E7%90%86%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -607,7 +500,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/6.DefaultServlet%E5%92%8CJspServlet/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/14.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -621,7 +514,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/6.DefaultServlet%E5%92%8CJspServlet/" class="post-title-link" itemprop="url">DefaultServlet和JspServlet</a>
+            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/14.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/" class="post-title-link" itemprop="url">性能调优</a>
         </h2>
 
         <div class="post-meta">
@@ -631,14 +524,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-06 16:37:19" itemprop="dateCreated datePublished" datetime="2020-09-06T16:37:19+08:00">2020-09-06</time>
+              <time title="创建时间：2020-09-22 22:34:19" itemprop="dateCreated datePublished" datetime="2020-09-22T22:34:19+08:00">2020-09-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-18 09:26:15" itemprop="dateModified" datetime="2021-04-18T09:26:15+08:00">2021-04-18</time>
+                <time title="修改时间：2021-04-18 09:27:50" itemprop="dateModified" datetime="2021-04-18T09:27:50+08:00">2021-04-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -651,7 +544,7 @@
             </span>
 
           
-            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/6.DefaultServlet%E5%92%8CJspServlet/" class="post-meta-item leancloud_visitors" data-flag-title="DefaultServlet和JspServlet" title="阅读次数">
+            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/14.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/" class="post-meta-item leancloud_visitors" data-flag-title="性能调优" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -666,8 +559,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/6.DefaultServlet%E5%92%8CJspServlet/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/6.DefaultServlet%E5%92%8CJspServlet/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/14.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/14.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -682,10 +575,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在tomcat的conf/web.xml中有两个默认的Servlet，DefaultServlet和JspServlet</p>
+          <h2 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h2><h3 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h3><h4 id="负载测试"><a href="#负载测试" class="headerlink" title="负载测试"></a>负载测试</h4>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/6.DefaultServlet%E5%92%8CJspServlet/#more" rel="contents">
+              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/14.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -709,7 +602,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/13.tomcat%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/3.kafka%E4%B9%8B%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -723,7 +616,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/13.tomcat%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">tomcat之性能优化</a>
+            <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/3.kafka%E4%B9%8B%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-title-link" itemprop="url">kafka之日志管理器</a>
         </h2>
 
         <div class="post-meta">
@@ -733,14 +626,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-06 16:13:19" itemprop="dateCreated datePublished" datetime="2020-09-06T16:13:19+08:00">2020-09-06</time>
+              <time title="创建时间：2020-09-22 14:27:30" itemprop="dateCreated datePublished" datetime="2020-09-22T14:27:30+08:00">2020-09-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-18 09:27:42" itemprop="dateModified" datetime="2021-04-18T09:27:42+08:00">2021-04-18</time>
+                <time title="修改时间：2021-04-13 11:28:53" itemprop="dateModified" datetime="2021-04-13T11:28:53+08:00">2021-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -748,12 +641,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index"><span itemprop="name">tomcat</span></a>
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/13.tomcat%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat之性能优化" title="阅读次数">
+            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/3.kafka%E4%B9%8B%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="kafka之日志管理器" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -768,8 +661,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/13.tomcat%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/13.tomcat%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/3.kafka%E4%B9%8B%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/3.kafka%E4%B9%8B%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E5%99%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -784,10 +677,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>有几个与性能关系密切的属性</p>
+          <h2 id="日志管理器"><a href="#日志管理器" class="headerlink" title="日志管理器"></a>日志管理器</h2><p>日志管理器是kafka用来管理所有日志的，负责管理日志的创建与删除、日志检索、日志加载和恢复、检查点及日志文件刷写磁盘以及日志清理等</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/13.tomcat%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/#more" rel="contents">
+              <a class="btn" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/3.kafka%E4%B9%8B%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -811,7 +704,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/5.tomcat%E4%B9%8Bweb%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/2.kafka%E4%B9%8B%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -825,7 +718,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/5.tomcat%E4%B9%8Bweb%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">tomcat之web请求处理</a>
+            <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/2.kafka%E4%B9%8B%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" class="post-title-link" itemprop="url">kafka之网络通信</a>
         </h2>
 
         <div class="post-meta">
@@ -835,14 +728,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-06 16:13:19" itemprop="dateCreated datePublished" datetime="2020-09-06T16:13:19+08:00">2020-09-06</time>
+              <time title="创建时间：2020-09-22 10:56:30" itemprop="dateCreated datePublished" datetime="2020-09-22T10:56:30+08:00">2020-09-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-18 09:25:43" itemprop="dateModified" datetime="2021-04-18T09:25:43+08:00">2021-04-18</time>
+                <time title="修改时间：2021-04-13 11:28:46" itemprop="dateModified" datetime="2021-04-13T11:28:46+08:00">2021-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -850,12 +743,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index"><span itemprop="name">tomcat</span></a>
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/5.tomcat%E4%B9%8Bweb%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat之web请求处理" title="阅读次数">
+            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/2.kafka%E4%B9%8B%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" class="post-meta-item leancloud_visitors" data-flag-title="kafka之网络通信" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -870,8 +763,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/5.tomcat%E4%B9%8Bweb%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/5.tomcat%E4%B9%8Bweb%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/2.kafka%E4%B9%8B%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/2.kafka%E4%B9%8B%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -886,10 +779,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Web请求处理"><a href="#Web请求处理" class="headerlink" title="Web请求处理"></a>Web请求处理</h2><h3 id="总体过程"><a href="#总体过程" class="headerlink" title="总体过程"></a>总体过程</h3><p>请求处理使用org.apache.catalina.connector.CoyoteAdapter.service()方法</p>
+          <h2 id="网络通信"><a href="#网络通信" class="headerlink" title="网络通信"></a>网络通信</h2><p>kafkaServer启动时，初始化启动了一个SocketServer服务，用于接受客户端的连接、处理客户端请求、发送响应等，同时创建一个KafkaRequestHandlerPool用于管理KafkaRequestHandler。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/5.tomcat%E4%B9%8Bweb%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86/#more" rel="contents">
+              <a class="btn" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/2.kafka%E4%B9%8B%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -913,7 +806,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/4.tomcat%E4%B9%8Bweb%E5%BA%94%E7%94%A8%E5%8A%A0%E8%BD%BD/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/5.kafka%E4%B9%8B%E5%8D%8F%E8%B0%83%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -927,7 +820,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/4.tomcat%E4%B9%8Bweb%E5%BA%94%E7%94%A8%E5%8A%A0%E8%BD%BD/" class="post-title-link" itemprop="url">tomcat之web应用加载</a>
+            <a href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/5.kafka%E4%B9%8B%E5%8D%8F%E8%B0%83%E5%99%A8/" class="post-title-link" itemprop="url">kafka之协调器</a>
         </h2>
 
         <div class="post-meta">
@@ -937,14 +830,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-05 16:29:19" itemprop="dateCreated datePublished" datetime="2020-09-05T16:29:19+08:00">2020-09-05</time>
+              <time title="创建时间：2020-09-21 17:50:30" itemprop="dateCreated datePublished" datetime="2020-09-21T17:50:30+08:00">2020-09-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-18 09:25:26" itemprop="dateModified" datetime="2021-04-18T09:25:26+08:00">2021-04-18</time>
+                <time title="修改时间：2021-04-13 11:29:08" itemprop="dateModified" datetime="2021-04-13T11:29:08+08:00">2021-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -952,12 +845,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index"><span itemprop="name">tomcat</span></a>
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/4.tomcat%E4%B9%8Bweb%E5%BA%94%E7%94%A8%E5%8A%A0%E8%BD%BD/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat之web应用加载" title="阅读次数">
+            <span id="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/5.kafka%E4%B9%8B%E5%8D%8F%E8%B0%83%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="kafka之协调器" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -972,8 +865,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/4.tomcat%E4%B9%8Bweb%E5%BA%94%E7%94%A8%E5%8A%A0%E8%BD%BD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/4.tomcat%E4%B9%8Bweb%E5%BA%94%E7%94%A8%E5%8A%A0%E8%BD%BD/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/5.kafka%E4%B9%8B%E5%8D%8F%E8%B0%83%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/5.kafka%E4%B9%8B%E5%8D%8F%E8%B0%83%E5%99%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -988,10 +881,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Web应用加载"><a href="#Web应用加载" class="headerlink" title="Web应用加载"></a>Web应用加载</h2><p>Catalina对于Web应用的加载主要由StandardHost、HostConfig、StandardContext、ContextConfig、StandardWrapper这五个类完成。</p>
+          <h2 id="协调器"><a href="#协调器" class="headerlink" title="协调器"></a>协调器</h2><p>kafka有消费者协调器、组协调器和任务管理协调器</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/4.tomcat%E4%B9%8Bweb%E5%BA%94%E7%94%A8%E5%8A%A0%E8%BD%BD/#more" rel="contents">
+              <a class="btn" href="/2020/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E6%9C%8D%E5%8A%A1%E7%AB%AF/5.kafka%E4%B9%8B%E5%8D%8F%E8%B0%83%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1015,7 +908,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/2.tomcat%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/1.web%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -1029,7 +922,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/2.tomcat%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">tomcat组件说明</a>
+            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/1.web%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">web服务器与应用服务器</a>
         </h2>
 
         <div class="post-meta">
@@ -1039,14 +932,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-29 15:47:19" itemprop="dateCreated datePublished" datetime="2020-08-29T15:47:19+08:00">2020-08-29</time>
+              <time title="创建时间：2020-09-20 13:34:19" itemprop="dateCreated datePublished" datetime="2020-09-20T13:34:19+08:00">2020-09-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-18 09:24:34" itemprop="dateModified" datetime="2021-04-18T09:24:34+08:00">2021-04-18</time>
+                <time title="修改时间：2021-04-18 09:24:27" itemprop="dateModified" datetime="2021-04-18T09:24:27+08:00">2021-04-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1059,7 +952,7 @@
             </span>
 
           
-            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/2.tomcat%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat组件说明" title="阅读次数">
+            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/1.web%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="web服务器与应用服务器" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1074,8 +967,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/2.tomcat%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/2.tomcat%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/1.web%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/1.web%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1090,11 +983,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="tomcat组件说明"><a href="#tomcat组件说明" class="headerlink" title="tomcat组件说明"></a>tomcat组件说明</h2><ul>
-<li><p>Server  表示整个Servlet容器，tomcat运行环境中只有唯一一个Server实例</p></li></ul>
+          <h2 id="web服务器与应用服务器"><a href="#web服务器与应用服务器" class="headerlink" title="web服务器与应用服务器"></a>web服务器与应用服务器</h2><h3 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h3><p>是一个处理web请求的计算机系统，常见作用是托管web网站，主要功能是存储、处理、传送web页面到客户端。客户端与服务端之间的通信协议为HTTP，传送的页面多数情况下是HTML，同时包含图片、CSS以及JavaScript脚本</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/2.tomcat%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/#more" rel="contents">
+              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/1.web%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1118,7 +1010,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/3.tomcat%E4%B9%8BCatalina/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/11.tomcat%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -1132,7 +1024,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/3.tomcat%E4%B9%8BCatalina/" class="post-title-link" itemprop="url">tomcat之Catalina</a>
+            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/11.tomcat%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">tomcat管理</a>
         </h2>
 
         <div class="post-meta">
@@ -1142,14 +1034,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-29 15:47:19" itemprop="dateCreated datePublished" datetime="2020-08-29T15:47:19+08:00">2020-08-29</time>
+              <time title="创建时间：2020-09-20 13:34:19" itemprop="dateCreated datePublished" datetime="2020-09-20T13:34:19+08:00">2020-09-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-27 09:09:25" itemprop="dateModified" datetime="2021-04-27T09:09:25+08:00">2021-04-27</time>
+                <time title="修改时间：2021-04-18 09:27:28" itemprop="dateModified" datetime="2021-04-18T09:27:28+08:00">2021-04-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1162,7 +1054,7 @@
             </span>
 
           
-            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/3.tomcat%E4%B9%8BCatalina/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat之Catalina" title="阅读次数">
+            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/11.tomcat%E7%AE%A1%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat管理" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1177,8 +1069,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/3.tomcat%E4%B9%8BCatalina/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/3.tomcat%E4%B9%8BCatalina/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/11.tomcat%E7%AE%A1%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/11.tomcat%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1193,11 +1085,113 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Catalina"><a href="#Catalina" class="headerlink" title="Catalina"></a>Catalina</h2><p>在Tomcat4.0版本，将Servlet容器重新命名为Catalina。</p>
-<p>catalina包含Tomcat所有容器组件，通过松耦合的方式集成Coyote，以及完成按照请求协议进行数据读写，同时还包括启动入口和Shell程序。</p>
+          <h2 id="Tomcat管理"><a href="#Tomcat管理" class="headerlink" title="Tomcat管理"></a>Tomcat管理</h2><h3 id="host-manager"><a href="#host-manager" class="headerlink" title="host-manager"></a>host-manager</h3><p>访问<a target="_blank" rel="noopener" href="http://localhst:8080/host-manager/html">http://localhst:8080/host-manager/html</a> 可以访问host-manager页面，该页面存在访问权限控制，在tomcat-users.xml中进行配置</p>
+<p>包含两个角色，admin-gui和admin-script</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/3.tomcat%E4%B9%8BCatalina/#more" rel="contents">
+              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/11.tomcat%E7%AE%A1%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/10.tomcat%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/10.tomcat%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/" class="post-title-link" itemprop="url">tomcat之过滤器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-19 17:16:19" itemprop="dateCreated datePublished" datetime="2020-09-19T17:16:19+08:00">2020-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-08 09:50:29" itemprop="dateModified" datetime="2021-05-08T09:50:29+08:00">2021-05-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tomcat/" itemprop="url" rel="index"><span itemprop="name">tomcat</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/10.tomcat%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat之过滤器" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/10.tomcat%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/10.tomcat%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><h3 id="CorsFilter"><a href="#CorsFilter" class="headerlink" title="CorsFilter"></a>CorsFilter</h3><p>org.apache.catalina.filters.CorsFilter是W3C CORS(跨域资源共享)规范的一种实现，在HttpServletResponse中增加Acess-Control-*头，同时保护HTTP响应避免拆分。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/10.tomcat%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1220,7 +1214,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/38/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><span class="page-number current">39</span><a class="page-number" href="/page/40/">40</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><a class="extend next" rel="next" href="/page/40/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/38/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><span class="page-number current">39</span><a class="page-number" href="/page/40/">40</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><a class="extend next" rel="next" href="/page/40/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1288,20 +1282,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">454</span>
+          <span class="site-state-item-count">466</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">64</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

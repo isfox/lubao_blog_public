@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/9.%E6%97%A5%E5%BF%97%E8%AE%BE%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/9.%E6%97%A5%E5%BF%97%E8%AE%BE%E7%BD%AE/" class="post-title-link" itemprop="url">Nginx日志设置</a>
+            <a href="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">会话管理</a>
         </h2>
 
         <div class="post-meta">
@@ -218,14 +218,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-16 20:50:23" itemprop="dateCreated datePublished" datetime="2021-03-16T20:50:23+08:00">2021-03-16</time>
+              <time title="创建时间：2021-03-19 22:30:19" itemprop="dateCreated datePublished" datetime="2021-03-19T22:30:19+08:00">2021-03-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-11 11:53:21" itemprop="dateModified" datetime="2021-04-11T11:53:21+08:00">2021-04-11</time>
+                <time title="修改时间：2021-04-06 21:56:07" itemprop="dateModified" datetime="2021-04-06T21:56:07+08:00">2021-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,12 +233,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index"><span itemprop="name">Nginx</span></a>
+                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/9.%E6%97%A5%E5%BF%97%E8%AE%BE%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="Nginx日志设置" title="阅读次数">
+            <span id="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="会话管理" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -253,8 +253,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/9.%E6%97%A5%E5%BF%97%E8%AE%BE%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/9.%E6%97%A5%E5%BF%97%E8%AE%BE%E7%BD%AE/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -269,12 +269,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Nginx日志设置"><a href="#Nginx日志设置" class="headerlink" title="Nginx日志设置"></a>Nginx日志设置</h2><p>Nginx日志分为两种，access_log(访问日志)和error_log(错误日志)</p>
-<h3 id="设置access-log"><a href="#设置access-log" class="headerlink" title="设置access_log"></a>设置access_log</h3><p>access_log主要用来记录客户端的请求。</p>
-<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>可以在http、server、location中指定access_log</p>
+          <h2 id="会话管理"><a href="#会话管理" class="headerlink" title="会话管理"></a>会话管理</h2><p>HTTP是无状态的协议，每次客户端访问web页面时，都会打开一个单独的连接到web服务器，服务器不会自动保存客户端请求的任何记录，需要使用cookie和session来将一系列的请求和响应关联起来，维持客户端和服务器之间的会话</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/9.%E6%97%A5%E5%BF%97%E8%AE%BE%E7%BD%AE/#more" rel="contents">
+              <a class="btn" href="/2021/javaweb/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -298,7 +296,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%97%A5%E5%BF%97/log4j2/%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -312,7 +310,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E6%97%A5%E5%BF%97/log4j2/%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">log4j2配置</a>
+            <a href="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/" class="post-title-link" itemprop="url">请求转发和重定向</a>
         </h2>
 
         <div class="post-meta">
@@ -322,14 +320,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-15 10:30:30" itemprop="dateCreated datePublished" datetime="2021-03-15T10:30:30+08:00">2021-03-15</time>
+              <time title="创建时间：2021-03-19 21:30:19" itemprop="dateCreated datePublished" datetime="2021-03-19T21:30:19+08:00">2021-03-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-17 15:49:34" itemprop="dateModified" datetime="2021-03-17T15:49:34+08:00">2021-03-17</time>
+                <time title="修改时间：2021-04-04 22:35:16" itemprop="dateModified" datetime="2021-04-04T22:35:16+08:00">2021-04-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -337,12 +335,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E6%97%A5%E5%BF%97/log4j2/%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="log4j2配置" title="阅读次数">
+            <span id="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/" class="post-meta-item leancloud_visitors" data-flag-title="请求转发和重定向" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -357,8 +355,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E6%97%A5%E5%BF%97/log4j2/%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%97%A5%E5%BF%97/log4j2/%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -373,10 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="log4j2配置"><a href="#log4j2配置" class="headerlink" title="log4j2配置"></a>log4j2配置</h2><h3 id="配置文件结构"><a href="#配置文件结构" class="headerlink" title="配置文件结构"></a>配置文件结构</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Appenders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Appender</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Filters</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">LevelRangeFilter</span> <span class="attr">minLevel</span>=<span class="string">&quot;...&quot;</span> <span class="attr">maxLevel</span>=<span class="string">&quot;...&quot;</span> <span class="attr">onMatch</span>=<span class="string">&quot;...&quot;</span> <span class="attr">onMismatch</span>=<span class="string">&quot;...&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Filters</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">&quot;...&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;...&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">CronTriggeringPolicy</span> <span class="attr">schedule</span>=<span class="string">&quot;...&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">&quot;...&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Appender</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Appenders</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Loggers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Logger</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">&quot;...&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Logger</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Root</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">&quot;...&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Root</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Loggers</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">Configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h2 id="请求转发和重定向"><a href="#请求转发和重定向" class="headerlink" title="请求转发和重定向"></a>请求转发和重定向</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求转发</span></span><br><span class="line">request.getRequestDispatcher(url).forward(req,resp)</span><br><span class="line"><span class="comment">// 请求重定向</span></span><br><span class="line">response.sendRedirect(url)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E6%97%A5%E5%BF%97/log4j2/%E9%85%8D%E7%BD%AE/#more" rel="contents">
+              <a class="btn" href="/2021/javaweb/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -400,7 +398,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/7.%E6%8E%A5%E6%94%B6%E5%A4%84%E7%90%86%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/%E8%AF%B7%E6%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -414,7 +412,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/7.%E6%8E%A5%E6%94%B6%E5%A4%84%E7%90%86%E5%99%A8/" class="post-title-link" itemprop="url">接收处理器</a>
+            <a href="/2021/javaweb/%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">请求</a>
         </h2>
 
         <div class="post-meta">
@@ -423,28 +421,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-03-14 19:31:30" itemprop="dateCreated datePublished" datetime="2021-03-14T19:31:30+08:00">2021-03-14</time>
+              <time title="创建时间：2021-03-19 20:30:19 / 修改时间：16:40:00" itemprop="dateCreated datePublished" datetime="2021-03-19T20:30:19+08:00">2021-03-19</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 10:02:17" itemprop="dateModified" datetime="2021-04-12T10:02:17+08:00">2021-04-12</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flume/" itemprop="url" rel="index"><span itemprop="name">flume</span></a>
+                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/7.%E6%8E%A5%E6%94%B6%E5%A4%84%E7%90%86%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="接收处理器" title="阅读次数">
+            <span id="/2021/javaweb/%E8%AF%B7%E6%B1%82/" class="post-meta-item leancloud_visitors" data-flag-title="请求" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -459,8 +451,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/7.%E6%8E%A5%E6%94%B6%E5%A4%84%E7%90%86%E5%99%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/7.%E6%8E%A5%E6%94%B6%E5%A4%84%E7%90%86%E5%99%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/javaweb/%E8%AF%B7%E6%B1%82/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/%E8%AF%B7%E6%B1%82/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -475,10 +467,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="接收处理器"><a href="#接收处理器" class="headerlink" title="接收处理器"></a>接收处理器</h2><p>可以使用接收处理器来创建sink组，进而实现故障转移和负载均衡的功能，官方提供了三种处理器，Default Sink Processor、Failover Sink Processor、Load balancing Sink Processor，可以使用Failover Sink Processor来完成故障转移，使用Load balancing Sink Processor来完成负载均衡</p>
+          <h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p>HTTP的请求消息分为三部分：请求行、请求头、请求正文。</p>
+<p>在Servlet API中一般使用HttpServletRequest来表示HTTP请求</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/7.%E6%8E%A5%E6%94%B6%E5%A4%84%E7%90%86%E5%99%A8/#more" rel="contents">
+              <a class="btn" href="/2021/javaweb/%E8%AF%B7%E6%B1%82/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -502,7 +495,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/9.flume%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/%E5%93%8D%E5%BA%94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -516,7 +509,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/9.flume%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">flume拓扑结构</a>
+            <a href="/2021/javaweb/%E5%93%8D%E5%BA%94/" class="post-title-link" itemprop="url">响应</a>
         </h2>
 
         <div class="post-meta">
@@ -526,14 +519,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-14 17:30:30" itemprop="dateCreated datePublished" datetime="2021-03-14T17:30:30+08:00">2021-03-14</time>
+              <time title="创建时间：2021-03-18 21:30:19" itemprop="dateCreated datePublished" datetime="2021-03-18T21:30:19+08:00">2021-03-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 10:02:31" itemprop="dateModified" datetime="2021-04-12T10:02:31+08:00">2021-04-12</time>
+                <time title="修改时间：2021-03-19 15:57:44" itemprop="dateModified" datetime="2021-03-19T15:57:44+08:00">2021-03-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -541,12 +534,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flume/" itemprop="url" rel="index"><span itemprop="name">flume</span></a>
+                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/9.flume%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="flume拓扑结构" title="阅读次数">
+            <span id="/2021/javaweb/%E5%93%8D%E5%BA%94/" class="post-meta-item leancloud_visitors" data-flag-title="响应" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -561,8 +554,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/9.flume%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/9.flume%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/javaweb/%E5%93%8D%E5%BA%94/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/%E5%93%8D%E5%BA%94/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -577,12 +570,120 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="flume拓扑结构"><a href="#flume拓扑结构" class="headerlink" title="flume拓扑结构"></a>flume拓扑结构</h2><p>官网对于flume的搭建和使用提供了三种拓扑结构</p>
-<h3 id="简单串联"><a href="#简单串联" class="headerlink" title="简单串联"></a>简单串联</h3><p><img src="/images/flume/%E7%BB%93%E6%9E%84%E4%B9%8B%E7%AE%80%E5%8D%95%E4%B8%B2%E8%81%94.png" alt="结构之简单串联"></p>
-<p>将多个flume简单的串联起来</p>
+          <h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>HTTP的响应消息分为三部分：状态行、响应头、响应正文。</p>
+<p>Servlet API中一般使用HttpServletResponse来表示响应。</p>
+<p>状态行对应的方法是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStatus</span><span class="params">(<span class="keyword">int</span> sc)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>响应头对应的方法为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addHeader</span><span class="params">(String name, String value)</span></span>;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHeader</span><span class="params">(String name, String value)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>响应正文对应的方法为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ServletOutputStream <span class="title">getOutputStream</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> PrintWriter <span class="title">getWriter</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">定时任务</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-18 21:20:30" itemprop="dateCreated datePublished" datetime="2021-03-18T21:20:30+08:00">2021-03-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-11 11:51:49" itemprop="dateModified" datetime="2021-04-11T11:51:49+08:00">2021-04-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-meta-item leancloud_visitors" data-flag-title="定时任务" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><h3 id="at一次性执行定时任务"><a href="#at一次性执行定时任务" class="headerlink" title="at一次性执行定时任务"></a>at一次性执行定时任务</h3><p>依赖于atd服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service atd start</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> at [选项] 时间</span></span><br><span class="line">----------</span><br><span class="line">-m  at工作完成后，使用email通知执行at命令的用户</span><br><span class="line">-c 工作号  显示该at工作的实际内容</span><br><span class="line"></span><br><span class="line">时间格式</span><br><span class="line">HH:MM</span><br><span class="line">HH:MM YYYY-MM-DD</span><br><span class="line">HH:MM[am|pm] [month] [date]</span><br><span class="line">HH:MM[am|pm] + [minutes|hours|days|weeks]  </span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/9.flume%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84/#more" rel="contents">
+              <a class="btn" href="/2021/linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -606,7 +707,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/6.flume%E4%BA%8B%E5%8A%A1/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -620,7 +721,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/6.flume%E4%BA%8B%E5%8A%A1/" class="post-title-link" itemprop="url">flume事务</a>
+            <a href="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">JWT介绍</a>
         </h2>
 
         <div class="post-meta">
@@ -629,28 +730,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-03-14 16:45:30" itemprop="dateCreated datePublished" datetime="2021-03-14T16:45:30+08:00">2021-03-14</time>
+              <time title="创建时间：2021-03-18 21:00:19 / 修改时间：16:04:49" itemprop="dateCreated datePublished" datetime="2021-03-18T21:00:19+08:00">2021-03-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 10:01:58" itemprop="dateModified" datetime="2021-04-12T10:01:58+08:00">2021-04-12</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flume/" itemprop="url" rel="index"><span itemprop="name">flume</span></a>
+                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/6.flume%E4%BA%8B%E5%8A%A1/" class="post-meta-item leancloud_visitors" data-flag-title="flume事务" title="阅读次数">
+            <span id="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/" class="post-meta-item leancloud_visitors" data-flag-title="JWT介绍" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -665,8 +760,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/6.flume%E4%BA%8B%E5%8A%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/6.flume%E4%BA%8B%E5%8A%A1/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -681,10 +776,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="flume事务"><a href="#flume事务" class="headerlink" title="flume事务"></a>flume事务</h2><p>flume为了保证数据的原子性，内部存在了事务功能，在Source-&gt;Channel过程中存在一个事务，在Channel-&gt;Sink过程中存在一个事务</p>
+          <h2 id="JWT介绍"><a href="#JWT介绍" class="headerlink" title="JWT介绍"></a>JWT介绍</h2><p>JWT由三部分组成</p>
+<ul>
+<li>头部(header)</li>
+<li>载荷(payload)</li>
+<li>签证(signature)</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/6.flume%E4%BA%8B%E5%8A%A1/#more" rel="contents">
+              <a class="btn" href="/2021/javaweb/JWT/JWT%E4%BB%8B%E7%BB%8D/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -708,7 +808,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/3.flume%E7%9B%91%E6%8E%A7%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -722,7 +822,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/3.flume%E7%9B%91%E6%8E%A7%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">flume监控目录文件</a>
+            <a href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">系统资源命令</a>
         </h2>
 
         <div class="post-meta">
@@ -732,14 +832,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-14 15:31:30" itemprop="dateCreated datePublished" datetime="2021-03-14T15:31:30+08:00">2021-03-14</time>
+              <time title="创建时间：2021-03-18 20:30:30" itemprop="dateCreated datePublished" datetime="2021-03-18T20:30:30+08:00">2021-03-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 10:01:09" itemprop="dateModified" datetime="2021-04-12T10:01:09+08:00">2021-04-12</time>
+                <time title="修改时间：2021-06-01 17:16:06" itemprop="dateModified" datetime="2021-06-01T17:16:06+08:00">2021-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -747,12 +847,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flume/" itemprop="url" rel="index"><span itemprop="name">flume</span></a>
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/3.flume%E7%9B%91%E6%8E%A7%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="flume监控目录文件" title="阅读次数">
+            <span id="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="系统资源命令" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -767,8 +867,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/3.flume%E7%9B%91%E6%8E%A7%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/3.flume%E7%9B%91%E6%8E%A7%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -783,13 +883,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="flume监控目录文件"><a href="#flume监控目录文件" class="headerlink" title="flume监控目录文件"></a>flume监控目录文件</h2><p>使用flume来监控目录文件的变化，并将目录中的文件内容传至hdfs中，有三种事件源可供选择</p>
-<p>一是Exec Source来监控文件，适用于监控一个实时追加的文件，但是不能保证数据不丢失</p>
-<p>二是Spooldir Source来监控目录，可以保证不丢失数据，且可以做到断点续传，但是延迟过高，无法保证实时监控</p>
-<p>三是Tairdir Source来监控，既可以保证不丢失数据，又可以保证断点续传，还可以保证实时监控</p>
+          <h2 id="系统资源命令"><a href="#系统资源命令" class="headerlink" title="系统资源命令"></a>系统资源命令</h2><h3 id="系统资源查看"><a href="#系统资源查看" class="headerlink" title="系统资源查看"></a>系统资源查看</h3><h4 id="vmstat命令"><a href="#vmstat命令" class="headerlink" title="vmstat命令"></a>vmstat命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">vmstat [刷新延时 刷新次数]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用vmstat检测，每1秒刷新一次，一共刷新3次</span></span><br><span class="line">vmstat 1 3</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/linux/vmstat%E5%91%BD%E4%BB%A4%E7%BB%93%E6%9E%9C.png" alt="vmstat命令结果"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/3.flume%E7%9B%91%E6%8E%A7%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6/#more" rel="contents">
+              <a class="btn" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -813,7 +912,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/4.flume%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5kafka/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -827,7 +926,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/4.flume%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5kafka/" class="post-title-link" itemprop="url">flume监控文件写入kafka</a>
+            <a href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">后台运行命令</a>
         </h2>
 
         <div class="post-meta">
@@ -837,14 +936,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-14 10:31:30" itemprop="dateCreated datePublished" datetime="2021-03-14T10:31:30+08:00">2021-03-14</time>
+              <time title="创建时间：2021-03-18 20:20:30" itemprop="dateCreated datePublished" datetime="2021-03-18T20:20:30+08:00">2021-03-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 10:01:16" itemprop="dateModified" datetime="2021-04-12T10:01:16+08:00">2021-04-12</time>
+                <time title="修改时间：2021-05-21 18:15:06" itemprop="dateModified" datetime="2021-05-21T18:15:06+08:00">2021-05-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -852,12 +951,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flume/" itemprop="url" rel="index"><span itemprop="name">flume</span></a>
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/4.flume%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5kafka/" class="post-meta-item leancloud_visitors" data-flag-title="flume监控文件写入kafka" title="阅读次数">
+            <span id="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="后台运行命令" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -872,8 +971,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/4.flume%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5kafka/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/4.flume%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5kafka/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -888,11 +987,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="flume监控文件写入kafka"><a href="#flume监控文件写入kafka" class="headerlink" title="flume监控文件写入kafka"></a>flume监控文件写入kafka</h2><p>之前了解过log4j2将日志直接写入kafka中，这样会导致应用程序直接依赖于kafka运行环境。</p>
-<p>而一般通常的做法是应用程序将日志写入本地，通过日志采集工具将本地日志同步到远程服务器，flume就是常用的数据采集工具之一。</p>
+          <h2 id="后台运行命令"><a href="#后台运行命令" class="headerlink" title="后台运行命令"></a>后台运行命令</h2><p>很多时候需要将命令放在后台执行，那么如何让命令在后台运行呢，只需要在命令后加上&amp;即可</p>
+<p>如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar test.jar &amp;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/4.flume%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5kafka/#more" rel="contents">
+              <a class="btn" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -916,7 +1016,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/5.flume%E9%87%87%E9%9B%86kafka%E4%BF%A1%E6%81%AF%E5%86%99%E5%85%A5hdfs/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -930,7 +1030,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/5.flume%E9%87%87%E9%9B%86kafka%E4%BF%A1%E6%81%AF%E5%86%99%E5%85%A5hdfs/" class="post-title-link" itemprop="url">flume采集kafka消息写入HDFS</a>
+            <a href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">进程管理命令</a>
         </h2>
 
         <div class="post-meta">
@@ -940,14 +1040,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-14 10:31:30" itemprop="dateCreated datePublished" datetime="2021-03-14T10:31:30+08:00">2021-03-14</time>
+              <time title="创建时间：2021-03-18 20:00:30" itemprop="dateCreated datePublished" datetime="2021-03-18T20:00:30+08:00">2021-03-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 10:01:26" itemprop="dateModified" datetime="2021-04-12T10:01:26+08:00">2021-04-12</time>
+                <time title="修改时间：2021-05-27 18:04:17" itemprop="dateModified" datetime="2021-05-27T18:04:17+08:00">2021-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -955,12 +1055,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flume/" itemprop="url" rel="index"><span itemprop="name">flume</span></a>
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/5.flume%E9%87%87%E9%9B%86kafka%E4%BF%A1%E6%81%AF%E5%86%99%E5%85%A5hdfs/" class="post-meta-item leancloud_visitors" data-flag-title="flume采集kafka消息写入HDFS" title="阅读次数">
+            <span id="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="进程管理命令" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -975,8 +1075,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/5.flume%E9%87%87%E9%9B%86kafka%E4%BF%A1%E6%81%AF%E5%86%99%E5%85%A5hdfs/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/5.flume%E9%87%87%E9%9B%86kafka%E4%BF%A1%E6%81%AF%E5%86%99%E5%85%A5hdfs/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -991,10 +1091,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="flume采集kafka消息写入HDFS"><a href="#flume采集kafka消息写入HDFS" class="headerlink" title="flume采集kafka消息写入HDFS"></a>flume采集kafka消息写入HDFS</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>该配置采用kafka作为事件源，kafka作为通道，hdfs作为接收器</p>
+          <h2 id="进程管理命令"><a href="#进程管理命令" class="headerlink" title="进程管理命令"></a>进程管理命令</h2><h3 id="查看进程命令"><a href="#查看进程命令" class="headerlink" title="查看进程命令"></a>查看进程命令</h3><h4 id="ps命令"><a href="#ps命令" class="headerlink" title="ps命令"></a>ps命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看系统中所有正在运行的系统</span></span><br><span class="line">ps aux</span><br><span class="line"></span><br><span class="line">------------</span><br><span class="line">a  显示一个终端的所有进程，除了会话引线</span><br><span class="line">u  显示进程的归属用户及内存的使用情况</span><br><span class="line">x  显示没有控制终端的进程</span><br><span class="line">e  显示环境变量</span><br><span class="line">f  显示进程间关系</span><br><span class="line">H  显示树状结构</span><br><span class="line">r  显示当前终端的程序</span><br><span class="line">T  显示当前终端的所有程序</span><br><span class="line"></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/5.flume%E9%87%87%E9%9B%86kafka%E4%BF%A1%E6%81%AF%E5%86%99%E5%85%A5hdfs/#more" rel="contents">
+              <a class="btn" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1018,7 +1118,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/8.flume%E6%89%A9%E5%B1%95/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -1032,7 +1132,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/8.flume%E6%89%A9%E5%B1%95/" class="post-title-link" itemprop="url">flume扩展</a>
+            <a href="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/" class="post-title-link" itemprop="url">服务开机自启</a>
         </h2>
 
         <div class="post-meta">
@@ -1041,28 +1141,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-03-14 10:31:30" itemprop="dateCreated datePublished" datetime="2021-03-14T10:31:30+08:00">2021-03-14</time>
+              <time title="创建时间：2021-03-17 22:00:30 / 修改时间：18:13:32" itemprop="dateCreated datePublished" datetime="2021-03-17T22:00:30+08:00">2021-03-17</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 10:02:25" itemprop="dateModified" datetime="2021-04-12T10:02:25+08:00">2021-04-12</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flume/" itemprop="url" rel="index"><span itemprop="name">flume</span></a>
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/8.flume%E6%89%A9%E5%B1%95/" class="post-meta-item leancloud_visitors" data-flag-title="flume扩展" title="阅读次数">
+            <span id="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/" class="post-meta-item leancloud_visitors" data-flag-title="服务开机自启" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1077,8 +1171,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/8.flume%E6%89%A9%E5%B1%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/8.flume%E6%89%A9%E5%B1%95/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1093,124 +1187,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="flume扩展"><a href="#flume扩展" class="headerlink" title="flume扩展"></a>flume扩展</h2><p>flume可以自定义拦截器、自定义事件源、自定义接收器，可以通过自定义各个组件来进行flume的扩展</p>
-<p>依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- flume核心包 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.flume<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>flume-ng-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>Flume提供了拦截器功能，可以在源之后、接收器之前定义多个拦截器，可以通过拦截器在数据流入通道之前或数据流出通道之后对数据进行处理。</p>
+          <h2 id="服务开机自启"><a href="#服务开机自启" class="headerlink" title="服务开机自启"></a>服务开机自启</h2><p>Centos有两种方式，一是修改/etc/rc.local文件，二是使用chkconfig来管理开机自启(chkconfig无法自启动源码包)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /etc/init.d/目录下必须有启动脚本</span></span><br><span class="line">ls /etc/init.d/httpd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加服务，以便让chkconfig指令管理它</span></span><br><span class="line">chkconfig --add httpd</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除指定的服务，不再让chkconfig指令管理它</span></span><br><span class="line">chkconfig --del httpd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置开机运行该服务，默认是设置2345等级开机运行服务</span></span><br><span class="line">chkconfig httpd on</span><br><span class="line"><span class="meta">#</span><span class="bash"> 指定等级</span></span><br><span class="line">chkconfig --level 35 httpd on</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置开机不运行服务</span></span><br><span class="line">chkconfig httpd off           </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出所有被chkconfig管理的服务</span></span><br><span class="line">chkconfig --list</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/8.flume%E6%89%A9%E5%B1%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/1.flume%E7%AE%80%E4%BB%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/1.flume%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">flume简介</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-14 09:51:30" itemprop="dateCreated datePublished" datetime="2021-03-14T09:51:30+08:00">2021-03-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-19 10:14:45" itemprop="dateModified" datetime="2021-04-19T10:14:45+08:00">2021-04-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flume/" itemprop="url" rel="index"><span itemprop="name">flume</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/1.flume%E7%AE%80%E4%BB%8B/" class="post-meta-item leancloud_visitors" data-flag-title="flume简介" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/1.flume%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/1.flume%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="flume简介"><a href="#flume简介" class="headerlink" title="flume简介"></a>flume简介</h2><p>flume是Cloudera提供的高可用的、高可靠的、分布式的海量日志采集、聚合和传输的系统。基于流式架构</p>
-<p>我下载的最新的flume，为1.9.0版本</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">flume-ng version </span></span><br><span class="line">Flume 1.9.0</span><br><span class="line">Source code repository: https://git-wip-us.apache.org/repos/asf/flume.git</span><br><span class="line">Revision: d4fcab4f501d41597bc616921329a4339f73585e</span><br><span class="line">Compiled by fszabo on Mon Dec 17 20:45:25 CET 2018</span><br><span class="line">From source with checksum 35db629a3bda49d23e9b3690c80737f9</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>下载之后修改flume-env.sh中的JAVA_HOME即可</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/1.flume%E7%AE%80%E4%BB%8B/#more" rel="contents">
+              <a class="btn" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1233,7 +1214,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1301,20 +1282,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">454</span>
+          <span class="site-state-item-count">466</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">64</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

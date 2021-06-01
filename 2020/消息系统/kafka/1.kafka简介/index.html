@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://isfox.github.io/images/消息系统/kafka/kafka架构.png">
 <meta property="article:published_time" content="2020-05-06T02:23:40.000Z">
-<meta property="article:modified_time" content="2021-05-30T02:44:39.875Z">
+<meta property="article:modified_time" content="2021-06-01T03:02:08.692Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="kafka">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-30 10:44:39" itemprop="dateModified" datetime="2021-05-30T10:44:39+08:00">2021-05-30</time>
+                <time title="修改时间：2021-06-01 11:02:08" itemprop="dateModified" datetime="2021-06-01T11:02:08+08:00">2021-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -280,12 +280,15 @@
 <h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><p>生产者负责生产消息，将消息写入kafka集群。<br>消费者从kafka集群中拉取消息。</p>
 <img src="/images/消息系统/kafka/kafka架构.png" alt="kafka架构" style="zoom:50%;">
 
+<blockquote>
+<p>offset在0.9之前存储在zookeeper，0.9之后存储在本地topic中</p>
+</blockquote>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
 <li><strong>主题Topic</strong>   kafka将一组消息抽象归纳为一个主题(Topic)，生产者将消息发送到特定主题，消费者订阅主题或主题的某些分区来进行消费。</li>
 <li><strong>消息</strong>  消息(Record)是kafka通信的基本单位，由一个固定长度的消息头和一个可变长度的消息体构成</li>
-<li><strong>分区Partition</strong>  每个主题分为一个或多个分区(Partition)。每个分区由一系列有序、不可变的消息组成，是一个有序队列。每个分区在物理上对应为一个文件夹，分区命名规则为主题名称后接”-“连接符，之后再接分区编号，分区编号从0开始，编号最大值为分区总数减一。  分区数越多吞吐量越高，分区是kafka保证消息被顺序消费以及对消息进行负载均衡的基础。kafka只能保证一个分区之内消息的有序性，并不能保证跨分区消息的有序性。</li>
-<li><strong>副本</strong>  每个分区有一个或多个副本(Replica)，分区的副本分布在集群的不同代理上，以提高可用性。从存储角度上分析，分区的每个副本在逻辑上抽象为一个日志对象，一一对应。</li>
-<li><strong>Leader副本和Follower副本</strong>  由于kafka副本的存在，需要保证一个分区的多个副本之间的数据一致性，kafka会选择该分区的一个副本作为Leader副本，其他副本为Follower副本，只有Leader副本才负责处理客户端读写请求，Follower只负责从Leader副本同步数据</li>
+<li><strong>分区Partition</strong>  为了扩展性，一个topic可以分布到多个broke上，一个主题分为一个或多个分区(Partition)。每个分区由一系列有序、不可变的消息组成，是一个有序队列。每个分区在物理上对应为一个文件夹，分区命名规则为主题名称后接”-“连接符，之后再接分区编号，分区编号从0开始，编号最大值为分区总数减一。  分区数越多吞吐量越高，分区是kafka保证消息被顺序消费以及对消息进行负载均衡的基础。kafka只能保证一个分区之内消息的有序性，并不能保证跨分区消息的有序性。</li>
+<li><strong>副本Replica</strong>  为了保证集群中的某个节点发生故障时，该节点上的partition数据不丢失，每个分区有一个或多个副本(Replica)，一个leader和若干个follower，分区的副本分布在集群的不同代理上，以提高可用性。从存储角度上分析，分区的每个副本在逻辑上抽象为一个日志对象，一一对应。</li>
+<li><strong>Leader副本和Follower副本</strong>  由于kafka副本的存在，需要保证一个分区的多个副本之间的数据一致性，kafka会选择该分区的一个副本作为Leader副本，其他副本为Follower副本，只有Leader副本才负责处理客户端读写请求，Follower只负责从Leader副本同步数据，当leader发生故障时，某个follower会成为新的leader</li>
 <li><strong>偏移量Offset</strong>  任何发布到分区的消息会被直接追加到日志文件(分区目录下一”.log”后缀的文件)的尾部，而每条消息在日志文件中的位置都会对应一个按序递增的偏移量。偏移量是一个分区下严格有序的逻辑值，消费者可以通过控制消息偏移量来对消息进行消费。</li>
 <li><strong>日志段</strong>  一个日志又被划分为多个日志段(LogSegment)，日志段是kafka日志对象分片的最小单位。一个日志段对应磁盘上一个具体日志文件和两个索引文件。两个索引文件分别是”.index”和”.timeindex”，分别表示消息偏移量索引文件和消息时间戳索引文件</li>
 <li>**代理Broker **  kafka集群就是有一个或多个kafka实例构成的，我们将每个kafka实例称为代理(Broker)，也称之为kafka服务器(kafkaServer)，kafka集群一般包括一台或多台服务器，可以在一台服务器上配置一个或多个代理。每一个代理都有唯一标识id，在一个kafka集群中，每增加一个代理就需要为这个代理配置一个与该集群中其他代理不同的id，保证在整个kafka集群中唯一，这个id就是代理的名字，就是broker.id</li>
@@ -412,20 +415,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">454</span>
+          <span class="site-state-item-count">466</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">64</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

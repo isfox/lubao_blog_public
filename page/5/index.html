@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/2.spark%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BRDD/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/spring/%E8%BF%9B%E9%98%B6/1.Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/2.spark%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BRDD/" class="post-title-link" itemprop="url">spark核心数据结构之RDD</a>
+            <a href="/2021/%E6%A1%86%E6%9E%B6/spring/%E8%BF%9B%E9%98%B6/1.Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">Bean的实例化过程</a>
         </h2>
 
         <div class="post-meta">
@@ -219,303 +219,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-14 20:30:30 / 修改时间：11:32:55" itemprop="dateCreated datePublished" datetime="2021-05-14T20:30:30+08:00">2021-05-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/2.spark%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BRDD/" class="post-meta-item leancloud_visitors" data-flag-title="spark核心数据结构之RDD" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/2.spark%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BRDD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/2.spark%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BRDD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="spark核心数据结构之RDD"><a href="#spark核心数据结构之RDD" class="headerlink" title="spark核心数据结构之RDD"></a>spark核心数据结构之RDD</h2><p>RDD是Spark对数据的核心抽象，称为弹性分布式数据集(Resilient Distributed Dataset，简称RDD)，即为分布式的元素集合，在Spark中，对数据的所有操作就是创建RDD、转化已有RDD以及调用RDD操作进行求值，然后Spark自动将RDD中的数据分发到集群上，将操作并行化执行。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Internally, each RDD is characterized by five main properties:</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*  - A list of partitions</span></span><br><span class="line"><span class="comment">*  - A function for computing each split</span></span><br><span class="line"><span class="comment">*  - A list of dependencies on other RDDs</span></span><br><span class="line"><span class="comment">*  - Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)</span></span><br><span class="line"><span class="comment">*  - Optionally, a list of preferred locations to compute each split on (e.g. block locations for an HDFS file)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 分区列表，用于执行任务时并行计算</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">def</span> <span class="title">getPartitions</span></span>: <span class="type">Array</span>[<span class="type">Partition</span>]</span><br><span class="line"><span class="comment">// 分区计算函数，使用分区函数对每一个分区进行计算</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute</span></span>(split: <span class="type">Partition</span>, context: <span class="type">TaskContext</span>): <span class="type">Iterator</span>[<span class="type">T</span>]</span><br><span class="line"><span class="comment">// RDD之间的依赖关系，多个计算模型进行组合时，需要建立多个RDD的依赖关系</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">def</span> <span class="title">getDependencies</span></span>: <span class="type">Seq</span>[<span class="type">Dependency</span>[_]] = deps</span><br><span class="line"><span class="comment">// 分区器，可以通过设定分区器自定义数据的分区(可选)</span></span><br><span class="line"><span class="meta">@transient</span> <span class="keyword">val</span> partitioner: <span class="type">Option</span>[<span class="type">Partitioner</span>] = <span class="type">None</span></span><br><span class="line"><span class="comment">// 首选位置，计算数据时，可根据计算节点的状态选择不同的节点位置来进行计算，可以减少一些不必要的网络传输</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">def</span> <span class="title">getPreferredLocations</span></span>(split: <span class="type">Partition</span>): <span class="type">Seq</span>[<span class="type">String</span>] = <span class="type">Nil</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/1.spark%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/1.spark%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">spark组件说明</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-13 21:30:30" itemprop="dateCreated datePublished" datetime="2021-05-13T21:30:30+08:00">2021-05-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-29 17:23:24" itemprop="dateModified" datetime="2021-05-29T17:23:24+08:00">2021-05-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/1.spark%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/" class="post-meta-item leancloud_visitors" data-flag-title="spark组件说明" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/1.spark%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/1.spark%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="spark组件说明"><a href="#spark组件说明" class="headerlink" title="spark组件说明"></a>spark组件说明</h2><p>下图是spark执行时的基本结构</p>
-<img src="/images/大数据/spark/spark架构.png" alt="spark架构" style="zoom:50%;">
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/1.spark%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/6.spark%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/6.spark%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">spark历史服务器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-13 21:10:30 / 修改时间：14:45:13" itemprop="dateCreated datePublished" datetime="2021-05-13T21:10:30+08:00">2021-05-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/6.spark%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="spark历史服务器" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/6.spark%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/6.spark%E5%8E%86%E5%8F%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="spark历史服务器"><a href="#spark历史服务器" class="headerlink" title="spark历史服务器"></a>spark历史服务器</h2><p>由于spark-shell停掉之后页面的4040端口也就无法访问了，那么使用spark-submit执行的任务就无法查看，此时就需要配置历史服务器</p>
-<p>首先修改spark-defaults.conf配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 配置日志存储</span><br><span class="line">spark.eventLog.enabled  true</span><br><span class="line">spark.eventLog.dir               hdfs:&#x2F;&#x2F;localhost:9000&#x2F;directory</span><br></pre></td></tr></table></figure>
-
-<p>修改spark-env.sh</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">配置历史服务器</span></span><br><span class="line">export SPARK_HISTORY_OPTS=&quot;</span><br><span class="line">78 -Dspark.history.ui.port=18080</span><br><span class="line">79 -Dspark.history.fs.logDirectory=hdfs://localhost:9000/directory</span><br><span class="line">80 -Dspark.history.retainedApplications=30&quot;</span><br></pre></td></tr></table></figure>
-
-<p>spark.history.fs.logDirectory和spark.eventLog.dir要对应，且这里的目录一定要存在，如果不存在需要在hdfs上创建</p>
-<p>之后启动历史服务器(在sbin目录下)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start-history-server.sh</span><br></pre></td></tr></table></figure>
-
-<p>启动之后可以去localhost:18080页面查看</p>
-<img src="/images/大数据/spark/spark历史服务器页面.png" alt="spark历史服务器页面" style="zoom:50%;">
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/spring/12.spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%A1%86%E6%9E%B6/spring/12.spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF/" class="post-title-link" itemprop="url">spring事务失效场景</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-13 20:29:23 / 修改时间：18:03:38" itemprop="dateCreated datePublished" datetime="2021-05-13T20:29:23+08:00">2021-05-13</time>
+              <time title="创建时间：2021-05-21 20:20:23 / 修改时间：11:44:31" itemprop="dateCreated datePublished" datetime="2021-05-21T20:20:23+08:00">2021-05-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -528,7 +232,7 @@
             </span>
 
           
-            <span id="/2021/%E6%A1%86%E6%9E%B6/spring/12.spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF/" class="post-meta-item leancloud_visitors" data-flag-title="spring事务失效场景" title="阅读次数">
+            <span id="/2021/%E6%A1%86%E6%9E%B6/spring/%E8%BF%9B%E9%98%B6/1.Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="Bean的实例化过程" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -543,8 +247,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E6%A1%86%E6%9E%B6/spring/12.spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%A1%86%E6%9E%B6/spring/12.spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E6%A1%86%E6%9E%B6/spring/%E8%BF%9B%E9%98%B6/1.Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%A1%86%E6%9E%B6/spring/%E8%BF%9B%E9%98%B6/1.Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -559,24 +263,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="spring事务失效场景"><a href="#spring事务失效场景" class="headerlink" title="spring事务失效场景"></a>spring事务失效场景</h2><p>该描述的是使用注解@Transactional的方式来配置事务</p>
-<ul>
-<li><p>配置的方法非public修饰</p>
-<p>由于事务是使用的代理，而代理对于非public的方法不生效</p>
-</li>
-<li><p>配置的所在类非spring容器管理的bean</p>
-</li>
-<li><p>注解修饰的方法被所在类使用this或默认调用</p>
-<p>Spring在扫描Bean的时候会自动为标注了@Transactional注解的类生成一个代理类（proxy）,当有注解的方法被调用的时候，实际上是代理类调用的，代理类在调用之前会开启事务，执行事务的操作，但是同类中的方法互相调用，相当于this.B()，此时的B方法并非是代理类调用，而是直接通过原有的Bean直接调用，所以注解会失效</p>
-</li>
-<li><p>默认情况下，业务抛出异常为非RuntimeException异常</p>
-<p>由于默认情况下只对于RuntimeException异常回滚</p>
-</li>
-<li><p>业务代码使用try…catch捕获异常，然后直接消化了，并未抛出异常</p>
-</li>
-<li><p>注解中设置了错误的传播方式</p>
-</li>
-</ul>
+          <h2 id="Bean的实例化过程"><a href="#Bean的实例化过程" class="headerlink" title="Bean的实例化过程"></a>Bean的实例化过程</h2><p>Spring既然可以创建并管理Bean，那Spring也要知道它需要创建的bean是什么，所以就需要程序员来告诉它需要创建的bean有哪些，所以就需要使用xml配置文件或者注解的方式来告诉Spring，Spring通过BeanDefinationReader将配置元信息加载到内存生成相应的BeanDefination之后，就将其注册到BeanDefinationRegistry中，BeanDefinationRegistry就是一个存放BeanDefination的大篮子，也是一种键值对的形式，通过特定的Bean定义的id，映射到相应的BeanDefination。</p>
+<p>然后使用BeanFactoryPostProcessor来完成对bean的增强，BeanFactoryPostProcessor是一个接口，有很多的实现类</p>
+<p>如PropertySourcesPlaceholderConfigurer来完成配置中的${…}的替换</p>
 
       
     </div>
@@ -596,7 +285,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/5.spark%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/25.scala%E6%B3%9B%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -610,7 +299,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/5.spark%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">spark环境配置</a>
+            <a href="/2021/scala/25.scala%E6%B3%9B%E5%9E%8B/" class="post-title-link" itemprop="url">scala泛型</a>
         </h2>
 
         <div class="post-meta">
@@ -621,7 +310,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-13 20:10:30 / 修改时间：15:51:11" itemprop="dateCreated datePublished" datetime="2021-05-13T20:10:30+08:00">2021-05-13</time>
+              <time title="创建时间：2021-05-19 20:56:19 / 修改时间：11:04:29" itemprop="dateCreated datePublished" datetime="2021-05-19T20:56:19+08:00">2021-05-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -629,12 +318,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
+                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/5.spark%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="spark环境配置" title="阅读次数">
+            <span id="/2021/scala/25.scala%E6%B3%9B%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="scala泛型" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -649,8 +338,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/5.spark%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/5.spark%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/scala/25.scala%E6%B3%9B%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/25.scala%E6%B3%9B%E5%9E%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -665,16 +354,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="spark环境配置"><a href="#spark环境配置" class="headerlink" title="spark环境配置"></a>spark环境配置</h2><p>首先我下载的是spark-3.1.1-bin-without-hadoop，由于spark中没有带有hadoop，所以操作起来是比较麻烦的，spark先要关联我自己的hadoop环境</p>
-<p>在conf下的spark-env.sh中添加</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// /usr/local/myself/hadoop-3.3.0/bin/hadoop是我自己的hadoop所在位置,这样就可以使用hadoop中的jar包了</span><br><span class="line">// 如果不加这句话会导致spark缺少很多jar包</span><br><span class="line">export SPARK_DIST_CLASSPATH=$(/usr/local/myself/hadoop-3.3.0/bin/hadoop classpath)</span><br></pre></td></tr></table></figure>
+          <h2 id="scala泛型"><a href="#scala泛型" class="headerlink" title="scala泛型"></a>scala泛型</h2><p>scala与java类似，同样存在泛型</p>
+<p>定义类时使用泛型</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Array</span>[<span class="type">T</span>]</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>注意在环境变量中配置scala、spark、hadoop等</p>
-</blockquote>
+<p>创建实例时使用泛型</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> array:<span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(<span class="string">&quot;aa&quot;</span>,<span class="string">&quot;bb&quot;</span>)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/5.spark%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/#more" rel="contents">
+              <a class="btn" href="/2021/scala/25.scala%E6%B3%9B%E5%9E%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -698,7 +386,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/8.%E5%B9%BF%E6%92%AD%E5%8F%98%E9%87%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -712,7 +400,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/" class="post-title-link" itemprop="url">spark敲门砖之WordCount</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/8.%E5%B9%BF%E6%92%AD%E5%8F%98%E9%87%8F/" class="post-title-link" itemprop="url">广播变量</a>
         </h2>
 
         <div class="post-meta">
@@ -723,7 +411,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-12 21:10:30 / 修改时间：18:30:27" itemprop="dateCreated datePublished" datetime="2021-05-12T21:10:30+08:00">2021-05-12</time>
+              <time title="创建时间：2021-05-18 20:35:30 / 修改时间：21:12:29" itemprop="dateCreated datePublished" datetime="2021-05-18T20:35:30+08:00">2021-05-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -736,7 +424,7 @@
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/" class="post-meta-item leancloud_visitors" data-flag-title="spark敲门砖之WordCount" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/8.%E5%B9%BF%E6%92%AD%E5%8F%98%E9%87%8F/" class="post-meta-item leancloud_visitors" data-flag-title="广播变量" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -751,8 +439,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/8.%E5%B9%BF%E6%92%AD%E5%8F%98%E9%87%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/8.%E5%B9%BF%E6%92%AD%E5%8F%98%E9%87%8F/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -767,16 +455,105 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="spark敲门砖之WordCount"><a href="#spark敲门砖之WordCount" class="headerlink" title="spark敲门砖之WordCount"></a>spark敲门砖之WordCount</h2><p>首先要确定好scala和spark的版本，可以去看一下maven中的对应关系(我原本用的是scala2.13版本的，由于spark没有与之对应的版本，降回到2.12了)</p>
-<img src="/images/大数据/spark/maven版本对应.png" alt="maven版本对应" style="zoom:33%;">
+          <h2 id="广播变量"><a href="#广播变量" class="headerlink" title="广播变量"></a>广播变量</h2><p>闭包数据是以Task为单位发送的，每个任务中都会包含有闭包数据，这样就会导致一个Executor中会含有大量重复的数据，并且占用大量的内存，可以使用spark的广播变量将闭包的数据保存到Executor的内存中，从而使得一个Executor中的Task可以共享这些数据，<strong>Spark中的广播变量不能够更改，是分布式只读变量</strong></p>
+<p>使用sc.broadcast来声明广播变量</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd = sc.makeRDD(<span class="type">List</span>((<span class="string">&quot;a&quot;</span>, <span class="number">1</span>), (<span class="string">&quot;b&quot;</span>, <span class="number">2</span>), (<span class="string">&quot;c&quot;</span>, <span class="number">3</span>), (<span class="string">&quot;d&quot;</span>, <span class="number">4</span>)))</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> list = <span class="type">List</span>((<span class="string">&quot;a&quot;</span>, <span class="number">4</span>), (<span class="string">&quot;b&quot;</span>, <span class="number">3</span>), (<span class="string">&quot;c&quot;</span>, <span class="number">2</span>), (<span class="string">&quot;d&quot;</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明广播变量</span></span><br><span class="line"><span class="keyword">val</span> bc = sc.broadcast(list)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> mapRdd = rdd.map(t =&gt; &#123;</span><br><span class="line">  <span class="keyword">val</span> bcv = bc.value</span><br><span class="line">  <span class="keyword">var</span> num = <span class="number">0</span></span><br><span class="line">  t <span class="keyword">match</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> (key, value) =&gt; &#123;</span><br><span class="line">      <span class="keyword">for</span> ((k, v) &lt;- bcv) &#123;</span><br><span class="line">        <span class="keyword">if</span> (k == key) &#123;</span><br><span class="line">          num = v</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  (t._1, t._2 + num)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">mapRdd.collect().foreach(println)</span><br></pre></td></tr></table></figure>
 
 
+      
+    </div>
 
-<p>maven依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 添加scala的依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.scala-lang<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>scala-library<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.13<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 这里注意scala的版本和spark的版本，不然会出现问题 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/7.%E7%B4%AF%E5%8A%A0%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/7.%E7%B4%AF%E5%8A%A0%E5%99%A8/" class="post-title-link" itemprop="url">累加器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-18 20:06:30 / 修改时间：14:34:44" itemprop="dateCreated datePublished" datetime="2021-05-18T20:06:30+08:00">2021-05-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/7.%E7%B4%AF%E5%8A%A0%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="累加器" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/7.%E7%B4%AF%E5%8A%A0%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/7.%E7%B4%AF%E5%8A%A0%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="累加器"><a href="#累加器" class="headerlink" title="累加器"></a>累加器</h2><h3 id="为什么需要累加器"><a href="#为什么需要累加器" class="headerlink" title="为什么需要累加器"></a>为什么需要累加器</h3><p>先来个简单地示例，在不考虑分区的情况的情况下(只有一个分区)，来进行数值的求和</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd = sc.makeRDD(<span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">rdd.foreach(</span><br><span class="line">  num =&gt; &#123;</span><br><span class="line">    println(<span class="string">&quot;加上数字&quot;</span>+num)</span><br><span class="line">    sum += num</span><br><span class="line">    println(<span class="string">&quot;累加为&quot;</span>+sum)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">println(<span class="string">&quot;累加结束，最终结果&quot;</span>+sum)</span><br><span class="line"></span><br><span class="line">加上数字<span class="number">1</span></span><br><span class="line">累加为<span class="number">1</span></span><br><span class="line">加上数字<span class="number">2</span></span><br><span class="line">累加为<span class="number">3</span></span><br><span class="line">加上数字<span class="number">3</span></span><br><span class="line">累加为<span class="number">6</span></span><br><span class="line">加上数字<span class="number">4</span></span><br><span class="line">累加为<span class="number">10</span></span><br><span class="line">累加结束，最终结果<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>前面的计算一直都正常，为什么最后会是0？</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/4.spark%E6%95%B2%E9%97%A8%E7%A0%96%E4%B9%8BWordCount/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/7.%E7%B4%AF%E5%8A%A0%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -800,7 +577,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/24.scala%E9%97%AD%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -814,7 +591,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/" class="post-title-link" itemprop="url">spark与hadoop对比</a>
+            <a href="/2021/scala/24.scala%E9%97%AD%E5%8C%85/" class="post-title-link" itemprop="url">scala闭包</a>
         </h2>
 
         <div class="post-meta">
@@ -825,7 +602,302 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-12 20:10:30 / 修改时间：11:58:01" itemprop="dateCreated datePublished" datetime="2021-05-12T20:10:30+08:00">2021-05-12</time>
+              <time title="创建时间：2021-05-17 22:19:19 / 修改时间：15:41:56" itemprop="dateCreated datePublished" datetime="2021-05-17T22:19:19+08:00">2021-05-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/scala/24.scala%E9%97%AD%E5%8C%85/" class="post-meta-item leancloud_visitors" data-flag-title="scala闭包" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/scala/24.scala%E9%97%AD%E5%8C%85/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/24.scala%E9%97%AD%E5%8C%85/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="scala闭包"><a href="#scala闭包" class="headerlink" title="scala闭包"></a>scala闭包</h2><p>闭包就是一个函数和与其相关的引用环境组成的一个整体</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// minusNum函数体是一个匿名函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minusNum</span></span>(num : <span class="type">Int</span>) = (y:<span class="type">Int</span>) =&gt; num-y</span><br><span class="line"><span class="comment">// 返回函数是一个对象，而 num 就是该对象的一个字段，他们共同形成一个闭包</span></span><br><span class="line"><span class="comment">// fun函数是一个闭包</span></span><br><span class="line"><span class="keyword">val</span> fun = minusNum(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<p>能组成闭包的函数也是高阶函数，因为需要该函数返回一个函数，而在上例中</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> fun = minusNum(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/scala/24.scala%E9%97%AD%E5%8C%85/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/6.RDD%E6%8C%81%E4%B9%85%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/6.RDD%E6%8C%81%E4%B9%85%E5%8C%96/" class="post-title-link" itemprop="url">RDD持久化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-17 21:37:30" itemprop="dateCreated datePublished" datetime="2021-05-17T21:37:30+08:00">2021-05-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-18 10:51:29" itemprop="dateModified" datetime="2021-05-18T10:51:29+08:00">2021-05-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/6.RDD%E6%8C%81%E4%B9%85%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="RDD持久化" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/6.RDD%E6%8C%81%E4%B9%85%E5%8C%96/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/6.RDD%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="RDD持久化"><a href="#RDD持久化" class="headerlink" title="RDD持久化"></a>RDD持久化</h2><p>默认情况下，Spark的RDD会在进行行动算子时重新计算，那么有时候如果多个行动算子想要重用一个RDD怎么办呢？可以使用rdd的持久化</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>使用cache方法或者persist方法来进行持久化</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该方法内部调用的是persist(StorageLevel.MEMORY_ONLY)，即缓存在内存中</span></span><br><span class="line"><span class="comment">// 内存如果不够，会采用LRU的缓存策略把最老的分区从内存中移除</span></span><br><span class="line">rdd.cache()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// persist方法可以传不同的存储级别来进行缓存  </span></span><br><span class="line"><span class="comment">// 使用StorageLevel</span></span><br><span class="line">rdd.persist(<span class="type">StorageLevel</span>.<span class="type">DISK_ONLY</span>)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/6.RDD%E6%8C%81%E4%B9%85%E5%8C%96/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign/Feign%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign/Feign%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Feign配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-17 21:36:19 / 修改时间：16:20:22" itemprop="dateCreated datePublished" datetime="2021-05-17T21:36:19+08:00">2021-05-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign/Feign%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="Feign配置" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign/Feign%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign/Feign%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Feign配置"><a href="#Feign配置" class="headerlink" title="Feign配置"></a>Feign配置</h2><p>首先主程序入口添加了@EnableFeignClients注解开启对FeignClient扫描加载处理，否则无法加载@FeignClient注解所标注的接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> FeignClient &#123;</span><br><span class="line">      <span class="comment">// 指定了FeignClient的名称，如果使用了Ribbon，该值就是微服务的名称，用于服务发现</span></span><br><span class="line">    <span class="meta">@AliasFor(&quot;name&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** <span class="doctag">@deprecated</span> */</span></span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="function">String <span class="title">serviceId</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">        <span class="comment">// 指定了FeignClient的名称，如果使用了Ribbon，name就是微服务的名称，用于服务发现，且会作为bean的名称，如果该服务内有多个调用某个微服务的feign接口，可以使用value，而不使用name</span></span><br><span class="line">    <span class="meta">@AliasFor(&quot;value&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">qualifier</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">        <span class="comment">// 指定调用的地址，一般不使用该参数，而使用微服务的名称调用</span></span><br><span class="line">    <span class="function">String <span class="title">url</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">        <span class="comment">// 当发生404时，如果该字段为true，会调用decoder进行解码，否则抛出FeignException</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">decode404</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">        <span class="comment">// 指定Feign的配置类，可以在Feign的配置类中自定义Feign的Encoder、Decoder、LogLevel、Contract</span></span><br><span class="line">    Class&lt;?&gt;[] configuration() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">        <span class="comment">// 失败回调，用于容错</span></span><br><span class="line">    Class&lt;?&gt; fallback() <span class="keyword">default</span> <span class="keyword">void</span>.class;</span><br><span class="line">        <span class="comment">// 工厂生成fallback类实例，可以生成每个接口通用的容错逻辑</span></span><br><span class="line">    Class&lt;?&gt; fallbackFactory() <span class="keyword">default</span> <span class="keyword">void</span>.class;</span><br><span class="line">        <span class="comment">// 定义当前FeignClient的统一前缀</span></span><br><span class="line">    <span class="function">String <span class="title">path</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">primary</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/5.RDD%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/5.RDD%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">RDD依赖关系</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-17 20:37:30 / 修改时间：11:07:03" itemprop="dateCreated datePublished" datetime="2021-05-17T20:37:30+08:00">2021-05-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -838,7 +910,7 @@
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/" class="post-meta-item leancloud_visitors" data-flag-title="spark与hadoop对比" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/5.RDD%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/" class="post-meta-item leancloud_visitors" data-flag-title="RDD依赖关系" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -853,8 +925,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/3.spark%E4%B8%8Ehadoop%E5%AF%B9%E6%AF%94/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/5.RDD%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/5.RDD%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -869,22 +941,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="spark与hadoop对比"><a href="#spark与hadoop对比" class="headerlink" title="spark与hadoop对比"></a>spark与hadoop对比</h2><p>spark就相当于是Hadoop的升级版本，对于MapReduce进行了再一次的优化</p>
-<p>Hadoop</p>
-<ul>
-<li>Hadoop 是由 java 语言编写的，在分布式服务器集群上存储海量数据并运行分布式分析应用的开源框架</li>
-<li>作为 Hadoop 分布式文件系统，HDFS 处于 Hadoop 生态圈的最下层，存储着所有的数据 ，支持着 Hadoop的所有 服务。它的理论基础源于Google的TheGoogleFileSystem这篇论文，它是GFS的开源实现</li>
-<li>MapReduce是一种编程模型，Hadoop根据Google的MapReduce论文将其实现，作为Hadoop的分布式计算模型，是 Hadoop的核心。基于这个框架，分布式并行程序的编写变得异常简单。综合了 HDFS 的分布式存储和MapReduce 的分布式计算，Hadoop在处理海量数据时，性能横向扩展变得非常容易</li>
-</ul>
-<p>Spark</p>
-<ul>
-<li>Spark 是一种由 Scala 语言开发的快速、通用、可扩展的大数据分析引擎</li>
-<li>Spark Core 中提供了 Spark 最基础与最核心的功能</li>
-<li>Spark SQL 是 Spark 用来操作结构化数据的组件。通过 Spark SQL，用户可以使用SQL 或者 Apache Hive 版本的 SQL 方言（HQL）来查询数据</li>
-<li>Spark Streaming 是 Spark 平台上针对实时数据进行流式计算的组件，提供了丰富的处理数据流的 API</li>
-</ul>
-<p>根本区别在于：Spark多个作业之间数据通信是基于内存，而Hadoop是基于磁盘，但是由于Spark是基于内存的，由于内存的限制，有时候会由于内存资源不足导致Job执行失败，所以Spark并不能完全的替代MapReduce</p>
-
+          <h2 id="RDD依赖关系"><a href="#RDD依赖关系" class="headerlink" title="RDD依赖关系"></a>RDD依赖关系</h2><p>在执行RDD的过程中如果某一个RDD出现问题，且RDD本身并不存储数据，那么就需要从数据源的位置重新开始执行，那么出现问题的RDD如何找到它的数据源在哪里？RDD在创建的时候会保存一系列的RDD依赖关系，根据这些依赖关系可以重新找到数据源来进行重新计算，两个相邻RDD之间的关系就是依赖关系，而将一系列依赖关系串联起来就是血缘关系</p>
+<p>可以使用dependencies方法来查看RDD的依赖关系</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rdd.dependencies</span><br><span class="line"></span><br><span class="line">------------</span><br><span class="line"><span class="type">List</span>(org.apache.spark.<span class="type">OneToOneDependency</span>@<span class="number">2133661</span>d)</span><br><span class="line"><span class="type">List</span>(org.apache.spark.<span class="type">ShuffleDependency</span>@<span class="number">1</span>a3071d8)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/5.RDD%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -903,7 +970,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/4.RDD%E5%BA%8F%E5%88%97%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -917,206 +984,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Eureka配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-11 21:36:19" itemprop="dateCreated datePublished" datetime="2021-05-11T21:36:19+08:00">2021-05-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-29 20:26:01" itemprop="dateModified" datetime="2021-05-29T20:26:01+08:00">2021-05-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="Eureka配置" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/1.Eureka%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Eureka配置"><a href="#Eureka配置" class="headerlink" title="Eureka配置"></a>Eureka配置</h2><p>Eureka注册中心配置</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">localhost</span></span><br><span class="line">    <span class="comment"># 过期时间，默认90s, 可不配置</span></span><br><span class="line">    <span class="attr">lease-expiration-duration-in-seconds:</span> <span class="number">90</span></span><br><span class="line">    <span class="comment"># 续约时间，默认30s，可不配置</span></span><br><span class="line">    <span class="attr">lease-renewal-interval-in-seconds:</span> <span class="number">30</span></span><br><span class="line">    <span class="comment"># ip地址优先</span></span><br><span class="line">    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="comment"># 关闭注册中心自我保护模式，避免注册中心不移除失效的服务，默认为true</span></span><br><span class="line">    <span class="attr">enable-self-preservation:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 去除失效服务的时间间隔（毫秒）</span></span><br><span class="line">    <span class="attr">eviction-interval-timer-in-ms:</span> <span class="number">4000</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="comment"># 启用eureka客户端，默认为true, 可不配置</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 取注册信息，默认为true，可不配置</span></span><br><span class="line">    <span class="attr">fetchRegistry:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># 两个心跳参数，默认都是30s,可不配置</span></span><br><span class="line">    <span class="attr">instance-info-replication-interval-seconds:</span> <span class="number">30</span></span><br><span class="line">    <span class="attr">registry-fetch-interval-seconds:</span> <span class="number">30</span></span><br><span class="line">    <span class="comment"># 注册到注册中心，默认为true,可不配置</span></span><br><span class="line">    <span class="attr">registerWithEureka:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">serviceUrl:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br></pre></td></tr></table></figure>
-
-<p>业务微服务配置</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">serviceUrl:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://localhost:8761/eureka</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">instance-id:</span> <span class="string">$&#123;spring.cloud.client.ip-address&#125;:$&#123;server.port&#125;</span></span><br><span class="line">    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span>   <span class="comment">#以IP地址注册到服务中心</span></span><br><span class="line">    <span class="attr">ip-address:</span> <span class="number">192.168</span><span class="number">.217</span><span class="number">.211</span></span><br><span class="line">    <span class="attr">non-secure-port:</span> <span class="number">8767</span></span><br><span class="line">    <span class="comment">#Eureka客户端向服务端发送心跳的时间间隔，单位为秒（客户端告诉服务端自己会按照该规则），默认30</span></span><br><span class="line">    <span class="attr">lease-renewal-interval-in-seconds:</span> <span class="number">10</span></span><br><span class="line">    <span class="comment">#Eureka服务端在收到最后一次心跳之后等待的时间上限，单位为秒，超过则剔除（客户端告诉服务端按照此规则等待自己），默认90</span></span><br><span class="line">    <span class="attr">lease-expiration-duration-in-seconds:</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/" class="post-title-link" itemprop="url">Eureka服务下线</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-11 20:36:19" itemprop="dateCreated datePublished" datetime="2021-05-11T20:36:19+08:00">2021-05-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-29 20:25:55" itemprop="dateModified" datetime="2021-05-29T20:25:55+08:00">2021-05-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/" class="post-meta-item leancloud_visitors" data-flag-title="Eureka服务下线" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/2.Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Eureka服务下线"><a href="#Eureka服务下线" class="headerlink" title="Eureka服务下线"></a>Eureka服务下线</h2><p>默认情况下，如果Eureka Server在90s内没有收到Eureka客户端的续约，会将实例从注册表中删除，这样就会导致有时候客户端已经停止了运行，但是依然在注册中心列表中，导致访问该客户端报错</p>
-<h3 id="手动下线"><a href="#手动下线" class="headerlink" title="手动下线"></a>手动下线</h3><p>可以向Eureka注册中心发送delete请求来删除服务  /eureka/apps/{application.name}/</p>
-<h3 id="客户端通知注册中心下线"><a href="#客户端通知注册中心下线" class="headerlink" title="客户端通知注册中心下线"></a>客户端通知注册中心下线</h3><p>也可以在客户端显式的通知注册中心下线</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DiscoveryManager.getInstance().shutdownComponent();</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/" class="post-title-link" itemprop="url">查询map字段</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/4.RDD%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">RDD序列化</a>
         </h2>
 
         <div class="post-meta">
@@ -1127,7 +995,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-10 20:24:23 / 修改时间：14:57:42" itemprop="dateCreated datePublished" datetime="2021-05-10T20:24:23+08:00">2021-05-10</time>
+              <time title="创建时间：2021-05-17 20:35:30 / 修改时间：10:36:31" itemprop="dateCreated datePublished" datetime="2021-05-17T20:35:30+08:00">2021-05-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1135,12 +1003,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
+                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/" class="post-meta-item leancloud_visitors" data-flag-title="查询map字段" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/4.RDD%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="RDD序列化" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1155,8 +1023,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/16.%E6%9F%A5%E8%AF%A2map%E5%AD%97%E6%AE%B5/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/4.RDD%E5%BA%8F%E5%88%97%E5%8C%96/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/4.RDD%E5%BA%8F%E5%88%97%E5%8C%96/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1171,55 +1039,113 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="查询map字段"><a href="#查询map字段" class="headerlink" title="查询map字段"></a>查询map字段</h2><p>建表语句</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test_map(<span class="keyword">name</span> <span class="keyword">string</span>, score <span class="keyword">map</span>&lt;<span class="keyword">string</span>,<span class="built_in">int</span>&gt;)</span><br><span class="line"><span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span></span><br><span class="line"><span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&#x27;\t&#x27;</span></span><br><span class="line">COLLECTION ITEMS <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line"><span class="keyword">MAP</span> <span class="keyword">KEYS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&#x27;:&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Collection-Functions"><a href="#Collection-Functions" class="headerlink" title="Collection Functions"></a>Collection Functions</h3><p>The following built-in collection functions are supported in Hive:</p>
-<table>
-<thead>
-<tr>
-<th align="left">返回类型</th>
-<th align="left">函数</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">int</td>
-<td align="left">size(Map&lt;K.V&gt;)</td>
-<td align="left">返回map的元素数量</td>
-</tr>
-<tr>
-<td align="left">int</td>
-<td align="left">size(Array<T>)</T></td>
-<td align="left">返回数组的元素数量</td>
-</tr>
-<tr>
-<td align="left">array<K></K></td>
-<td align="left">map_keys(Map&lt;K.V&gt;)</td>
-<td align="left">数组形式返回map中所有的key</td>
-</tr>
-<tr>
-<td align="left">array<V></V></td>
-<td align="left">map_values(Map&lt;K.V&gt;)</td>
-<td align="left">数组形式返回map中所有的value</td>
-</tr>
-<tr>
-<td align="left">boolean</td>
-<td align="left">array_contains(Array<T>, value)</T></td>
-<td align="left">如果数组中包含该value则返回true</td>
-</tr>
-<tr>
-<td align="left">array<t></t></td>
-<td align="left">sort_array(Array<T>)</T></td>
-<td align="left">按照自然排序对数组进行排序</td>
-</tr>
-</tbody></table>
-<p>查询张三的成绩单中有数学的记录</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,score <span class="keyword">from</span> user_profile <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">&#x27;张三&#x27;</span> <span class="keyword">and</span> array_contains(map_keys(score),<span class="string">&#x27;数学&#x27;</span>) <span class="keyword">limit</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+          <h2 id="RDD序列化"><a href="#RDD序列化" class="headerlink" title="RDD序列化"></a>RDD序列化</h2><p>算子以外的操作都是在Driver端执行的，算子内的都是在Executor端执行的，而在进行Driver端向Executor端传值时，就需要进行序列化，虽然Java序列化也可以完成，但是产生的字节过多，导致数据传输过慢，Spark在2.0开始支持Kryo序列化机制，速度是Serializable的10倍，默认不配置的情况下使用的是Java序列化，可以进行配置为Kryo序列化</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sparkConf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setMaster(<span class="string">&quot;local[*]&quot;</span>).setAppName(<span class="string">&quot;kryo&quot;</span>)</span><br><span class="line">  <span class="comment">// 默认为org.apache.spark.serializer.JavaSerializer</span></span><br><span class="line">  <span class="comment">// 如果注册了org.apache.spark.serializer.KryoSerializer</span></span><br><span class="line">  .set(<span class="string">&quot;spark.serializer&quot;</span>,<span class="string">&quot;org.apache.spark.serializer.KryoSerializer&quot;</span>)</span><br><span class="line">  .registerKryoClasses(<span class="type">Array</span>(classOf[<span class="type">Teacher</span>]))</span><br></pre></td></tr></table></figure>
 
 
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/3.RDD%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/3.RDD%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">RDD编程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-15 08:35:30" itemprop="dateCreated datePublished" datetime="2021-05-15T08:35:30+08:00">2021-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-27 14:43:42" itemprop="dateModified" datetime="2021-05-27T14:43:42+08:00">2021-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/3.RDD%E7%BC%96%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="RDD编程" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/3.RDD%E7%BC%96%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/3.RDD%E7%BC%96%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="RDD编程"><a href="#RDD编程" class="headerlink" title="RDD编程"></a>RDD编程</h2><h3 id="RDD的创建方式"><a href="#RDD的创建方式" class="headerlink" title="RDD的创建方式"></a>RDD的创建方式</h3><h4 id="从集合（内存）中创建RDD"><a href="#从集合（内存）中创建RDD" class="headerlink" title="从集合（内存）中创建RDD"></a>从集合（内存）中创建RDD</h4><p>使用parallelize或者makeRDD方法传入序列即可</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 准备集合</span></span><br><span class="line"><span class="keyword">val</span> list = <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"><span class="comment">// 创建RDD</span></span><br><span class="line"><span class="keyword">val</span> rdd = context.parallelize(list)</span><br><span class="line"><span class="comment">// 该方法内部也是直接调用的parallelize(seq, numSlices)</span></span><br><span class="line">context.makeRDD(list)</span><br><span class="line">rdd.collect().foreach(println)</span><br><span class="line"></span><br><span class="line">context.stop()</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20core/3.RDD%E7%BC%96%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1237,7 +1163,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1305,20 +1231,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">454</span>
+          <span class="site-state-item-count">466</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">64</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
