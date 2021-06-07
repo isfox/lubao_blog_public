@@ -194,6 +194,283 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/2.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E5%88%86%E8%AF%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/2.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E5%88%86%E8%AF%8D/" class="post-title-link" itemprop="url">搜索引擎之分词</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-31 22:18:23 / 修改时间：22:22:09" itemprop="dateCreated datePublished" datetime="2021-05-31T22:18:23+08:00">2021-05-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url" rel="index"><span itemprop="name">搜索引擎</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/2.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E5%88%86%E8%AF%8D/" class="post-meta-item leancloud_visitors" data-flag-title="搜索引擎之分词" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/2.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E5%88%86%E8%AF%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/2.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E5%88%86%E8%AF%8D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="搜索引擎之分词"><a href="#搜索引擎之分词" class="headerlink" title="搜索引擎之分词"></a>搜索引擎之分词</h2><p><strong>分词</strong>，又称为切词，就是将句子或者段落进行切割，从中提取出包含固定语义的词。对于英语来说，语言的基本单位就是单词，因此，分词特别容易，只需要根据空格/符号/段落进行分割，并且排除停止词(stop word)，提取词干，即可完成，但是对于中文来说，要将一段文字准确的切分成一个个词，就不那么容易了，中文是以字为最小单位，多个字连在一起才能构成一个表达具体含义的词，中文的句子和段落都有一个明显的标点符号分割，唯独词没有一个形式上的分割符，因此，对于支持中文搜索的搜索引擎来说，需要一个合适的中文分词工具，以便建立倒排索引。 提取词干是西方语言特有的处理步骤，比如英文中的单词有单复数的变形，-ing和-ed的变形，但是在搜索引擎中，应该当做同一个词。</p>
+<p><strong>停止词</strong>(stop word)，在英语中包含了a、the、and这样使用频率很高的词，如果这些词都被建到索引中进行索引的话，搜索引擎就没有任何意义了，因为几乎所有的文档都会包含这些词，对于中文来说也是如此，中文里面也有一些出现频率很高的词，如“在”、“这”、“了”、“于”等等，这些词没有具体含义，区分度低，搜索引擎对这些词进行索引没有任何意义，因此，停止词需要被忽略掉</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/3.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/3.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">搜索引擎之排序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-31 22:18:23 / 修改时间：22:23:42" itemprop="dateCreated datePublished" datetime="2021-05-31T22:18:23+08:00">2021-05-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url" rel="index"><span itemprop="name">搜索引擎</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/3.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E6%8E%92%E5%BA%8F/" class="post-meta-item leancloud_visitors" data-flag-title="搜索引擎之排序" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/3.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E6%8E%92%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/3.%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B9%8B%E6%8E%92%E5%BA%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="搜索引擎之排序"><a href="#搜索引擎之排序" class="headerlink" title="搜索引擎之排序"></a>搜索引擎之排序</h2><p><strong>排序</strong>，当输入一个关键字进行搜索时，可能会命中许多文档，搜索引擎给用户的价值就是快速的找到需要的文档，因此，需要将相关度更大的内容排在前面，以便用户能够更快的筛选出有价值的内容，这时，就需要有适当的排序算法。一般来说，命中标题的文档将比命中内容的文档有更高的相关性，命中多次的文档比命中一次的文档有更高的相关性</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/11.final%E5%85%B3%E9%94%AE%E5%AD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/11.final%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-title-link" itemprop="url">final关键字</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-30 20:26:18 / 修改时间：21:38:36" itemprop="dateCreated datePublished" datetime="2021-05-30T20:26:18+08:00">2021-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">java基础</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/11.final%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-meta-item leancloud_visitors" data-flag-title="final关键字" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/11.final%E5%85%B3%E9%94%AE%E5%AD%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/11.final%E5%85%B3%E9%94%AE%E5%AD%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><p>final可以用来修饰变量、方法和类</p>
+<h3 id="final方法"><a href="#final方法" class="headerlink" title="final方法"></a>final方法</h3><p>final方法的作用是防止子类通过重写改变方法的行为<br>类中所有的private方法都是隐式的指定为final，因为不能访问private方法，所以不能重写它。给private方法加上final修饰并不会给方法带来额外的含义。<strong>重写一个private方法时编译并不会报错，一个方法是private的，他就不属于父类的一部分，只是创建了一个同名的方法而已</strong>  </p>
+<p>final方法的好处</p>
+<ul>
+<li>可以防止子类中的方法重写</li>
+<li>final方法会告诉编译器对于final方法的调用不需要动态绑定，在运行时，不需要进行解析方法调用</li>
+<li>能够带来更好的效率，编译器duifinal方法的调用为内联调用。当编译器看到final方法调用时，可以根据自己的判断，略去一般通过方法调用机制插入代码的方式。调用机制包括将方法参数压栈、清除栈参数和最后处理返回值。而对于final方法编译器在方法体中使用实际代码来替换方法调用</li>
+</ul>
+<h3 id="final类"><a href="#final类" class="headerlink" title="final类"></a>final类</h3><p>final类的作用是该类不允许被继承</p>
+<h3 id="final变量"><a href="#final变量" class="headerlink" title="final变量"></a>final变量</h3><p>使用final关键字修饰的变量会被认为是常量，final修饰的成员变量必须要进行初始化，任何在程序中试图改变常量值的操作，都会导致编译错误</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%89%8D%E7%AB%AF/HTML/1.%E6%89%93%E5%BC%80%E6%96%B0%E7%AA%97%E5%8F%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -265,6 +542,122 @@
       
           <h2 id="打开新窗口"><a href="#打开新窗口" class="headerlink" title="打开新窗口"></a>打开新窗口</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- url地址，窗口名称，参数字符串</span></span><br><span class="line"><span class="comment">name可以选择  top  框架网页中在上部窗口中显示目标网页</span></span><br><span class="line"><span class="comment">             self 在当前窗口显示目标网页</span></span><br><span class="line"><span class="comment">             black 在新窗口中显示目标网页</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">window.open(url,name,args)</span><br></pre></td></tr></table></figure>
 
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">CSS简单使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-30 18:00:23 / 修改时间：18:38:42" itemprop="dateCreated datePublished" datetime="2021-05-30T18:00:23+08:00">2021-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="CSS简单使用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="CSS简单使用"><a href="#CSS简单使用" class="headerlink" title="CSS简单使用"></a>CSS简单使用</h2><p>overflow:hidden   防止字溢出</p>
+<p>list-style:none   可以出去列表前的.</p>
+<h3 id="块状元素和行内元素"><a href="#块状元素和行内元素" class="headerlink" title="块状元素和行内元素"></a>块状元素和行内元素</h3><h4 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h4><p>块状元素特点</p>
+<ul>
+<li>每个块状元素都会从新的一行开始</li>
+<li>高度、宽度、行高、顶部、底部边距都可设置</li>
+<li>宽度在不设置的情况下与父元素宽度一致</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>、<span class="tag">&lt;<span class="name">p</span>&gt;</span>、<span class="tag">&lt;<span class="name">h1</span>&gt;</span>...<span class="tag">&lt;<span class="name">h6</span>&gt;</span>、<span class="tag">&lt;<span class="name">ol</span>&gt;</span>、<span class="tag">&lt;<span class="name">ul</span>&gt;</span>、<span class="tag">&lt;<span class="name">dl</span>&gt;</span>、<span class="tag">&lt;<span class="name">table</span>&gt;</span>、<span class="tag">&lt;<span class="name">address</span>&gt;</span>、<span class="tag">&lt;<span class="name">blockquote</span>&gt;</span>、<span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以通过设置display:block将元素显示为块状元素</p>
+<h4 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h4><p>行内元素特点</p>
+<ul>
+<li>和其他元素在一行上</li>
+<li>高度、宽度、顶部和底部边距都不可设置</li>
+<li>元素的宽度是所包含内容的宽度，不可改变</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>、<span class="tag">&lt;<span class="name">span</span>&gt;</span>、<span class="tag">&lt;<span class="name">br</span>&gt;</span>、<span class="tag">&lt;<span class="name">i</span>&gt;</span>、<span class="tag">&lt;<span class="name">em</span>&gt;</span>、<span class="tag">&lt;<span class="name">strong</span>&gt;</span>、<span class="tag">&lt;<span class="name">label</span>&gt;</span>、<span class="tag">&lt;<span class="name">q</span>&gt;</span>、<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以通过设置display:inline将元素显示为行内元素</p>
+<h4 id="行内块状元素"><a href="#行内块状元素" class="headerlink" title="行内块状元素"></a>行内块状元素</h4><p>行内块状元素特点</p>
+<ul>
+<li>和其他元素在一行上</li>
+<li>高度、宽度、行高、顶部、底部边距都可设置</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span>&gt;</span>、<span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以通过设置display:inline-block将元素显示为行内块状元素</p>
 
       
     </div>
@@ -760,412 +1153,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/4.%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/4.%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-title-link" itemprop="url">文件上传攻击与防御</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-28 21:12:19" itemprop="dateCreated datePublished" datetime="2021-05-28T21:12:19+08:00">2021-05-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-29 21:13:49" itemprop="dateModified" datetime="2021-05-29T21:13:49+08:00">2021-05-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="url" rel="index"><span itemprop="name">网站攻击与防御</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/4.%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="文件上传攻击与防御" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/4.%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/4.%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="文件上传攻击与防御"><a href="#文件上传攻击与防御" class="headerlink" title="文件上传攻击与防御"></a>文件上传攻击与防御</h2><h3 id="什么是文件上传攻击"><a href="#什么是文件上传攻击" class="headerlink" title="什么是文件上传攻击"></a>什么是文件上传攻击</h3><p>在上网的过程中，我们经常会将一些如图片、压缩包之类的文件上传到远端服务器进行保存，文件上传攻击指的是恶意攻击者利用一些站点没有对文件的类型做很好的校验这样的漏洞，上传了可执行的文件或者脚本，并且通过脚本获得服务器上相应的权利，或者是通过诱导外部用户访问或者下载上传的病毒或者木马文件，达到攻击目的</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/4.%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/5.DDOS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/5.DDOS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-title-link" itemprop="url">DDOS攻击与防御</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-28 21:12:19" itemprop="dateCreated datePublished" datetime="2021-05-28T21:12:19+08:00">2021-05-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-29 21:18:33" itemprop="dateModified" datetime="2021-05-29T21:18:33+08:00">2021-05-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="url" rel="index"><span itemprop="name">网站攻击与防御</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/5.DDOS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="DDOS攻击与防御" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/5.DDOS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/5.DDOS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="DDOS攻击与防御"><a href="#DDOS攻击与防御" class="headerlink" title="DDOS攻击与防御"></a>DDOS攻击与防御</h2><h3 id="什么是DDos"><a href="#什么是DDos" class="headerlink" title="什么是DDos"></a>什么是DDos</h3><p>DDoS(Distributed Denial of Service)，即分布式拒绝服务攻击，是目前最为强大、最难以防御的攻击方式之一。要理解DDos，得先从DoS说起。最基本的DoS攻击就是利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器的响应。DDoS攻击手段是在传统的DoS攻击基础之上产生的一类攻击方式，传统的DoS攻击一般是采用一对一方式的，当攻击目标CPU速度、内存或者网络带宽等等各项性能指标不高的情况下，它的效果是明显的，但随着计算机与网络技术的发展，计算机的处理能力显著增加，内存不断增大，同时也出现了千兆级别的网络，这使得DoS攻击逐渐失去效果。这时候分布式拒绝服务攻击手段（DDoS）便应运而生了。你理解了DoS攻击以后，<br>DDoS的原理就非常简单了，它指的是攻击者借助公共网络，将数量庞大的计算机设备联合起来作为<br>攻击平台，对一个或多个目标发动攻击，从而达到瘫痪目标主机的目的。通常，在攻击开始前，攻<br>击者会提前控制大量的用户计算机，称之为“肉鸡”，并通过指令使大量的肉鸡在同一时刻对某个主机进行访问，从而达到瘫痪目标主机的目的</p>
-<p>DDoS的攻击有很多种类型，如依赖蛮力的ICMP Flood、UDP Flood等等，随着硬件性能的提升，需要的机器规模越来越大，组织大规模的攻击越来越困难，现在已经不常见，还有就是依赖协议特征以及具体的软件漏洞进行的攻击，如Slowloris攻击，Hash碰撞攻击等等，这类攻击主要利用协议以及软件漏洞发起攻击，需要在特定环境下才会出现，更多的攻击者采用的是前面两种的混合方式，即利用了协议、系统的缺陷，又具备了海量的流量，如SYN Flood、DNS Query Flood等等</p>
-<h4 id="DNS-Query-Flood攻击"><a href="#DNS-Query-Flood攻击" class="headerlink" title="DNS Query Flood攻击"></a>DNS Query Flood攻击</h4><p>DNS Query Flood实际上是UDP Flood攻击的一种变形，由于DNS服务在互联网中不可替代的作用，一旦DNS服务器瘫痪，影响甚大。DNS Query Flood攻击采用的方法是向被攻击的服务器发送海量的域名解析请求，通常，请求解析的域名是随机生成，大部分根本就不存在，并且通过伪造端口和客户端IP，防止查询请求被ACL过滤。被攻击的DNS 服务器在接收到域名解析请求后，首先会在服务器上查找是否有对应的缓存，由于域名是随机生成的，几乎不可能有相应的缓存信息，当没有缓存，并且该域名无法直接由该DNS服务器进行解析的时候，DNS服务器会向其上层DNS服务器递归查询域名信息，直到全球互联网的13台根DNS服务器。大量不存在的域名解析请求，给服务器带来了很大的负载，当解析请求超过一定量的时候，就会造成DNS服务器解析域名超时，这样攻击者便达成了攻击目的。</p>
-<h4 id="CC攻击"><a href="#CC攻击" class="headerlink" title="CC攻击"></a>CC攻击</h4><p>CC(Challenge Collapsar)攻击属于DDos的一种，是基于应用层HTTP协议发起的DDos攻击，也被称为HTTP Flood。CC攻击的原理是这样的，攻击者通过控制的大量“肉鸡”或者利用从互联网上搜寻的大量匿名的HTTP代理，模拟正常用户给网站发起请求直到该网站拒绝服务为止。大部分网站会通过CDN以及分布式缓存来加快服务端响应，提升网站的吞吐量，而这些精心构造的HTTP请求往往有意避开这些缓存，需要进行多次DB查询操作或者是一次请求返回大量的数据，加速系统资源消耗，从而拖垮后端的业务处理系统，甚至连相关存储以及日志收集系统也无法幸免</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/1.XSS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/1.XSS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-title-link" itemprop="url">XSS攻击与防御</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-28 20:54:19" itemprop="dateCreated datePublished" datetime="2021-05-28T20:54:19+08:00">2021-05-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-29 20:58:18" itemprop="dateModified" datetime="2021-05-29T20:58:18+08:00">2021-05-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="url" rel="index"><span itemprop="name">网站攻击与防御</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/1.XSS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="XSS攻击与防御" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/1.XSS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/1.XSS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="XSS攻击与防御"><a href="#XSS攻击与防御" class="headerlink" title="XSS攻击与防御"></a>XSS攻击与防御</h2><h3 id="什么是XSS攻击"><a href="#什么是XSS攻击" class="headerlink" title="什么是XSS攻击"></a>什么是XSS攻击</h3><p>XSS攻击的全称是跨站脚本攻击(Cross Site Scripting)，为了不与层叠样式表(Cascading Style Sheets,CSS)的缩写混淆，故将跨站脚本攻击缩写为XSS,是WEB应用程序中最常见到的攻击手段之一。跨站脚本攻击指的是攻击者在网页中嵌入恶意脚本程序，当用户打开该网页时，脚本程序便开始在客户端的浏览器上执行，以盗取客户端cookie、盗取用户名密码、下载执行病毒木马程序甚至是获取客户端admin权限等。</p>
-<p>如</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">*</span>&quot;<span class="attr">text</span>&quot;* <span class="attr">name</span>=<span class="string">*</span>&quot;<span class="attr">nick</span>&quot;* <span class="attr">value</span>=<span class="string">*</span>&quot;&quot;*/&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">alert(<span class="string">&quot;haha&quot;</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">!-&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/1.XSS%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/2.CSRF%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/2.CSRF%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-title-link" itemprop="url">CSRF攻击与防御</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-28 20:54:19" itemprop="dateCreated datePublished" datetime="2021-05-28T20:54:19+08:00">2021-05-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-29 21:02:34" itemprop="dateModified" datetime="2021-05-29T21:02:34+08:00">2021-05-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="url" rel="index"><span itemprop="name">网站攻击与防御</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/2.CSRF%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="CSRF攻击与防御" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/2.CSRF%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/2.CSRF%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CSRF攻击与防御"><a href="#CSRF攻击与防御" class="headerlink" title="CSRF攻击与防御"></a>CSRF攻击与防御</h2><h3 id="什么是CSRF"><a href="#什么是CSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h3><p>CSRF攻击的全称是跨站请求伪造(cross site request forgery)，是一种对网站的恶意利用，CSRF则是通过伪装来自受信任用户的请求来利用受信任的网站攻击者盗用了你的身份，以你的名义向第三方网站发送恶意请求。CRSF能做的事情包括利用你的身份发邮件、发短信、进行交易转账等等，甚至盗取你的账号</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/2.CSRF%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1237,20 +1224,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">475</span>
+          <span class="site-state-item-count">479</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
