@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="MySQL锁机制MySQL包含表锁、行锁和页锁 表锁(偏读)表锁偏向于MyISAM存储引擎，开销小，加锁快；无死锁；锁的粒度大，并发小">
+  <meta name="description" content="MySQL锁机制MySQL包含表锁、行锁和页锁 表锁(偏读)表锁开销小，加锁快；无死锁；锁的粒度大，并发小">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL锁机制">
 <meta property="og:url" content="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/4.MySQL%E9%94%81%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="小菜鸟">
-<meta property="og:description" content="MySQL锁机制MySQL包含表锁、行锁和页锁 表锁(偏读)表锁偏向于MyISAM存储引擎，开销小，加锁快；无死锁；锁的粒度大，并发小">
+<meta property="og:description" content="MySQL锁机制MySQL包含表锁、行锁和页锁 表锁(偏读)表锁开销小，加锁快；无死锁；锁的粒度大，并发小">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-07T09:00:30.000Z">
-<meta property="article:modified_time" content="2021-04-14T02:20:28.147Z">
+<meta property="article:modified_time" content="2021-06-04T09:46:26.045Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-14 10:20:28" itemprop="dateModified" datetime="2021-04-14T10:20:28+08:00">2021-04-14</time>
+                <time title="修改时间：2021-06-04 17:46:26" itemprop="dateModified" datetime="2021-06-04T17:46:26+08:00">2021-06-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,7 +273,7 @@
 
       
         <h2 id="MySQL锁机制"><a href="#MySQL锁机制" class="headerlink" title="MySQL锁机制"></a>MySQL锁机制</h2><p>MySQL包含表锁、行锁和页锁</p>
-<h3 id="表锁-偏读"><a href="#表锁-偏读" class="headerlink" title="表锁(偏读)"></a>表锁(偏读)</h3><p>表锁偏向于MyISAM存储引擎，开销小，加锁快；无死锁；锁的粒度大，并发小</p>
+<h3 id="表锁-偏读"><a href="#表锁-偏读" class="headerlink" title="表锁(偏读)"></a>表锁(偏读)</h3><p>表锁开销小，加锁快；无死锁；锁的粒度大，并发小</p>
 <a id="more"></a>
 
 <p><strong>为表加锁</strong></p>
@@ -292,12 +292,23 @@
 
 <h4 id="读锁"><a href="#读锁" class="headerlink" title="读锁"></a>读锁</h4><p>如果在整张表上加了读锁，当前会话不可以修改该表数据，不可以查询/修改其他表数据，只能读取该表数据；其他会话可以查询该表数据，可以查询/修改其他表数据，但是如果修改该表数据，会进行阻塞，直到解锁为止</p>
 <h4 id="写锁"><a href="#写锁" class="headerlink" title="写锁"></a>写锁</h4><p>如果在整张表加了写锁，当前会话可以查询/修改该表数据，但是不可以对其他表进行操作；其他会话在对该表进行查询/修改时会进行阻塞，直到解锁为止，可以查询/修改其他表</p>
-<h3 id="行锁-偏写"><a href="#行锁-偏写" class="headerlink" title="行锁(偏写)"></a>行锁(偏写)</h3><p>偏向于Innodb存储引擎，开销大，加锁慢；会出现死锁；锁粒度小，并发高</p>
+<h3 id="行锁-偏写"><a href="#行锁-偏写" class="headerlink" title="行锁(偏写)"></a>行锁(偏写)</h3><p>行锁开销大，加锁慢；会出现死锁；锁粒度小，并发高</p>
+<p>可以设置锁的超时时间</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 设置锁的超时时间（单位为秒）</span></span><br><span class="line"><span class="keyword">set</span> innodb_lock_wait_timeout=<span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询锁的超时时间</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">&#x27;%innodb_lock_wait_timeout%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
 <p><strong>分析行锁</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">status</span> <span class="keyword">like</span> <span class="string">&#x27;innodb_row_lock%&#x27;</span>;</span><br><span class="line">+<span class="comment">-------------------------------+-------+</span></span><br><span class="line">| Variable_name                 | Value |</span><br><span class="line">+<span class="comment">-------------------------------+-------+</span></span><br><span class="line">| Innodb_row_lock_current_waits | 0     |</span><br><span class="line">| Innodb_row_lock_time          | 0     |</span><br><span class="line">| Innodb_row_lock_time_avg      | 0     |</span><br><span class="line">| Innodb_row_lock_time_max      | 0     |</span><br><span class="line">| Innodb_row_lock_waits         | 0     |</span><br><span class="line">+<span class="comment">-------------------------------+-------+</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Innodb_row_lock_current_waits  当前正在等待锁定的数量</span><br><span class="line">Innodb_row_lock_time      锁定的总时间总时间长度</span><br><span class="line">Innodb_row_lock_time_avg  每次等待所花平均长度</span><br><span class="line">Innodb_row_lock_time_max  等待的最长时间</span><br><span class="line">Innodb_row_lock_waits     等待的次数</span><br></pre></td></tr></table></figure>
 
-
-
+<h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><p>悲观锁特点:先获取锁，再进行业务操作</p>
+<p>即“悲观”的认为获取锁是非常有可能失败的，因此要先确保获取锁成功再进行业务操作。通常所说的“一锁二查三更新”即指的是使用悲观锁。通常来讲在数据库上的悲观锁需要数据库本身提供支持，即通过常用的select … for update操作来实现悲观锁</p>
+<p>当数据库执行select for update时会获取被select中的数据行的行锁，因此其他并发执行的select for update如果试图选中同一行则会发生排斥（需要等待行锁被释放），因此达到锁的效果。select for update获取的行锁会在当前事务结束时自动释放，因此必须在事务中使用</p>
+<p>MySQL中select for update语句执行中所有扫描过的行都会被锁上，这一点很容易造成问题。因此如果在MySQL中用悲观锁务必要确定走了索引，而不是全表扫描</p>
+<h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>乐观锁，也叫乐观并发控制，它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，那么当前正在提交的事务会进行回滚</p>
+<p>乐观锁的特点先进行业务操作，不到万不得已不去拿锁。即“乐观”的认为拿锁多半是会成功的，因此在进行完业务操作需要实际更新数据的最后一步再去拿一下锁就好<br>乐观锁在数据库上的实现完全是逻辑的，不需要数据库提供特殊的支持</p>
+<p>一般的做法是在需要锁的数据上增加一个版本号，或者时间戳</p>
+<h3 id="页锁"><a href="#页锁" class="headerlink" title="页锁"></a>页锁</h3><p>开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般</p>
 
     </div>
 
@@ -384,7 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E9%94%81%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">MySQL锁机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E9%94%81-%E5%81%8F%E8%AF%BB"><span class="nav-number">1.1.</span> <span class="nav-text">表锁(偏读)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E9%94%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">读锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E9%94%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">写锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E9%94%81-%E5%81%8F%E5%86%99"><span class="nav-number">1.2.</span> <span class="nav-text">行锁(偏写)</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E9%94%81%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">MySQL锁机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E9%94%81-%E5%81%8F%E8%AF%BB"><span class="nav-number">1.1.</span> <span class="nav-text">表锁(偏读)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E9%94%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">读锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E9%94%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">写锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E9%94%81-%E5%81%8F%E5%86%99"><span class="nav-number">1.2.</span> <span class="nav-text">行锁(偏写)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">悲观锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">乐观锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B5%E9%94%81"><span class="nav-number">1.3.</span> <span class="nav-text">页锁</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -400,7 +411,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">473</span>
+          <span class="site-state-item-count">475</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
