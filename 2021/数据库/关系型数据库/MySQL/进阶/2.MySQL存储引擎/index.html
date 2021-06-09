@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="MySQL存储引擎MySQL虽然有很多存储引擎，但是使用最多的还是Innodb和MyISAM这两种存储引擎 所以先看一下这两种搜索引擎的区别    对比 MyISAM Innodb    主外键 不支持 支持   事务 不支持 支持   行表锁 表锁，不适合高并发 行锁，适合高并发   缓存 只缓存索引，不缓存数据 既缓存索引，又缓存数据，对内存要求较高   表空间 小 大   关注点 性能 事务">
+  <meta name="description" content="MySQL存储引擎MySQL虽然有很多存储引擎，但是使用最多的还是Innodb和MyISAM这两种存储引擎 所以先看一下这两种搜索引擎的区别    对比 MyISAM Innodb    外键 不支持 支持   事务 不支持 支持   行表锁 表锁，不适合高并发 行锁，适合高并发   缓存 只缓存索引，不缓存数据 既缓存索引，又缓存数据，对内存要求较高   表空间 小 大   关注点 性能 事务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL存储引擎">
 <meta property="og:url" content="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/2.MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/index.html">
 <meta property="og:site_name" content="小菜鸟">
-<meta property="og:description" content="MySQL存储引擎MySQL虽然有很多存储引擎，但是使用最多的还是Innodb和MyISAM这两种存储引擎 所以先看一下这两种搜索引擎的区别    对比 MyISAM Innodb    主外键 不支持 支持   事务 不支持 支持   行表锁 表锁，不适合高并发 行锁，适合高并发   缓存 只缓存索引，不缓存数据 既缓存索引，又缓存数据，对内存要求较高   表空间 小 大   关注点 性能 事务">
+<meta property="og:description" content="MySQL存储引擎MySQL虽然有很多存储引擎，但是使用最多的还是Innodb和MyISAM这两种存储引擎 所以先看一下这两种搜索引擎的区别    对比 MyISAM Innodb    外键 不支持 支持   事务 不支持 支持   行表锁 表锁，不适合高并发 行锁，适合高并发   缓存 只缓存索引，不缓存数据 既缓存索引，又缓存数据，对内存要求较高   表空间 小 大   关注点 性能 事务">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-06T05:00:30.000Z">
-<meta property="article:modified_time" content="2021-06-03T09:45:03.847Z">
+<meta property="article:modified_time" content="2021-06-09T03:12:05.004Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-03 17:45:03" itemprop="dateModified" datetime="2021-06-03T17:45:03+08:00">2021-06-03</time>
+                <time title="修改时间：2021-06-09 11:12:05" itemprop="dateModified" datetime="2021-06-09T11:12:05+08:00">2021-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,7 +283,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>主外键</td>
+<td>外键</td>
 <td>不支持</td>
 <td>支持</td>
 </tr>
@@ -312,13 +312,30 @@
 <td>性能</td>
 <td>事务</td>
 </tr>
+<tr>
+<td>内存使用</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>插入速度</td>
+<td>慢</td>
+<td>快</td>
+</tr>
 </tbody></table>
 <a id="more"></a>
 
-<h3 id="Innodb"><a href="#Innodb" class="headerlink" title="Innodb"></a>Innodb</h3><p>默认情况下，InnoDB的后台线程有7个，包括4个IO 线程, 1个master 线程, 1个lock monitor 线程, 一个error monitor 线程</p>
+<p>可以使用<code>SHOW ENGINES</code>来查看数据库支持的存储引擎</p>
+<h3 id="Innodb存储引擎"><a href="#Innodb存储引擎" class="headerlink" title="Innodb存储引擎"></a>Innodb存储引擎</h3><p>InnoDB给MySQL的表提供了<strong>事务处理</strong>、<strong>回滚</strong>、<strong>崩溃修复能力</strong>和<strong>多版本并发控制</strong>的事务安全。</p>
+<p>InnoDB存储引擎总支持<strong>AUTO_INCREMENT</strong>。自动增长列的值不能为空，并且值必须唯一。MySQL中规定自增列必须为主键。在插入值的时候，如果自动增长列不输入值，则插入的值为自动增长后的值；如果输入的值为0或空（NULL），则插入的值也是自动增长后的值；如果插入某个确定的值，且该值在前面没有出现过，就可以直接插入</p>
+<p>InnoDB还支持<strong>外键（FOREIGN KEY）</strong>。外键所在的表叫做子表，外键所依赖（REFERENCES）的表叫做父表。父表中被子表外键关联的字段必须为主键。当删除、更新父表中的某条信息时，子表也必须有相应的改变，这是数据库的<strong>参照完整性规则</strong></p>
+<p>InnoDB中，创建的表的表结构存储在.frm文件中，数据和索引存储在innodb_data_home_dir和innodb_data_file_path定义的表空间中</p>
+<p>默认情况下，InnoDB的后台线程有7个，包括4个IO 线程, 1个master 线程, 1个lock monitor 线程, 一个error monitor 线程</p>
 <h4 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h4><p>InnoDB的内存主要有以下几个部分组成：缓冲池 (buffer pool)、重做日志缓冲池(redo log buffer）以及额外的内存池（additional memory pool）</p>
 <p>其中缓冲池占最大块内存，用来缓存各自数据，数据文件按页（每页16K）读取到缓冲池，按最近最少使用算法（LRU）保留缓存数据。</p>
 <p>缓冲池缓冲的数据类型有：数据页、索引页、插入缓冲、自适应哈希索引、锁信息、数据字典信息等，其中数据页和索引页占了绝大部分内存。</p>
+<h3 id="MyISAM存储引擎"><a href="#MyISAM存储引擎" class="headerlink" title="MyISAM存储引擎"></a>MyISAM存储引擎</h3><p>MyISAM的表存储成3个文件。文件的名字与表名相同。拓展名为frm、MYD、MYI。其中，frm文件存储表的结构；MYD文件存储数据，是MYData的缩写；MYI文件存储索引，是MYIndex的缩写</p>
+<p>基于MyISAM存储引擎的表支持3种不同的存储格式。包括静态型、动态型和压缩型。其中，静态型是MyISAM的默认存储格式，它的字段是固定长度的；动态型包含变长字段，记录的长度不是固定的；压缩型需要用到myisampack工具，占用的磁盘空间较小</p>
 
     </div>
 
@@ -405,7 +422,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-number">1.</span> <span class="nav-text">MySQL存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Innodb"><span class="nav-number">1.1.</span> <span class="nav-text">Innodb</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98"><span class="nav-number">1.1.1.</span> <span class="nav-text">内存</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-number">1.</span> <span class="nav-text">MySQL存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Innodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-number">1.1.</span> <span class="nav-text">Innodb存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98"><span class="nav-number">1.1.1.</span> <span class="nav-text">内存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyISAM%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-number">1.2.</span> <span class="nav-text">MyISAM存储引擎</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -421,7 +438,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">488</span>
+          <span class="site-state-item-count">490</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
