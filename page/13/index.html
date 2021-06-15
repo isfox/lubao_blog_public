@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/mybatis/8.%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E6%A1%86%E6%9E%B6/mybatis/8.%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">使用注解方式</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">HBase数据结构</a>
         </h2>
 
         <div class="post-meta">
@@ -218,14 +218,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-04-14 21:50:19" itemprop="dateCreated datePublished" datetime="2021-04-14T21:50:19+08:00">2021-04-14</time>
+              <time title="创建时间：2021-04-26 20:32:23" itemprop="dateCreated datePublished" datetime="2021-04-26T20:32:23+08:00">2021-04-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-16 13:26:36" itemprop="dateModified" datetime="2021-04-16T13:26:36+08:00">2021-04-16</time>
+                <time title="修改时间：2021-05-29 16:40:09" itemprop="dateModified" datetime="2021-05-29T16:40:09+08:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,12 +233,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a>
+                  <a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E6%A1%86%E6%9E%B6/mybatis/8.%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="使用注解方式" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="HBase数据结构" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -253,8 +253,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E6%A1%86%E6%9E%B6/mybatis/8.%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%A1%86%E6%9E%B6/mybatis/8.%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -269,324 +269,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="使用注解方式"><a href="#使用注解方式" class="headerlink" title="使用注解方式"></a>使用注解方式</h2><p>有些人习惯于用映射文件xml方式配置，有些人习惯于使用注解的方式来编写映射语句，这里来说明一下注解的使用方式</p>
-<h3 id="Insert注解"><a href="#Insert注解" class="headerlink" title="@Insert注解"></a>@Insert注解</h3><p>用于定义insert语句，作用等同于xml配置中<insert>标签</insert></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Insert(&quot;insert  into classes (name) values (#&#123;name&#125;)&quot;)</span></span><br><span class="line"><span class="meta">@Options(useGeneratedKeys = true,keyProperty = &quot;id&quot;)</span> <span class="comment">// 使用@Options来设置主键自增</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">insertClasses</span><span class="params">(Classes classes)</span></span>;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E6%A1%86%E6%9E%B6/mybatis/8.%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/12.%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/12.%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-14 21:24:23" itemprop="dateCreated datePublished" datetime="2021-04-14T21:24:23+08:00">2021-04-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-22 18:29:29" itemprop="dateModified" datetime="2021-04-22T18:29:29+08:00">2021-04-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/12.%E5%87%BD%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="函数" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/12.%E5%87%BD%E6%95%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/12.%E5%87%BD%E6%95%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>hive中有很多内置函数可以使用</p>
-<p>查看内置函数</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> functions;</span><br></pre></td></tr></table></figure>
-
-<p>查看函数的用法及作用</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc function floor_day;</span><br></pre></td></tr></table></figure>
-
-<p>查看函数的详细用法</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc function extended floor_day;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/12.%E5%87%BD%E6%95%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/11.%E5%88%86%E5%8C%BA%E4%BF%A1%E6%81%AF%E6%97%A0%E6%B3%95%E6%9F%A5%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/11.%E5%88%86%E5%8C%BA%E4%BF%A1%E6%81%AF%E6%97%A0%E6%B3%95%E6%9F%A5%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">分区信息无法查到的问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 20:24:23 / 修改时间：11:10:42" itemprop="dateCreated datePublished" datetime="2021-04-14T20:24:23+08:00">2021-04-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/11.%E5%88%86%E5%8C%BA%E4%BF%A1%E6%81%AF%E6%97%A0%E6%B3%95%E6%9F%A5%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="分区信息无法查到的问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/11.%E5%88%86%E5%8C%BA%E4%BF%A1%E6%81%AF%E6%97%A0%E6%B3%95%E6%9F%A5%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/11.%E5%88%86%E5%8C%BA%E4%BF%A1%E6%81%AF%E6%97%A0%E6%B3%95%E6%9F%A5%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="分区信息无法查到的问题"><a href="#分区信息无法查到的问题" class="headerlink" title="分区信息无法查到的问题"></a>分区信息无法查到的问题</h2><p>在hive上创建了分区表，但是有些数据在hdfs上创建的文件夹，然后将数据直接传到hdfs该文件夹下，导致hive上查询不到该该文件夹所对应的分区信息，这个原因是因为数据从hive上传的话在元数据中存储有分区信息，但是hdfs直接上传的话在hive的元数据中并不会记录，就会导致查不到这部分数据</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/11.%E5%88%86%E5%8C%BA%E4%BF%A1%E6%81%AF%E6%97%A0%E6%B3%95%E6%9F%A5%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/9.MySQL%E6%9F%A5%E8%AF%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/9.MySQL%E6%9F%A5%E8%AF%A2/" class="post-title-link" itemprop="url">MySQL查询</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 20:02:30 / 修改时间：10:14:58" itemprop="dateCreated datePublished" datetime="2021-04-14T20:02:30+08:00">2021-04-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/9.MySQL%E6%9F%A5%E8%AF%A2/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL查询" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/9.MySQL%E6%9F%A5%E8%AF%A2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/9.MySQL%E6%9F%A5%E8%AF%A2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="MySQL查询"><a href="#MySQL查询" class="headerlink" title="MySQL查询"></a>MySQL查询</h2><p>在进行MySQL查询之前首先要先知道MySQL执行查询语句的执行顺序</p>
+          <h2 id="HBase数据结构"><a href="#HBase数据结构" class="headerlink" title="HBase数据结构"></a>HBase数据结构</h2><h3 id="命名空间NameSpace"><a href="#命名空间NameSpace" class="headerlink" title="命名空间NameSpace"></a>命名空间NameSpace</h3><p>HBase的命名空间类似于mysql中的database，一个mysql下可以有多个database，同样的一个HBase下也可以有多个命名空间，命名空间中包括</p>
 <ul>
-<li>先执行from子句确定数据来源</li>
-<li>再执行where子句确定筛选条件</li>
-<li>group by子句将数据进行分组</li>
-<li>使用聚集函数进行计算</li>
-<li>使用having子句筛选分组</li>
-<li>计算所有的表达式</li>
-<li>select的字段</li>
-<li>使用order by进行排序</li>
+<li>Table表，所有的表都是命名空间的成员，即表必属于某个命名空间，如果没有指定，则在default默认的命名空间中。</li>
+<li>RegionServer group，一个命名空间包含了默认的RegionServer Group。</li>
+<li>Permission权限，命名空间能够让我们来定义访问控制列表ACL（Access Control List）。例如，创建表，读取表，删除，更新等等操作。</li>
+<li>Quota限额，可以强制一个命名空间可包含的region的数量。</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/9.MySQL%E6%9F%A5%E8%AF%A2/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/2.HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -610,7 +302,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/10.%E5%88%86%E5%8C%BA%E8%A1%A8/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -624,7 +316,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/10.%E5%88%86%E5%8C%BA%E8%A1%A8/" class="post-title-link" itemprop="url">分区表</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/" class="post-title-link" itemprop="url">HBase部署启动</a>
         </h2>
 
         <div class="post-meta">
@@ -634,14 +326,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-04-13 20:24:23" itemprop="dateCreated datePublished" datetime="2021-04-13T20:24:23+08:00">2021-04-13</time>
+              <time title="创建时间：2021-04-23 22:32:23" itemprop="dateCreated datePublished" datetime="2021-04-23T22:32:23+08:00">2021-04-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-14 11:20:57" itemprop="dateModified" datetime="2021-04-14T11:20:57+08:00">2021-04-14</time>
+                <time title="修改时间：2021-06-07 15:37:00" itemprop="dateModified" datetime="2021-06-07T15:37:00+08:00">2021-06-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -649,12 +341,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
+                  <a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/10.%E5%88%86%E5%8C%BA%E8%A1%A8/" class="post-meta-item leancloud_visitors" data-flag-title="分区表" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/" class="post-meta-item leancloud_visitors" data-flag-title="HBase部署启动" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -669,8 +361,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/10.%E5%88%86%E5%8C%BA%E8%A1%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/10.%E5%88%86%E5%8C%BA%E8%A1%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -685,413 +377,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h2><p>由于hive作为数据仓库来说，存放的数据量特别大，而在进行数据分析的时候，其实并不需要分析这么大的数据，为了避免全表扫描，hive提供了分区表，分区表其实就是分为不同的文件夹，把一个大的业务表根据业务将数据集进行切分，这样在进行数据查询的时候指定分区进行查询，效率会提高很多倍</p>
-<p>之前在说创建表语句时，创建表语法中有一个创建分区表的关键字PARTITIONED BY，可以根据该语法来进行创建分区表</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/10.%E5%88%86%E5%8C%BA%E8%A1%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/9.%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/9.%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">查询数据</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-12 20:24:23" itemprop="dateCreated datePublished" datetime="2021-04-12T20:24:23+08:00">2021-04-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 10:44:37" itemprop="dateModified" datetime="2021-04-13T10:44:37+08:00">2021-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/9.%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE/" class="post-meta-item leancloud_visitors" data-flag-title="查询数据" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/9.%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/9.%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h2><p>hive查询语法除了某些hive本身的一些特性之外，和sql语法大致相同，与sql大致相同的大体过一下，主要说明一下hive特性的一些查询</p>
-<p><strong>基本语法</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">ALL</span> | <span class="keyword">DISTINCT</span>] select_expr, select_expr, ...</span><br><span class="line">  <span class="keyword">FROM</span> table_reference</span><br><span class="line">  [<span class="keyword">WHERE</span> where_condition]</span><br><span class="line">  [<span class="keyword">GROUP</span> <span class="keyword">BY</span> col_list]</span><br><span class="line">  [<span class="keyword">ORDER</span> <span class="keyword">BY</span> col_list]</span><br><span class="line">  [CLUSTER <span class="keyword">BY</span> col_list</span><br><span class="line">    | [<span class="keyword">DISTRIBUTE</span> <span class="keyword">BY</span> col_list] [<span class="keyword">SORT</span> <span class="keyword">BY</span> col_list]</span><br><span class="line">  ]</span><br><span class="line"> [<span class="keyword">LIMIT</span> [<span class="keyword">offset</span>,] <span class="keyword">rows</span>]</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/9.%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/8.%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/8.%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">hive导出数据</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-11 19:24:23 / 修改时间：19:44:04" itemprop="dateCreated datePublished" datetime="2021-04-11T19:24:23+08:00">2021-04-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/8.%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE/" class="post-meta-item leancloud_visitors" data-flag-title="hive导出数据" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/8.%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/8.%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="hive导出数据"><a href="#hive导出数据" class="headerlink" title="hive导出数据"></a>hive导出数据</h2><p>有时候需要将hive中的数据导出来，那么如何导出数据呢</p>
-<h3 id="使用insert导出"><a href="#使用insert导出" class="headerlink" title="使用insert导出"></a>使用insert导出</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 导出到本地 local</span></span><br><span class="line"><span class="keyword">insert</span> overwrite <span class="keyword">local</span> <span class="keyword">directory</span> <span class="string">&#x27;/Users/zhanghe/Desktop/user/myself/hive_data/export/dept&#x27;</span></span><br><span class="line"><span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span> <span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&#x27;\t&#x27;</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> dept;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 导出到hdfs</span></span><br><span class="line"><span class="keyword">insert</span> overwrite <span class="keyword">local</span> <span class="keyword">directory</span> <span class="string">&#x27;/export/dept&#x27;</span></span><br><span class="line"><span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span> <span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">&#x27;\t&#x27;</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> dept;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/8.%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/7.%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/7.%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">hive导入数据</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-11 17:24:23 / 修改时间：18:22:29" itemprop="dateCreated datePublished" datetime="2021-04-11T17:24:23+08:00">2021-04-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/7.%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE/" class="post-meta-item leancloud_visitors" data-flag-title="hive导入数据" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/7.%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/7.%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="hive导入数据"><a href="#hive导入数据" class="headerlink" title="hive导入数据"></a>hive导入数据</h2><p>hive中创建表之后如何给表中添加数据呢，其实是有很多种方式的</p>
-<h3 id="使用hdfs"><a href="#使用hdfs" class="headerlink" title="使用hdfs"></a>使用hdfs</h3><p>首先由于hive的数据是在hdfs存储的，所以其实是可以直接使用hdfs来将文件上传到对应表的目录下，此时表中就存在数据了</p>
-<p>建表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 这里建表时指定了字段之间的分隔符为\t，而不使用默认的分隔符</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span> dept(</span><br><span class="line">    deptno <span class="built_in">int</span>,</span><br><span class="line">    dname <span class="keyword">string</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> <span class="keyword">delimited</span> <span class="keyword">fields</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">&#x27;\t&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>使用desc formatted dept来找到该表所对应的hdfs存储位置为hdfs://localhost:9000/user/hive/warehouse/study_hive.db/dept</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/7.%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/6.hive%E5%86%85%E9%83%A8%E8%A1%A8%E5%92%8C%E5%A4%96%E9%83%A8%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/6.hive%E5%86%85%E9%83%A8%E8%A1%A8%E5%92%8C%E5%A4%96%E9%83%A8%E8%A1%A8/" class="post-title-link" itemprop="url">hive内部表和外部表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-11 13:27:23 / 修改时间：17:24:01" itemprop="dateCreated datePublished" datetime="2021-04-11T13:27:23+08:00">2021-04-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/6.hive%E5%86%85%E9%83%A8%E8%A1%A8%E5%92%8C%E5%A4%96%E9%83%A8%E8%A1%A8/" class="post-meta-item leancloud_visitors" data-flag-title="hive内部表和外部表" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/6.hive%E5%86%85%E9%83%A8%E8%A1%A8%E5%92%8C%E5%A4%96%E9%83%A8%E8%A1%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/6.hive%E5%86%85%E9%83%A8%E8%A1%A8%E5%92%8C%E5%A4%96%E9%83%A8%E8%A1%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="hive内部表和外部表"><a href="#hive内部表和外部表" class="headerlink" title="hive内部表和外部表"></a>hive内部表和外部表</h2><p>在hive建表语句中有一个EXTERNAL关键字，用来区分创建内部表还是外部表</p>
-<h3 id="内部表"><a href="#内部表" class="headerlink" title="内部表"></a>内部表</h3><p>内部表也称管理表，默认创建的表都是内部表，因为这种表，Hive 会（或多或少地）控制着数据的生命周期。Hive 默认情况下会将这些表的数据存储在由配置项hive.metastore.warehouse.dir(默认为/user/hive/warehouse)所定义的目录的子目录下。</p>
-<blockquote>
-<p>当我们删除一个管理表时，Hive 也会删除这个表中数据。管理表不适合和其他工具共享数据</p>
+          <h2 id="HBase部署启动"><a href="#HBase部署启动" class="headerlink" title="HBase部署启动"></a>HBase部署启动</h2><blockquote>
+<p>使用的版本为2.2.7</p>
 </blockquote>
+<h3 id="单机模式"><a href="#单机模式" class="headerlink" title="单机模式"></a>单机模式</h3><p>肯定先从简单地开始，先来个单机版的，出现问题也比较好解决，首先配置hbase-env.sh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确保配置了java环境</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/1.8</span><br></pre></td></tr></table></figure>
+
+<p>修改hbase-site.xml配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- hbase的跟目录 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- hbase的zookeeper数据目录 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.property.dataDir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/myself/hbase-2.2.7/zkData<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- hbase集群模式关闭 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/6.hive%E5%86%85%E9%83%A8%E8%A1%A8%E5%92%8C%E5%A4%96%E9%83%A8%E8%A1%A8/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/3.HBase%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1115,7 +411,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/5.hive%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B9%8BDML%E6%93%8D%E4%BD%9C/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/1.HBase%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -1129,7 +425,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/5.hive%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B9%8BDML%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">hive操作数据表之DML操作</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/1.HBase%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">HBase简介</a>
         </h2>
 
         <div class="post-meta">
@@ -1138,22 +434,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-11 12:54:23 / 修改时间：17:17:43" itemprop="dateCreated datePublished" datetime="2021-04-11T12:54:23+08:00">2021-04-11</time>
+              <time title="创建时间：2021-04-23 21:32:23" itemprop="dateCreated datePublished" datetime="2021-04-23T21:32:23+08:00">2021-04-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-29 22:41:15" itemprop="dateModified" datetime="2021-05-29T22:41:15+08:00">2021-05-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
+                  <a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/5.hive%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B9%8BDML%E6%93%8D%E4%BD%9C/" class="post-meta-item leancloud_visitors" data-flag-title="hive操作数据表之DML操作" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/1.HBase%E7%AE%80%E4%BB%8B/" class="post-meta-item leancloud_visitors" data-flag-title="HBase简介" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1168,8 +470,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/5.hive%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B9%8BDML%E6%93%8D%E4%BD%9C/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/5.hive%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B9%8BDML%E6%93%8D%E4%BD%9C/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/1.HBase%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/1.HBase%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1184,16 +486,713 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="hive操作数据表之DML操作"><a href="#hive操作数据表之DML操作" class="headerlink" title="hive操作数据表之DML操作"></a>hive操作数据表之DML操作</h2><p>hive的很多操作方式是与sql是一样的，这里先说一下DML操作的语句</p>
-<h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><h4 id="数据库列表"><a href="#数据库列表" class="headerlink" title="数据库列表"></a>数据库列表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; show databases;</span><br></pre></td></tr></table></figure>
+          <h2 id="HBase简介"><a href="#HBase简介" class="headerlink" title="HBase简介"></a>HBase简介</h2><p>HBase是Apache的Hadoop项目的子项目，是Hadoop Database的简称，来源于Google的BigTable（BigTable是将所有的字段放到一个大表中，造成了数据的冗余，但是效率有效地提高了），本质实际上是一张稀疏的大表，用来存储粗粒度的结构化数据，并且，能够通过简单的增加节点来实现系统的线性扩展，HBase建立在HDFS之上的高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用HBase技术可在廉价PC Server上搭建起大规模结构化存储集群。<br>HBase不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库，HBase基于列的而不是基于行的模式，HBase每个列属于一个特定的列族，通过行和列来确定一个存储单元，而每个存储单元又可以有多个版本，通过时间戳来标识</p>
+<h3 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h3><img src="/images/大数据/hbase/系统架构.png" alt="系统架构" style="zoom:50%;">
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/5.hive%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B9%8BDML%E6%93%8D%E4%BD%9C/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/1.HBase%E7%AE%80%E4%BB%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/4.HBase%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/4.HBase%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">HBase命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-23 20:32:23" itemprop="dateCreated datePublished" datetime="2021-04-23T20:32:23+08:00">2021-04-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-26 10:31:48" itemprop="dateModified" datetime="2021-04-26T10:31:48+08:00">2021-04-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hbase/" itemprop="url" rel="index"><span itemprop="name">hbase</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/4.HBase%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="HBase命令" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/4.HBase%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/4.HBase%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="HBase命令"><a href="#HBase命令" class="headerlink" title="HBase命令"></a>HBase命令</h2><p><strong>建表命令</strong></p>
+<p>使用create命令来创建一个表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">test</span>是表名，cf为列族名</span></span><br><span class="line">create &#x27;test&#x27;,&#x27;cf&#x27;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/4.HBase%E5%91%BD%E4%BB%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/14.%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/14.%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-21 21:24:23 / 修改时间：10:44:43" itemprop="dateCreated datePublished" datetime="2021-04-21T21:24:23+08:00">2021-04-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/14.%E4%BC%98%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="优化" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/14.%E4%BC%98%E5%8C%96/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/14.%E4%BC%98%E5%8C%96/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>既然hive是写sql来生成MR任务，那sql写的好坏严重影响了生成的MR任务，那么如何优化呢？就像优化sql一下，有个Explain执行计划，hive也是有Explain执行计划的</p>
+<h3 id="Explain执行计划"><a href="#Explain执行计划" class="headerlink" title="Explain执行计划"></a>Explain执行计划</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPLAIN</span> [<span class="keyword">EXTENDED</span> | DEPENDENCY | AUTHORIZATION] <span class="keyword">query</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">hive (study_hive)&gt; explain select max(sal),deptno from emp group by deptno; </span><br><span class="line">OK</span><br><span class="line"><span class="keyword">Explain</span></span><br><span class="line">STAGE DEPENDENCIES:</span><br><span class="line">  Stage<span class="number">-1</span> <span class="keyword">is</span> a root stage</span><br><span class="line">  Stage<span class="number">-0</span> depends <span class="keyword">on</span> stages: Stage<span class="number">-1</span></span><br><span class="line"></span><br><span class="line">STAGE PLANS:</span><br><span class="line">  Stage: Stage<span class="number">-1</span></span><br><span class="line">    <span class="keyword">Map</span> Reduce</span><br><span class="line">      <span class="keyword">Map</span> <span class="keyword">Operator</span> Tree:</span><br><span class="line">          TableScan</span><br><span class="line">            <span class="keyword">alias</span>: emp</span><br><span class="line">            <span class="keyword">Statistics</span>: <span class="keyword">Num</span> <span class="keyword">rows</span>: <span class="number">1</span> <span class="keyword">Data</span> <span class="keyword">size</span>: <span class="number">6570</span> Basic stats: <span class="keyword">COMPLETE</span> <span class="keyword">Column</span> stats: <span class="keyword">NONE</span></span><br><span class="line">            <span class="keyword">Select</span> <span class="keyword">Operator</span></span><br><span class="line">              expressions: sal (<span class="keyword">type</span>: <span class="keyword">double</span>), deptno (<span class="keyword">type</span>: <span class="built_in">int</span>)</span><br><span class="line">              outputColumnNames: sal, deptno</span><br><span class="line">              <span class="keyword">Statistics</span>: <span class="keyword">Num</span> <span class="keyword">rows</span>: <span class="number">1</span> <span class="keyword">Data</span> <span class="keyword">size</span>: <span class="number">6570</span> Basic stats: <span class="keyword">COMPLETE</span> <span class="keyword">Column</span> stats: <span class="keyword">NONE</span></span><br><span class="line">              <span class="keyword">Group</span> <span class="keyword">By</span> <span class="keyword">Operator</span></span><br><span class="line">                aggregations: <span class="keyword">max</span>(sal)</span><br><span class="line">                <span class="keyword">keys</span>: deptno (<span class="keyword">type</span>: <span class="built_in">int</span>)</span><br><span class="line">                <span class="keyword">mode</span>: <span class="keyword">hash</span></span><br><span class="line">                outputColumnNames: _col0, _col1</span><br><span class="line">                <span class="keyword">Statistics</span>: <span class="keyword">Num</span> <span class="keyword">rows</span>: <span class="number">1</span> <span class="keyword">Data</span> <span class="keyword">size</span>: <span class="number">6570</span> Basic stats: <span class="keyword">COMPLETE</span> <span class="keyword">Column</span> stats: <span class="keyword">NONE</span></span><br><span class="line">                Reduce <span class="keyword">Output</span> <span class="keyword">Operator</span></span><br><span class="line">                  <span class="keyword">key</span> expressions: _col0 (<span class="keyword">type</span>: <span class="built_in">int</span>)</span><br><span class="line">                  <span class="keyword">sort</span> <span class="keyword">order</span>: +</span><br><span class="line">                  <span class="keyword">Map</span>-reduce <span class="keyword">partition</span> <span class="keyword">columns</span>: _col0 (<span class="keyword">type</span>: <span class="built_in">int</span>)</span><br><span class="line">                  <span class="keyword">Statistics</span>: <span class="keyword">Num</span> <span class="keyword">rows</span>: <span class="number">1</span> <span class="keyword">Data</span> <span class="keyword">size</span>: <span class="number">6570</span> Basic stats: <span class="keyword">COMPLETE</span> <span class="keyword">Column</span> stats: <span class="keyword">NONE</span></span><br><span class="line">                  <span class="keyword">value</span> expressions: _col1 (<span class="keyword">type</span>: <span class="keyword">double</span>)</span><br><span class="line">      Execution <span class="keyword">mode</span>: vectorized</span><br><span class="line">      Reduce <span class="keyword">Operator</span> Tree:</span><br><span class="line">        <span class="keyword">Group</span> <span class="keyword">By</span> <span class="keyword">Operator</span></span><br><span class="line">          aggregations: <span class="keyword">max</span>(VALUE._col0)</span><br><span class="line">          <span class="keyword">keys</span>: KEY._col0 (<span class="keyword">type</span>: <span class="built_in">int</span>)</span><br><span class="line">          <span class="keyword">mode</span>: mergepartial</span><br><span class="line">          outputColumnNames: _col0, _col1</span><br><span class="line">          <span class="keyword">Statistics</span>: <span class="keyword">Num</span> <span class="keyword">rows</span>: <span class="number">1</span> <span class="keyword">Data</span> <span class="keyword">size</span>: <span class="number">6570</span> Basic stats: <span class="keyword">COMPLETE</span> <span class="keyword">Column</span> stats: <span class="keyword">NONE</span></span><br><span class="line">          <span class="keyword">Select</span> <span class="keyword">Operator</span></span><br><span class="line">            expressions: _col1 (<span class="keyword">type</span>: <span class="keyword">double</span>), _col0 (<span class="keyword">type</span>: <span class="built_in">int</span>)</span><br><span class="line">            outputColumnNames: _col0, _col1</span><br><span class="line">            <span class="keyword">Statistics</span>: <span class="keyword">Num</span> <span class="keyword">rows</span>: <span class="number">1</span> <span class="keyword">Data</span> <span class="keyword">size</span>: <span class="number">6570</span> Basic stats: <span class="keyword">COMPLETE</span> <span class="keyword">Column</span> stats: <span class="keyword">NONE</span></span><br><span class="line">            <span class="keyword">File</span> <span class="keyword">Output</span> <span class="keyword">Operator</span></span><br><span class="line">              compressed: <span class="literal">false</span></span><br><span class="line">              <span class="keyword">Statistics</span>: <span class="keyword">Num</span> <span class="keyword">rows</span>: <span class="number">1</span> <span class="keyword">Data</span> <span class="keyword">size</span>: <span class="number">6570</span> Basic stats: <span class="keyword">COMPLETE</span> <span class="keyword">Column</span> stats: <span class="keyword">NONE</span></span><br><span class="line">              <span class="keyword">table</span>:</span><br><span class="line">                  <span class="keyword">input</span> <span class="keyword">format</span>: org.apache.hadoop.mapred.SequenceFileInputFormat</span><br><span class="line">                  <span class="keyword">output</span> <span class="keyword">format</span>: org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat</span><br><span class="line">                  serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe</span><br><span class="line"></span><br><span class="line">  Stage: Stage<span class="number">-0</span></span><br><span class="line">    <span class="keyword">Fetch</span> <span class="keyword">Operator</span></span><br><span class="line">      <span class="keyword">limit</span>: <span class="number">-1</span></span><br><span class="line">      Processor Tree:</span><br><span class="line">        ListSink</span><br><span class="line"></span><br><span class="line"><span class="built_in">Time</span> taken: <span class="number">0.183</span> <span class="keyword">seconds</span>, Fetched: <span class="number">53</span> <span class="keyword">row</span>(s)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/14.%E4%BC%98%E5%8C%96/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/15.%E9%85%8D%E7%BD%AE%E8%B0%83%E4%BC%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/15.%E9%85%8D%E7%BD%AE%E8%B0%83%E4%BC%98/" class="post-title-link" itemprop="url">配置调优</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-21 21:24:23 / 修改时间：14:41:05" itemprop="dateCreated datePublished" datetime="2021-04-21T21:24:23+08:00">2021-04-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/15.%E9%85%8D%E7%BD%AE%E8%B0%83%E4%BC%98/" class="post-meta-item leancloud_visitors" data-flag-title="配置调优" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/15.%E9%85%8D%E7%BD%AE%E8%B0%83%E4%BC%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/15.%E9%85%8D%E7%BD%AE%E8%B0%83%E4%BC%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="配置调优"><a href="#配置调优" class="headerlink" title="配置调优"></a>配置调优</h2><h3 id="map-join配置"><a href="#map-join配置" class="headerlink" title="map join配置"></a>map join配置</h3><p>对于两个表的join操作，将小表写在join的左边，大表写在join的右边，小表驱动大表来进行查询，可以使用mapjoin使得小表进入内存，将小表文件加载到DistributeCache中，再扫描大表，根据DistributeCache中的数据与大表进行关联对应</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 设置自动选择mapjoin(默认是true)</span></span><br><span class="line"><span class="keyword">set</span> hive.auto.convert.join=<span class="literal">true</span>;</span><br><span class="line"><span class="comment">-- 设置大小表阈值(默认25M)</span></span><br><span class="line"><span class="keyword">set</span> hive.mapjoin.smalltable.filesize=<span class="number">25000000</span>;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/15.%E9%85%8D%E7%BD%AE%E8%B0%83%E4%BC%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/5.%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/5.%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">查找算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-20 20:57:23 / 修改时间：14:14:59" itemprop="dateCreated datePublished" datetime="2021-04-20T20:57:23+08:00">2021-04-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/5.%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="查找算法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/5.%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/5.%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="查找算法"><a href="#查找算法" class="headerlink" title="查找算法"></a>查找算法</h2><h3 id="线性查找"><a href="#线性查找" class="headerlink" title="线性查找"></a>线性查找</h3><h4 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h4><p>按照顺序遍历与所查找的数进行比较</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] arry, <span class="keyword">int</span> des)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= arry.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (des == arry[i])</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/5.%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E5%BA%94%E7%94%A8/2.kafka%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E5%BA%94%E7%94%A8/2.kafka%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">kafka消息丢失和重复消费问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-19 21:31:30 / 修改时间：11:05:01" itemprop="dateCreated datePublished" datetime="2021-04-19T21:31:30+08:00">2021-04-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E5%BA%94%E7%94%A8/2.kafka%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="kafka消息丢失和重复消费问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E5%BA%94%E7%94%A8/2.kafka%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E5%BA%94%E7%94%A8/2.kafka%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="kafka消息丢失和重复消费问题"><a href="#kafka消息丢失和重复消费问题" class="headerlink" title="kafka消息丢失和重复消费问题"></a>kafka消息丢失和重复消费问题</h2><h3 id="消息丢失"><a href="#消息丢失" class="headerlink" title="消息丢失"></a>消息丢失</h3><p>消息丢失主要是在生产者端和消费者端</p>
+<p><strong>生产者端消息发送</strong><br>Kafka消息发送有两种方式：同步（sync）和异步（async），<br>默认是同步方式，可通过<code>producer.type</code>属性进行配置。<br>Kafka通过配置<code>request.required.acks</code>属性来确认消息的生产</p>
+<ul>
+<li>0—表示不进行消息接收是否成功的确认；</li>
+<li>1—表示当Leader接收成功时确认；</li>
+<li>-1—表示Leader和Follower都接收成功时确认；</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E5%BA%94%E7%94%A8/2.kafka%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/13.%E5%8E%8B%E7%BC%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/13.%E5%8E%8B%E7%BC%A9/" class="post-title-link" itemprop="url">压缩</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-19 21:24:23 / 修改时间：12:30:29" itemprop="dateCreated datePublished" datetime="2021-04-19T21:24:23+08:00">2021-04-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hive/" itemprop="url" rel="index"><span itemprop="name">hive</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/13.%E5%8E%8B%E7%BC%A9/" class="post-meta-item leancloud_visitors" data-flag-title="压缩" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/13.%E5%8E%8B%E7%BC%A9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/13.%E5%8E%8B%E7%BC%A9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><p>hive其实本质就是MapReduce，所以hive的压缩也就相当于MapReduce的压缩，大家可以看一下hadoop中的MapReduce压缩</p>
+<p>之前有文章是介绍这个的，这里就不赘述了，附上链接</p>
+<p><a target="_blank" rel="noopener" href="https://zhhll.icu/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/6.%E5%8E%8B%E7%BC%A9/">数据压缩</a></p>
+<p>这里来说明一下hive的压缩功能</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/13.%E5%8E%8B%E7%BC%A9/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/RabbitMQ/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/RabbitMQ/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">RabbitMQ基本概念</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-19 20:51:30 / 修改时间：10:47:09" itemprop="dateCreated datePublished" datetime="2021-04-19T20:51:30+08:00">2021-04-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">消息队列</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/RabbitMQ/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-meta-item leancloud_visitors" data-flag-title="RabbitMQ基本概念" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/RabbitMQ/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/RabbitMQ/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="RabbitMQ基本概念"><a href="#RabbitMQ基本概念" class="headerlink" title="RabbitMQ基本概念"></a>RabbitMQ基本概念</h2><ul>
+<li><code>Broker</code>：消息队列服务器实体</li>
+<li><code>Exchange</code>：消息交换机，它指定消息按特定规则，路由到哪个队列</li>
+<li><code>Queue</code>：消息队列载体，每个消息都会被投入到一个或多个队列</li>
+<li><code>Binding</code>：绑定，它的作用就是把exchange和queue按照路由规则绑定起来</li>
+<li><code>Routing Key</code>：路由关键字，exchange根据这个关键字进行消息投递</li>
+<li><code>VHost</code>：vhost 可以理解为虚拟 broker ，即 mini-RabbitMQ server。其内部均含有独立的 queue、exchange 和 binding 等，拥有独立的权限系统，可以做到 vhost 范围的用户控制。</li>
+<li><code>Producer</code>：消息生产者</li>
+<li><code>Consumer</code>：消息消费者</li>
+<li><code>Channel</code>：消息通道，在客户端的每个连接里，可建立多个channel，每个channel代表一个会话任务</li>
+</ul>
+
       
     </div>
 
@@ -1211,7 +1210,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1279,20 +1278,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">490</span>
+          <span class="site-state-item-count">501</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">67</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">76</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

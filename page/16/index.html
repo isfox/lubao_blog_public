@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/3.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/3.zookeeper%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/3.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/" class="post-title-link" itemprop="url">数据输出</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/3.zookeeper%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">zookeeper命令</a>
         </h2>
 
         <div class="post-meta">
@@ -218,14 +218,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-30 13:06:30" itemprop="dateCreated datePublished" datetime="2021-03-30T13:06:30+08:00">2021-03-30</time>
+              <time title="创建时间：2021-04-07 21:12:23" itemprop="dateCreated datePublished" datetime="2021-04-07T21:12:23+08:00">2021-04-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-09 09:34:46" itemprop="dateModified" datetime="2021-06-09T09:34:46+08:00">2021-06-09</time>
+                <time title="修改时间：2021-04-13 11:31:12" itemprop="dateModified" datetime="2021-04-13T11:31:12+08:00">2021-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,12 +233,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                  <a href="/categories/zookeeper/" itemprop="url" rel="index"><span itemprop="name">zookeeper</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/3.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/" class="post-meta-item leancloud_visitors" data-flag-title="数据输出" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/3.zookeeper%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="zookeeper命令" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -253,8 +253,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/3.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/3.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/3.zookeeper%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/3.zookeeper%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -269,10 +269,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="数据输出"><a href="#数据输出" class="headerlink" title="数据输出"></a>数据输出</h2><p>OutputFormat作为MapReduce的数据输出，所有实现MapReduce输出都实现了OutputFormat接口，常用的有TextOutputFormat、SequenceFileOutputFormat等</p>
+          <h2 id="zookeeper命令"><a href="#zookeeper命令" class="headerlink" title="zookeeper命令"></a>zookeeper命令</h2><blockquote>
+<p>该版本为3.6.1版本，不同版本可能略有不同</p>
+</blockquote>
+<p>zookeeper服务端启动之后，可以在客户端使用命令进行一系列操作</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/3.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/3.zookeeper%E5%91%BD%E4%BB%A4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -296,7 +299,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/javaweb/%E7%9B%91%E5%90%AC%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/2.zookeeper%E9%83%A8%E7%BD%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -310,7 +313,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/javaweb/%E7%9B%91%E5%90%AC%E5%99%A8/" class="post-title-link" itemprop="url">监听器</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/2.zookeeper%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">zookeeper部署</a>
         </h2>
 
         <div class="post-meta">
@@ -319,22 +322,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-29 21:30:19 / 修改时间：18:36:53" itemprop="dateCreated datePublished" datetime="2021-03-29T21:30:19+08:00">2021-03-29</time>
+              <time title="创建时间：2021-04-06 21:12:23" itemprop="dateCreated datePublished" datetime="2021-04-06T21:12:23+08:00">2021-04-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:31:07" itemprop="dateModified" datetime="2021-04-13T11:31:07+08:00">2021-04-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaweb/" itemprop="url" rel="index"><span itemprop="name">javaweb</span></a>
+                  <a href="/categories/zookeeper/" itemprop="url" rel="index"><span itemprop="name">zookeeper</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/javaweb/%E7%9B%91%E5%90%AC%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="监听器" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/2.zookeeper%E9%83%A8%E7%BD%B2/" class="post-meta-item leancloud_visitors" data-flag-title="zookeeper部署" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -349,8 +358,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/javaweb/%E7%9B%91%E5%90%AC%E5%99%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/javaweb/%E7%9B%91%E5%90%AC%E5%99%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/2.zookeeper%E9%83%A8%E7%BD%B2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/2.zookeeper%E9%83%A8%E7%BD%B2/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -365,10 +374,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h2><p>Servlet中存在一个EventListener接口，该接口有很多的子接口，如ServletContextListener、HttpSessionListener、ServletRequestListener等<br>用于监听ServletContext、HttpSession、ServletRequest等对象的创建和销毁，以及属性修改</p>
+          <h2 id="zookeeper部署"><a href="#zookeeper部署" class="headerlink" title="zookeeper部署"></a>zookeeper部署</h2><h3 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h3><p>修改zoo.cfg文件(在conf下)</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置数据所在位置</span></span><br><span class="line"><span class="attr">dataDir</span>=<span class="string">/opt/data/zookeeper/zkData</span></span><br></pre></td></tr></table></figure>
+
+<p>启动zookeeper服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./zkServer.sh start</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/javaweb/%E7%9B%91%E5%90%AC%E5%99%A8/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/zookeeper/2.zookeeper%E9%83%A8%E7%BD%B2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -392,7 +405,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/7.MapTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/12.redis%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -406,7 +419,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/7.MapTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">MapTask工作机制</a>
+            <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/12.redis%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">redis线程模型</a>
         </h2>
 
         <div class="post-meta">
@@ -416,14 +429,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-29 20:40:30" itemprop="dateCreated datePublished" datetime="2021-03-29T20:40:30+08:00">2021-03-29</time>
+              <time title="创建时间：2021-04-01 21:42:30" itemprop="dateCreated datePublished" datetime="2021-04-01T21:42:30+08:00">2021-04-01</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 11:25:05" itemprop="dateModified" datetime="2021-04-13T11:25:05+08:00">2021-04-13</time>
+                <time title="修改时间：2021-04-11 11:59:15" itemprop="dateModified" datetime="2021-04-11T11:59:15+08:00">2021-04-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -431,12 +444,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                  <a href="/categories/redis/" itemprop="url" rel="index"><span itemprop="name">redis</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/7.MapTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="MapTask工作机制" title="阅读次数">
+            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/12.redis%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="redis线程模型" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -451,8 +464,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/7.MapTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/7.MapTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/12.redis%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/12.redis%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -467,612 +480,460 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="MapTask工作机制"><a href="#MapTask工作机制" class="headerlink" title="MapTask工作机制"></a>MapTask工作机制</h2><p>MapTask执行过程中按照Read阶段——&gt;Map阶段——&gt;Collect阶段——&gt;溢写阶段——&gt;Combine阶段</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/8.ReduceTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/8.ReduceTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">ReduceTask工作机制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-29 20:40:30" itemprop="dateCreated datePublished" datetime="2021-03-29T20:40:30+08:00">2021-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 11:25:11" itemprop="dateModified" datetime="2021-04-13T11:25:11+08:00">2021-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/8.ReduceTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="ReduceTask工作机制" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/8.ReduceTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/8.ReduceTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="ReduceTask工作机制"><a href="#ReduceTask工作机制" class="headerlink" title="ReduceTask工作机制"></a>ReduceTask工作机制</h2><p>ReduceTask执行过程中按照Copy阶段——&gt;Merge阶段——&gt;Sort阶段——&gt;Reduce阶段</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/5.Shuffle%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/5.Shuffle%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">Shuffle机制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-28 20:40:30" itemprop="dateCreated datePublished" datetime="2021-03-28T20:40:30+08:00">2021-03-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 11:24:36" itemprop="dateModified" datetime="2021-04-13T11:24:36+08:00">2021-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/5.Shuffle%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="Shuffle机制" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/5.Shuffle%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/5.Shuffle%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Shuffle机制"><a href="#Shuffle机制" class="headerlink" title="Shuffle机制"></a>Shuffle机制</h2><p>Map阶段之后，Reduce阶段之前的数据处理操作叫做Shuffle，包含了分区、压缩、排序、分组等处理</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/5.Shuffle%E6%9C%BA%E5%88%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/2.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/2.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/" class="post-title-link" itemprop="url">数据输入</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-28 13:06:30" itemprop="dateCreated datePublished" datetime="2021-03-28T13:06:30+08:00">2021-03-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 11:24:12" itemprop="dateModified" datetime="2021-04-13T11:24:12+08:00">2021-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/2.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/" class="post-meta-item leancloud_visitors" data-flag-title="数据输入" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/2.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/2.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="数据输入"><a href="#数据输入" class="headerlink" title="数据输入"></a>数据输入</h2><p>InputFormat作为MapReduce的数据输入，有很多的实现类，如TextInputFormat、KeyValueTextInputFormat、NLineInputFormat、CombineTextInputFormat等。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/2.%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/6.DataNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/6.DataNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">DataNode工作机制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-27 12:56:30" itemprop="dateCreated datePublished" datetime="2021-03-27T12:56:30+08:00">2021-03-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 11:26:21" itemprop="dateModified" datetime="2021-04-13T11:26:21+08:00">2021-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/6.DataNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="DataNode工作机制" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/6.DataNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/6.DataNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="DataNode工作机制"><a href="#DataNode工作机制" class="headerlink" title="DataNode工作机制"></a>DataNode工作机制</h2><p>由于客户端是先访问NameNode来获取DataNode的信息，所以在DataNode启动时会先向NameNode进行注册，之后每隔一段时间向NameNode上报一次块信息，NameNode每隔一段时间也会向DataNode发送心跳检测来检测节点是否可用</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/6.DataNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/5.NameNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/5.NameNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">NameNode工作机制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-27 12:01:30" itemprop="dateCreated datePublished" datetime="2021-03-27T12:01:30+08:00">2021-03-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-01 09:35:16" itemprop="dateModified" datetime="2021-06-01T09:35:16+08:00">2021-06-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/5.NameNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="NameNode工作机制" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/5.NameNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/5.NameNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="NameNode工作机制"><a href="#NameNode工作机制" class="headerlink" title="NameNode工作机制"></a>NameNode工作机制</h2><p>NameNode是HDFS的核心，NameNode存储了文件的元数据，需要根据元数据来找到文件所在的DataNode节点，NameNode中的数据肯定不能只存在内存，否则如果挂掉在启动就什么都没了，但是如果将元数据放在磁盘，随机访问就会非常慢，所以元数据存在内存，但是在磁盘中是有备份的元数据FsImage，但是数据量如此大的元数据，在修改时内存中的数据更新，带动FsImage数据更新，依然会导致数据更新过慢，引入Edits文件来只进行追加操作(不管元数据是添加还是修改，都是进行追加操作)，这样就可以将FsImage和Edits合并来合成内存中的元数据。</p>
-<p>而Edits文件会随着时间变得越来越大，最后合并的效率会变低，所以定期地进行两个文件的合并，而这个合并操作就是由Secondary NameNode来完成的</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/5.NameNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/2.HDFS%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/2.HDFS%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">HDFS基本命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-26 21:31:30" itemprop="dateCreated datePublished" datetime="2021-03-26T21:31:30+08:00">2021-03-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-29 16:51:22" itemprop="dateModified" datetime="2021-05-29T16:51:22+08:00">2021-05-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/2.HDFS%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="HDFS基本命令" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/2.HDFS%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/2.HDFS%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="HDFS基本命令"><a href="#HDFS基本命令" class="headerlink" title="HDFS基本命令"></a>HDFS基本命令</h2><p>HDFS操作的命令与shell的命令很多都是一致的，只是加了一个hadoop fs或者hdfs dfs前缀而已</p>
+          <h2 id="redis线程模型"><a href="#redis线程模型" class="headerlink" title="redis线程模型"></a>redis线程模型</h2><p>Redis 内部使用文件事件处理器 <code>file event handler</code> ，这个文件事件处理器是单线程的，所以 Redis 才叫做单线程的模型。它采用 IO 多路复用机制同时监听多个 socket，将产生事件的 socket 压入内存队列中，事件分派器根据 socket 上的事件类型来选择对应的事件处理器进行处理</p>
+<p>文件事件处理器的结构包含 4 个部分：</p>
+<ul>
+<li>多个 socket</li>
+<li>IO 多路复用程序</li>
+<li>文件事件分派器</li>
+<li>事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）</li>
+</ul>
+<p>多个 socket 可能会并发产生不同的操作，每个操作对应不同的文件事件，但是 IO 多路复用程序会监听多个 socket，会将产生事件的 socket 放入队列中排队，事件分派器每次从队列中取出一个 socket，根据 socket 的事件类型交给对应的事件处理器进行处理。</p>
+<h3 id="redis6-0新特性"><a href="#redis6-0新特性" class="headerlink" title="redis6.0新特性"></a>redis6.0新特性</h3><p>redis在6.0之后开始引入多线程，因为读写网络的 Read/Write 系统调用在 Redis 执行期间占用了大部分 CPU 时间，如果把网络读写做成多线程的方式对性能会有很大提升。</p>
 <blockquote>
-<p>dfs是fs的实现</p>
+<p>Redis 的多线程部分只是用来处理网络数据的读写和协议解析，执行命令仍然是单线程</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/4.HDFS%E5%B0%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/4.HDFS%E5%B0%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">HDFS小文件处理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-01 21:11:30" itemprop="dateCreated datePublished" datetime="2021-04-01T21:11:30+08:00">2021-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:26:08" itemprop="dateModified" datetime="2021-04-13T11:26:08+08:00">2021-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/4.HDFS%E5%B0%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="HDFS小文件处理" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/4.HDFS%E5%B0%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/4.HDFS%E5%B0%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="HDFS小文件处理"><a href="#HDFS小文件处理" class="headerlink" title="HDFS小文件处理"></a>HDFS小文件处理</h2><p>小文件过多会导致速度变慢，由于文件的索引是建立在NameNode中，小文件过多会导致索引过多，从而占用了NameNode的内存，然后索引文件过大也会导致索引速度下降</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ul>
+<li><p>在数据采集的时候，就将小文件或小批数据合成大文件再上传HDFS</p>
+</li>
+<li><p>在业务处理之前，在HDFS上使用MapReduce程序对小文件进行合并</p>
+</li>
+<li><p>在MapReduce处理时，可采用CombineTextInputFormat提高效率</p>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/4.HDFS%E5%B0%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/2.Yarn%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/2.Yarn%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">Yarn工作机制</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-01 21:11:30" itemprop="dateCreated datePublished" datetime="2021-04-01T21:11:30+08:00">2021-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:23:52" itemprop="dateModified" datetime="2021-04-13T11:23:52+08:00">2021-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/2.Yarn%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="Yarn工作机制" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/2.Yarn%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/Yarn/2.Yarn%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Yarn工作机制"><a href="#Yarn工作机制" class="headerlink" title="Yarn工作机制"></a>Yarn工作机制</h2><ol>
+<li>mapReduce程序提交到客户端所在的节点，job.waitForCompletion创建YarnRunner，向ResourceManager申请一个Application</li>
+<li>ResourceManager会生成一个Application的资源提交路径hdfs://../staging以及application_id</li>
+<li>将job运行所需要的资源提交到该路径下的application_id文件中(资源包含Job.split、Job.xml、执行的jar程序)</li>
+<li>资源提交完毕之后向ResourceManager申请运行mrAppMaster</li>
+<li>ResourceManager将任务放入队列中，NodeManager从队列中取任务，并创建Container</li>
+<li>Container创建完毕启动mrAppMaster</li>
+<li>Container下载job资源到本地</li>
+<li>向ResourceManager申请运行MapTask容器，将任务放到队列中，Nodemanager从队列中取并创建容器</li>
+<li>mrAppMaster向取到MapTask任务的NodeManager节点发送程序启动脚本</li>
+<li>MapTask执行结束之后，mrAppMaster向ResourceManager申请运行ReduceTask容器，将任务放到队列中，Nodemanager从队列中取并创建容器，运行ReduceTask程序</li>
+<li>Reduce向Map获取相应分区数据</li>
+<li>运行结束之后，mrAppMaster向ResourceManager发起注销</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/10.%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/10.%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">MapReduce优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-01 21:06:30" itemprop="dateCreated datePublished" datetime="2021-04-01T21:06:30+08:00">2021-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:25:32" itemprop="dateModified" datetime="2021-04-13T11:25:32+08:00">2021-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/10.%E4%BC%98%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="MapReduce优化" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/10.%E4%BC%98%E5%8C%96/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/10.%E4%BC%98%E5%8C%96/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="MapReduce优化"><a href="#MapReduce优化" class="headerlink" title="MapReduce优化"></a>MapReduce优化</h2><p>MapReduce程序执行的瓶颈在于两点</p>
+<ul>
+<li><p>服务器性能</p>
+<p>CPU/内存/磁盘/网络</p>
+</li>
+<li><p>I/O操作</p>
+<ul>
+<li>数据倾斜</li>
+<li>Map、Reduce数量设置不合理</li>
+<li>Map运行时间太长，导致Reduce一直等待</li>
+<li>小文件过多</li>
+<li>大量的不可分块的超大文件</li>
+<li>spill溢写次数过多</li>
+<li>Merge次数过多</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/10.%E4%BC%98%E5%8C%96/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/6.%E5%8E%8B%E7%BC%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/6.%E5%8E%8B%E7%BC%A9/" class="post-title-link" itemprop="url">数据压缩</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-01 13:06:30" itemprop="dateCreated datePublished" datetime="2021-04-01T13:06:30+08:00">2021-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:24:59" itemprop="dateModified" datetime="2021-04-13T11:24:59+08:00">2021-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/6.%E5%8E%8B%E7%BC%A9/" class="post-meta-item leancloud_visitors" data-flag-title="数据压缩" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/6.%E5%8E%8B%E7%BC%A9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/6.%E5%8E%8B%E7%BC%A9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数据压缩"><a href="#数据压缩" class="headerlink" title="数据压缩"></a>数据压缩</h2><p>压缩可以减少HDFS读写字节数，提高网络带宽和磁盘空间效率，所以压缩非常重要，可以在MapReduce的任意阶段进行压缩</p>
+<blockquote>
+<p>压缩减少了磁盘IO，但是增加了CPU的运算负担，所以要采用下述原则</p>
+<ul>
+<li>运算密集型的job，少用压缩</li>
+<li>IO密集型的job，多用压缩</li>
+</ul>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/HDFS/2.HDFS%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/6.%E5%8E%8B%E7%BC%A9/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1096,7 +957,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/swagger/Swagger%E4%BB%8B%E7%BB%8D/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/9.%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -1110,7 +971,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E6%A1%86%E6%9E%B6/swagger/Swagger%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">Swagger介绍</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/9.%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/" class="post-title-link" itemprop="url">数据清洗</a>
         </h2>
 
         <div class="post-meta">
@@ -1119,22 +980,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-26 21:11:30 / 修改时间：14:27:15" itemprop="dateCreated datePublished" datetime="2021-03-26T21:11:30+08:00">2021-03-26</time>
+              <time title="创建时间：2021-03-31 21:06:30" itemprop="dateCreated datePublished" datetime="2021-03-31T21:06:30+08:00">2021-03-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 11:25:26" itemprop="dateModified" datetime="2021-04-13T11:25:26+08:00">2021-04-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swagger/" itemprop="url" rel="index"><span itemprop="name">Swagger</span></a>
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E6%A1%86%E6%9E%B6/swagger/Swagger%E4%BB%8B%E7%BB%8D/" class="post-meta-item leancloud_visitors" data-flag-title="Swagger介绍" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/9.%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/" class="post-meta-item leancloud_visitors" data-flag-title="数据清洗" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1149,8 +1016,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E6%A1%86%E6%9E%B6/swagger/Swagger%E4%BB%8B%E7%BB%8D/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%A1%86%E6%9E%B6/swagger/Swagger%E4%BB%8B%E7%BB%8D/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/9.%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/9.%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1165,17 +1032,205 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Swagger介绍"><a href="#Swagger介绍" class="headerlink" title="Swagger介绍"></a>Swagger介绍</h2><p>由于现在很多都是前后端分离，前端、后端分别完成自己的工作，那么接口文档就是前后端的桥梁，使用swagger不仅可以作为一个接口调用工具，还可以作为一份接口文档</p>
-<p>首先swagger的依赖为</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h2 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h2><p>数据清洗又称为ETL，在运行核心业务MapReduce程序之前，往往要先对数据进行清洗，清理掉不符合用户要求的数据。清理的过程往往只需要运行Mapper程序，不需要运行Reducer程序</p>
+<blockquote>
+<p>当不需要reduce时，需要将reduceTask个数设为0，job.setNumReduceTasks(0)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E7%BD%91%E7%BB%9C/3.%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E7%BD%91%E7%BB%9C/3.%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">域名解析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-31 20:26:23" itemprop="dateCreated datePublished" datetime="2021-03-31T20:26:23+08:00">2021-03-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-21 15:04:35" itemprop="dateModified" datetime="2021-04-21T15:04:35+08:00">2021-04-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E7%BD%91%E7%BB%9C/3.%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" class="post-meta-item leancloud_visitors" data-flag-title="域名解析" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E7%BD%91%E7%BB%9C/3.%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E7%BD%91%E7%BB%9C/3.%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><ol>
+<li><p>首先浏览器会先检查缓存中有没有这个域名对应的解析过的 IP 地址。如果缓存中有，这个解析过程就将结束。域名的缓存时间限制可以通过 <code>TTL</code> 属性来设置。</p>
+</li>
+<li><p>如果浏览器缓存中没有，会检查操作系统中是否有这个域名对应的 <code>DNS</code> 解析结果，在 Windows 中可以通过 <code>C:\Windows\System32\drivers\etc\hosts</code> 文件来设置，在 Linux 中这个配置文件是 <code>/etc/hosts</code>，修改这个文件同样可以配置域名解析的 IP 结果。</p></li></ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E6%A1%86%E6%9E%B6/swagger/Swagger%E4%BB%8B%E7%BB%8D/#more" rel="contents">
+              <a class="btn" href="/2021/%E7%BD%91%E7%BB%9C/3.%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E9%97%AE%E9%A2%98/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E9%97%AE%E9%A2%98/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">线上问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-30 22:00:23 / 修改时间：22:11:28" itemprop="dateCreated datePublished" datetime="2021-03-30T22:00:23+08:00">2021-03-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E9%97%AE%E9%A2%98/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="线上问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E9%97%AE%E9%A2%98/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E9%97%AE%E9%A2%98/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="多线程的异常处理"><a href="#多线程的异常处理" class="headerlink" title="多线程的异常处理"></a>多线程的异常处理</h2><p>通过Dump线程的StackTrace，例如linux下执行命令 kill -3 <pid>，或者jstack –l <pid>，或者使用Jconsole连接上去查看线程的StackTrace，由此来诊断死锁问题</pid></pid></p>
+
       
     </div>
 
@@ -1193,7 +1248,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1261,20 +1316,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">490</span>
+          <span class="site-state-item-count">501</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">67</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">76</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
