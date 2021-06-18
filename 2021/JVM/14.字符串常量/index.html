@@ -30,7 +30,7 @@
 <meta property="og:description" content="字符串常量String是不可变的字符序列，体现为以下三种情况  当字符串重新赋值时，需要重写指定内存区域赋值，不能使用原有的value进行赋值 当对现有字符串进行连接操作时，也需要重新指定内存区域赋值，不能使用原有的value进行赋值 当调用String的replace方法修改指定字符串时，也需要重新指定内存区域赋值，不能使用原有value进行赋值  通过字面量的方式给一个字符串赋值，字符串值声明">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-16T12:58:40.000Z">
-<meta property="article:modified_time" content="2021-06-17T03:16:27.729Z">
+<meta property="article:modified_time" content="2021-06-18T06:26:02.955Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-17 11:16:27" itemprop="dateModified" datetime="2021-06-17T11:16:27+08:00">2021-06-17</time>
+                <time title="修改时间：2021-06-18 14:26:02" itemprop="dateModified" datetime="2021-06-18T14:26:02+08:00">2021-06-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,13 +281,43 @@
 <p>通过字面量的方式给一个字符串赋值，字符串值声明在了字符串常量池中，<strong>字符串常量池中不会存储相同的字符串的</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String name = <span class="string">&quot;张三&quot;</span>;</span><br></pre></td></tr></table></figure>
 
-<h3 id="字符串常量池的底层结构"><a href="#字符串常量池的底层结构" class="headerlink" title="字符串常量池的底层结构"></a>字符串常量池的底层结构</h3><p>String的String Pool是一个固定大小的Hashtable，如果放入String Pool的String非常多，会造成Hash冲突，从而导致链表很长，链表长会造成调用String.intern时性能大幅下降</p>
+<h3 id="字符串常量池的底层结构"><a href="#字符串常量池的底层结构" class="headerlink" title="字符串常量池的底层结构"></a>字符串常量池的底层结构</h3><a id="more"></a>
+
+<p>String的String Pool是一个固定大小的Hashtable，如果放入String Pool的String非常多，会造成Hash冲突，从而导致链表很长，链表长会造成调用String.intern时性能大幅下降</p>
 <blockquote>
 <p>使用-XX:StringTableSize可以设置StringTable的长度</p>
 <p>默认为60013，可以设置的最小值是1009</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jinfo -flag StringTableSize 84315</span><br><span class="line"></span><br><span class="line">-XX:StringTableSize=60013</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h3 id="字符串常量池的存储位置"><a href="#字符串常量池的存储位置" class="headerlink" title="字符串常量池的存储位置"></a>字符串常量池的存储位置</h3><p>字符串常量到底存在哪呢？在jdk6的时候将字符串常量池存放在永久代，但是由于永久代的回收效率很低，只有在full gc的时候才会触发，而开发中经常会用到大量的字符串，如果回收效率低，会导致永久代代内存不足，到了jdk7中将<strong>字符串常量池存储在堆中</strong>，这样可以<strong>保证字符串常量可以及时回收</strong></p>
+<h3 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h3><ul>
+<li><p>如果是常量与常量拼接，拼接的结果在常量池(这个是在编译期完成的)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java文件中</span></span><br><span class="line">String s1 = <span class="string">&quot;z&quot;</span>+<span class="string">&quot;h&quot;</span>;</span><br><span class="line">String s2 = <span class="string">&quot;zh&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 编译成class文件变为</span></span><br><span class="line">String s1 = <span class="string">&quot;zh&quot;</span>;</span><br><span class="line">String s2 = <span class="string">&quot;zh&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>只要其中有一个是变量，结果就在堆中，底层使用的是StringBuilder</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java文件中</span></span><br><span class="line">String s1 = <span class="string">&quot;z&quot;</span>;</span><br><span class="line">String s2 = <span class="string">&quot;h&quot;</span>;</span><br><span class="line">String s3 = <span class="string">&quot;zh&quot;</span>;</span><br><span class="line">String s4 = s1 + s2;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 编译成class文件变为</span></span><br><span class="line">String s1 = <span class="string">&quot;z&quot;</span>;</span><br><span class="line">String s2 = <span class="string">&quot;h&quot;</span>;</span><br><span class="line">String s3 = <span class="string">&quot;zh&quot;</span>;</span><br><span class="line">(<span class="keyword">new</span> StringBuilder()).append(s1).append(s2).toString();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>StringBuilder的toString方法，<strong>这个方法生成的字符串不会放到字符串常量池中</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Create a copy, don&#x27;t share the array</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> String(value, <span class="number">0</span>, count);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//字节码</span></span><br><span class="line"> 0 new #41 &lt;java/lang/String&gt;</span><br><span class="line"> <span class="number">3</span> dup</span><br><span class="line"> <span class="number">4</span> aload_0</span><br><span class="line"> 5 getfield #42 &lt;java/lang/StringBuilder.value&gt;</span><br><span class="line"> <span class="number">8</span> iconst_0</span><br><span class="line"> <span class="number">9</span> aload_0</span><br><span class="line">10 getfield #43 &lt;java/lang/StringBuilder.count&gt;</span><br><span class="line">13 invokespecial #44 &lt;java/lang/String.&lt;init&gt;&gt;</span><br><span class="line"><span class="number">16</span> areturn</span><br></pre></td></tr></table></figure>
+
+
+
+
+<ul>
+<li><p>如果拼接的结果调用intern()方法，判断常量池中是否存在该结果所对应的的字符串值，如果存在，则返回常量池中该字符串值的地址，如果常量池中不存在，则在常量池中加载一份，并返回此对象的地址</p>
+<blockquote>
+<p>如果有两个字符串s和t，则s.equals(t)为true则s.intern() == t.intern()，反之亦然</p>
+<p>intern确保字符串在内存中只有一份拷贝，这样可以节约内存空间，加快字符串操作任务的执行速度</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行完之后常量池中并没有11</span></span><br><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">&quot;1&quot;</span>) + <span class="keyword">new</span> String(<span class="string">&quot;1&quot;</span>);</span><br><span class="line"><span class="comment">// 由于常量池中没有11，所以常量池指向了s1的内存地址</span></span><br><span class="line">s1.intern();</span><br><span class="line"><span class="comment">// 这里是从常量池中取的</span></span><br><span class="line">String s2 = <span class="string">&quot;11&quot;</span>;</span><br><span class="line"><span class="comment">// 所以两者一致</span></span><br><span class="line">System.out.println(s1 == s2);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>由于从jdk7开始常量池是在堆中的存放的，所以在使用intern()方法时，如果常量池中有的话，会直接返回常量池中已有的该字符串的地址；如果常量池中没有，则会把对象的引用地址复制一份，放入到常量池中，并返回常量池中该字符串的引用地址，而这个引用地址其实就是刚放进去的字符串引用地址</p>
+</blockquote>
 
     </div>
 
@@ -374,7 +404,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">字符串常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E7%9A%84%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">字符串常量池的底层结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E7%9A%84%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">字符串常量池的存储位置</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">字符串常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E7%9A%84%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">字符串常量池的底层结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E7%9A%84%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">字符串常量池的存储位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="nav-number">1.3.</span> <span class="nav-text">字符串拼接</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://isfox.github.io/2021/JVM/14.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F/</loc>
+    
+    <lastmod>2021-06-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/spring/11.spring%E6%B3%A8%E8%A7%A3%E6%95%B4%E7%90%86/</loc>
     
     <lastmod>2021-06-17</lastmod>
@@ -52,13 +59,6 @@
   
   <url>
     <loc>https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20streaming/1.spark%20Streaming%E7%AE%80%E4%BB%8B/</loc>
-    
-    <lastmod>2021-06-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/2021/JVM/14.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F/</loc>
     
     <lastmod>2021-06-17</lastmod>
     
@@ -3572,14 +3572,14 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/</loc>
+    <loc>https://isfox.github.io/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</loc>
     
     <lastmod>2020-08-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://isfox.github.io/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</loc>
+    <loc>https://isfox.github.io/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/</loc>
     
     <lastmod>2020-08-16</lastmod>
     
@@ -3609,6 +3609,13 @@
   </url>
   
   <url>
+    <loc>https://isfox.github.io/tags/Git/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/tags/JVM/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -3617,13 +3624,6 @@
   
   <url>
     <loc>https://isfox.github.io/tags/java%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/tags/Git/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -3679,13 +3679,6 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/xml/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://isfox.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -3693,7 +3686,21 @@
   </url>
   
   <url>
+    <loc>https://isfox.github.io/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/tags/windows/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/tags/xml/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -3708,13 +3715,6 @@
   
   <url>
     <loc>https://isfox.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -3791,6 +3791,20 @@
   </url>
   
   <url>
+    <loc>https://isfox.github.io/tags/java/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/tags/JDBC/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -3826,28 +3840,14 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/java/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://isfox.github.io/tags/Ajax/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/tags/HTML/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -3889,20 +3889,6 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/spark/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/tags/HTML/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://isfox.github.io/tags/hbase/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -3917,14 +3903,14 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/sqoop/</loc>
+    <loc>https://isfox.github.io/tags/spark/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/Feign/</loc>
+    <loc>https://isfox.github.io/tags/sqoop/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -3938,14 +3924,7 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/</loc>
+    <loc>https://isfox.github.io/tags/jenkins/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -3959,20 +3938,6 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/tags/Nginx/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://isfox.github.io/tags/Lucene/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -3980,7 +3945,21 @@
   </url>
   
   <url>
+    <loc>https://isfox.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/tags/NoSQL/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/tags/Nginx/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4008,13 +3987,6 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/spring/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://isfox.github.io/tags/mybatis/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -4022,7 +3994,7 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/springmvc/</loc>
+    <loc>https://isfox.github.io/tags/spring/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4030,6 +4002,13 @@
   
   <url>
     <loc>https://isfox.github.io/tags/springboot/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/tags/springmvc/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4050,6 +4029,13 @@
   </url>
   
   <url>
+    <loc>https://isfox.github.io/tags/JMS/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/tags/RabbitMQ/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -4064,7 +4050,7 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/JMS/</loc>
+    <loc>https://isfox.github.io/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4078,14 +4064,28 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/jenkins/</loc>
+    <loc>https://isfox.github.io/tags/%E7%A1%AC%E4%BB%B6/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/%E7%A1%AC%E4%BB%B6/</loc>
+    <loc>https://isfox.github.io/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/tags/Feign/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4099,7 +4099,7 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/tags/Eureka/</loc>
+    <loc>https://isfox.github.io/tags/memcached/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4107,13 +4107,6 @@
   
   <url>
     <loc>https://isfox.github.io/tags/MySQL/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/tags/memcached/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4133,10 +4126,24 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://isfox.github.io/tags/Eureka/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
     <loc>https://isfox.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/categories/Git/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4151,13 +4158,6 @@
   
   <url>
     <loc>https://isfox.github.io/categories/java%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/categories/Git/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4199,13 +4199,6 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/xml/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://isfox.github.io/categories/IE%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -4214,6 +4207,13 @@
   
   <url>
     <loc>https://isfox.github.io/categories/windows/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/categories/xml/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4304,6 +4304,13 @@
   </url>
   
   <url>
+    <loc>https://isfox.github.io/categories/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/categories/JDBC/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -4332,21 +4339,14 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/categories/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://isfox.github.io/categories/Ajax/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/categories/HTML/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4388,20 +4388,6 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/spark/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/categories/HTML/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://isfox.github.io/categories/hbase/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -4416,14 +4402,14 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/sqoop/</loc>
+    <loc>https://isfox.github.io/categories/spark/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <loc>https://isfox.github.io/categories/sqoop/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4437,21 +4423,14 @@
   </url>
   
   <url>
+    <loc>https://isfox.github.io/categories/jenkins/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/categories/Elasticsearch/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isfox.github.io/categories/Nginx/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4465,7 +4444,21 @@
   </url>
   
   <url>
+    <loc>https://isfox.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/categories/NoSQL/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/categories/Nginx/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4493,13 +4486,6 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/spring/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://isfox.github.io/categories/mybatis/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -4507,7 +4493,7 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/springmvc/</loc>
+    <loc>https://isfox.github.io/categories/spring/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4515,6 +4501,13 @@
   
   <url>
     <loc>https://isfox.github.io/categories/springboot/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isfox.github.io/categories/springmvc/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4535,6 +4528,13 @@
   </url>
   
   <url>
+    <loc>https://isfox.github.io/categories/JMS/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isfox.github.io/categories/kafka/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -4542,7 +4542,7 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/JMS/</loc>
+    <loc>https://isfox.github.io/categories/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4556,14 +4556,14 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/jenkins/</loc>
+    <loc>https://isfox.github.io/categories/%E7%A1%AC%E4%BB%B6/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/%E7%A1%AC%E4%BB%B6/</loc>
+    <loc>https://isfox.github.io/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -4577,14 +4577,14 @@
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/MySQL/</loc>
+    <loc>https://isfox.github.io/categories/memcached/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://isfox.github.io/categories/memcached/</loc>
+    <loc>https://isfox.github.io/categories/MySQL/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
