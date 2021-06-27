@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://zhhll.icu/2020/java%E5%9F%BA%E7%A1%80/IO/1.java%E5%9F%BA%E7%A1%80%E4%B9%8BIO%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2021-06-27</lastmod>
+  </url>
+  <url>
+    <loc>http://zhhll.icu/2021/java%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A0%81/</loc>
+    <lastmod>2021-06-27</lastmod>
+  </url>
+  <url>
+    <loc>http://zhhll.icu/2020/java%E5%9F%BA%E7%A1%80/java%E5%8E%9F%E7%A0%81/</loc>
+    <lastmod>2021-06-27</lastmod>
+  </url>
+  <url>
     <loc>http://zhhll.icu/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/</loc>
     <lastmod>2021-06-27</lastmod>
   </url>
@@ -895,10 +907,6 @@
   <url>
     <loc>http://zhhll.icu/2020/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/10.tomcat%E4%B9%8B%E8%BF%87%E6%BB%A4%E5%99%A8/</loc>
     <lastmod>2021-05-08</lastmod>
-  </url>
-  <url>
-    <loc>http://zhhll.icu/2020/java%E5%9F%BA%E7%A1%80/IO/1.java%E5%9F%BA%E7%A1%80%E4%B9%8BIO%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2021-05-07</lastmod>
   </url>
   <url>
     <loc>http://zhhll.icu/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/2.CopyOnWrite%E5%AE%B9%E5%99%A8/</loc>
@@ -2010,10 +2018,6 @@
   </url>
   <url>
     <loc>http://zhhll.icu/2020/javaweb/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2020-12-18</lastmod>
-  </url>
-  <url>
-    <loc>http://zhhll.icu/2020/java%E5%9F%BA%E7%A1%80/java%E5%8E%9F%E7%A0%81/</loc>
     <lastmod>2020-12-18</lastmod>
   </url>
   <url>
