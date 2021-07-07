@@ -194,111 +194,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/18.MySQL%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/18.MySQL%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">MySQL数据存储</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-18 20:11:30 / 修改时间：15:51:27" itemprop="dateCreated datePublished" datetime="2021-06-18T20:11:30+08:00">2021-06-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/18.MySQL%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL数据存储" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/18.MySQL%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/18.MySQL%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="MySQL数据存储"><a href="#MySQL数据存储" class="headerlink" title="MySQL数据存储"></a>MySQL数据存储</h2><p>Innodb存储引擎的数据存储，可以使用两种方式进行存储：系统表空间和独立表空间</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ON表示使用的是独立表空间</span></span><br><span class="line"><span class="comment">-- OFF表示使用的是系统表空间</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">&#x27;%innodb_file_per_table%&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="系统表空间-共享表空间"><a href="#系统表空间-共享表空间" class="headerlink" title="系统表空间(共享表空间)"></a>系统表空间(共享表空间)</h3><p>在MySQL5.5之前默认使用的是系统表空间，系统表空间是指每一个数据库所有的表数据，索引文件全部放在一个文件中，文件名为ibdataX(X代表第几个文件，从1开始)，默认初始化是12M</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">&#x27;innodb_data%&#x27;</span>;</span><br><span class="line"></span><br><span class="line">Variable_name              Value</span><br><span class="line">innodb_data_file_path    ibdata1:12M:autoextend</span><br><span class="line">innodb_data_home_dir    </span><br></pre></td></tr></table></figure>
-
-<p>autoextend表示自动扩展，当文件存储满时会自动进行扩展，默认增量是64M</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">&#x27;innodb_autoextend_increment&#x27;</span>;</span><br><span class="line"></span><br><span class="line">Variable_name                  Value</span><br><span class="line">innodb_autoextend_increment    64</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/18.MySQL%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/spring/%E8%BF%9B%E9%98%B6/2.%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9E%84%E5%BB%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -850,10 +745,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-06-16 20:37:40 / 修改时间：10:39:34" itemprop="dateCreated datePublished" datetime="2021-06-16T20:37:40+08:00">2021-06-16</time>
+              <time title="创建时间：2021-06-16 20:37:40" itemprop="dateCreated datePublished" datetime="2021-06-16T20:37:40+08:00">2021-06-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-01 11:23:25" itemprop="dateModified" datetime="2021-07-01T11:23:25+08:00">2021-07-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -900,7 +801,7 @@
 
 
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">javap 的命令选项</span></span><br><span class="line">  -version                 版本信息</span><br><span class="line">  -v  -verbose             输出附加信息</span><br><span class="line">  -l                       输出行号和本地变量表</span><br><span class="line">  -public                  仅显示公共类和成员</span><br><span class="line">  -protected               显示受保护的/公共类和成员</span><br><span class="line">  -package                 显示程序包/受保护的/公共类</span><br><span class="line">                           和成员 (默认)</span><br><span class="line">  -p  -private             显示所有类和成员</span><br><span class="line">  -c                       对代码进行反汇编</span><br><span class="line">  -s                       输出内部类型签名</span><br><span class="line">  -sysinfo                 显示正在处理的类的</span><br><span class="line">                           系统信息 (路径, 大小, 日期, MD5 散列)</span><br><span class="line">  -constants               显示最终常量</span><br><span class="line">  -classpath &lt;path&gt;        指定查找用户类文件的位置</span><br><span class="line">  -cp &lt;path&gt;               指定查找用户类文件的位置</span><br><span class="line">  -bootclasspath &lt;path&gt;    覆盖引导类文件的位置</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">javap 的命令选项</span></span><br><span class="line">  -version                 版本信息</span><br><span class="line">  -v  -verbose             输出附加信息，不包括私有信息，可以与-p结合，查看最全的信息</span><br><span class="line">  -l                       输出行号和本地变量表</span><br><span class="line">  -public                  仅显示公共类和成员</span><br><span class="line">  -protected               显示受保护的/公共类和成员</span><br><span class="line">  -package                 显示程序包/受保护的/公共类</span><br><span class="line">                           和成员 (默认)</span><br><span class="line">  -p  -private             显示所有类和成员</span><br><span class="line">  -c                       对代码进行反汇编</span><br><span class="line">  -s                       输出内部类型签名</span><br><span class="line">  -sysinfo                 显示正在处理的类的系统信息 (路径, 大小, 日期, MD5 散列)</span><br><span class="line">  -constants               显示最终常量</span><br><span class="line">  -classpath &lt;path&gt;        指定查找用户类文件的位置</span><br><span class="line">  -cp &lt;path&gt;               指定查找用户类文件的位置</span><br><span class="line">  -bootclasspath &lt;path&gt;    覆盖引导类文件的位置</span><br></pre></td></tr></table></figure>
 
 
 
@@ -1041,10 +942,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-06-16 18:58:40 / 修改时间：10:57:28" itemprop="dateCreated datePublished" datetime="2021-06-16T18:58:40+08:00">2021-06-16</time>
+              <time title="创建时间：2021-06-16 18:58:40" itemprop="dateCreated datePublished" datetime="2021-06-16T18:58:40+08:00">2021-06-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-07 19:21:19" itemprop="dateModified" datetime="2021-07-07T19:21:19+08:00">2021-07-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1087,8 +994,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="字节码文件"><a href="#字节码文件" class="headerlink" title="字节码文件"></a>字节码文件</h2><p>字节码文件中包含的内容有包含类的版本信息、字段、方法以及接口等描述信息外，还有常量池表(Constant Pool Table)，包括各种字面量和对类型、域(Field)和方法的符号引用</p>
-
+          <h2 id="字节码文件"><a href="#字节码文件" class="headerlink" title="字节码文件"></a>字节码文件</h2><p>字节码文件中包含的内容有包含类的版本信息、字段、方法以及接口等描述信息外，还有常量池表(Constant Pool Table)，包括各种字面量和对类型、域(Field)和方法的符号引用，指令代码行号表等信息</p>
+<ul>
+<li>java栈中：局部变量表、操作数栈</li>
+<li>java堆中</li>
+<li>常量池</li>
+<li>帧数据区、方法区的剩余情况</li>
+</ul>
+<h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ClassFile &#123;</span><br><span class="line">    u4             magic;<span class="regexp">//</span> 魔数，识别class文件格式 cafe babe</span><br><span class="line">    u2             minor_version; <span class="regexp">//</span> 副版本号</span><br><span class="line">    u2             major_version; <span class="regexp">//</span> 主版本号</span><br><span class="line">    u2             constant_pool_count; <span class="regexp">//</span>常量池计数器，计数从<span class="number">1</span>开始，记录常量池表中的数量，减一等于常量池表的长度</span><br><span class="line">    cp_info        constant_pool[constant_pool_count-<span class="number">1</span>]; <span class="regexp">//</span>常量池表，用于存放编译时期生成的各种字面量和符号引用，这部分内容将在类加载后进入方法区的运行时常量池中存放</span><br><span class="line">    u2             access_flags; <span class="regexp">//</span> 访问标识</span><br><span class="line">    u2             this_class; <span class="regexp">//</span> 类索引</span><br><span class="line">    u2             super_class; <span class="regexp">//</span> 父类索引</span><br><span class="line">    u2             interfaces_count; <span class="regexp">//</span> 接口计数器</span><br><span class="line">    u2             interfaces[interfaces_count]; <span class="regexp">//</span> 接口索引集合</span><br><span class="line">    u2             fields_count; <span class="regexp">//</span> 字段计数器</span><br><span class="line">    field_info     fields[fields_count]; <span class="regexp">//</span> 字段表</span><br><span class="line">    u2             methods_count; <span class="regexp">//</span> 方法计数器</span><br><span class="line">    method_info    methods[methods_count]; <span class="regexp">//</span> 方法表</span><br><span class="line">    u2             attributes_count; <span class="regexp">//</span> 属性计数器</span><br><span class="line">    attribute_info attributes[attributes_count]; <span class="regexp">//</span>属性表</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/JVM/13.%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1202,10 +1123,117 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/12.%E6%96%B9%E6%B3%95%E5%8C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/JVM/12.%E6%96%B9%E6%B3%95%E5%8C%BA/" class="post-title-link" itemprop="url">方法区</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-14 18:58:40" itemprop="dateCreated datePublished" datetime="2021-06-14T18:58:40+08:00">2021-06-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-16 17:00:30" itemprop="dateModified" datetime="2021-06-16T17:00:30+08:00">2021-06-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/12.%E6%96%B9%E6%B3%95%E5%8C%BA/" class="post-meta-item leancloud_visitors" data-flag-title="方法区" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/12.%E6%96%B9%E6%B3%95%E5%8C%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/12.%E6%96%B9%E6%B3%95%E5%8C%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>方法区在逻辑上虽然属于堆的一部分，但是简单的实现上可能不会选择去进行垃圾回收或者进行压缩，在Hotspot中为了区分方法区和堆，方法区又被称为非堆，所以**<em>方法区可以看做是独立于堆的一块内存空间**</em></p>
+<p>方法区的生命周期与JVM实例也是一致的，在JVM启动的时候就会被创建，也是各个线程共享的区域，其存储的是类的信息，所以方法区的大小决定了系统可以保存多少个类，如果系统定义的类过多，方法区就会溢出，从而出现OOM</p>
+<blockquote>
+<p>jdk7及之前报的是java.lang.OutOfMemoryError:PermGen space，jdk8报的是java.lang.OutOfMemoryError:Metaspace</p>
+</blockquote>
+<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/JVM/12.%E6%96%B9%E6%B3%95%E5%8C%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1273,7 +1301,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">521</span>
+          <span class="site-state-item-count">520</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

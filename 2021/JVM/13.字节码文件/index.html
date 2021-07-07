@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="字节码文件字节码文件中包含的内容有包含类的版本信息、字段、方法以及接口等描述信息外，还有常量池表(Constant Pool Table)，包括各种字面量和对类型、域(Field)和方法的符号引用">
+  <meta name="description" content="字节码文件字节码文件中包含的内容有包含类的版本信息、字段、方法以及接口等描述信息外，还有常量池表(Constant Pool Table)，包括各种字面量和对类型、域(Field)和方法的符号引用，指令代码行号表等信息  java栈中：局部变量表、操作数栈 java堆中 常量池 帧数据区、方法区的剩余情况  文件结构123456789101112131415161718ClassFile &amp;#12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字节码文件">
 <meta property="og:url" content="https://isfox.github.io/2021/JVM/13.%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="小菜鸟">
-<meta property="og:description" content="字节码文件字节码文件中包含的内容有包含类的版本信息、字段、方法以及接口等描述信息外，还有常量池表(Constant Pool Table)，包括各种字面量和对类型、域(Field)和方法的符号引用">
+<meta property="og:description" content="字节码文件字节码文件中包含的内容有包含类的版本信息、字段、方法以及接口等描述信息外，还有常量池表(Constant Pool Table)，包括各种字面量和对类型、域(Field)和方法的符号引用，指令代码行号表等信息  java栈中：局部变量表、操作数栈 java堆中 常量池 帧数据区、方法区的剩余情况  文件结构123456789101112131415161718ClassFile &amp;#12">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-16T10:58:40.000Z">
-<meta property="article:modified_time" content="2021-06-16T02:57:28.689Z">
+<meta property="article:modified_time" content="2021-07-07T11:21:19.116Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -220,10 +220,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-06-16 18:58:40 / 修改时间：10:57:28" itemprop="dateCreated datePublished" datetime="2021-06-16T18:58:40+08:00">2021-06-16</time>
+              <time title="创建时间：2021-06-16 18:58:40" itemprop="dateCreated datePublished" datetime="2021-06-16T18:58:40+08:00">2021-06-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-07 19:21:19" itemprop="dateModified" datetime="2021-07-07T19:21:19+08:00">2021-07-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -266,7 +272,296 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="字节码文件"><a href="#字节码文件" class="headerlink" title="字节码文件"></a>字节码文件</h2><p>字节码文件中包含的内容有包含类的版本信息、字段、方法以及接口等描述信息外，还有常量池表(Constant Pool Table)，包括各种字面量和对类型、域(Field)和方法的符号引用</p>
+        <h2 id="字节码文件"><a href="#字节码文件" class="headerlink" title="字节码文件"></a>字节码文件</h2><p>字节码文件中包含的内容有包含类的版本信息、字段、方法以及接口等描述信息外，还有常量池表(Constant Pool Table)，包括各种字面量和对类型、域(Field)和方法的符号引用，指令代码行号表等信息</p>
+<ul>
+<li>java栈中：局部变量表、操作数栈</li>
+<li>java堆中</li>
+<li>常量池</li>
+<li>帧数据区、方法区的剩余情况</li>
+</ul>
+<h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ClassFile &#123;</span><br><span class="line">    u4             magic;<span class="regexp">//</span> 魔数，识别class文件格式 cafe babe</span><br><span class="line">    u2             minor_version; <span class="regexp">//</span> 副版本号</span><br><span class="line">    u2             major_version; <span class="regexp">//</span> 主版本号</span><br><span class="line">    u2             constant_pool_count; <span class="regexp">//</span>常量池计数器，计数从<span class="number">1</span>开始，记录常量池表中的数量，减一等于常量池表的长度</span><br><span class="line">    cp_info        constant_pool[constant_pool_count-<span class="number">1</span>]; <span class="regexp">//</span>常量池表，用于存放编译时期生成的各种字面量和符号引用，这部分内容将在类加载后进入方法区的运行时常量池中存放</span><br><span class="line">    u2             access_flags; <span class="regexp">//</span> 访问标识</span><br><span class="line">    u2             this_class; <span class="regexp">//</span> 类索引</span><br><span class="line">    u2             super_class; <span class="regexp">//</span> 父类索引</span><br><span class="line">    u2             interfaces_count; <span class="regexp">//</span> 接口计数器</span><br><span class="line">    u2             interfaces[interfaces_count]; <span class="regexp">//</span> 接口索引集合</span><br><span class="line">    u2             fields_count; <span class="regexp">//</span> 字段计数器</span><br><span class="line">    field_info     fields[fields_count]; <span class="regexp">//</span> 字段表</span><br><span class="line">    u2             methods_count; <span class="regexp">//</span> 方法计数器</span><br><span class="line">    method_info    methods[methods_count]; <span class="regexp">//</span> 方法表</span><br><span class="line">    u2             attributes_count; <span class="regexp">//</span> 属性计数器</span><br><span class="line">    attribute_info attributes[attributes_count]; <span class="regexp">//</span>属性表</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h4 id="魔数"><a href="#魔数" class="headerlink" title="魔数"></a>魔数</h4><p>魔数是用来识别class文件格式，java的class文件中都是 cafe babe</p>
+<h4 id="副版本号"><a href="#副版本号" class="headerlink" title="副版本号"></a>副版本号</h4><h4 id="主版本号"><a href="#主版本号" class="headerlink" title="主版本号"></a>主版本号</h4><h4 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h4><p>常量池分为常量池计数器和常量池表</p>
+<h4 id="常量池计数器"><a href="#常量池计数器" class="headerlink" title="常量池计数器"></a>常量池计数器</h4><p>计数从1开始，记录常量池表中的数量，减一等于常量池表的长度</p>
+<h4 id="常量池表"><a href="#常量池表" class="headerlink" title="常量池表"></a>常量池表</h4><p>常量池表中主要存放<strong>字面量</strong>和<strong>符号引用</strong>，这部分内容将在类加载后进入方法区的运行时常量池中存放</p>
+<p><strong>字面量</strong>主要是*<strong>文本字符串**<em>和</em></strong>声明为final的常量值***</p>
+<p><strong>符号引用</strong>主要是类和接口的全限定名，字段的名称和描述符，方法的名称和描述符</p>
+<table>
+<thead>
+<tr>
+<th><em>FieldType</em> term</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>B</code></td>
+<td><code>byte</code></td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td><code>char</code></td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td><code>double</code></td>
+</tr>
+<tr>
+<td><code>F</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td><code>J</code></td>
+<td><code>long</code></td>
+</tr>
+<tr>
+<td><code>L</code> <em>ClassName</em> <code>;</code></td>
+<td>对象reference`</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td><code>short</code></td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td><code>boolean</code></td>
+</tr>
+<tr>
+<td><code>[</code></td>
+<td><code>数组reference</code></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>常量类型</th>
+<th>标志值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CONSTANT_Class</code></td>
+<td>7</td>
+<td>类或接口的符号引用</td>
+</tr>
+<tr>
+<td><code>CONSTANT_Fieldref</code></td>
+<td>9</td>
+<td>字段的符号引用</td>
+</tr>
+<tr>
+<td><code>CONSTANT_Methodref</code></td>
+<td>10</td>
+<td>类中方法的符号引用</td>
+</tr>
+<tr>
+<td><code>CONSTANT_InterfaceMethodref</code></td>
+<td>11</td>
+<td>接口中方法的符号引用</td>
+</tr>
+<tr>
+<td><code>CONSTANT_String</code></td>
+<td>8</td>
+<td>字符串类型字面量</td>
+</tr>
+<tr>
+<td><code>CONSTANT_Integer</code></td>
+<td>3</td>
+<td>整型字面量</td>
+</tr>
+<tr>
+<td><code>CONSTANT_Float</code></td>
+<td>4</td>
+<td>浮点型字面量</td>
+</tr>
+<tr>
+<td><code>CONSTANT_Long</code></td>
+<td>5</td>
+<td>长整型字面量</td>
+</tr>
+<tr>
+<td><code>CONSTANT_Double</code></td>
+<td>6</td>
+<td>双精度浮点型字面量</td>
+</tr>
+<tr>
+<td><code>CONSTANT_NameAndType</code></td>
+<td>12</td>
+<td>字段或方法的符号引用</td>
+</tr>
+<tr>
+<td><code>CONSTANT_Utf8</code></td>
+<td>1</td>
+<td>UTF-8编码的字符串</td>
+</tr>
+<tr>
+<td><code>CONSTANT_MethodHandle</code></td>
+<td>15</td>
+<td>犯法句柄</td>
+</tr>
+<tr>
+<td><code>CONSTANT_MethodType</code></td>
+<td>16</td>
+<td>标志方法类型</td>
+</tr>
+<tr>
+<td><code>CONSTANT_InvokeDynamic</code></td>
+<td>18</td>
+<td>动态方法调用点</td>
+</tr>
+</tbody></table>
+<h4 id="访问标识"><a href="#访问标识" class="headerlink" title="访问标识"></a>访问标识</h4><table>
+<thead>
+<tr>
+<th>标识名称</th>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ACC_PUBLIC</code></td>
+<td>0x0001</td>
+<td>标识为public，可以被包外访问</td>
+</tr>
+<tr>
+<td><code>ACC_FINAL</code></td>
+<td>0x0010</td>
+<td>标识被声明为final，不允许有子类</td>
+</tr>
+<tr>
+<td><code>ACC_SUPER</code></td>
+<td>0x0020</td>
+<td>表示允许使用<em>invokespecial</em>字节码指令来调用父类的方法</td>
+</tr>
+<tr>
+<td><code>ACC_INTERFACE</code></td>
+<td>0x0200</td>
+<td>标识这是一个接口</td>
+</tr>
+<tr>
+<td><code>ACC_ABSTRACT</code></td>
+<td>0x0400</td>
+<td>声明为<code>abstract</code>，不能直接被实例化</td>
+</tr>
+<tr>
+<td><code>ACC_SYNTHETIC</code></td>
+<td>0x1000</td>
+<td>表示是由编译器产生的类，没有对应的源码</td>
+</tr>
+<tr>
+<td><code>ACC_ANNOTATION</code></td>
+<td>0x2000</td>
+<td>声明为annotation类型，注解</td>
+</tr>
+<tr>
+<td><code>ACC_ENUM</code></td>
+<td>0x4000</td>
+<td>声明为<code>enum</code>类型，枚举</td>
+</tr>
+</tbody></table>
+<h4 id="字段表集合"><a href="#字段表集合" class="headerlink" title="字段表集合"></a>字段表集合</h4><p>字段计数器和字段表</p>
+<p>字段包括**<em>类变量以及实例变量**</em>，不包括方法内部、代码块内部声明的局部变量，也不会列出从父类或者实现的接口中继承来的字段</p>
+<p>字段的名称、类型是引用的常量池中的常量来进行描述的，常量池中描述了每个字段的完整信息，包括字段标识符、访问修饰符、static修饰、final修饰等</p>
+<h4 id="方法表集合"><a href="#方法表集合" class="headerlink" title="方法表集合"></a>方法表集合</h4><p>方法表中存储的是一个一个的method_info，method_info结构可以表示类和接口中定义的所有方法，包括实例方法、类方法、实例初始化方法和类或接口初始化方法</p>
+<h4 id="属性表集合"><a href="#属性表集合" class="headerlink" title="属性表集合"></a>属性表集合</h4><p>记录的是class文件所携带的辅助信息，如class文件的源文件名称，以及带有RetentionPolicy.CLASS或RetentionPolicy.RUNTIME的注解</p>
+<h3 id="字节码指令"><a href="#字节码指令" class="headerlink" title="字节码指令"></a>字节码指令</h3><p>字节码指令由<strong>一个操作码</strong>(一个字节长度、代表着特殊含义的数字)以及操作码之后有<strong>零个至多个代表此操作所需参数</strong>构成</p>
+<p>分为九类指令</p>
+<ul>
+<li>加载与存储指令</li>
+<li>算术指令</li>
+<li>类型转换指令</li>
+<li>对象的创建与访问指令</li>
+<li>方法调用与返回指令</li>
+<li>操作数栈管理指令</li>
+<li>比较控制指令</li>
+<li>异常处理指令</li>
+<li>同步控制指令</li>
+</ul>
+<h4 id="加载与存储指令"><a href="#加载与存储指令" class="headerlink" title="加载与存储指令"></a>加载与存储指令</h4><p>加载和存储指令用于将数据从栈帧的局部变量表和操作数栈之间来回传递</p>
+<p><strong>加载</strong>是指从局部变量表或常量池中加载到操作数栈，入栈</p>
+<p><strong>存储</strong>是指将数据从操作数栈存储到局部变量表</p>
+<h5 id="局部变量压栈指令"><a href="#局部变量压栈指令" class="headerlink" title="局部变量压栈指令"></a>局部变量压栈指令</h5><ul>
+<li><code>xload_&lt;n&gt;</code>  x为变量类型i/f/l/d/a，n为0到3，表示将第n个局部变量压入操作数栈</li>
+<li><code>xload </code> x为变量类型i/f/l/d/a  xload通过指定参数的形式，将局部变量压入操作数栈，使用该命令时，表示局部变量的数量可能超过4个</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadN</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">long</span> l,APP app)</span></span>&#123;</span><br><span class="line">      <span class="comment">// iload_1   从LocalVariableTable可以看到，0位是this</span></span><br><span class="line">    System.out.println(i);</span><br><span class="line">      <span class="comment">// lload_2</span></span><br><span class="line">    System.out.println(l);</span><br><span class="line">      <span class="comment">// aload         4</span></span><br><span class="line">    System.out.println(app);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public void loadN(int, long, com.zhanghe.study.jvm.TestLoad$APP);</span><br><span class="line">    descriptor: (IJLcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad$APP;)V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack&#x3D;3, locals&#x3D;5, args_size&#x3D;4</span><br><span class="line">         0: getstatic     #2                  &#x2F;&#x2F; Field java&#x2F;lang&#x2F;System.out:Ljava&#x2F;io&#x2F;PrintStream;</span><br><span class="line">         3: iload_1</span><br><span class="line">         4: invokevirtual #3                  &#x2F;&#x2F; Method java&#x2F;io&#x2F;PrintStream.println:(I)V</span><br><span class="line">         7: getstatic     #2                  &#x2F;&#x2F; Field java&#x2F;lang&#x2F;System.out:Ljava&#x2F;io&#x2F;PrintStream;</span><br><span class="line">        10: lload_2</span><br><span class="line">        11: invokevirtual #4                  &#x2F;&#x2F; Method java&#x2F;io&#x2F;PrintStream.println:(J)V</span><br><span class="line">        14: getstatic     #2                  &#x2F;&#x2F; Field java&#x2F;lang&#x2F;System.out:Ljava&#x2F;io&#x2F;PrintStream;</span><br><span class="line">        17: aload         4</span><br><span class="line">        19: invokevirtual #5                  &#x2F;&#x2F; Method java&#x2F;io&#x2F;PrintStream.println:(Ljava&#x2F;lang&#x2F;Object;)V</span><br><span class="line">        22: return</span><br><span class="line">      </span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            0      23     0  this   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad;</span><br><span class="line">            0      23     1     i   I</span><br><span class="line">            0      23     2     l   J</span><br><span class="line">            0      23     4   app   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad$APP;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="常量入栈指令"><a href="#常量入栈指令" class="headerlink" title="常量入栈指令"></a>常量入栈指令</h5><p>常量入栈指令的功能是将常量压入操作数栈</p>
+<ul>
+<li><p>const指令  对特定的常量入栈，</p>
+<p>如<code>iconst_&lt;i&gt;</code>(i从-1到5)、<code>lconst_&lt;l&gt;</code>(l从0到1)、<code>fconst_&lt;f&gt;</code>（f从0到2）、<code>dconst_&lt;d&gt;</code>(d从0到1)、<code>aconst_null</code></p>
+</li>
+<li><p>push指令  主要有bipush和sipush，bipush接收8位整数（byte类型），sipush接收16位整数（short类型）</p>
+</li>
+<li><p>ldc指令  可以接收8位参数，该参数指向常量池中的int、float、或String的索引，将指定的内容压入栈；如果超过8位的话，还有<code>ldc_w</code>，表示接收两个8位参数；如果接收的是long或double类型的，则使用<code>ldc2_w</code></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushConstLdc</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// iconst_5</span></span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="comment">// bipush        127</span></span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">127</span>;</span><br><span class="line">    <span class="comment">// sipush        128</span></span><br><span class="line">    <span class="keyword">int</span> c = <span class="number">128</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ldc           #6                  // int 32768</span></span><br><span class="line">    <span class="keyword">int</span> f = <span class="number">32768</span>;</span><br><span class="line">    <span class="comment">// ldc           #7                  // String 123</span></span><br><span class="line">    String s = <span class="string">&quot;123&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ldc2_w        #8                  // long 20l</span></span><br><span class="line">    <span class="keyword">long</span> l = <span class="number">20</span>;</span><br><span class="line">    <span class="comment">// ldc           #10                 // float 20.2f</span></span><br><span class="line">    <span class="keyword">float</span> f1 = <span class="number">20.2f</span>;</span><br><span class="line">    <span class="comment">// ldc2_w        #11                 // double 20.12d</span></span><br><span class="line">    <span class="keyword">double</span> d = <span class="number">20.12</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public void pushConstLdc();</span><br><span class="line">   descriptor: ()V</span><br><span class="line">   flags: ACC_PUBLIC</span><br><span class="line">   Code:</span><br><span class="line">     stack&#x3D;2, locals&#x3D;11, args_size&#x3D;1</span><br><span class="line">        0: iconst_5</span><br><span class="line">        1: istore_1</span><br><span class="line">        2: bipush        127</span><br><span class="line">        4: istore_2</span><br><span class="line">        5: sipush        128</span><br><span class="line">        8: istore_3</span><br><span class="line">        9: ldc           #6                  &#x2F;&#x2F; int 32768</span><br><span class="line">       11: istore        4</span><br><span class="line">       13: ldc           #7                  &#x2F;&#x2F; String 123</span><br><span class="line">       15: astore        5</span><br><span class="line">       17: ldc2_w        #8                  &#x2F;&#x2F; long 20l</span><br><span class="line">       20: lstore        6</span><br><span class="line">       22: ldc           #10                 &#x2F;&#x2F; float 20.2f</span><br><span class="line">       24: fstore        8</span><br><span class="line">       26: ldc2_w        #11                 &#x2F;&#x2F; double 20.12d</span><br><span class="line">       29: dstore        9</span><br><span class="line">       31: return</span><br><span class="line">     </span><br><span class="line">     LocalVariableTable:</span><br><span class="line">       Start  Length  Slot  Name   Signature</span><br><span class="line">           0      32     0  this   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad;</span><br><span class="line">           2      30     1     a   I</span><br><span class="line">           5      27     2     b   I</span><br><span class="line">           9      23     3     c   I</span><br><span class="line">          13      19     4     f   I</span><br><span class="line">          17      15     5     s   Ljava&#x2F;lang&#x2F;String;</span><br><span class="line">          22      10     6     l   J</span><br><span class="line">          26       6     8    f1   F</span><br><span class="line">          31       1     9     d   D</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="出栈装入局部变量表指令"><a href="#出栈装入局部变量表指令" class="headerlink" title="出栈装入局部变量表指令"></a>出栈装入局部变量表指令</h5><p>出栈装入局部变量表指令用于将操作数栈中的栈顶元素弹出后，装入局部变量表的指定位置，用于给局部变量表赋值</p>
+<ul>
+<li>store指令<ul>
+<li>xstore  (x为数据类型,i/l/f/d/a)</li>
+<li>xstore_n (x为数据类型，n为0到3)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">store</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">double</span> d)</span></span>&#123;</span><br><span class="line">        <span class="comment">//  0: iload_1   操作数栈加载i变量入参</span></span><br><span class="line">        <span class="comment">//  1: iconst_2  操作数栈加载常量2</span></span><br><span class="line">        <span class="comment">//  2: iadd      相加操作</span></span><br><span class="line">        <span class="comment">//  3: istore        4   将在操作数栈中相加得到的数值放入局部变量表中索引为4的位置(由于d为double类型，占用了两个位置)</span></span><br><span class="line">        <span class="keyword">int</span> m = i+<span class="number">2</span>;</span><br><span class="line"><span class="comment">//        5: ldc2_w        #13                 // double 100.0d   操作数栈加载常量100</span></span><br><span class="line"><span class="comment">//        8: dstore_2  // 将double类型放入局部变量表第二个索引位置</span></span><br><span class="line">        d = <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void store(int, double);</span><br><span class="line">    descriptor: (ID)V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack&#x3D;2, locals&#x3D;5, args_size&#x3D;3</span><br><span class="line">         0: iload_1</span><br><span class="line">         1: iconst_2</span><br><span class="line">         2: iadd</span><br><span class="line">         3: istore        4</span><br><span class="line">         5: ldc2_w        #13                 &#x2F;&#x2F; double 100.0d</span><br><span class="line">         8: dstore_2</span><br><span class="line">         9: return</span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            0      10     0  this   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad;</span><br><span class="line">            0      10     1     i   I</span><br><span class="line">            0      10     2     d   D</span><br><span class="line">            5       5     4     m   I</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="算术指令"><a href="#算术指令" class="headerlink" title="算术指令"></a>算术指令</h4><ul>
+<li>加法指令  iadd、ladd、fadd、dadd</li>
+<li>减法指令  isub、lsub、fsub、dsub</li>
+<li>乘法指令  imul、lmul、fmul、dmul</li>
+<li>除法指令  idiv、ldiv、fdiv、ddiv</li>
+<li>求余指令  irem、lrem、frem、drem</li>
+<li>取反指令  ineg、lneg、fneg、dneg</li>
+<li>自增指令  iinc</li>
+<li>位运算指令<ul>
+<li>位移指令  ishl、ishr、iushr、lshl、lshr、lushr</li>
+<li>按位或指令  ior、lor</li>
+<li>按位与指令 iand、land</li>
+<li>按位异或指令 ixor、lxor</li>
+</ul>
+</li>
+<li>比较指令  dcmpg、dcmpl、fcmpg、fcmpl、lcmp</li>
+</ul>
+<h5 id="i-和-i的区别"><a href="#i-和-i的区别" class="headerlink" title="i++和++i的区别"></a>i++和++i的区别</h5><p>使用字节码来看一下i++和++i的区别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// i++和++i的区别</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">      </span><br><span class="line"><span class="comment">//        0: iload_1   操作数栈加载i变量</span></span><br><span class="line"><span class="comment">//        1: iinc          1, 1  执行自增运算</span></span><br><span class="line"><span class="comment">//        4: istore_2   将操作数栈中的栈顶存储到局部变量表中</span></span><br><span class="line">        <span class="keyword">int</span> a = i++;</span><br><span class="line">        System.out.println();</span><br><span class="line"><span class="comment">//        11: iinc          1, 1  执行自增运算</span></span><br><span class="line"><span class="comment">//        14: iload_1       操作数栈加载i变量</span></span><br><span class="line"><span class="comment">//        15: istore_3      将操作数栈中的栈顶存储到局部变量表中</span></span><br><span class="line">        <span class="keyword">int</span> b = ++i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public void add(int);</span><br><span class="line">    descriptor: (I)V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack&#x3D;1, locals&#x3D;4, args_size&#x3D;2</span><br><span class="line">         0: iload_1</span><br><span class="line">         1: iinc          1, 1</span><br><span class="line">         4: istore_2</span><br><span class="line">         5: getstatic     #2                  &#x2F;&#x2F; Field java&#x2F;lang&#x2F;System.out:Ljava&#x2F;io&#x2F;PrintStream;</span><br><span class="line">         8: invokevirtual #15                 &#x2F;&#x2F; Method java&#x2F;io&#x2F;PrintStream.println:()V</span><br><span class="line">        11: iinc          1, 1</span><br><span class="line">        14: iload_1</span><br><span class="line">        15: istore_3</span><br><span class="line">        16: return</span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            0      17     0  this   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad;</span><br><span class="line">            0      17     1     i   I</span><br><span class="line">            5      12     2     a   I</span><br><span class="line">           16       1     3     b   I</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="对象的创建与访问指令"><a href="#对象的创建与访问指令" class="headerlink" title="对象的创建与访问指令"></a>对象的创建与访问指令</h4><p>对象操作中分为创建指令、字段访问指令、数组操作指令、类型检查指令</p>
+<h5 id="创建指令"><a href="#创建指令" class="headerlink" title="创建指令"></a>创建指令</h5><ul>
+<li>创建类实例的指令  new</li>
+<li>创建数组的指令  newarray(基本数据类型数组)、anewarray(引用类型数组)、multianewarray(多维数组)</li>
+</ul>
+<h5 id="字段访问指令"><a href="#字段访问指令" class="headerlink" title="字段访问指令"></a>字段访问指令</h5><p>通过字段访问指令来获取对象实例或数组实例中的字段或者数组元素</p>
+<ul>
+<li>访问类字段static的指令     getstatic、putstatic</li>
+<li>访问实例字段   getfield、putfield</li>
+</ul>
+<h5 id="数组操作指令"><a href="#数组操作指令" class="headerlink" title="数组操作指令"></a>数组操作指令</h5><ul>
+<li>xastore  (x代表的是数据类型)把操作数栈的值存贷数组元素中</li>
+<li>xaload  (x代表的是数据类型)把数组元素加载到操作数栈</li>
+</ul>
 
     </div>
 
@@ -353,7 +648,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">字节码文件</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">字节码文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">文件结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AD%94%E6%95%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">魔数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%AF%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">1.1.2.</span> <span class="nav-text">副版本号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">1.1.3.</span> <span class="nav-text">主版本号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E6%B1%A0"><span class="nav-number">1.1.4.</span> <span class="nav-text">常量池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E6%B1%A0%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="nav-number">1.1.5.</span> <span class="nav-text">常量池计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E6%B1%A0%E8%A1%A8"><span class="nav-number">1.1.6.</span> <span class="nav-text">常量池表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%A0%87%E8%AF%86"><span class="nav-number">1.1.7.</span> <span class="nav-text">访问标识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E6%AE%B5%E8%A1%A8%E9%9B%86%E5%90%88"><span class="nav-number">1.1.8.</span> <span class="nav-text">字段表集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E8%A1%A8%E9%9B%86%E5%90%88"><span class="nav-number">1.1.9.</span> <span class="nav-text">方法表集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E8%A1%A8%E9%9B%86%E5%90%88"><span class="nav-number">1.1.10.</span> <span class="nav-text">属性表集合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">字节码指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%AD%98%E5%82%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.1.</span> <span class="nav-text">加载与存储指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%8E%8B%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">局部变量压栈指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">常量入栈指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%87%BA%E6%A0%88%E8%A3%85%E5%85%A5%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E8%A1%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">出栈装入局部变量表指令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.2.</span> <span class="nav-text">算术指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#i-%E5%92%8C-i%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">i++和++i的区别</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.3.</span> <span class="nav-text">对象的创建与访问指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">创建指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AD%97%E6%AE%B5%E8%AE%BF%E9%97%AE%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">字段访问指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">数组操作指令</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -369,7 +664,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">521</span>
+          <span class="site-state-item-count">520</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
