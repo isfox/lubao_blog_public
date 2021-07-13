@@ -194,6 +194,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/19.%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/JVM/19.%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" class="post-title-link" itemprop="url">内存溢出和内存泄漏</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-22 20:35:40 / 修改时间：15:41:24" itemprop="dateCreated datePublished" datetime="2021-06-22T20:35:40+08:00">2021-06-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/19.%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="内存溢出和内存泄漏" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/19.%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/19.%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="内存溢出和内存泄漏"><a href="#内存溢出和内存泄漏" class="headerlink" title="内存溢出和内存泄漏"></a>内存溢出和内存泄漏</h2><h3 id="内存溢出"><a href="#内存溢出" class="headerlink" title="内存溢出"></a>内存溢出</h3><p>内存溢出(OutOfMemoryError，简称OOM)是指没有空闲内存，且垃圾收集器也无法提供更多的内存</p>
+<p>出现OOM的原因有两种：</p>
+<ul>
+<li>java虚拟机设置的堆内存不够</li>
+<li>代码中创建了大量大对象，并且长时间不能被垃圾收集器收集</li>
+</ul>
+<h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p>内存泄漏是指对象不会被程序用到了，但是GC又无法回收这些对象的情况，内存泄漏会逐渐的占用内存，直至耗尽所有内存，最终出现OOM</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/2.MAT%E5%B7%A5%E5%85%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -411,7 +506,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-24 15:57:46" itemprop="dateModified" datetime="2021-06-24T15:57:46+08:00">2021-06-24</time>
+                <time title="修改时间：2021-07-12 16:30:33" itemprop="dateModified" datetime="2021-07-12T16:30:33+08:00">2021-07-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -455,7 +550,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="MySQL系统配置"><a href="#MySQL系统配置" class="headerlink" title="MySQL系统配置"></a>MySQL系统配置</h2><ul>
+          <h2 id="MySQL系统配置"><a href="#MySQL系统配置" class="headerlink" title="MySQL系统配置"></a>MySQL系统配置</h2><p><strong>内存相关</strong></p>
+<ul>
 <li><code>sort_buffer_size</code> 定义了每个线程排序缓存区的大小，MySQL在有查询、需要做排序操作时才会为每个缓冲区分配内存（直接分配该参数的全部内存）(<code>innodb_sort_buffer_size</code>和  <code>myisam_sort_buffer_size</code>和 <code>sort_buffer_size</code>)</li>
 <li><code>join_buffer_size</code> 定义了每个线程所使用的连接缓冲区的大小，如果一个查询关联了多张表，MySQL会为每张表分配一个连接缓冲，导致一个查询产生了多个连接缓冲</li>
 <li><code>read_buffer_size</code> 定义了当对一张MyISAM进行全表扫描时所分配读缓冲池大小，MySQL有查询需要时会为其分配内存，其必须是4k的倍数</li>
@@ -472,32 +568,15 @@
 <p>即使开发使用的表全部是Innodb表，也要为MyISAM预留内存，因为MySQL系统使用的表仍然是MyISAM表</p>
 </blockquote>
 </li>
-<li><p><code>max_connections</code> 控制允许的最大连接数</p>
-</li>
-<li><p><code>max_user_connection</code>：最大连接数，默认为0无上限，最好设一个合理上限</p>
-</li>
-<li><p><code>back_log</code>：back_log值可以指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。也就是说，如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。可以从默认的50升至500</p>
-</li>
-<li><p><code>wait_timeout</code>：数据库连接闲置时间，闲置连接会占用内存资源。可以从默认的8小时减到半小时</p>
-</li>
-<li><p><code>thread_concurrency</code>：并发线程数，设为CPU核数的两倍</p>
-</li>
-<li><p><code>skip_name_resolve</code>：禁止对外部连接进行DNS解析，消除DNS解析时间，但需要所有远程主机用IP访问</p>
-</li>
-<li><p><code>innodb_additional_mem_pool_size</code>：InnoDB存储引擎用来存放数据字典信息以及一些内部数据结构的内存空间大小，当数据库对象非常多的时候，适当调整该参数的大小以确保所有数据都能存放在内存中提高访问效率，当过小的时候，MySQL会记录Warning信息到数据库的错误日志中，这时就需要该调整这个参数大小</p>
-</li>
-<li><p><code>innodb_log_buffer_size</code>：InnoDB存储引擎的事务日志所使用的缓冲区，一般来说不建议超过32MB</p>
-</li>
-<li><p><code>query_cache_size</code>：缓存MySQL中的ResultSet，也就是一条SQL语句执行的结果集，所以仅仅只能针对select语句。当某个表的数据有任何任何变化，都会导致所有引用了该表的select语句在Query Cache中的缓存数据失效。所以，当我们数据变化非常频繁的情况下，使用Query Cache可能得不偿失。根据命中率(Qcache_hits/(Qcache_hits+Qcache_inserts)*100))进行调整，一般不建议太大，256MB可能已经差不多了，大型的配置型静态数据可适当调大。可以通过命令<code>show status like &#39;Qcache_%&#39;</code>查看目前系统Query catch使用大小</p>
-</li>
-<li><p><code>record_buffer</code>：每个进行一个顺序扫描的线程为其扫描的每张表分配这个大小的一个缓冲区。如果你做很多顺序扫描，可能想要增加该值</p>
-</li>
-<li><p><code>thread_cache_size</code>：保存当前没有与连接关联但是准备为后面新的连接服务的线程，可以快速响应连接的线程请求而无需创建新的</p>
-</li>
-<li><p><code>table_cache</code>：类似于thread_cache _size，但用来缓存表文件，对InnoDB效果不大，主要用于MyISAM</p>
-</li>
 </ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/19.MySQL%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -539,10 +618,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-06-18 20:11:30 / 修改时间：15:51:27" itemprop="dateCreated datePublished" datetime="2021-06-18T20:11:30+08:00">2021-06-18</time>
+              <time title="创建时间：2021-06-18 20:11:30" itemprop="dateCreated datePublished" datetime="2021-06-18T20:11:30+08:00">2021-06-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-12 18:08:14" itemprop="dateModified" datetime="2021-07-12T18:08:14+08:00">2021-07-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -644,10 +729,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-06-17 20:20:23 / 修改时间：17:11:44" itemprop="dateCreated datePublished" datetime="2021-06-17T20:20:23+08:00">2021-06-17</time>
+              <time title="创建时间：2021-06-17 20:20:23" itemprop="dateCreated datePublished" datetime="2021-06-17T20:20:23+08:00">2021-06-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-12 14:57:56" itemprop="dateModified" datetime="2021-07-12T14:57:56+08:00">2021-07-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1145,108 +1236,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/%E5%91%BD%E4%BB%A4/1.javap%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/JVM/%E5%91%BD%E4%BB%A4/1.javap%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">javap命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-16 20:37:40" itemprop="dateCreated datePublished" datetime="2021-06-16T20:37:40+08:00">2021-06-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-01 11:23:25" itemprop="dateModified" datetime="2021-07-01T11:23:25+08:00">2021-07-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/JVM/%E5%91%BD%E4%BB%A4/1.javap%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="javap命令" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/JVM/%E5%91%BD%E4%BB%A4/1.javap%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/%E5%91%BD%E4%BB%A4/1.javap%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="javap命令"><a href="#javap命令" class="headerlink" title="javap命令"></a>javap命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">javap的语法</span></span><br><span class="line">javap [选项] class文件</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">javap 的命令选项</span></span><br><span class="line">  -version                 版本信息</span><br><span class="line">  -v  -verbose             输出附加信息，不包括私有信息，可以与-p结合，查看最全的信息</span><br><span class="line">  -l                       输出行号和本地变量表</span><br><span class="line">  -public                  仅显示公共类和成员</span><br><span class="line">  -protected               显示受保护的/公共类和成员</span><br><span class="line">  -package                 显示程序包/受保护的/公共类</span><br><span class="line">                           和成员 (默认)</span><br><span class="line">  -p  -private             显示所有类和成员</span><br><span class="line">  -c                       对代码进行反汇编</span><br><span class="line">  -s                       输出内部类型签名</span><br><span class="line">  -sysinfo                 显示正在处理的类的系统信息 (路径, 大小, 日期, MD5 散列)</span><br><span class="line">  -constants               显示最终常量</span><br><span class="line">  -classpath &lt;path&gt;        指定查找用户类文件的位置</span><br><span class="line">  -cp &lt;path&gt;               指定查找用户类文件的位置</span><br><span class="line">  -bootclasspath &lt;path&gt;    覆盖引导类文件的位置</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1318,7 +1307,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">524</span>
+          <span class="site-state-item-count">525</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -194,6 +194,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="post-title-link" itemprop="url">scala访问修饰符</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-02 10:30:19 / 修改时间：14:01:30" itemprop="dateCreated datePublished" datetime="2021-05-02T10:30:19+08:00">2021-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="post-meta-item leancloud_visitors" data-flag-title="scala访问修饰符" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/11.scala%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="scala访问修饰符"><a href="#scala访问修饰符" class="headerlink" title="scala访问修饰符"></a>scala访问修饰符</h2><p>在java中有四种访问修饰符，public、protected、default、private，那么scala中呢？</p>
+<ul>
+<li><p>当属性访问权限为默认时，从底层看属性是private的，但是因为提供了 xxx_$eq()[类似setter]/xxx()[类似getter] 方法，因此从使用效果看是任何地方 都可以访问) </p>
+</li>
+<li><p>当方法访问权限为默认时，默认为public访问权限 </p>
+</li>
+<li><p>private为私有权限，只在类的内部和伴生对象中可用 </p>
+</li>
+<li><p>protected为受保护权限，scala中受保护权限比Java中更严格，只能子类访问， 同包无法访问(这里是编译器限制的，编译完成java之后其实是public的)</p>
+</li>
+<li><p>在scala中没有public关键字,即不能用public显式的修饰属性和方法</p>
+</li>
+<li><p>包访问权限（表示属性有了限制。同时包也有了限制），这点和Java不一样， 体现出Scala包使用的灵活性</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 包访问权限 表示service包可以使用</span></span><br><span class="line">  <span class="keyword">private</span>[service] <span class="keyword">var</span> name: <span class="type">String</span> = _</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/10.scala%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1144,111 +1249,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">scala数据类型</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-27 21:36:19" itemprop="dateCreated datePublished" datetime="2021-04-27T21:36:19+08:00">2021-04-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-11 11:52:23" itemprop="dateModified" datetime="2021-05-11T11:52:23+08:00">2021-05-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="scala数据类型" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="scala数据类型"><a href="#scala数据类型" class="headerlink" title="scala数据类型"></a>scala数据类型</h2><p>scala中的数据类型都是对象，没有像java那种的基本数据类型，不过scala数据类型分为两类，一类是AnyVal(值类型)，一类为AnyRef(引用类型)</p>
-<img src="/images/scala/数据类型.png" alt="数据类型" style="zoom:50%;">
-
-<p>与java类似，scala有一个根类型Any，是所有类的父类</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/scala/3.scala%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1320,7 +1320,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">524</span>
+          <span class="site-state-item-count">525</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

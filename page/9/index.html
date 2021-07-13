@@ -194,6 +194,108 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/3.SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/3.SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-title-link" itemprop="url">SQL注入攻击防御</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-28 20:54:19" itemprop="dateCreated datePublished" datetime="2021-05-28T20:54:19+08:00">2021-05-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-29 21:11:19" itemprop="dateModified" datetime="2021-05-29T21:11:19+08:00">2021-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="url" rel="index"><span itemprop="name">网站攻击与防御</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/3.SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="SQL注入攻击防御" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/3.SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/3.SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="SQL注入攻击防御"><a href="#SQL注入攻击防御" class="headerlink" title="SQL注入攻击防御"></a>SQL注入攻击防御</h2><h3 id="什么是SQL注入"><a href="#什么是SQL注入" class="headerlink" title="什么是SQL注入"></a>什么是SQL注入</h3><p>所谓SQL注入，就是通过把SQL命令伪装成正常的HTTP请求参数，传递到服务端，欺骗服务器最终执行恶意的SQL命令，达到入侵目的。攻击者可以利用SQL注入漏洞，查询非授权信息，修改数据库服务器的数据，改变表结构，甚至是获取服务器root权限。总而言之，SQL注入漏洞的危害极大，攻击者采用的SQL指令，决定攻击的威力。当前涉及到大批量数据泄露的攻击事件，大部分都是通过利用SQL注入来实施的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/3.SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20streaming/1.spark%20Streaming%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1069,109 +1171,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%90%E7%BB%B4/1.MySQL%E5%A4%87%E4%BB%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%90%E7%BB%B4/1.MySQL%E5%A4%87%E4%BB%BD/" class="post-title-link" itemprop="url">MySQL自动备份脚本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-26 20:04:30" itemprop="dateCreated datePublished" datetime="2021-05-26T20:04:30+08:00">2021-05-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-08 14:59:32" itemprop="dateModified" datetime="2021-07-08T14:59:32+08:00">2021-07-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%90%E7%BB%B4/1.MySQL%E5%A4%87%E4%BB%BD/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL自动备份脚本" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%90%E7%BB%B4/1.MySQL%E5%A4%87%E4%BB%BD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%90%E7%BB%B4/1.MySQL%E5%A4%87%E4%BB%BD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="MySQL自动备份脚本"><a href="#MySQL自动备份脚本" class="headerlink" title="MySQL自动备份脚本"></a>MySQL自动备份脚本</h2><p>mysqldump命令将数据库中的数据备份成一个文本文件，表的结构和数据将存储在生成的文本文件中</p>
-<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h4 id="备份一个数据库下的多个表"><a href="#备份一个数据库下的多个表" class="headerlink" title="备份一个数据库下的多个表"></a>备份一个数据库下的多个表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 备份一个数据库下的多个表</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> username表示用户名</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">pwd</span>表示密码</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> localhost为数据库地址</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> dbname表示数据库名称</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> table1和table2参数表示需要备份的表的名称，为空则整个数据库备份</span></span><br><span class="line">mysqldump -u username -p pwd -h localhost --default-character-set=utf8 dbname table1 table2 &gt; BackupName.sql</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 排除某些表不备份</span></span><br><span class="line">mysqldump -u username -p pwd -h localhost --default-character-set=utf8 --database dbname -- --lock-all-tables --ignore-table=table1  &gt; BackupName.sql</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%90%E7%BB%B4/1.MySQL%E5%A4%87%E4%BB%BD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1243,7 +1242,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">524</span>
+          <span class="site-state-item-count">525</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

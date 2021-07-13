@@ -194,6 +194,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/17.MySQL%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/17.MySQL%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" class="post-title-link" itemprop="url">MySQL执行顺序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-04 21:11:30" itemprop="dateCreated datePublished" datetime="2021-06-04T21:11:30+08:00">2021-06-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-22 16:16:01" itemprop="dateModified" datetime="2021-06-22T16:16:01+08:00">2021-06-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/17.MySQL%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL执行顺序" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/17.MySQL%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/17.MySQL%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="MySQL执行顺序"><a href="#MySQL执行顺序" class="headerlink" title="MySQL执行顺序"></a>MySQL执行顺序</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FROM &lt;left_table&gt;</span><br><span class="line">ON &lt;join_condition&gt;</span><br><span class="line">&lt;join_type&gt; JOIN &lt;right_table&gt;</span><br><span class="line">WHERE &lt;where_condition&gt;</span><br><span class="line">GROUP BY &lt;group_by_list&gt;</span><br><span class="line">HAVING &lt;having_condition&gt;</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"><span class="keyword">DISTINCT</span> &lt;select_list&gt;</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;order_by_condition&gt;</span><br><span class="line"><span class="keyword">LIMIT</span> &lt;limit_number&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**from:**需要从哪个数据表检索数据</li>
+<li>**where:**过滤表中数据的条件</li>
+<li>**group by:**如何将上面过滤出的数据分组</li>
+<li>**having:**对上面已经分组的数据进行过滤的条件</li>
+<li>**select:**查看结果集中的哪个列，或列的计算结果</li>
+<li>**order by :**按照什么样的顺序来查看返回的数据</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/16.MySQL%E4%BD%BF%E7%94%A8%E8%87%AA%E5%A2%9E%E4%B8%BB%E9%94%AE%E7%9A%84%E5%8E%9F%E5%9B%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1150,119 +1254,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/4.%E6%B6%88%E8%B4%B9%E8%80%85%E7%9A%84%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/4.%E6%B6%88%E8%B4%B9%E8%80%85%E7%9A%84%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" class="post-title-link" itemprop="url">消费者的分区分配策略</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-01 21:23:40" itemprop="dateCreated datePublished" datetime="2021-06-01T21:23:40+08:00">2021-06-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-04 14:35:35" itemprop="dateModified" datetime="2021-06-04T14:35:35+08:00">2021-06-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/4.%E6%B6%88%E8%B4%B9%E8%80%85%E7%9A%84%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" class="post-meta-item leancloud_visitors" data-flag-title="消费者的分区分配策略" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/4.%E6%B6%88%E8%B4%B9%E8%80%85%E7%9A%84%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/4.%E6%B6%88%E8%B4%B9%E8%80%85%E7%9A%84%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="消费者的分区分配策略"><a href="#消费者的分区分配策略" class="headerlink" title="消费者的分区分配策略"></a>消费者的分区分配策略</h2><p>消费者是存在于消费者组的，如果一个消费者组中包含有多个消费者，那么消费者组内的消费者如何进行分区分配呢？</p>
-<p>kafka有四种分区分配策略，</p>
-<ul>
-<li><p>RoundRobinAssignor，该分区策略是对于所有的分区和组内所有的消费者进行轮询分配，例如，有两个消费者C0,C1和两个主题T0,T1，且每个主题存在三个分区t0p0,t0p1,t0p2,t1p0,t1p1,t1p2，分区分配结果是</p>
-<p>C0: [t0p0, t0p2, t1p1]</p>
-<p>C1: [t0p1, t1p0, t1p2]</p>
-<p>但是如果消费者组内的消费者所订阅的主题并不相同的话，就会出现问题</p>
-</li>
-<li><p>RangeAssignor，面向topic</p>
-</li>
-<li><p>CooperativeStickyAssignor</p>
-</li>
-<li><p>StickyAssignor</p>
-</li>
-</ul>
-<p>在consumer.properties使用</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">partition.assignment.strategy</span>=<span class="string">class org.apache.kafka.clients.consumer.RangeAssignor</span></span><br></pre></td></tr></table></figure>
-
-<p>进行配置，默认使用的是RangeAssignor</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1334,7 +1325,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">524</span>
+          <span class="site-state-item-count">525</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

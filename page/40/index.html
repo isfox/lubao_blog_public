@@ -194,6 +194,122 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%A1%86%E6%9E%B6/hibernate/9.%E6%A3%80%E7%B4%A2%E7%AD%96%E7%95%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E6%A1%86%E6%9E%B6/hibernate/9.%E6%A3%80%E7%B4%A2%E7%AD%96%E7%95%A5/" class="post-title-link" itemprop="url">检索策略</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-07 14:42:23" itemprop="dateCreated datePublished" datetime="2020-12-07T14:42:23+08:00">2020-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-21 16:13:43" itemprop="dateModified" datetime="2021-06-21T16:13:43+08:00">2021-06-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hibernate/" itemprop="url" rel="index"><span itemprop="name">hibernate</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/%E6%A1%86%E6%9E%B6/hibernate/9.%E6%A3%80%E7%B4%A2%E7%AD%96%E7%95%A5/" class="post-meta-item leancloud_visitors" data-flag-title="检索策略" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/%E6%A1%86%E6%9E%B6/hibernate/9.%E6%A3%80%E7%B4%A2%E7%AD%96%E7%95%A5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E6%A1%86%E6%9E%B6/hibernate/9.%E6%A3%80%E7%B4%A2%E7%AD%96%E7%95%A5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="检索策略"><a href="#检索策略" class="headerlink" title="检索策略"></a>检索策略</h2><p>hibernate一共提供了三种检索策略，一种为立即检索，除了<strong>立即检索</strong>之外还提供了两种检索策略，<strong>延迟检索</strong>和<strong>迫切左外连接检索</strong></p>
+<ul>
+<li>立即检索  会直接进行数据库访问，且立即执行，如果select语句过多，会频繁访问数据库</li>
+<li>延迟检索 避免了多余加载用程序不需要访问的关联对象</li>
+<li>迫切左外连接检索  充分利用了SQL的外连接查询功能，减少了select语句的数目</li>
+</ul>
+<h3 id="类级别的检索策略"><a href="#类级别的检索策略" class="headerlink" title="类级别的检索策略"></a>类级别的检索策略</h3><p>类级别的可选检索策略只有<strong>立即检索</strong>和<strong>延迟检索</strong></p>
+<p>在<class>元素中设置属性lazy   默认为true</class></p>
+<ul>
+<li>立即检索：立即加载检索方法指定的对象</li>
+<li>延迟检索：在调用load方法时不会执行select语句，而是返回一个代理对象，这个代理对象继承了原来对象的所有属性和方法(使用CGLIB生成的代理类)，该代理类的实例仅初始化OID，所以占用的内存较少，只有在使用具体属性(除id之外的属性)的时候才会去执行select语句</li>
+</ul>
+<blockquote>
+<p>只有在使用load方法的时候，lazy属性才会有用，在使用get()和list()方法时，只会使用立即检索</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/%E6%A1%86%E6%9E%B6/hibernate/9.%E6%A3%80%E7%B4%A2%E7%AD%96%E7%95%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E6%A1%86%E6%9E%B6/hibernate/8.%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1145,108 +1261,6 @@ remote--git fetch-->repository</pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/11.CyclicBarrier%E5%92%8CCountDownLatch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/11.CyclicBarrier%E5%92%8CCountDownLatch/" class="post-title-link" itemprop="url">CyclicyBarrier和CountDownLatch</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-30 17:55:23" itemprop="dateCreated datePublished" datetime="2020-11-30T17:55:23+08:00">2020-11-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-18 09:22:47" itemprop="dateModified" datetime="2021-04-18T09:22:47+08:00">2021-04-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/11.CyclicBarrier%E5%92%8CCountDownLatch/" class="post-meta-item leancloud_visitors" data-flag-title="CyclicyBarrier和CountDownLatch" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/11.CyclicBarrier%E5%92%8CCountDownLatch/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/11.CyclicBarrier%E5%92%8CCountDownLatch/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CyclicyBarrier和CountDownLatch"><a href="#CyclicyBarrier和CountDownLatch" class="headerlink" title="CyclicyBarrier和CountDownLatch"></a>CyclicyBarrier和CountDownLatch</h2><p>这两个类都在jdk的并发包中，都可以用来表示代码运行到某个点上</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/%E5%A4%9A%E7%BA%BF%E7%A8%8B/11.CyclicBarrier%E5%92%8CCountDownLatch/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1318,7 +1332,7 @@ remote--git fetch-->repository</pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">524</span>
+          <span class="site-state-item-count">525</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
