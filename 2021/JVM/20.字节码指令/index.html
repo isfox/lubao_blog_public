@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="jic7QSLJ3G" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="字节码指令字节码指令由一个操作码(一个字节长度、代表着特殊含义的数字)以及操作码之后有零个至多个代表此操作所需参数构成 分为九类指令  加载与存储指令 算术指令 类型转换指令 对象的创建与访问指令 方法调用与返回指令 操作数栈管理指令 比较控制指令 异常处理指令 同步控制指令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字节码指令">
+<meta property="og:url" content="https://isfox.github.io/2021/JVM/20.%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/index.html">
+<meta property="og:site_name" content="小菜鸟">
+<meta property="og:description" content="字节码指令字节码指令由一个操作码(一个字节长度、代表着特殊含义的数字)以及操作码之后有零个至多个代表此操作所需参数构成 分为九类指令  加载与存储指令 算术指令 类型转换指令 对象的创建与访问指令 方法调用与返回指令 操作数栈管理指令 比较控制指令 异常处理指令 同步控制指令">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-13T10:58:40.000Z">
+<meta property="article:modified_time" content="2021-07-13T09:49:27.698Z">
+<meta property="article:author" content="ZH">
+<meta property="article:tag" content="JVM">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://isfox.github.io/2021/JVM/20.%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>字节码指令 | 小菜鸟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小菜鸟</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/isfox" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/20.%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          字节码指令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-13 18:58:40 / 修改时间：17:49:27" itemprop="dateCreated datePublished" datetime="2021-07-13T18:58:40+08:00">2021-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/20.%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="字节码指令" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/20.%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/20.%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="字节码指令"><a href="#字节码指令" class="headerlink" title="字节码指令"></a>字节码指令</h2><p>字节码指令由<strong>一个操作码</strong>(一个字节长度、代表着特殊含义的数字)以及操作码之后有<strong>零个至多个代表此操作所需参数</strong>构成</p>
+<p>分为九类指令</p>
+<ul>
+<li>加载与存储指令</li>
+<li>算术指令</li>
+<li>类型转换指令</li>
+<li>对象的创建与访问指令</li>
+<li>方法调用与返回指令</li>
+<li>操作数栈管理指令</li>
+<li>比较控制指令</li>
+<li>异常处理指令</li>
+<li>同步控制指令</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="加载与存储指令"><a href="#加载与存储指令" class="headerlink" title="加载与存储指令"></a>加载与存储指令</h3><p>加载和存储指令用于将数据从栈帧的局部变量表和操作数栈之间来回传递</p>
+<p><strong>加载</strong>是指从局部变量表或常量池中加载到操作数栈，入栈</p>
+<p><strong>存储</strong>是指将数据从操作数栈存储到局部变量表</p>
+<h4 id="局部变量压栈指令"><a href="#局部变量压栈指令" class="headerlink" title="局部变量压栈指令"></a>局部变量压栈指令</h4><ul>
+<li><code>xload_&lt;n&gt;</code>  x为变量类型i/f/l/d/a，n为0到3，表示将第n个局部变量压入操作数栈</li>
+<li><code>xload </code> x为变量类型i/f/l/d/a  xload通过指定参数的形式，将局部变量压入操作数栈，使用该命令时，表示局部变量的数量可能超过4个</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadN</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">long</span> l,APP app)</span></span>&#123;</span><br><span class="line">      <span class="comment">// iload_1   从LocalVariableTable可以看到，0位是this</span></span><br><span class="line">    System.out.println(i);</span><br><span class="line">      <span class="comment">// lload_2</span></span><br><span class="line">    System.out.println(l);</span><br><span class="line">      <span class="comment">// aload         4</span></span><br><span class="line">    System.out.println(app);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public void loadN(int, long, com.zhanghe.study.jvm.TestLoad$APP);</span><br><span class="line">    descriptor: (IJLcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad$APP;)V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack&#x3D;3, locals&#x3D;5, args_size&#x3D;4</span><br><span class="line">         0: getstatic     #2                  &#x2F;&#x2F; Field java&#x2F;lang&#x2F;System.out:Ljava&#x2F;io&#x2F;PrintStream;</span><br><span class="line">         3: iload_1</span><br><span class="line">         4: invokevirtual #3                  &#x2F;&#x2F; Method java&#x2F;io&#x2F;PrintStream.println:(I)V</span><br><span class="line">         7: getstatic     #2                  &#x2F;&#x2F; Field java&#x2F;lang&#x2F;System.out:Ljava&#x2F;io&#x2F;PrintStream;</span><br><span class="line">        10: lload_2</span><br><span class="line">        11: invokevirtual #4                  &#x2F;&#x2F; Method java&#x2F;io&#x2F;PrintStream.println:(J)V</span><br><span class="line">        14: getstatic     #2                  &#x2F;&#x2F; Field java&#x2F;lang&#x2F;System.out:Ljava&#x2F;io&#x2F;PrintStream;</span><br><span class="line">        17: aload         4</span><br><span class="line">        19: invokevirtual #5                  &#x2F;&#x2F; Method java&#x2F;io&#x2F;PrintStream.println:(Ljava&#x2F;lang&#x2F;Object;)V</span><br><span class="line">        22: return</span><br><span class="line">      </span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            0      23     0  this   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad;</span><br><span class="line">            0      23     1     i   I</span><br><span class="line">            0      23     2     l   J</span><br><span class="line">            0      23     4   app   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad$APP;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="常量入栈指令"><a href="#常量入栈指令" class="headerlink" title="常量入栈指令"></a>常量入栈指令</h4><p>常量入栈指令的功能是将常量压入操作数栈</p>
+<ul>
+<li><p>const指令  对特定的常量入栈，</p>
+<p>如<code>iconst_&lt;i&gt;</code>(i从-1到5)、<code>lconst_&lt;l&gt;</code>(l从0到1)、<code>fconst_&lt;f&gt;</code>（f从0到2）、<code>dconst_&lt;d&gt;</code>(d从0到1)、<code>aconst_null</code></p>
+</li>
+<li><p>push指令  主要有bipush和sipush，bipush接收8位整数（byte类型），sipush接收16位整数（short类型）</p>
+</li>
+<li><p>ldc指令  可以接收8位参数，该参数指向常量池中的int、float、或String的索引，将指定的内容压入栈；如果超过8位的话，还有<code>ldc_w</code>，表示接收两个8位参数；如果接收的是long或double类型的，则使用<code>ldc2_w</code></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushConstLdc</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// iconst_5</span></span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="comment">// bipush        127</span></span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">127</span>;</span><br><span class="line">    <span class="comment">// sipush        128</span></span><br><span class="line">    <span class="keyword">int</span> c = <span class="number">128</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ldc           #6                  // int 32768</span></span><br><span class="line">    <span class="keyword">int</span> f = <span class="number">32768</span>;</span><br><span class="line">    <span class="comment">// ldc           #7                  // String 123</span></span><br><span class="line">    String s = <span class="string">&quot;123&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ldc2_w        #8                  // long 20l</span></span><br><span class="line">    <span class="keyword">long</span> l = <span class="number">20</span>;</span><br><span class="line">    <span class="comment">// ldc           #10                 // float 20.2f</span></span><br><span class="line">    <span class="keyword">float</span> f1 = <span class="number">20.2f</span>;</span><br><span class="line">    <span class="comment">// ldc2_w        #11                 // double 20.12d</span></span><br><span class="line">    <span class="keyword">double</span> d = <span class="number">20.12</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public void pushConstLdc();</span><br><span class="line">   descriptor: ()V</span><br><span class="line">   flags: ACC_PUBLIC</span><br><span class="line">   Code:</span><br><span class="line">     stack&#x3D;2, locals&#x3D;11, args_size&#x3D;1</span><br><span class="line">        0: iconst_5</span><br><span class="line">        1: istore_1</span><br><span class="line">        2: bipush        127</span><br><span class="line">        4: istore_2</span><br><span class="line">        5: sipush        128</span><br><span class="line">        8: istore_3</span><br><span class="line">        9: ldc           #6                  &#x2F;&#x2F; int 32768</span><br><span class="line">       11: istore        4</span><br><span class="line">       13: ldc           #7                  &#x2F;&#x2F; String 123</span><br><span class="line">       15: astore        5</span><br><span class="line">       17: ldc2_w        #8                  &#x2F;&#x2F; long 20l</span><br><span class="line">       20: lstore        6</span><br><span class="line">       22: ldc           #10                 &#x2F;&#x2F; float 20.2f</span><br><span class="line">       24: fstore        8</span><br><span class="line">       26: ldc2_w        #11                 &#x2F;&#x2F; double 20.12d</span><br><span class="line">       29: dstore        9</span><br><span class="line">       31: return</span><br><span class="line">     </span><br><span class="line">     LocalVariableTable:</span><br><span class="line">       Start  Length  Slot  Name   Signature</span><br><span class="line">           0      32     0  this   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad;</span><br><span class="line">           2      30     1     a   I</span><br><span class="line">           5      27     2     b   I</span><br><span class="line">           9      23     3     c   I</span><br><span class="line">          13      19     4     f   I</span><br><span class="line">          17      15     5     s   Ljava&#x2F;lang&#x2F;String;</span><br><span class="line">          22      10     6     l   J</span><br><span class="line">          26       6     8    f1   F</span><br><span class="line">          31       1     9     d   D</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="出栈装入局部变量表指令"><a href="#出栈装入局部变量表指令" class="headerlink" title="出栈装入局部变量表指令"></a>出栈装入局部变量表指令</h4><p>出栈装入局部变量表指令用于将操作数栈中的栈顶元素弹出后，装入局部变量表的指定位置，用于给局部变量表赋值</p>
+<ul>
+<li>store指令<ul>
+<li>xstore  (x为数据类型,i/l/f/d/a)</li>
+<li>xstore_n (x为数据类型，n为0到3)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">store</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">double</span> d)</span></span>&#123;</span><br><span class="line">        <span class="comment">//  0: iload_1   操作数栈加载i变量入参</span></span><br><span class="line">        <span class="comment">//  1: iconst_2  操作数栈加载常量2</span></span><br><span class="line">        <span class="comment">//  2: iadd      相加操作</span></span><br><span class="line">        <span class="comment">//  3: istore        4   将在操作数栈中相加得到的数值放入局部变量表中索引为4的位置(由于d为double类型，占用了两个位置)</span></span><br><span class="line">        <span class="keyword">int</span> m = i+<span class="number">2</span>;</span><br><span class="line"><span class="comment">//        5: ldc2_w        #13                 // double 100.0d   操作数栈加载常量100</span></span><br><span class="line"><span class="comment">//        8: dstore_2  // 将double类型放入局部变量表第二个索引位置</span></span><br><span class="line">        d = <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void store(int, double);</span><br><span class="line">    descriptor: (ID)V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack&#x3D;2, locals&#x3D;5, args_size&#x3D;3</span><br><span class="line">         0: iload_1</span><br><span class="line">         1: iconst_2</span><br><span class="line">         2: iadd</span><br><span class="line">         3: istore        4</span><br><span class="line">         5: ldc2_w        #13                 &#x2F;&#x2F; double 100.0d</span><br><span class="line">         8: dstore_2</span><br><span class="line">         9: return</span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            0      10     0  this   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad;</span><br><span class="line">            0      10     1     i   I</span><br><span class="line">            0      10     2     d   D</span><br><span class="line">            5       5     4     m   I</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="算术指令"><a href="#算术指令" class="headerlink" title="算术指令"></a>算术指令</h3><ul>
+<li><p>加法指令  iadd、ladd、fadd、dadd</p>
+</li>
+<li><p>减法指令  isub、lsub、fsub、dsub</p>
+</li>
+<li><p>乘法指令  imul、lmul、fmul、dmul</p>
+</li>
+<li><p>除法指令  idiv、ldiv、fdiv、ddiv</p>
+</li>
+<li><p>求余指令  irem、lrem、frem、drem</p>
+</li>
+<li><p>取反指令  ineg、lneg、fneg、dneg</p>
+</li>
+<li><p>自增指令  iinc</p>
+</li>
+<li><p>位运算指令</p>
+<ul>
+<li>位移指令  ishl、ishr、iushr、lshl、lshr、lushr</li>
+<li>按位或指令  ior、lor</li>
+<li>按位与指令 iand、land</li>
+<li>按位异或指令 ixor、lxor</li>
+</ul>
+</li>
+<li><p>比较指令  dcmpg、dcmpl、fcmpg、fcmpl、lcmp  从栈顶取两个数来进行比较</p>
+<p>指令fcmpg和fcmpl的区别在于如果遇到NaN的值，fcmpg会压入1，而fcmpl会压入-1，而long类型没有NaN值，所以只有lcmp</p>
+</li>
+</ul>
+<h4 id="i-和-i的区别"><a href="#i-和-i的区别" class="headerlink" title="i++和++i的区别"></a>i++和++i的区别</h4><p>使用字节码来看一下i++和++i的区别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// i++和++i的区别</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">      </span><br><span class="line"><span class="comment">//        0: iload_1   操作数栈加载i变量</span></span><br><span class="line"><span class="comment">//        1: iinc          1, 1  执行自增运算</span></span><br><span class="line"><span class="comment">//        4: istore_2   将操作数栈中的栈顶存储到局部变量表中</span></span><br><span class="line">        <span class="keyword">int</span> a = i++;</span><br><span class="line">        System.out.println();</span><br><span class="line"><span class="comment">//        11: iinc          1, 1  执行自增运算</span></span><br><span class="line"><span class="comment">//        14: iload_1       操作数栈加载i变量</span></span><br><span class="line"><span class="comment">//        15: istore_3      将操作数栈中的栈顶存储到局部变量表中</span></span><br><span class="line">        <span class="keyword">int</span> b = ++i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public void add(int);</span><br><span class="line">    descriptor: (I)V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack&#x3D;1, locals&#x3D;4, args_size&#x3D;2</span><br><span class="line">         0: iload_1</span><br><span class="line">         1: iinc          1, 1</span><br><span class="line">         4: istore_2</span><br><span class="line">         5: getstatic     #2                  &#x2F;&#x2F; Field java&#x2F;lang&#x2F;System.out:Ljava&#x2F;io&#x2F;PrintStream;</span><br><span class="line">         8: invokevirtual #15                 &#x2F;&#x2F; Method java&#x2F;io&#x2F;PrintStream.println:()V</span><br><span class="line">        11: iinc          1, 1</span><br><span class="line">        14: iload_1</span><br><span class="line">        15: istore_3</span><br><span class="line">        16: return</span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            0      17     0  this   Lcom&#x2F;zhanghe&#x2F;study&#x2F;jvm&#x2F;TestLoad;</span><br><span class="line">            0      17     1     i   I</span><br><span class="line">            5      12     2     a   I</span><br><span class="line">           16       1     3     b   I</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="对象的创建与访问指令"><a href="#对象的创建与访问指令" class="headerlink" title="对象的创建与访问指令"></a>对象的创建与访问指令</h3><p>对象操作中分为创建指令、字段访问指令、数组操作指令、类型检查指令</p>
+<h4 id="创建指令"><a href="#创建指令" class="headerlink" title="创建指令"></a>创建指令</h4><ul>
+<li>创建类实例的指令  new</li>
+<li>创建数组的指令  newarray(基本数据类型数组)、anewarray(引用类型数组)、multianewarray(多维数组)</li>
+</ul>
+<h4 id="字段访问指令"><a href="#字段访问指令" class="headerlink" title="字段访问指令"></a>字段访问指令</h4><p>通过字段访问指令来获取对象实例或数组实例中的字段或者数组元素</p>
+<ul>
+<li>访问类字段static的指令     getstatic、putstatic</li>
+<li>访问实例字段   getfield、putfield</li>
+</ul>
+<h4 id="数组操作指令"><a href="#数组操作指令" class="headerlink" title="数组操作指令"></a>数组操作指令</h4><ul>
+<li>xastore  (x代表的是数据类型)把操作数栈的值存贷数组元素中</li>
+<li>xaload  (x代表的是数据类型)把数组元素加载到操作数栈</li>
+</ul>
+<h4 id="类型检查指令"><a href="#类型检查指令" class="headerlink" title="类型检查指令"></a>类型检查指令</h4><p>类型检查指令有instanceof和checkcast</p>
+<ul>
+<li>checkcast用于检查强制类型转换是否可以进行，如果可以进行，checkcast指令不会改变操作数栈，否则会抛出ClassCastException异常</li>
+<li>指令instanceof用来判断给定对象是否是某一个类的实例，会将判断结果压入操作数栈</li>
+</ul>
+<h3 id="方法调用与返回指令"><a href="#方法调用与返回指令" class="headerlink" title="方法调用与返回指令"></a>方法调用与返回指令</h3><h4 id="方法调用指令"><a href="#方法调用指令" class="headerlink" title="方法调用指令"></a>方法调用指令</h4><ul>
+<li>invokevirtual指令  用于调用对象的实例方法，根据对象的实际类型进行分派，支持多态</li>
+<li>invokeinterface指令  用于调用接口方法，会在运行时搜索由特定对象所实现的这个接口方法，并找到适合的方法进行调用</li>
+<li>invokespecial指令  用于调用一些需要特殊处理的实例方法，包括实例初始化方法(构造器)、私有方法和父类方法，这些方法都是静态类型绑定的(不存在方法的重写)，不会在调用时进行动态派发</li>
+<li>invokestatic指令  用于调用命名类中的类方法(static方法)，静态绑定的</li>
+<li>invokedynamic指令  用于调用动态绑定的方法，在运行时动态解析出调用点限定符所引用的方法，并执行该方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestInvokeInterface</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// invokespecial</span></span><br><span class="line">        InvokeDao invokeDao = <span class="keyword">new</span> InvokeDaoImpl();</span><br><span class="line">        <span class="comment">// invokeinterface</span></span><br><span class="line">        invokeDao.test();</span><br><span class="line">        <span class="comment">// 接口的默认方法 invokeinterface</span></span><br><span class="line">        invokeDao.testDefault();</span><br><span class="line">        <span class="comment">// 接口的静态方法 invokestatic</span></span><br><span class="line">        InvokeDao.testStatic();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">InvokeDao</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">test</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testStatic</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> <span class="keyword">void</span> <span class="title">testDefault</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InvokeDaoImpl</span> <span class="keyword">implements</span> <span class="title">InvokeDao</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法返回指令"><a href="#方法返回指令" class="headerlink" title="方法返回指令"></a>方法返回指令</h4><p>方法返回指令根据返回值类型进行区分</p>
+<ul>
+<li>ireturn指令(返回值是boolean、byte、char、short、int)、lreturn指令、freturn指令、dreturn指令和areturn指令</li>
+<li>return指令声明为void的方法、实例初始化方法以及类和接口的类初始化方法</li>
+</ul>
+<h3 id="操作数栈管理指令"><a href="#操作数栈管理指令" class="headerlink" title="操作数栈管理指令"></a>操作数栈管理指令</h3><p>用于直接操作操作数栈的指令</p>
+<ul>
+<li>将一个或两个元素从栈顶弹出，并且直接废弃：pop、pop2</li>
+<li>复制栈顶一个或两个数值并将复制值或双份的复制值重新压入栈顶：dup、dup2、dup_x1、dup2_x1、dup_x2、dup2_x2(不带x的指令表示复制栈顶数据并压入栈顶，dup的系数表示要复制的slot个数；带x的指令是复制栈顶数据并插入栈顶以下的某个位置，带x指令的复制插入指令，将指令的dup系数和x系数相加，结果就是需要插入的位置)</li>
+<li>将栈最顶端的两个slot数值位置交换：swap，没有提供交换两个64位数据类型数值(long、double)的指令</li>
+<li>指令nop，字节码为0x00，什么都不做，只是用于调试和占位</li>
+</ul>
+<h3 id="控制转移指令"><a href="#控制转移指令" class="headerlink" title="控制转移指令"></a>控制转移指令</h3><h4 id="条件跳转指令"><a href="#条件跳转指令" class="headerlink" title="条件跳转指令"></a>条件跳转指令</h4><p>条件跳转指令通常和比较指令结合使用，先进行比较指令，在进行条件跳转</p>
+<p>条件跳转指令接收两个字节的操作数，用于计算跳转位置</p>
+<ul>
+<li>ifeq指令     当栈顶int类型的数值等于0时跳转</li>
+<li>iflt指令       当栈顶int类型的数值小于0时跳转</li>
+<li>ifle指令      当栈顶int类型的数值小于等于0时跳转</li>
+<li>ifne指令     当栈顶int类型的数值不等于0时跳转</li>
+<li>ifgt指令      当栈顶int类型的数值大于0时跳转</li>
+<li>ifge指令     当栈顶int类型的数值大于等于0时跳转</li>
+<li>ifnull指令    为null时跳转</li>
+<li>ifnonnull指令  不为null时跳转</li>
+</ul>
+<h4 id="比较条件跳转指令"><a href="#比较条件跳转指令" class="headerlink" title="比较条件跳转指令"></a>比较条件跳转指令</h4><p>比较跳转指令类似于比较指令和条件跳转指令的结合</p>
+<ul>
+<li>if_icmpeq指令    比较栈顶两int类型数值大小，前者等于后者时跳转</li>
+<li>if_icmpne指令    比较栈顶两int类型数值大小，前者不等于后者时跳转</li>
+<li>if_icmplt指令      比较栈顶两int类型数值大小，前者小于后者时跳转</li>
+<li>if_icmpgt指令    比较栈顶两int类型数值大小，前者大于后者时跳转</li>
+<li>if_icmple指令     比较栈顶两int类型数值大小，前者小于等于后者时跳转</li>
+<li>if_icmpge指令    比较栈顶两int类型数值大小，前者大于等于后者时跳转</li>
+<li>if_acmpeq指令   比较栈顶两引用类型数值，结果相等时跳转</li>
+<li>if_acmpne指令   比较栈顶两引用类型数值，结果不相等时跳转</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">20</span>;</span><br><span class="line">    <span class="comment">// if_icmpne</span></span><br><span class="line">    <span class="keyword">if</span>(a == b)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;相等&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;不相等&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> 0 bipush 10</span><br><span class="line"> 2 istore_1</span><br><span class="line"> 3 bipush 20</span><br><span class="line"> 5 istore_2</span><br><span class="line"> 6 iload_1</span><br><span class="line"> 7 iload_2</span><br><span class="line"> 8 if_icmpne 22 (+14)</span><br><span class="line">11 getstatic #2 &lt;java&#x2F;lang&#x2F;System.out&gt;</span><br><span class="line">14 ldc #3 &lt;相等&gt;</span><br><span class="line">16 invokevirtual #4 &lt;java&#x2F;io&#x2F;PrintStream.println&gt;</span><br><span class="line">19 goto 30 (+11)</span><br><span class="line">22 getstatic #2 &lt;java&#x2F;lang&#x2F;System.out&gt;</span><br><span class="line">25 ldc #5 &lt;不相等&gt;</span><br><span class="line">27 invokevirtual #4 &lt;java&#x2F;io&#x2F;PrintStream.println&gt;</span><br><span class="line">30 return</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="多条件分支跳转指令"><a href="#多条件分支跳转指令" class="headerlink" title="多条件分支跳转指令"></a>多条件分支跳转指令</h4><p>多条件分支跳转指令是为switch-case设计的</p>
+<ul>
+<li>tableswitch指令      用于switch条件跳转，case值连续，内部只存放起始值和终止值，以及若干个跳转偏移量，通过给定的操作数index，可以立即定位到跳转偏移量位置，效率比较高</li>
+<li>lookupswitch指令   用于switch条件跳转，case值不连续，内部存放着各个离散的case-offset对，每次执行都要搜索全部的case-offset对，找到匹配的case值，并根据对应的offset计算跳转地址，效率较低</li>
+</ul>
+<h4 id="无条件跳转指令"><a href="#无条件跳转指令" class="headerlink" title="无条件跳转指令"></a>无条件跳转指令</h4><p>无条件跳转指令主要是goto指令，接收两个字节的操作数，共同组成一个带符号的整数，用于指定指令的偏移量，指令执行的目的就是跳转到偏移量给定的位置处</p>
+<ul>
+<li>goto指令   无条件跳转，两个字节的操作数</li>
+<li>goto_w指令   无条件跳转，四个字节的操作数</li>
+</ul>
+<h3 id="异常处理指令"><a href="#异常处理指令" class="headerlink" title="异常处理指令"></a>异常处理指令</h3><h4 id="抛出异常指令"><a href="#抛出异常指令" class="headerlink" title="抛出异常指令"></a>抛出异常指令</h4><p>athrow指令就是为throw语句来设计的，除了显示的抛出异常外，还要许多的运行时异常会在JVM检测到异常状况时自动抛出</p>
+<blockquote>
+<p>正常情况下，操作数栈的压入弹出都是一条一条指令完成的，<strong>唯有在抛出异常时，JVM会清除操作数栈上的所有内容，而后将异常实例压入调用者操作数栈上</strong></p>
+</blockquote>
+<p>try…catch是使用异常表来实现的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// hello</span></span><br><span class="line">    System.out.println(test());</span><br><span class="line">    <span class="comment">// hi</span></span><br><span class="line">    System.out.println(test1());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String str = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        str = <span class="string">&quot;hi&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hi&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>test方法的字节码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> 0 ldc #6 &lt;hello&gt;</span><br><span class="line"> 2 astore_0</span><br><span class="line"> 3 aload_0</span><br><span class="line"> 4 astore_1</span><br><span class="line"> 5 ldc #7 &lt;hi&gt;</span><br><span class="line"> 7 astore_0</span><br><span class="line"> 8 aload_1</span><br><span class="line"> 9 areturn</span><br><span class="line">10 astore_2</span><br><span class="line">11 ldc #7 &lt;hi&gt;</span><br><span class="line">13 astore_0</span><br><span class="line">14 aload_2</span><br><span class="line">15 athrow</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>test1方法的字节码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0 ldc #6 &lt;hello&gt;</span><br><span class="line">2 astore_0</span><br><span class="line">3 ldc #7 &lt;hi&gt;</span><br><span class="line">5 areturn</span><br><span class="line">6 astore_1</span><br><span class="line">7 ldc #7 &lt;hi&gt;</span><br><span class="line">9 areturn</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="同步控制指令"><a href="#同步控制指令" class="headerlink" title="同步控制指令"></a>同步控制指令</h3><p>方法级的同步是隐式的，无须通过字节码指令来控制，实现在方法调用和返回操作中，虚拟机从方法表结构中的ACC_SYNCHRONIZED访问标志得知一个方法是否声明为同步方法</p>
+<p>只有在方法内指定同步块，才会有同步控制指令，monitorenter和monitorexit指令来支持synchronized关键字</p>
+<ul>
+<li>monitorenter指令 当一个线程进入同步代码块时，使用该指令请求进入，如果当前对象的监视器计数器为0，则允许进入；若为1，则判断持有当前监视器的线程是否为自己，如果是，则进入，否则等待，知道对象的监视器计数器为0</li>
+<li>monitorexit指令  当线程退出同步块时，使用monitorexit声明退出</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JVM/" rel="tag"># JVM</a>
+          </div>
+
+        
+
+
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/24.MVCC%E6%9C%BA%E5%88%B6/" rel="prev" title="MVCC机制">
+      <i class="fa fa-chevron-left"></i> MVCC机制
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">字节码指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%AD%98%E5%82%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">加载与存储指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%8E%8B%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.1.</span> <span class="nav-text">局部变量压栈指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.2.</span> <span class="nav-text">常量入栈指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BA%E6%A0%88%E8%A3%85%E5%85%A5%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E8%A1%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.3.</span> <span class="nav-text">出栈装入局部变量表指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">算术指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i-%E5%92%8C-i%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.1.</span> <span class="nav-text">i++和++i的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">对象的创建与访问指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.1.</span> <span class="nav-text">创建指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E6%AE%B5%E8%AE%BF%E9%97%AE%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.2.</span> <span class="nav-text">字段访问指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.3.</span> <span class="nav-text">数组操作指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.4.</span> <span class="nav-text">类型检查指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%94%E5%9B%9E%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.</span> <span class="nav-text">方法调用与返回指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.1.</span> <span class="nav-text">方法调用指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.2.</span> <span class="nav-text">方法返回指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%A0%88%E7%AE%A1%E7%90%86%E6%8C%87%E4%BB%A4"><span class="nav-number">1.5.</span> <span class="nav-text">操作数栈管理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.</span> <span class="nav-text">控制转移指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.1.</span> <span class="nav-text">条件跳转指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.2.</span> <span class="nav-text">比较条件跳转指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.3.</span> <span class="nav-text">多条件分支跳转指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.4.</span> <span class="nav-text">无条件跳转指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4"><span class="nav-number">1.7.</span> <span class="nav-text">异常处理指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%E6%8C%87%E4%BB%A4"><span class="nav-number">1.7.1.</span> <span class="nav-text">抛出异常指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4"><span class="nav-number">1.8.</span> <span class="nav-text">同步控制指令</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZH"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">ZH</p>
+  <div class="site-description" itemprop="description">java菜鸟号正在起航</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">526</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/isfox" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;isfox" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/SiXiangPiaoFuZhe" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;SiXiangPiaoFuZhe" rel="noopener" target="_blank"><i class="fa fa-git fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhanghe1996hy@163.com" title="E-Mail → mailto:zhanghe1996hy@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'MURUEmkUEoDdKOq3baW5Ofoh-gzGzoHsz',
+      appKey     : 'AsR88DCeCWHyTu5jFQkAA6g6',
+      placeholder: "来说一句吧",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

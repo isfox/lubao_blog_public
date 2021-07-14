@@ -194,6 +194,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/2.%E7%94%9F%E4%BA%A7%E8%80%85%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%B8%8D%E4%B8%A2%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/2.%E7%94%9F%E4%BA%A7%E8%80%85%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%B8%8D%E4%B8%A2%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">生产者如何保证不丢数据</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-01 21:25:40 / 修改时间：15:36:36" itemprop="dateCreated datePublished" datetime="2021-06-01T21:25:40+08:00">2021-06-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kafka/" itemprop="url" rel="index"><span itemprop="name">kafka</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/2.%E7%94%9F%E4%BA%A7%E8%80%85%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%B8%8D%E4%B8%A2%E6%95%B0%E6%8D%AE/" class="post-meta-item leancloud_visitors" data-flag-title="生产者如何保证不丢数据" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/2.%E7%94%9F%E4%BA%A7%E8%80%85%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%B8%8D%E4%B8%A2%E6%95%B0%E6%8D%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/2.%E7%94%9F%E4%BA%A7%E8%80%85%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%B8%8D%E4%B8%A2%E6%95%B0%E6%8D%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="生产者如何保证不丢数据"><a href="#生产者如何保证不丢数据" class="headerlink" title="生产者如何保证不丢数据"></a>生产者如何保证不丢数据</h2><p>生产者是通过ack确认机制来进行保证数据可靠的，topic的每一个partition收到生产者发送的数据后，都需要向生产者发送ack，如果生产者收到ack，则会进行下一轮的发送，否则就会重发数据。</p>
+<p>而kafka中一个partition分区包含有一个leader和多个follower副本，而leader是与生产者进行读写交互的，那么partition中的leader何时向生产者回复ack呢？leader下有一个isr(in-sync replica set)，isr存储的是与leader保持同步的follower集合，只有当isr中的follower完成数据同步后，leader才会向生产者发送ack，如果follower长时间没有向leader同步数据，则该follower会被踢出isr，该时间由<strong>replica.lag.time.max.ms</strong> 参数设定，如果leader发生故障之后，会从isr中进行选举出新的leader</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/2.%E7%94%9F%E4%BA%A7%E8%80%85%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%B8%8D%E4%B8%A2%E6%95%B0%E6%8D%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/kafka/kafka%E8%BF%9B%E9%98%B6/4.%E6%B6%88%E8%B4%B9%E8%80%85%E7%9A%84%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1083,122 +1180,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">CSS简单使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-30 18:00:23 / 修改时间：18:38:42" itemprop="dateCreated datePublished" datetime="2021-05-30T18:00:23+08:00">2021-05-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="CSS简单使用" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%89%8D%E7%AB%AF/CSS/1.CSS%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CSS简单使用"><a href="#CSS简单使用" class="headerlink" title="CSS简单使用"></a>CSS简单使用</h2><p>overflow:hidden   防止字溢出</p>
-<p>list-style:none   可以出去列表前的.</p>
-<h3 id="块状元素和行内元素"><a href="#块状元素和行内元素" class="headerlink" title="块状元素和行内元素"></a>块状元素和行内元素</h3><h4 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h4><p>块状元素特点</p>
-<ul>
-<li>每个块状元素都会从新的一行开始</li>
-<li>高度、宽度、行高、顶部、底部边距都可设置</li>
-<li>宽度在不设置的情况下与父元素宽度一致</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>、<span class="tag">&lt;<span class="name">p</span>&gt;</span>、<span class="tag">&lt;<span class="name">h1</span>&gt;</span>...<span class="tag">&lt;<span class="name">h6</span>&gt;</span>、<span class="tag">&lt;<span class="name">ol</span>&gt;</span>、<span class="tag">&lt;<span class="name">ul</span>&gt;</span>、<span class="tag">&lt;<span class="name">dl</span>&gt;</span>、<span class="tag">&lt;<span class="name">table</span>&gt;</span>、<span class="tag">&lt;<span class="name">address</span>&gt;</span>、<span class="tag">&lt;<span class="name">blockquote</span>&gt;</span>、<span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以通过设置display:block将元素显示为块状元素</p>
-<h4 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h4><p>行内元素特点</p>
-<ul>
-<li>和其他元素在一行上</li>
-<li>高度、宽度、顶部和底部边距都不可设置</li>
-<li>元素的宽度是所包含内容的宽度，不可改变</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>、<span class="tag">&lt;<span class="name">span</span>&gt;</span>、<span class="tag">&lt;<span class="name">br</span>&gt;</span>、<span class="tag">&lt;<span class="name">i</span>&gt;</span>、<span class="tag">&lt;<span class="name">em</span>&gt;</span>、<span class="tag">&lt;<span class="name">strong</span>&gt;</span>、<span class="tag">&lt;<span class="name">label</span>&gt;</span>、<span class="tag">&lt;<span class="name">q</span>&gt;</span>、<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以通过设置display:inline将元素显示为行内元素</p>
-<h4 id="行内块状元素"><a href="#行内块状元素" class="headerlink" title="行内块状元素"></a>行内块状元素</h4><p>行内块状元素特点</p>
-<ul>
-<li>和其他元素在一行上</li>
-<li>高度、宽度、行高、顶部、底部边距都可设置</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span>&gt;</span>、<span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以通过设置display:inline-block将元素显示为行内块状元素</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1270,7 +1251,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">525</span>
+          <span class="site-state-item-count">526</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

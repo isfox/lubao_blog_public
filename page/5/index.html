@@ -194,6 +194,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">linux中的file对象</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-08 20:40:30 / 修改时间：10:59:12" itemprop="dateCreated datePublished" datetime="2021-06-08T20:40:30+08:00">2021-06-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/" class="post-meta-item leancloud_visitors" data-flag-title="linux中的file对象" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="linux中的file对象"><a href="#linux中的file对象" class="headerlink" title="linux中的file对象"></a>linux中的file对象</h2><p>文件对象表示进程已打开的文件,该对象file(不是物理文件)由相应的open()系统调用创建,由close()系统调用销毁,因为多个进程可以同时打开和操作一个文件,所以同一个文件也可能存在多个对应的文件对象。文件对象仅仅在进程观点上代表已打开文件,它反过来指向目录项对象(反过来指向索引节点),其实只有目录项对象才表示已打开的实际文件,虽然一个文件对应的文件对象不是是唯一的,但对应的索引节点和目录项对象无疑是唯一的,另外类似于目录项对象,文件对象实际上没有对应的磁盘数据</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/1.JVM%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1044,105 +1133,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/2.sqoop%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/2.sqoop%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">sqoop配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-07 20:11:30 / 修改时间：10:26:28" itemprop="dateCreated datePublished" datetime="2021-06-07T20:11:30+08:00">2021-06-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sqoop/" itemprop="url" rel="index"><span itemprop="name">sqoop</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/2.sqoop%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="sqoop配置" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/2.sqoop%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/2.sqoop%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="sqoop配置"><a href="#sqoop配置" class="headerlink" title="sqoop配置"></a>sqoop配置</h2><p>首先需要更改sqoop-env.sh</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_COMMON_HOME=/usr/local/myself/hadoop-3.3.0</span><br><span class="line">export HADOOP_MAPRED_HOME=/usr/local/myself/hadoop-3.3.0</span><br><span class="line">export HIVE_HOME=/usr/local/myself/apache-hive-3.1.2-bin</span><br><span class="line">export ZOOKEEPER_HOME=/usr/local/myself/apache-zookeeper-3.6.1-bin</span><br><span class="line">export ZOOCFGDIR=/usr/local/myself/apache-zookeeper-3.6.1-bin/conf</span><br><span class="line">export HBASE_HOME=/usr/local/myself/hbase-2.2.7</span><br></pre></td></tr></table></figure>
-
-<p>还需要将mysql的驱动放到lib目录下</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/2.sqoop%E9%85%8D%E7%BD%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1214,7 +1204,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">525</span>
+          <span class="site-state-item-count">526</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

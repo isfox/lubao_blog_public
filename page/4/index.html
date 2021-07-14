@@ -194,6 +194,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/10.%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/JVM/10.%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88/" class="post-title-link" itemprop="url">本地方法栈</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-13 19:52:40" itemprop="dateCreated datePublished" datetime="2021-06-13T19:52:40+08:00">2021-06-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-16 11:41:00" itemprop="dateModified" datetime="2021-06-16T11:41:00+08:00">2021-06-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/10.%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88/" class="post-meta-item leancloud_visitors" data-flag-title="本地方法栈" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/10.%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/10.%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h2><p>java虚拟机栈用于管理java方法的调用，而本地方法栈则是用来管理本地方法的调用，本地方法栈也是线程私有的</p>
+<h3 id="本地方法"><a href="#本地方法" class="headerlink" title="本地方法"></a>本地方法</h3><p>使用native进行修饰的方法，底层使用C/C++来进行实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> Thread <span class="title">currentThread</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>在本地方法栈中登记native方法，在执行引擎执行时加载本地方法</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/9.%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E8%AF%B4%E6%98%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -616,7 +715,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-28 09:56:32" itemprop="dateModified" datetime="2021-06-28T09:56:32+08:00">2021-06-28</time>
+                <time title="修改时间：2021-07-14 18:32:54" itemprop="dateModified" datetime="2021-07-14T18:32:54+08:00">2021-07-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -667,7 +766,7 @@
 <li>2.链接  链接中包含 验证、准备和解析</li>
 <li>3.初始化</li>
 </ul>
-<h3 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h3><p>ClassLoader只负责class文件的加载，是否可以运行是由Execution Engine决定，加载的类信息存放于一块称为方法区的内存空间。除了类的信息外，方法区中还会存放运行时常量池信息(包括字符串字面量和数字常量，是class文件中常量池部分的内存映射)</p>
+<h3 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h3><p>ClassLoader只负责class文件的加载，将java类的字节码文件加载到机器内存，是否可以运行是由Execution Engine决定，加载的类信息存放于一块称为方法区的内存空间。除了类的信息外，方法区中还会存放运行时常量池信息(包括字符串字面量和数字常量，是class文件中常量池部分的内存映射)</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/JVM/3.%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/#more" rel="contents">
@@ -1121,95 +1220,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">linux中的file对象</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-08 20:40:30 / 修改时间：10:59:12" itemprop="dateCreated datePublished" datetime="2021-06-08T20:40:30+08:00">2021-06-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/" class="post-meta-item leancloud_visitors" data-flag-title="linux中的file对象" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E9%98%B6/3.linux%E4%B8%AD%E7%9A%84file%E5%AF%B9%E8%B1%A1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="linux中的file对象"><a href="#linux中的file对象" class="headerlink" title="linux中的file对象"></a>linux中的file对象</h2><p>文件对象表示进程已打开的文件,该对象file(不是物理文件)由相应的open()系统调用创建,由close()系统调用销毁,因为多个进程可以同时打开和操作一个文件,所以同一个文件也可能存在多个对应的文件对象。文件对象仅仅在进程观点上代表已打开文件,它反过来指向目录项对象(反过来指向索引节点),其实只有目录项对象才表示已打开的实际文件,虽然一个文件对应的文件对象不是是唯一的,但对应的索引节点和目录项对象无疑是唯一的,另外类似于目录项对象,文件对象实际上没有对应的磁盘数据</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1281,7 +1291,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">525</span>
+          <span class="site-state-item-count">526</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -30,7 +30,7 @@
 <meta property="og:description" content="类加载器源代码经过编译器编译之后生成了一个字节码文件(class文件)，字节码文件中存储的是jvm指令，而不是机器指令 类加载器子系统负责从文件系统或者网络中加载class文件，class文件在文件开头有特定的文件标识，将class字节码文件在类装载器子系统(Class Loader SubSystem)中有三个阶段  1.加载  到内存中需要用到类加载器 2.链接  链接中包含 验证、准备和解析">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-11T12:37:40.000Z">
-<meta property="article:modified_time" content="2021-06-28T01:56:32.628Z">
+<meta property="article:modified_time" content="2021-07-14T10:32:54.764Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-28 09:56:32" itemprop="dateModified" datetime="2021-06-28T09:56:32+08:00">2021-06-28</time>
+                <time title="修改时间：2021-07-14 18:32:54" itemprop="dateModified" datetime="2021-07-14T18:32:54+08:00">2021-07-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,13 +279,13 @@
 <li>2.链接  链接中包含 验证、准备和解析</li>
 <li>3.初始化</li>
 </ul>
-<h3 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h3><p>ClassLoader只负责class文件的加载，是否可以运行是由Execution Engine决定，加载的类信息存放于一块称为方法区的内存空间。除了类的信息外，方法区中还会存放运行时常量池信息(包括字符串字面量和数字常量，是class文件中常量池部分的内存映射)</p>
+<h3 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h3><p>ClassLoader只负责class文件的加载，将java类的字节码文件加载到机器内存，是否可以运行是由Execution Engine决定，加载的类信息存放于一块称为方法区的内存空间。除了类的信息外，方法区中还会存放运行时常量池信息(包括字符串字面量和数字常量，是class文件中常量池部分的内存映射)</p>
 <a id="more"></a>
 
 <h4 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h4><ul>
 <li>通过一个类的全类名获取定义该类的二进制字节流</li>
-<li>将这个字节流所代表的静态存储结构转化为方法区(元数据)的运行时数据结构</li>
-<li>在内存中生成一个代表这个类的Class对象，作为方法区这个类的各种数据的访问入口</li>
+<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构</li>
+<li>在堆内存中生成一个代表这个类的java.lang.Class类的实例对象，作为方法区这个类的各种数据的访问入口，java.lang.Class类的构造方法是私有的，只有JVM能够创建</li>
 </ul>
 <h4 id="类加载的方式"><a href="#类加载的方式" class="headerlink" title="类加载的方式"></a>类加载的方式</h4><ul>
 <li>从本地系统中加载</li>
@@ -298,15 +298,51 @@
 <h3 id="链接阶段"><a href="#链接阶段" class="headerlink" title="链接阶段"></a>链接阶段</h3><p>链接阶段又分为了三个步骤，验证、准备、解析</p>
 <h4 id="验证-Verify"><a href="#验证-Verify" class="headerlink" title="验证(Verify)"></a>验证(Verify)</h4><p>有四种验证：文件格式类型，元数据验证，字节码验证，符号引用验证</p>
 <p>验证的目的是为了确保class文件的字节流中包含的信息符合当前虚拟机的要求，保证被加载的类不会危害虚拟机自身的安全</p>
-<h4 id="准备-Prepare"><a href="#准备-Prepare" class="headerlink" title="准备(Prepare)"></a>准备(Prepare)</h4><p>准备阶段主要是为类变量分配内存并且设置该类变量的默认初始值(final修饰的static变量在编译的时候就会分配了默认值，在准备阶段会进行显式的初始化；实例变量也不会分配初始化，是会在对象实例化的时候和对象一起分配在堆中)，类变量会分配在方法区</p>
+<ul>
+<li>格式检查   进行魔术检查、版本检查、长度检查   <strong><em>是在加载过程检查的</em></strong></li>
+<li>语义检查   检查是否继承final、是否与父类、抽象方法是否有实现</li>
+<li>字节码验证   跳转指令是否指向正确位置、操作数类型是否合理、函数调用是否传入了正确类型的参数</li>
+<li>符号引用检查   检查符号引用的直接引用是否存在，Class文件在其常量池会通过字符串记录自己将要使用的其他类或方法，所以需要检查这些类或者方法是否存在，并且当前类有权限访问这些数据，类无法找到会报NoClassDefFoundError  <strong><em>是在解析阶段执行的</em></strong></li>
+</ul>
+<h4 id="准备-Prepare"><a href="#准备-Prepare" class="headerlink" title="准备(Prepare)"></a>准备(Prepare)</h4><p>准备阶段主要是为<strong>类变量分配内存</strong>并且<strong>设置该类变量的默认初始值</strong>(<strong>基本数据类型和字符串字面量</strong>final修饰的static变量在编译的时候就会分配了默认值，在准备阶段会进行显式的赋值；实例变量也不会分配初始化，是会在对象实例化的时候和对象一起分配在堆中)，类变量会分配在方法区</p>
+<blockquote>
+<p>如果是final static修饰的引用数据类型的话，会在<clinit>中进行赋值</clinit></p>
+</blockquote>
 <h4 id="解析-Resolve"><a href="#解析-Resolve" class="headerlink" title="解析(Resolve)"></a>解析(Resolve)</h4><p><strong><em>解析实际上是在初始化之后才执行</em></strong></p>
-<p>解析其实是将常量池内的符号引用转换为直接引用的过程，解析动作主要针对于类或接口、字段、类方法、接口方法、方法类型等。对应常量池中的CONSTANT_Class_info、CONSTANT_Fieldref_info、CONSTANT_Methodref_info等</p>
+<p>解析其实是将常量池内的<strong>符号引用转换为直接引用的过程</strong>，解析动作主要针对于类或接口、字段、类方法、接口方法、方法类型等。对应常量池中的CONSTANT_Class_info、CONSTANT_Fieldref_info、CONSTANT_Methodref_info等</p>
 <blockquote>
 <p>符号引用是一组符号来描述所引用的目标，符号引用的字面量形式定义在虚拟机规范的class文件格式中</p>
 <p>直接引用是直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄</p>
 </blockquote>
-<h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><p>初始化阶段是执行类构造器方法<clinit>()的过程，该方法是由javac编译器收集类中所有类变量的赋值动作，以及静态代码块内的语句合并而来的，是根据源代码的书写顺序来执行的。</clinit></p>
+<h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><p>初始化阶段是执行类初始化方法<clinit>()的过程，来<strong>为类的静态变量进行赋值</strong>，该方法是由类静态成员的赋值语句，以及静态代码块内的语句合并而来的，是根据源代码的书写顺序来执行的。</clinit></p>
 <p><clinit>()不是类的构造器(类的构造器在jvm中是<init>()方法)，如果该类有父类，会保证子类的<clinit>()方法在父类的<clinit>()方法执行完毕后再进行执行</clinit></clinit></init></clinit></p>
+<p>有些类是不会产生<clinit>()初始化方法的 </clinit></p>
+<ul>
+<li>一个类中并没有声明任何的类变量，也没有静态代码块</li>
+<li>一个类中声明类变量，但是没有明确的使用类变量的初始化语句以及静态代码块来执行初始化操作(即没有进行显式的赋值)</li>
+<li>一个类中包含static final修饰的基本数据类型的字段或者字符串字面量，不管是否进行显式赋值，都不会生成<clinit>，是在准备阶段进行赋值的</clinit></li>
+</ul>
+<p>需要注意的是：由于虚拟机会保证一个类的<clinit>方法在多线程内可以正确的加锁、同步，如果多个线程同时去初始化一个类，那么只会有一个线程去执行这个类的<clinit>方法，其他线程阻塞等待，所以static可以用来做单例模式，但是也注意不要写出来死锁的代码</clinit></clinit></p>
+<h4 id="类初始化方法的触发"><a href="#类初始化方法的触发" class="headerlink" title="类初始化方法的触发"></a>类初始化方法的触发</h4><p>类的使用有两种，一种是主动使用，一种是被动使用</p>
+<h5 id="主动使用"><a href="#主动使用" class="headerlink" title="主动使用"></a>主动使用</h5><p>类在第一次主动使用前会触发类初始化方法</p>
+<ul>
+<li>当创建一个类的示例时，比如使用new关键字，或者通过反射、克隆、序列化</li>
+<li>当调用类的静态方法时</li>
+<li>当使用类、接口的静态字段时(如果是被static final修饰的基本数据类型和字符串字面量，则不会触发，因为是在准备阶段进行赋值的)</li>
+<li>当初始化子类时，如果发现父类还没有进行初始化，则需要先触发父类的初始化，但是并不会初始化它所实现的接口，只有在程序首次使用特定接口的静态字段时，才会导致接口的初始化</li>
+<li>如果一个接口定义了default方法，那么直接实现或者间接实现该接口的类的初始化，该接口要在其之前被初始化</li>
+<li>当虚拟机启动时，用户需要指定一个要执行的主类，会先初始化这个主类</li>
+<li>当初次调用MethodHandle实例时，初始化该MethodHandle指向的方法所在的类</li>
+</ul>
+<h5 id="被动使用"><a href="#被动使用" class="headerlink" title="被动使用"></a>被动使用</h5><p>类的被动使用不会触发类初始化方法</p>
+<ul>
+<li>当访问一个静态字段时，只有真正声明这个字段的类才会被初始化，当通过子类去引用父类的静态变量时，并不会导致子类初始化，<strong>但是此时子类是被加载了的</strong></li>
+<li>通过数组定义类引用，不会触发此类的初始化，因为数组定义时，其内的元素默认都是null</li>
+<li>基本数据类型和字符串字面量常量不会触发此类或接口的初始化，因为常量在链接过程的准备阶段就已经被显式赋值了</li>
+<li>调用ClassLoader类的loadClass方法加载一个类，不会导致类的初始化</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestClinit</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 此时不会触发 AAA类初始化</span></span><br><span class="line"><span class="comment">//        System.out.println(AAA.i);</span></span><br><span class="line">        <span class="comment">// 此时会触发 AAA类初始化</span></span><br><span class="line">        System.out.println(AAA.bb);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AAA</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> BBB bb = <span class="keyword">new</span> BBB();</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;AAA类初始化&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BBB</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -393,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E9%98%B6%E6%AE%B5"><span class="nav-number">1.1.</span> <span class="nav-text">加载阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">类加载过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">类加载的方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E9%98%B6%E6%AE%B5"><span class="nav-number">1.2.</span> <span class="nav-text">链接阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81-Verify"><span class="nav-number">1.2.1.</span> <span class="nav-text">验证(Verify)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87-Prepare"><span class="nav-number">1.2.2.</span> <span class="nav-text">准备(Prepare)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90-Resolve"><span class="nav-number">1.2.3.</span> <span class="nav-text">解析(Resolve)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="nav-number">1.3.</span> <span class="nav-text">初始化阶段</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E9%98%B6%E6%AE%B5"><span class="nav-number">1.1.</span> <span class="nav-text">加载阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">类加载过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">类加载的方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E9%98%B6%E6%AE%B5"><span class="nav-number">1.2.</span> <span class="nav-text">链接阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81-Verify"><span class="nav-number">1.2.1.</span> <span class="nav-text">验证(Verify)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87-Prepare"><span class="nav-number">1.2.2.</span> <span class="nav-text">准备(Prepare)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90-Resolve"><span class="nav-number">1.2.3.</span> <span class="nav-text">解析(Resolve)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="nav-number">1.3.</span> <span class="nav-text">初始化阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95%E7%9A%84%E8%A7%A6%E5%8F%91"><span class="nav-number">1.3.1.</span> <span class="nav-text">类初始化方法的触发</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">主动使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A2%AB%E5%8A%A8%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">被动使用</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -409,7 +445,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">525</span>
+          <span class="site-state-item-count">526</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
