@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="MySQL索引类型MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-树以及散列类型 B-树这种索引我是没有使用过，因为从最一开始我就使用的innodb存储引擎，而B-树是存在于MyISAM存储引擎中的 MyISAM存储引擎使用B-树数据结构来实现主码索引、唯一索引以及非主码索引。在MyISAM实现数据目录和数据库模式子目录中，用户可以找到每个MySQL表对应的.MY">
+  <meta name="description" content="spring的扩展接口spring提供了一些扩展接口来对spring进行定制化功能，可以选择如下一些扩展点： BeanFactoryPostProcessorbeanFactory后置处理器，支持在bean factory标准初始化完成后，对bean factory进行一些额外处理。这时所有的bean的描述信息已经加载完毕，但是还没有进行bean初始化。如PropertyPlaceholderCo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL索引类型">
-<meta property="og:url" content="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:title" content="spring的扩展接口">
+<meta property="og:url" content="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="小菜鸟">
-<meta property="og:description" content="MySQL索引类型MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-树以及散列类型 B-树这种索引我是没有使用过，因为从最一开始我就使用的innodb存储引擎，而B-树是存在于MyISAM存储引擎中的 MyISAM存储引擎使用B-树数据结构来实现主码索引、唯一索引以及非主码索引。在MyISAM实现数据目录和数据库模式子目录中，用户可以找到每个MySQL表对应的.MY">
+<meta property="og:description" content="spring的扩展接口spring提供了一些扩展接口来对spring进行定制化功能，可以选择如下一些扩展点： BeanFactoryPostProcessorbeanFactory后置处理器，支持在bean factory标准初始化完成后，对bean factory进行一些额外处理。这时所有的bean的描述信息已经加载完毕，但是还没有进行bean初始化。如PropertyPlaceholderCo">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-06-22T13:30:30.000Z">
-<meta property="article:modified_time" content="2021-07-08T06:22:32.644Z">
+<meta property="article:published_time" content="2021-07-15T12:29:23.000Z">
+<meta property="article:modified_time" content="2021-07-15T04:19:16.076Z">
 <meta property="article:author" content="ZH">
-<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B/">
+<link rel="canonical" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>MySQL索引类型 | 小菜鸟</title>
+  <title>spring的扩展接口 | 小菜鸟</title>
   
 
 
@@ -198,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -211,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          MySQL索引类型
+          spring的扩展接口
         </h1>
 
         <div class="post-meta">
@@ -220,28 +220,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-06-22 21:30:30" itemprop="dateCreated datePublished" datetime="2021-06-22T21:30:30+08:00">2021-06-22</time>
+              <time title="创建时间：2021-07-15 20:29:23 / 修改时间：12:19:16" itemprop="dateCreated datePublished" datetime="2021-07-15T20:29:23+08:00">2021-07-15</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-08 14:22:32" itemprop="dateModified" datetime="2021-07-08T14:22:32+08:00">2021-07-08</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                  <a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL索引类型" title="阅读次数">
+            <span id="/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/" class="post-meta-item leancloud_visitors" data-flag-title="spring的扩展接口" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -256,8 +250,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -272,46 +266,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="MySQL索引类型"><a href="#MySQL索引类型" class="headerlink" title="MySQL索引类型"></a>MySQL索引类型</h2><p>MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-树以及散列类型</p>
-<h3 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h3><p>这种索引我是没有使用过，因为从最一开始我就使用的innodb存储引擎，而B-树是存在于MyISAM存储引擎中的</p>
-<p><strong>MyISAM存储引擎使用B-树数据结构来实现主码索引、唯一索引以及非主码索引。</strong>在MyISAM实现数据目录和数据库模式子目录中，用户可以找到每个MySQL表对应的.MYD和.MYI文件。数据库表上定义的索引信息就存储在MYI文件中，该文件的块大小是1024字节。这个大小是可以通过myisam-block-size系统变量分配。</p>
-<p>在MyISAM中，<strong>非主码索引的B-树结构存储索引值和一个指向主码数据的指针，这是MyISAM和InnoDB的一个显著区别。</strong></p>
+        <h2 id="spring的扩展接口"><a href="#spring的扩展接口" class="headerlink" title="spring的扩展接口"></a>spring的扩展接口</h2><p>spring提供了一些扩展接口来对spring进行定制化功能，可以选择如下一些扩展点：</p>
+<h3 id="BeanFactoryPostProcessor"><a href="#BeanFactoryPostProcessor" class="headerlink" title="BeanFactoryPostProcessor"></a>BeanFactoryPostProcessor</h3><p>beanFactory后置处理器，支持在bean factory标准初始化完成后，对bean factory进行一些额外处理。这时所有的bean的描述信息已经加载完毕，但是还没有进行bean初始化。如PropertyPlaceholderConfigurer，就是在这个扩展点上对bean属性中的占位符进行替换</p>
 <a id="more"></a>
 
-<p>MyISAM索引是在内存的一个公共缓存中管理的，这个缓存的大小可以通过key_buffer_size或者其他命名键缓存来定义。这是根据统计和规划的表索引的大小来设定缓存大小时主要的考虑因素</p>
-<h4 id="B-树的结构"><a href="#B-树的结构" class="headerlink" title="B-树的结构"></a>B-树的结构</h4><p>B-树中有两种节点类型：<strong>索引节点</strong>和<strong>叶子节点</strong>。叶子节点是用来存储数据的，而索引节点则用来告诉用户存储在叶子节点中的数据顺序，并帮助用户找到相应的数据。</p>
-<p> B-树的搜索，从根节点开始，对节点内的关键字有序进行二分查找，如果命中则结束，否则进入查询关键字所属范围的子节点，重复。直到所对应的子指针为空，或已经是叶子节点</p>
-<p>B-树是一种多路搜索树：</p>
-<ul>
-<li>定义任意非叶子节点最多有M个儿子，且M&gt;2</li>
-<li>根节点的儿子数为[2,M]</li>
-<li>除根节点以外的非叶子节点的儿子数为[M/2,M]</li>
-<li>每个节点存放至少M/2-1(取上整)和至多M-1个关键字</li>
-<li>非叶子节点的关键字个数=指向儿子节点的指针的个数-1</li>
-<li>非叶子节点的关键字：k[i]&lt;k[i+1]</li>
-<li>非叶子节点的指针：p[1]，p[2]，·····，p[M]；其中p[1]指向的关键字小于k[1]的子树，p[M]指向的关键字大于K[m-1]的子树</li>
-<li>所有的叶子节点位于同一层</li>
-</ul>
-<h3 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h3><p>在平时使用的Innodb存储引擎中创建的BTREE索引，就是B+树的结构</p>
-<p>B+树索引分为聚集索引（clustered index)和非聚集索引（secondary index)，这两种索引的共同点是内部都是B+树，高度都是平衡的，叶节点存放着所有数据。不同点是叶节点是否存放着一整行数据</p>
+<h4 id="BeanDefinitionRegistryPostProcessor"><a href="#BeanDefinitionRegistryPostProcessor" class="headerlink" title="BeanDefinitionRegistryPostProcessor"></a>BeanDefinitionRegistryPostProcessor</h4><p>它扩展自BeanFactoryPostProcessor，在执行BeanFactoryPostProcessor的功能前，提供了可以添加bean definition的能力，允许在初始化一般bean前，注册额外的bean。例如可以在这里根据bean的scope创建一个新的代理bean</p>
+<h4 id="BeanPostProcessor"><a href="#BeanPostProcessor" class="headerlink" title="BeanPostProcessor"></a>BeanPostProcessor</h4><p>提供了在bean初始化之前和之后插入自定义逻辑的能力。与BeanFactoryPostProcessor的区别是处理的对象不同，BeanFactoryPostProcessor是对beanfactory进行处理，BeanPostProcessor是对bean进行处理</p>
 <blockquote>
-<p>InnoDB的pageSize可以通过命令<code>show variables like &#39;innodb_page_size&#39;</code>得到，默认值是16k</p>
+<p>注：上面这三个扩展点，可以通过实现Ordered和PriorityOrdered接口来指定执行顺序。实现PriorityOrdered接口的processor会先于实现Ordered接口的执行。</p>
 </blockquote>
-<h4 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h4><p>Innodb存储引擎表是索引组织表，即表中数据按主键顺序存放，而聚集索引就是按每张表的主键构造一颗B+树。并且叶节点存放整张表的行记录数据，每张表只能有一个聚集索引（一个主键），对于聚集索引，叶子结点即存储了真实的数据行，不再有另外单独的数据页，聚集索引的另一个好处是它对于主键的排序查找和范围的速度非常快，叶节点的数据就是我们要找的数据</p>
-<h4 id="非聚集索引"><a href="#非聚集索引" class="headerlink" title="非聚集索引"></a>非聚集索引</h4><p>表数据存储顺序与索引顺序无关。对于非聚集索引，叶结点包含索引字段值及指向数据页数据行的逻辑指针，该层紧邻数据页，其行数量与数据表行数据量一致<br>非聚集索引的存在并不影响数据在聚集索引中的组织，因此一个表可以有多个非聚集索引。当通过非聚集索引查找数据时，innodb会遍历非聚集索引并通过叶级别的指针获得指向主键索引的主键。然后再通过主键索引找到一行完整的数据</p>
-<h4 id="B-树的结构-1"><a href="#B-树的结构-1" class="headerlink" title="B+树的结构"></a>B+树的结构</h4><p>B+树数据结构是B-树实现的增强版本，尽管B+树支持B-树索引的所有特性，它们之间最显著的不同点在于<strong>B+树中底层数据是根据被提及的索引列进行排序的</strong>，B+树还通过叶子节点之间的附加引用来优化扫描性能。</p>
-<p>B+搜索和B-搜索不同，区别是B+树只有达到叶子节点才命中（B-树可以在非叶子节点命中），其性能等价于关键字全集做一次二分搜索。</p>
-<p>B+树的特性：</p>
-<ul>
-<li>所有关键字都出现在叶子节点的链表中，叶子节点相当于存储数据的数据层</li>
-<li>不可能在非叶子节点上命中</li>
-<li>非叶子节点相当于是叶子节点的索引，叶子节点相当于数据层</li>
-</ul>
-<h3 id="散列"><a href="#散列" class="headerlink" title="散列"></a>散列</h3><p>散列表也可以成为hash表</p>
-<p>在默认MySQL的引擎索引中，只有MEMORY引擎支持散列数据结构，散列结构的强度可以表示为直接键查找的简单性，散列索引的相似度模式匹配查询比直接查询慢。也可以为MEMORY引擎指定一个B-树索引实现</p>
-<h4 id="散列表结构"><a href="#散列表结构" class="headerlink" title="散列表结构"></a>散列表结构</h4><p>散列表数据结构是一种很简单的概念，它将一种算法应用到给定值中以在底层数据存储系统中返回一个唯一的指针或位置。散列表的优点是始终以线性时间复杂度找到需要读取的行的位置，而不像B-树那样需要横跨多层节点来确定位置</p>
-<h3 id="R-树"><a href="#R-树" class="headerlink" title="R-树"></a>R-树</h3><p> R-树数据结构支持基于数据类型对几何数据进行管理。目前只有MyISAM使用R-树实现支持空间索引，使用空间索引也有很多限制，比如只支持唯一的NOT NULL列等</p>
-<h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><p>全文本结构也是一种MySQL采用的基本数据结构，只能添加在 char, varchar, text类型的字段，查询字段较大的字符串类型的字段时可以提高速率</p>
+<h4 id="ApplicationContextAware"><a href="#ApplicationContextAware" class="headerlink" title="ApplicationContextAware"></a>ApplicationContextAware</h4><p>可以获得ApplicationContext及其中的bean，当需要在代码中动态获取bean时，可以通过实现这个接口来实现</p>
+<h4 id="InitializingBean"><a href="#InitializingBean" class="headerlink" title="InitializingBean"></a>InitializingBean</h4><p>可以在bean初始化完成，所有属性设置完成后执行特定逻辑，例如对自动装配对属性进行验证等等</p>
+<h4 id="DisposableBean"><a href="#DisposableBean" class="headerlink" title="DisposableBean"></a>DisposableBean</h4><p>用于在bean被销毁前执行特定的逻辑，例如做一些回收工作等</p>
+<h4 id="ApplicationListener"><a href="#ApplicationListener" class="headerlink" title="ApplicationListener"></a>ApplicationListener</h4><p>用来监听spring的标准应用事件或者自定义事件</p>
 
     </div>
 
@@ -321,7 +288,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/spring/" rel="tag"># spring</a>
           </div>
 
         
@@ -332,13 +299,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/JVM/19.%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" rel="prev" title="内存溢出和内存泄漏">
-      <i class="fa fa-chevron-left"></i> 内存溢出和内存泄漏
+    <a href="/2021/JVM/20.%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/" rel="prev" title="字节码指令">
+      <i class="fa fa-chevron-left"></i> 字节码指令
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/22.MySQL%E7%B3%BB%E7%BB%9F%E8%B0%83%E4%BC%98/" rel="next" title="MySQL系统调优">
-      MySQL系统调优 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -398,7 +362,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">MySQL索引类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%A0%91"><span class="nav-number">1.1.</span> <span class="nav-text">B-树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E6%A0%91%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">B-树的结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%A0%91-1"><span class="nav-number">1.2.</span> <span class="nav-text">B+树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">聚集索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">非聚集索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E6%A0%91%E7%9A%84%E7%BB%93%E6%9E%84-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">B+树的结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%A3%E5%88%97"><span class="nav-number">1.3.</span> <span class="nav-text">散列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">散列表结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R-%E6%A0%91"><span class="nav-number">1.4.</span> <span class="nav-text">R-树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E6%96%87%E7%B4%A2%E5%BC%95"><span class="nav-number">1.5.</span> <span class="nav-text">全文索引</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">spring的扩展接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BeanFactoryPostProcessor"><span class="nav-number">1.1.</span> <span class="nav-text">BeanFactoryPostProcessor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BeanDefinitionRegistryPostProcessor"><span class="nav-number">1.1.1.</span> <span class="nav-text">BeanDefinitionRegistryPostProcessor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BeanPostProcessor"><span class="nav-number">1.1.2.</span> <span class="nav-text">BeanPostProcessor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ApplicationContextAware"><span class="nav-number">1.1.3.</span> <span class="nav-text">ApplicationContextAware</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#InitializingBean"><span class="nav-number">1.1.4.</span> <span class="nav-text">InitializingBean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DisposableBean"><span class="nav-number">1.1.5.</span> <span class="nav-text">DisposableBean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ApplicationListener"><span class="nav-number">1.1.6.</span> <span class="nav-text">ApplicationListener</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -414,7 +378,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">526</span>
+          <span class="site-state-item-count">527</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

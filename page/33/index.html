@@ -30,6 +30,7 @@
 <meta property="og:description" content="java菜鸟号正在起航">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ZH">
+<meta property="article:tag" content="java,xml,spring,mybatis,springmvc,springboot,springcloud,微服务,大数据,hadoop,hive,scala,spark,maven,git">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://isfox.github.io/page/33/">
@@ -190,6 +191,110 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2.Callable%E6%8E%A5%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2.Callable%E6%8E%A5%E5%8F%A3/" class="post-title-link" itemprop="url">Callable接口</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-23 21:27:30" itemprop="dateCreated datePublished" datetime="2021-01-23T21:27:30+08:00">2021-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-20 09:18:10" itemprop="dateModified" datetime="2021-04-20T09:18:10+08:00">2021-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2.Callable%E6%8E%A5%E5%8F%A3/" class="post-meta-item leancloud_visitors" data-flag-title="Callable接口" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2.Callable%E6%8E%A5%E5%8F%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2.Callable%E6%8E%A5%E5%8F%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Callable接口"><a href="#Callable接口" class="headerlink" title="Callable接口"></a>Callable接口</h2><p>在创建线程的时候不管是继承Thread类(Thread本身也是实现的Runnable接口)还是实现Runnable接口，所实现的run()方法都没有返回值，使得需要将返回值写到map中，等到线程结束再去从map中取数据，特别的不方便</p>
+<p>而且Runnable还有另一个问题是不能抛出任何异常，必须在run()方法中自己处理异常。</p>
+<p>由于Runnable存在的两个问题，所以Callable接口和Future接口应运而生，这里来介绍一下Callable接口和Future接口</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2.Callable%E6%8E%A5%E5%8F%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1119,110 +1224,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/mybatis/5.%E5%8A%A8%E6%80%81sql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%A1%86%E6%9E%B6/mybatis/5.%E5%8A%A8%E6%80%81sql/" class="post-title-link" itemprop="url">动态sql</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-14 09:21:19" itemprop="dateCreated datePublished" datetime="2021-01-14T09:21:19+08:00">2021-01-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 14:54:59" itemprop="dateModified" datetime="2021-04-13T14:54:59+08:00">2021-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E6%A1%86%E6%9E%B6/mybatis/5.%E5%8A%A8%E6%80%81sql/" class="post-meta-item leancloud_visitors" data-flag-title="动态sql" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E6%A1%86%E6%9E%B6/mybatis/5.%E5%8A%A8%E6%80%81sql/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%A1%86%E6%9E%B6/mybatis/5.%E5%8A%A8%E6%80%81sql/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="动态sql"><a href="#动态sql" class="headerlink" title="动态sql"></a>动态sql</h2><p>在写sql语句时如果使用语句拼接，根据不同的参数组织不同的语句，经常出现少或多一个and，缺少空格，最后出现逗号等问题，mybatis通过动态sql来解决这些问题。</p>
-<p>mybatis中包含有if、choose、when、otherwise、trim、where、set、foreach等标签</p>
-<p>动态sql中的表达式使用的是OGNL表达式</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E6%A1%86%E6%9E%B6/mybatis/5.%E5%8A%A8%E6%80%81sql/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1294,7 +1295,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">526</span>
+          <span class="site-state-item-count">527</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

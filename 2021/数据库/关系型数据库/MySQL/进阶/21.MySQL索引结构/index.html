@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="jic7QSLJ3G" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="MySQL索引结构MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-树以及散列类型 MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-Tree索引、hash索引、full-text全文索引  Innodb中使用的是B+树索引 MyISAM中使用的是FullText全文索引， InnoDB在5.6之后支持，5.7之后使用ngram插件开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL索引结构">
+<meta property="og:url" content="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="小菜鸟">
+<meta property="og:description" content="MySQL索引结构MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-树以及散列类型 MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-Tree索引、hash索引、full-text全文索引  Innodb中使用的是B+树索引 MyISAM中使用的是FullText全文索引， InnoDB在5.6之后支持，5.7之后使用ngram插件开">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-22T13:30:30.000Z">
+<meta property="article:modified_time" content="2021-07-15T09:22:31.807Z">
+<meta property="article:author" content="ZH">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MySQL索引结构 | 小菜鸟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小菜鸟</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/isfox" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL索引结构
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-22 21:30:30" itemprop="dateCreated datePublished" datetime="2021-06-22T21:30:30+08:00">2021-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-15 17:22:31" itemprop="dateModified" datetime="2021-07-15T17:22:31+08:00">2021-07-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL索引结构" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/21.MySQL%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="MySQL索引结构"><a href="#MySQL索引结构" class="headerlink" title="MySQL索引结构"></a>MySQL索引结构</h2><p>MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-树以及散列类型</p>
+<p>MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-Tree索引、hash索引、full-text全文索引</p>
+<ul>
+<li>Innodb中使用的是B+树索引</li>
+<li>MyISAM中使用的是FullText全文索引， InnoDB在5.6之后支持，5.7之后使用ngram插件开始支持中文</li>
+<li>Memory中使用的是Hash索引</li>
+</ul>
+<h3 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h3><h4 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h4><p>这种索引我是没有使用过，因为从最一开始我就使用的innodb存储引擎，而B-树是存在于MyISAM存储引擎中的</p>
+<p><strong>MyISAM存储引擎使用B-树数据结构来实现主码索引、唯一索引以及非主码索引。</strong>在MyISAM实现数据目录和数据库模式子目录中，用户可以找到每个MySQL表对应的.MYD和.MYI文件。数据库表上定义的索引信息就存储在MYI文件中，该文件的块大小是1024字节。这个大小是可以通过myisam-block-size系统变量分配。</p>
+<p>在MyISAM中，<strong>非主码索引的B-树结构存储索引值和一个指向主码数据的指针，这是MyISAM和InnoDB的一个显著区别。</strong></p>
+<a id="more"></a>
+
+<p>MyISAM索引是在内存的一个公共缓存中管理的，这个缓存的大小可以通过key_buffer_size或者其他命名键缓存来定义。这是根据统计和规划的表索引的大小来设定缓存大小时主要的考虑因素</p>
+<h5 id="B-树的结构"><a href="#B-树的结构" class="headerlink" title="B-树的结构"></a>B-树的结构</h5><p>B-树中有两种节点类型：<strong>索引节点</strong>和<strong>叶子节点</strong>。叶子节点是用来存储数据的，而索引节点则用来告诉用户存储在叶子节点中的数据顺序，并帮助用户找到相应的数据。</p>
+<p> B-树的搜索，从根节点开始，对节点内的关键字有序进行二分查找，如果命中则结束，否则进入查询关键字所属范围的子节点，重复。直到所对应的子指针为空，或已经是叶子节点</p>
+<p>B-树是一种多路搜索树：</p>
+<ul>
+<li>定义任意非叶子节点最多有M个儿子，且M&gt;2</li>
+<li>根节点的儿子数为[2,M]</li>
+<li>除根节点以外的非叶子节点的儿子数为[M/2,M]</li>
+<li>每个节点存放至少M/2-1(取上整)和至多M-1个关键字</li>
+<li>非叶子节点的关键字个数=指向儿子节点的指针的个数-1</li>
+<li>非叶子节点的关键字：k[i]&lt;k[i+1]</li>
+<li>非叶子节点的指针：p[1]，p[2]，·····，p[M]；其中p[1]指向的关键字小于k[1]的子树，p[M]指向的关键字大于K[m-1]的子树</li>
+<li>所有的叶子节点位于同一层</li>
+</ul>
+<h4 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h4><p>在平时使用的Innodb存储引擎中创建的BTREE索引，就是B+树的结构</p>
+<p>B+树索引分为聚集索引（clustered index)和非聚集索引（secondary index)，这两种索引的共同点是内部都是B+树，高度都是平衡的，叶节点存放着所有数据。不同点是叶节点是否存放着一整行数据</p>
+<blockquote>
+<p>InnoDB的pageSize可以通过命令<code>show variables like &#39;innodb_page_size&#39;</code>得到，默认值是16k</p>
+</blockquote>
+<h5 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h5><p>Innodb存储引擎表是索引组织表，即表中数据按主键顺序存放，而聚集索引就是按每张表的主键构造一颗B+树。并且叶节点存放整张表的行记录数据，每张表只能有一个聚集索引（一个主键），对于聚集索引，叶子结点即存储了真实的数据行，不再有另外单独的数据页，聚集索引的另一个好处是它对于主键的排序查找和范围的速度非常快，叶节点的数据就是我们要找的数据</p>
+<h5 id="非聚集索引"><a href="#非聚集索引" class="headerlink" title="非聚集索引"></a>非聚集索引</h5><p>表数据存储顺序与索引顺序无关。对于非聚集索引，叶结点包含索引字段值及指向数据页数据行的逻辑指针，该层紧邻数据页，其行数量与数据表行数据量一致<br>非聚集索引的存在并不影响数据在聚集索引中的组织，因此一个表可以有多个非聚集索引。当通过非聚集索引查找数据时，innodb会遍历非聚集索引并通过叶级别的指针获得指向主键索引的主键。然后再通过主键索引找到一行完整的数据</p>
+<h5 id="B-树的结构-1"><a href="#B-树的结构-1" class="headerlink" title="B+树的结构"></a>B+树的结构</h5><p>B+树是有序数组链表+平衡多叉树</p>
+<p>相对Hash索引，B+Tree在查找单条记录的速度比不上Hash索引，但是因为更适合排序等操作，所以它更受欢迎</p>
+<p>B+树的所有索引数据都在叶子节点上，并且增加了顺序访问指针，每个叶子节点都有指向相邻叶子节点的指针，这样可以提高区间效率，当进行范围查找时，如查找key为10到20之间的数据，找到10之后就可以顺着节点和指针顺序遍历查找此范围的所有数据节点</p>
+<h5 id="为什么不使用B树做索引呢？"><a href="#为什么不使用B树做索引呢？" class="headerlink" title="为什么不使用B树做索引呢？"></a>为什么不使用B树做索引呢？</h5><p>先来看一下B树和B+树的区别</p>
+<h6 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h6><p>每个节点都存储key和data，所有节点组成这棵树，并且叶子节点指针为nul，叶子结点不包含任何关键字信息</p>
+<h6 id="B-树-2"><a href="#B-树-2" class="headerlink" title="B+树"></a>B+树</h6><p>所有的叶子结点中包含了全部关键字的信息，以及指向含有这些关键字记录的指针，且叶子结点本身依关键字的大小自小而大的顺序链接，所有的非终端结点可以看成是索引部分，结点中仅含有其子树根结点中最大（或最小）关键字</p>
+<p>B+树数据结构是B-树实现的增强版本，尽管B+树支持B-树索引的所有特性，它们之间最显著的不同点在于<strong>B+树中底层数据是根据被提及的索引列进行排序的</strong>，B+树还通过叶子节点之间的附加引用来优化扫描性能。</p>
+<p>B+搜索和B-搜索不同，区别是B+树只有达到叶子节点才命中（B-树可以在非叶子节点命中），其性能等价于关键字全集做一次二分搜索。</p>
+<p>B+树的特性：</p>
+<ul>
+<li>所有关键字都出现在叶子节点的链表中，叶子节点相当于存储数据的数据层</li>
+<li>不可能在非叶子节点上命中</li>
+<li>非叶子节点相当于是叶子节点的索引，叶子节点相当于数据层</li>
+</ul>
+<p>根据两种结构的特性可以看到，与B树相比，B+树的数据全部都在叶子节点中，非叶子节点不保存数据，非叶子节点占用的内容更少，同样大小的文件可以存放更多的非叶子节点，<strong>MySql 将数据按照页来存储，默认一页为 16kb，在查询时，将这个数据所在的页都加载到 pageCache 中，</strong>这样每页可以取到的索引数据就多，所以，所以在查找时IO次数会相对较少；而且在叶子节点之间又存在指针，所以在进行范围查找时也可以很快的将数据节点取到</p>
+<h4 id="hash索引"><a href="#hash索引" class="headerlink" title="hash索引"></a>hash索引</h4><p>散列表也可以成为hash表</p>
+<p>在默认MySQL的引擎索引中，只有MEMORY引擎支持散列数据结构，散列结构的强度可以表示为直接键查找的简单性，散列索引的相似度模式匹配查询比直接查询慢，Hash索引把数据以hash形式组织起来，检索时不需要类似B+树那样从根节点到叶子节点逐级查找，只需一次哈希算法即可,是无序的，因此当查找某一条记录的时候，速度非常快。但是因为hash结构，每个键只对应一个值，而且是散列的方式分布。所以它并不支持范围查找和排序等功能</p>
+<h5 id="散列表结构"><a href="#散列表结构" class="headerlink" title="散列表结构"></a>散列表结构</h5><p>散列表数据结构是一种很简单的概念，它将一种算法应用到给定值中以在底层数据存储系统中返回一个唯一的指针或位置。散列表的优点是始终以线性时间复杂度找到需要读取的行的位置，而不像B-树那样需要横跨多层节点来确定位置</p>
+<h4 id="R-树"><a href="#R-树" class="headerlink" title="R-树"></a>R-树</h4><p> R-树数据结构支持基于数据类型对几何数据进行管理。目前只有MyISAM使用R-树实现支持空间索引，使用空间索引也有很多限制，比如只支持唯一的NOT NULL列等</p>
+<h4 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h4><p>全文本结构也是一种MySQL采用的基本数据结构，只能添加在 char, varchar, text类型的字段，查询字段较大的字符串类型的字段时可以提高速率</p>
+<h3 id="主键的设计"><a href="#主键的设计" class="headerlink" title="主键的设计"></a>主键的设计</h3><ul>
+<li><p>MySql 的主键不能太大，如果使用 UUID 这种，将会浪费 B+ 树的非叶子节点。</p>
+</li>
+<li><p>MySql 的主键最好是自增的，如果使用 UUID 这种，每次插入都会调整 B+树，从而导致页分裂，严重影响性能</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/JVM/19.%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" rel="prev" title="内存溢出和内存泄漏">
+      <i class="fa fa-chevron-left"></i> 内存溢出和内存泄漏
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/22.MySQL%E7%B3%BB%E7%BB%9F%E8%B0%83%E4%BC%98/" rel="next" title="MySQL系统调优">
+      MySQL系统调优 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">MySQL索引结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">索引结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E6%A0%91"><span class="nav-number">1.1.1.</span> <span class="nav-text">B-树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#B-%E6%A0%91%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">B-树的结构</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E6%A0%91-1"><span class="nav-number">1.1.2.</span> <span class="nav-text">B+树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">聚集索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">非聚集索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#B-%E6%A0%91%E7%9A%84%E7%BB%93%E6%9E%84-1"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">B+树的结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8B%E6%A0%91%E5%81%9A%E7%B4%A2%E5%BC%95%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">为什么不使用B树做索引呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#B%E6%A0%91"><span class="nav-number">1.1.2.4.1.</span> <span class="nav-text">B树</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#B-%E6%A0%91-2"><span class="nav-number">1.1.2.4.2.</span> <span class="nav-text">B+树</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hash%E7%B4%A2%E5%BC%95"><span class="nav-number">1.1.3.</span> <span class="nav-text">hash索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">散列表结构</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#R-%E6%A0%91"><span class="nav-number">1.1.4.</span> <span class="nav-text">R-树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E6%96%87%E7%B4%A2%E5%BC%95"><span class="nav-number">1.1.5.</span> <span class="nav-text">全文索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.</span> <span class="nav-text">主键的设计</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZH"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">ZH</p>
+  <div class="site-description" itemprop="description">java菜鸟号正在起航</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">527</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/isfox" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;isfox" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/SiXiangPiaoFuZhe" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;SiXiangPiaoFuZhe" rel="noopener" target="_blank"><i class="fa fa-git fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhanghe1996hy@163.com" title="E-Mail → mailto:zhanghe1996hy@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'MURUEmkUEoDdKOq3baW5Ofoh-gzGzoHsz',
+      appKey     : 'AsR88DCeCWHyTu5jFQkAA6g6',
+      placeholder: "来说一句吧",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

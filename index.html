@@ -30,6 +30,7 @@
 <meta property="og:description" content="java菜鸟号正在起航">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ZH">
+<meta property="article:tag" content="java,xml,spring,mybatis,springmvc,springboot,springcloud,微服务,大数据,hadoop,hive,scala,spark,maven,git">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://isfox.github.io/">
@@ -194,6 +195,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/" class="post-title-link" itemprop="url">spring的扩展接口</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-15 20:29:23 / 修改时间：12:19:16" itemprop="dateCreated datePublished" datetime="2021-07-15T20:29:23+08:00">2021-07-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/" class="post-meta-item leancloud_visitors" data-flag-title="spring的扩展接口" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="spring的扩展接口"><a href="#spring的扩展接口" class="headerlink" title="spring的扩展接口"></a>spring的扩展接口</h2><p>spring提供了一些扩展接口来对spring进行定制化功能，可以选择如下一些扩展点：</p>
+<h3 id="BeanFactoryPostProcessor"><a href="#BeanFactoryPostProcessor" class="headerlink" title="BeanFactoryPostProcessor"></a>BeanFactoryPostProcessor</h3><p>beanFactory后置处理器，支持在bean factory标准初始化完成后，对bean factory进行一些额外处理。这时所有的bean的描述信息已经加载完毕，但是还没有进行bean初始化。如PropertyPlaceholderConfigurer，就是在这个扩展点上对bean属性中的占位符进行替换</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E6%A1%86%E6%9E%B6/spring/14.spring%E7%9A%84%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/20.%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -325,10 +423,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-07-12 21:30:30 / 修改时间：17:57:37" itemprop="dateCreated datePublished" datetime="2021-07-12T21:30:30+08:00">2021-07-12</time>
+              <time title="创建时间：2021-07-12 21:30:30" itemprop="dateCreated datePublished" datetime="2021-07-12T21:30:30+08:00">2021-07-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-15 17:40:36" itemprop="dateModified" datetime="2021-07-15T17:40:36+08:00">2021-07-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -372,7 +476,8 @@
 
       
           <h2 id="MVCC机制"><a href="#MVCC机制" class="headerlink" title="MVCC机制"></a>MVCC机制</h2><p>使用MVCC(Multi-Version Concurrency Control，多版本的并发控制协议)机制来实现可重复读(REPEATABLE READ)的隔离级别</p>
-<p>MVCC最大的优点是读不加锁，因此读写不冲突，并发性能好。InnoDB实现MVCC，多个版本的数据可以共存，主要是依靠数据的隐藏列(也可以称之为标记位)和undo log。其中数据的隐藏列包括了该行数据的版本号、删除时间、指向undo log的指针等等；当读取数据时，MySQL可以通过隐藏列判断是否需要回滚并找到回滚需要的undo log，从而实现MVCC；</p>
+<p>MVCC最大的优点是读不加锁，因此读写不冲突，并发性能好。InnoDB实现MVCC，多个版本的数据可以共存，主要是依靠数据的<strong>隐藏列</strong>(也可以称之为标记位)和undo log。其中数据的隐藏列包括了该行数据的版本号、删除时间、指向undo log的指针等等；在进行数据修改时，当前记录会进行加锁，把修改前的数据放入undo log中，通过undo log的指针与数据进行关联，如果修改失败，则恢复undo log中的数据</p>
+<h3 id="MySQL的隐藏列"><a href="#MySQL的隐藏列" class="headerlink" title="MySQL的隐藏列"></a><del>MySQL的隐藏列</del></h3><p><del>innodb每个聚集索引都有4个隐藏字段，分别为主键(RowId)，最近更改的事务ID、undo log的指针、索引删除标记(数据被删除时，并不是立即删除，而是打上删除标记，进行异步删除)</del></p>
 
       
     </div>
@@ -1054,106 +1159,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/22.MySQL%E7%B3%BB%E7%BB%9F%E8%B0%83%E4%BC%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/22.MySQL%E7%B3%BB%E7%BB%9F%E8%B0%83%E4%BC%98/" class="post-title-link" itemprop="url">MySQL系统调优</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-24 21:30:30 / 修改时间：18:46:17" itemprop="dateCreated datePublished" datetime="2021-06-24T21:30:30+08:00">2021-06-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/22.MySQL%E7%B3%BB%E7%BB%9F%E8%B0%83%E4%BC%98/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL系统调优" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/22.MySQL%E7%B3%BB%E7%BB%9F%E8%B0%83%E4%BC%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/22.MySQL%E7%B3%BB%E7%BB%9F%E8%B0%83%E4%BC%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="MySQL系统调优"><a href="#MySQL系统调优" class="headerlink" title="MySQL系统调优"></a>MySQL系统调优</h2><p>可以使用下面几个工具来做基准测试：</p>
-<ul>
-<li><p><strong>sysbench：</strong>一个模块化，跨平台以及多线程的性能测试工具。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/akopytov/sysbench">https://github.com/akopytov/sysbench</a></p>
-</li>
-<li><p><strong>iibench-mysql：</strong>基于Java的MySQL / Percona / MariaDB 索引进行插入性能测试工具。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/tmcallaghan/iibench-mysql">https://github.com/tmcallaghan/iibench-mysql</a></p>
-</li>
-<li><p><strong>tpcc-mysql：</strong>Percona开发的TPC-C测试工具。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/Percona-Lab/tpcc-mysql">https://github.com/Percona-Lab/tpcc-mysql</a></p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1225,7 +1230,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">526</span>
+          <span class="site-state-item-count">527</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
