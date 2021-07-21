@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="linux下载软件包linux下只有两种软件包  源码包 二进制包(rpm)  centos下">
+  <meta name="description" content="linux下载软件包linux下只有两种软件包  源码包(tar 压缩包，如有.tar.gz 和.tar.bz2) 二进制包(rpm)  centos下  (除了rpm还有srpm，srpm 包为未编译过的 rpm 包，需要以 rpm 管理的方式编译，然后以 rpm 的安装方式安装)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux下载软件包">
 <meta property="og:url" content="https://isfox.github.io/2021/linux/%E5%8C%85%E7%AE%A1%E7%90%86/linux%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6%E5%8C%85/index.html">
 <meta property="og:site_name" content="小菜鸟">
-<meta property="og:description" content="linux下载软件包linux下只有两种软件包  源码包 二进制包(rpm)  centos下">
+<meta property="og:description" content="linux下载软件包linux下只有两种软件包  源码包(tar 压缩包，如有.tar.gz 和.tar.bz2) 二进制包(rpm)  centos下  (除了rpm还有srpm，srpm 包为未编译过的 rpm 包，需要以 rpm 管理的方式编译，然后以 rpm 的安装方式安装)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-13T11:46:30.000Z">
-<meta property="article:modified_time" content="2021-03-29T02:39:50.972Z">
+<meta property="article:modified_time" content="2021-07-20T07:07:57.192Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="shell">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-29 10:39:50" itemprop="dateModified" datetime="2021-03-29T10:39:50+08:00">2021-03-29</time>
+                <time title="修改时间：2021-07-20 15:07:57" itemprop="dateModified" datetime="2021-07-20T15:07:57+08:00">2021-07-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,18 +274,48 @@
       
         <h2 id="linux下载软件包"><a href="#linux下载软件包" class="headerlink" title="linux下载软件包"></a>linux下载软件包</h2><p>linux下只有两种软件包</p>
 <ul>
-<li>源码包</li>
-<li>二进制包(rpm)  centos下</li>
+<li>源码包(tar 压缩包，如有.tar.gz 和.tar.bz2)</li>
+<li>二进制包(rpm)  centos下  (除了rpm还有srpm，srpm 包为未编译过的 rpm 包，需要以 rpm 管理的方式编译，然后以 rpm 的安装方式安装)</li>
 </ul>
 <a id="more"></a>
 
-<h3 id="RPM包操作"><a href="#RPM包操作" class="headerlink" title="RPM包操作"></a>RPM包操作</h3><h4 id="rpm安装"><a href="#rpm安装" class="headerlink" title="rpm安装"></a>rpm安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh 包全名</span><br><span class="line">-------</span><br><span class="line">-i     install安装</span><br><span class="line">-v     verbose显示详细信息</span><br><span class="line">-h     显示安装进度</span><br></pre></td></tr></table></figure>
+<h3 id="RPM包操作"><a href="#RPM包操作" class="headerlink" title="RPM包操作"></a>RPM包操作</h3><p>rpm 包是依赖 cpu 架构的，常见的格式</p>
+<ul>
+<li><p>noarch.rpm<br>不依赖于 CPU， 可以在所有计算机上安装</p>
+</li>
+<li><p>i386.rpm<br>基于 Intel 386 CPU，这些 RPM 包可以在所有 Intel 兼容计算机上安装</p>
+</li>
+<li><p>i486.r pm<br>用于带 Intel 486 CPU 的计算机(随时)</p>
+</li>
+<li><p>i586.rpm<br>用于带 Intel 586 CPU 的计算机</p>
+</li>
+<li><p>i686.rpm<br>用于带 Intel 686 CPU 的计算机</p>
+</li>
+<li><p>ia64.rpm<br>用于带 Intel ltanium 64 位 CPU 的计算机</p>
+</li>
+<li><p>alpha.rpm<br>用于带 HP Alpha CPU 的计算机，最初是 DEC 公司开发的</p>
+</li>
+<li><p>nthlon.rpm<br>基于 AMD Athlon CPU</p>
+</li>
+<li><p>ppc.rpm<br>用于带 Apple Powe rPC CPU 的计算机</p>
+</li>
+<li><p>s390.rpm<br>用于基于 S/390 CPU 的 IBM 服务器</p>
+</li>
+<li><p>sparc.rpm<br>用于带 Sun 系统公司 SPARC CPU 的计算机</p>
+</li>
+</ul>
+<h4 id="rpm安装"><a href="#rpm安装" class="headerlink" title="rpm安装"></a>rpm安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh 包全名</span><br><span class="line">-------</span><br><span class="line">-i     install安装</span><br><span class="line">-v     verbose显示详细信息</span><br><span class="line">-h     显示安装进度</span><br></pre></td></tr></table></figure>
 
 <h4 id="rpm包升级"><a href="#rpm包升级" class="headerlink" title="rpm包升级"></a>rpm包升级</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh  包全名</span><br><span class="line">------</span><br><span class="line">-U    升级安装</span><br></pre></td></tr></table></figure>
 
-<h4 id="rpm包卸载"><a href="#rpm包卸载" class="headerlink" title="rpm包卸载"></a>rpm包卸载</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e 包名</span><br></pre></td></tr></table></figure>
+<h4 id="rpm包卸载"><a href="#rpm包卸载" class="headerlink" title="rpm包卸载"></a>rpm包卸载</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 多个包的话，空格隔开</span></span><br><span class="line">rpm -e 包名</span><br></pre></td></tr></table></figure>
 
 <h4 id="rpm包查询"><a href="#rpm包查询" class="headerlink" title="rpm包查询"></a>rpm包查询</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查询是否安装</span></span><br><span class="line">rpm -q 包名</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询系统上所有安装的包</span></span><br><span class="line">rpm -qa</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询软件包的文件列表</span></span><br><span class="line">rpm -ql 包名</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询某个文件属于哪个包</span></span><br><span class="line">rpm -qf 文件名</span><br><span class="line"></span><br><span class="line">------------------</span><br><span class="line">-i  info信息</span><br><span class="line">-a  all所有</span><br><span class="line">-l  list文件列表</span><br><span class="line">-f  file文件</span><br></pre></td></tr></table></figure>
+
+<h4 id="srpm-包的安装"><a href="#srpm-包的安装" class="headerlink" title="srpm 包的安装"></a>srpm 包的安装</h4><p>源代码 RPM 包的结尾通常是.src.rpm</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rpm -i 包名 </span><br><span class="line"></span><br><span class="line">cd /usr/src/redhat/SPECS</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译完之后，/usr/src/redhat/RPM/i386/目录下，有一个新的 rpm 包，这个是编译好的二进制文件。</span></span><br><span class="line">rpmbuild -bb 打出来的specs文件</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装</span></span><br><span class="line">rpm -i 新的rpm包名 </span><br></pre></td></tr></table></figure>
+
+
 
 <p>由于rpm安装软件包时比较麻烦，各个包之间的依赖需要去人工下载，所以一般使用yum来在线安装</p>
 <h3 id="yum安装软件包"><a href="#yum安装软件包" class="headerlink" title="yum安装软件包"></a>yum安装软件包</h3><p>yum的源配置文件保存在/etc/yum.repos.d文件夹中，默认使用的是CentOS-Base.repo</p>
@@ -323,6 +353,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
 
 <p>编译安装</p>
+<h4 id="卸载-1"><a href="#卸载-1" class="headerlink" title="卸载"></a>卸载</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make uninstall</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -409,7 +441,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">linux下载软件包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RPM%E5%8C%85%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">RPM包操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.1.</span> <span class="nav-text">rpm安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm%E5%8C%85%E5%8D%87%E7%BA%A7"><span class="nav-number">1.1.2.</span> <span class="nav-text">rpm包升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm%E5%8C%85%E5%8D%B8%E8%BD%BD"><span class="nav-number">1.1.3.</span> <span class="nav-text">rpm包卸载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm%E5%8C%85%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.4.</span> <span class="nav-text">rpm包查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yum%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">1.2.</span> <span class="nav-text">yum安装软件包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.2.1.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7"><span class="nav-number">1.2.3.</span> <span class="nav-text">升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD"><span class="nav-number">1.2.4.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%BB%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.5.</span> <span class="nav-text">软件组操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-number">1.3.</span> <span class="nav-text">源码包安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="nav-number">1.3.1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="nav-number">1.3.2.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="nav-number">1.3.3.</span> <span class="nav-text">第三步</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">linux下载软件包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RPM%E5%8C%85%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">RPM包操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.1.</span> <span class="nav-text">rpm安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm%E5%8C%85%E5%8D%87%E7%BA%A7"><span class="nav-number">1.1.2.</span> <span class="nav-text">rpm包升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm%E5%8C%85%E5%8D%B8%E8%BD%BD"><span class="nav-number">1.1.3.</span> <span class="nav-text">rpm包卸载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm%E5%8C%85%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.4.</span> <span class="nav-text">rpm包查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#srpm-%E5%8C%85%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.5.</span> <span class="nav-text">srpm 包的安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yum%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">1.2.</span> <span class="nav-text">yum安装软件包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.2.1.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7"><span class="nav-number">1.2.3.</span> <span class="nav-text">升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD"><span class="nav-number">1.2.4.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%BB%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.5.</span> <span class="nav-text">软件组操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-number">1.3.</span> <span class="nav-text">源码包安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="nav-number">1.3.1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="nav-number">1.3.2.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="nav-number">1.3.3.</span> <span class="nav-text">第三步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD-1"><span class="nav-number">1.3.4.</span> <span class="nav-text">卸载</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -425,7 +457,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">528</span>
+          <span class="site-state-item-count">530</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -191,7 +191,116 @@
 
           <div class="content index posts-expand">
             
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">性能优化的步骤</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-21 20:47:40 / 修改时间：09:58:13" itemprop="dateCreated datePublished" datetime="2021-07-21T20:47:40+08:00">2021-07-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/" class="post-meta-item leancloud_visitors" data-flag-title="性能优化的步骤" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
+          <h2 id="性能优化的步骤"><a href="#性能优化的步骤" class="headerlink" title="性能优化的步骤"></a>性能优化的步骤</h2><h3 id="一、发现问题-性能监控"><a href="#一、发现问题-性能监控" class="headerlink" title="一、发现问题(性能监控)"></a>一、发现问题(性能监控)</h3><p>可能存在的问题：GC频繁、cpu load过高、OOM、内存泄漏、死锁、程序响应时间过长</p>
+<h3 id="二、排查问题-性能分析"><a href="#二、排查问题-性能分析" class="headerlink" title="二、排查问题(性能分析)"></a>二、排查问题(性能分析)</h3><p>分析方式或工具</p>
+<ul>
+<li>打印GC日志，通过GCviewer或者<a target="_blank" rel="noopener" href="http://gceasy.io来分析日志信息/">http://gceasy.io来分析日志信息</a></li>
+<li>命令行工具，如jstack、jmap、jinfo等</li>
+<li>dump出堆文件，使用内存分析工具分析文件</li>
+<li>使用阿里Arthas或jconsole、JVisualVM来实时查看JVM状态</li>
+<li>jstack查看堆栈信息</li>
+</ul>
+<h3 id="三、解决问题-性能调优"><a href="#三、解决问题-性能调优" class="headerlink" title="三、解决问题(性能调优)"></a>三、解决问题(性能调优)</h3><p>解决的大致方向如下</p>
+<ul>
+<li>适当增加内存，根据业务背景选择垃圾回收器</li>
+<li>优化代码，控制内存使用</li>
+<li>增加机器，分散节点压力</li>
+<li>合理设置线程池线程数量</li>
+<li>使用中间件提高程序效率，比如缓存，消息列队等</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+  	
+    	  
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -288,7 +397,9 @@
   
   
 
-      
+    
+  	
+    	  
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -385,7 +496,9 @@
   
   
 
-      
+    
+  	
+    	  
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -493,7 +606,9 @@
   
   
 
-      
+    
+  	
+    	  
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -590,7 +705,9 @@
   
   
 
-      
+    
+  	
+    	  
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -687,7 +804,9 @@
   
   
 
-      
+    
+  	
+    	  
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -779,7 +898,9 @@
   
   
 
-      
+    
+  	
+    	  
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -870,7 +991,9 @@
   
   
 
-      
+    
+  	
+    	  
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -968,196 +1091,7 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/" class="post-title-link" itemprop="url">JMM</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-29 22:11:23 / 修改时间：22:36:17" itemprop="dateCreated datePublished" datetime="2021-06-29T22:11:23+08:00">2021-06-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/" class="post-meta-item leancloud_visitors" data-flag-title="JMM" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
     
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h2><p>JMM(Java Memony Mode)java内存模型，JMM描述了java线程如何通过内存进行交互，java程序中各种变量(线程共享变量)的访问规则，以及在jvm中将变量存储到内存和从内存中读取出变量的底层细节</p>
-<ul>
-<li>所有变量都存储在主内存</li>
-<li>每个线程都有自己独立的工作内存，里面保存该线程使用到的变量的副本</li>
-</ul>
-<p>有两条规定</p>
-<ul>
-<li>线程对共享变量的所有操作都必须在自己的工作内存中进行，不能直接从主内存中读写</li>
-<li>不同线程之间无法直接访问其他线程工作内存中的变量，线程间变量值的传递需要通过主内存来完成</li>
-</ul>
-<p>happens-before</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/java%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/java%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">编码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-27 22:39:30 / 修改时间：22:40:24" itemprop="dateCreated datePublished" datetime="2021-06-27T22:39:30+08:00">2021-06-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/java%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A0%81/" class="post-meta-item leancloud_visitors" data-flag-title="编码" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/java%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A0%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/java%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A0%81/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p>gbk编码：中文占2个字节，英文占1个字节</p>
-<p>utf-8编码：中文占3个字节，英文占1个字节</p>
-<p>utf-16编码：中文占2个字节，英文占2个字节</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1229,7 +1163,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">528</span>
+          <span class="site-state-item-count">530</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
