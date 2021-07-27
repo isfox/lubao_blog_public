@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://isfox.github.io/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E4%B8%8D%E5%90%8C.png">
 <meta property="og:image" content="https://isfox.github.io/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E7%9B%B8%E5%90%8C%E4%B8%8D%E5%90%8C.png">
 <meta property="article:published_time" content="2021-03-06T08:50:30.000Z">
-<meta property="article:modified_time" content="2021-07-08T03:43:15.256Z">
+<meta property="article:modified_time" content="2021-07-26T09:43:39.100Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-08 11:43:15" itemprop="dateModified" datetime="2021-07-08T11:43:15+08:00">2021-07-08</time>
+                <time title="修改时间：2021-07-26 17:43:39" itemprop="dateModified" datetime="2021-07-26T17:43:39+08:00">2021-07-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -337,8 +337,8 @@
 <li>using filesort   文件排序，mysql无法利用索引来完成的排序，则使用文件排序(出现此种情况，最好进行优化)</li>
 <li>using temporary  使用了临时表保存中间结果，常见于排序和分组查询(出现此种情况，尽快优化，速度极慢)，使用group by分组查询时，最好按照索引顺序来进行分组</li>
 <li>using index  表示相应的select行使用了覆盖索引(覆盖索引为查询结果为索引列，不必读取数据行)，防止访问数据行，速度提升</li>
-<li>using where  表示使用索引进行检索</li>
-<li>using join buffer  使用join缓存</li>
+<li>using where  查询时为找到可以使用的索引，使用where条件进行过滤，此时的type为all</li>
+<li>using join buffer  在使用join进行链表查询的时候，如果表的连接条件没有用到索引，需要有一个缓冲区来存储中间结果</li>
 <li>impossible where   where条件总是false，无法查到数据</li>
 </ul>
 
@@ -443,7 +443,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">530</span>
+          <span class="site-state-item-count">531</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

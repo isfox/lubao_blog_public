@@ -196,6 +196,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/1.%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%80%E8%87%B4%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/1.%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%80%E8%87%B4%E6%80%A7/" class="post-title-link" itemprop="url">如何保证消息一致性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-28 22:58:30" itemprop="dateCreated datePublished" datetime="2021-05-28T22:58:30+08:00">2021-05-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-29 23:11:22" itemprop="dateModified" datetime="2021-05-29T23:11:22+08:00">2021-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">消息队列</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/1.%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%80%E8%87%B4%E6%80%A7/" class="post-meta-item leancloud_visitors" data-flag-title="如何保证消息一致性" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/1.%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%80%E8%87%B4%E6%80%A7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F/1.%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%80%E8%87%B4%E6%80%A7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="如何保证消息一致性"><a href="#如何保证消息一致性" class="headerlink" title="如何保证消息一致性"></a>如何保证消息一致性</h2><img src="/images/消息系统/消息一致性.png" alt="消息一致性" style="zoom:50%;">
+
+<p>消息处理时要进行持久化操作，表示收到消息了，此时就可以恢复给发布者消息已收到，然后在进行业务操作，如果业务操作失败，则进行补偿机制(定时任务)，重新执行失败的任务</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/8.HBase%E4%BD%BF%E7%94%A8%E7%9A%84%E5%BC%8A%E7%AB%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1115,103 +1214,10 @@
   
 
     
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/" class="post-title-link" itemprop="url">监控CPU利用率</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-27 20:35:30 / 修改时间：15:26:01" itemprop="dateCreated datePublished" datetime="2021-05-27T20:35:30+08:00">2021-05-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/" class="post-meta-item leancloud_visitors" data-flag-title="监控CPU利用率" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="监控CPU利用率"><a href="#监控CPU利用率" class="headerlink" title="监控CPU利用率"></a>监控CPU利用率</h2><p>使用vmstat来分析CPU使用信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">DATE=$(date +%F&quot; &quot;%H:%M)</span><br><span class="line">IP=$(ifconfig eth0 |awk -F &#x27;[ :]+&#x27; &#x27;/inet addr/&#123;print $4&#125;&#x27;)  # 只支持CentOS6</span><br><span class="line">MAIL=&quot;example@mail.com&quot;</span><br><span class="line">if ! which vmstat &amp;&gt;/dev/null; then</span><br><span class="line">    echo &quot;vmstat command no found, Please install procps package.&quot; </span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line">US=$(vmstat |awk &#x27;NR==3&#123;print $13&#125;&#x27;)</span><br><span class="line">SY=$(vmstat |awk &#x27;NR==3&#123;print $14&#125;&#x27;)</span><br><span class="line">IDLE=$(vmstat |awk &#x27;NR==3&#123;print $15&#125;&#x27;)</span><br><span class="line">WAIT=$(vmstat |awk &#x27;NR==3&#123;print $16&#125;&#x27;)</span><br><span class="line">USE=$(($US+$SY))</span><br><span class="line">if [ $USE -ge 50 ]; then</span><br><span class="line">    echo &quot;</span><br><span class="line">    Date: $DATE</span><br><span class="line">    Host: $IP</span><br><span class="line">    Problem: CPU utilization $USE</span><br><span class="line">    &quot; | mail -s &quot;CPU Monitor&quot; $MAIL</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1279,7 +1285,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">530</span>
+          <span class="site-state-item-count">531</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

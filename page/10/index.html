@@ -196,6 +196,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/" class="post-title-link" itemprop="url">监控CPU利用率</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-27 20:35:30 / 修改时间：15:26:01" itemprop="dateCreated datePublished" datetime="2021-05-27T20:35:30+08:00">2021-05-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/" class="post-meta-item leancloud_visitors" data-flag-title="监控CPU利用率" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7CPU%E5%88%A9%E7%94%A8%E7%8E%87/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="监控CPU利用率"><a href="#监控CPU利用率" class="headerlink" title="监控CPU利用率"></a>监控CPU利用率</h2><p>使用vmstat来分析CPU使用信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">DATE=$(date +%F&quot; &quot;%H:%M)</span><br><span class="line">IP=$(ifconfig eth0 |awk -F &#x27;[ :]+&#x27; &#x27;/inet addr/&#123;print $4&#125;&#x27;)  # 只支持CentOS6</span><br><span class="line">MAIL=&quot;example@mail.com&quot;</span><br><span class="line">if ! which vmstat &amp;&gt;/dev/null; then</span><br><span class="line">    echo &quot;vmstat command no found, Please install procps package.&quot; </span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line">US=$(vmstat |awk &#x27;NR==3&#123;print $13&#125;&#x27;)</span><br><span class="line">SY=$(vmstat |awk &#x27;NR==3&#123;print $14&#125;&#x27;)</span><br><span class="line">IDLE=$(vmstat |awk &#x27;NR==3&#123;print $15&#125;&#x27;)</span><br><span class="line">WAIT=$(vmstat |awk &#x27;NR==3&#123;print $16&#125;&#x27;)</span><br><span class="line">USE=$(($US+$SY))</span><br><span class="line">if [ $USE -ge 50 ]; then</span><br><span class="line">    echo &quot;</span><br><span class="line">    Date: $DATE</span><br><span class="line">    Host: $IP</span><br><span class="line">    Problem: CPU utilization $USE</span><br><span class="line">    &quot; | mail -s &quot;CPU Monitor&quot; $MAIL</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%AE%9E%E7%94%A8shell/%E7%9B%91%E6%8E%A7%E5%86%85%E5%AD%98%E5%88%A9%E7%94%A8%E7%8E%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -903,113 +996,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">DataFrame编程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-25 20:30:30" itemprop="dateCreated datePublished" datetime="2021-05-25T20:30:30+08:00">2021-05-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-26 18:01:17" itemprop="dateModified" datetime="2021-05-26T18:01:17+08:00">2021-05-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index"><span itemprop="name">spark</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="DataFrame编程" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="DataFrame编程"><a href="#DataFrame编程" class="headerlink" title="DataFrame编程"></a>DataFrame编程</h2><p>DataFrame是一种以RDD为基础的分布式数据集，类似于关系型数据库的Table表，与RDD的主要区别在于，DataFrame带有schema元信息，表示数据集的每一列都带有名称和类型，而RDD不知道所存数据元素的具体内部结构，只能进行简单、通用的流水线优化。</p>
-<h3 id="SparkSession"><a href="#SparkSession" class="headerlink" title="SparkSession"></a>SparkSession</h3><p>在Spark Core中使用的是上下文环境SparkContext，而在SparkSQL中使用的是SparkSession，SparkSession是由SparkContext和HiveContext的组合</p>
-<p>spark-shell会自动创建SparkContext和SparkSession对象</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Spark</span> context available as <span class="symbol">&#x27;s</span>c&#x27; (master = local[*], app id = local<span class="number">-1621927578517</span>).</span><br><span class="line"><span class="type">Spark</span> session available as <span class="symbol">&#x27;spar</span>k&#x27;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/3.DataSet%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1115,7 +1101,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/1.SparkSQL%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -1129,7 +1115,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/1.SparkSQL%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">sparkSQL简介</a>
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">DataFrame编程</a>
         </h2>
 
         <div class="post-meta">
@@ -1139,14 +1125,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-05-25 20:10:30" itemprop="dateCreated datePublished" datetime="2021-05-25T20:10:30+08:00">2021-05-25</time>
+              <time title="创建时间：2021-05-25 20:30:30" itemprop="dateCreated datePublished" datetime="2021-05-25T20:30:30+08:00">2021-05-25</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-26 17:36:03" itemprop="dateModified" datetime="2021-05-26T17:36:03+08:00">2021-05-26</time>
+                <time title="修改时间：2021-05-26 18:01:17" itemprop="dateModified" datetime="2021-05-26T18:01:17+08:00">2021-05-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1159,7 +1145,7 @@
             </span>
 
           
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/1.SparkSQL%E7%AE%80%E4%BB%8B/" class="post-meta-item leancloud_visitors" data-flag-title="sparkSQL简介" title="阅读次数">
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="DataFrame编程" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1174,8 +1160,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/1.SparkSQL%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/1.SparkSQL%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1190,15 +1176,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="sparkSQL简介"><a href="#sparkSQL简介" class="headerlink" title="sparkSQL简介"></a>sparkSQL简介</h2><p>sparkSQL是Spark用于结构化数据处理的Spark模块，为了给RDBMS但是又不了解MapReduce的开发人员提供的快速入手的工具，在一开始的时候是基于Hive进行开发的，但是后来由于为了摆脱对Hive的依赖，SparkSQL进行了重新开发</p>
-<ul>
-<li>数据兼容方面 SparkSQL 不但兼容 Hive，还可以从 RDD、parquet 文件、JSON 文件中获取数据，未来版本甚至支持获取 RDBMS 数据以及 cassandra 等 NOSQL 数据</li>
-<li>性能优化方面 除了采取 In-Memory Columnar Storage、byte-code generation 等优化技术外、将会引进 Cost Model 对查询进行动态评估、获取最佳物理计划等等</li>
-<li>组件扩展方面 无论是 SQL 的语法解析器、分析器还是优化器都可以重新定义，进行扩展</li>
-</ul>
+          <h2 id="DataFrame编程"><a href="#DataFrame编程" class="headerlink" title="DataFrame编程"></a>DataFrame编程</h2><p>DataFrame是一种以RDD为基础的分布式数据集，类似于关系型数据库的Table表，与RDD的主要区别在于，DataFrame带有schema元信息，表示数据集的每一列都带有名称和类型，而RDD不知道所存数据元素的具体内部结构，只能进行简单、通用的流水线优化。</p>
+<h3 id="SparkSession"><a href="#SparkSession" class="headerlink" title="SparkSession"></a>SparkSession</h3><p>在Spark Core中使用的是上下文环境SparkContext，而在SparkSQL中使用的是SparkSession，SparkSession是由SparkContext和HiveContext的组合</p>
+<p>spark-shell会自动创建SparkContext和SparkSession对象</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Spark</span> context available as <span class="symbol">&#x27;s</span>c&#x27; (master = local[*], app id = local<span class="number">-1621927578517</span>).</span><br><span class="line"><span class="type">Spark</span> session available as <span class="symbol">&#x27;spar</span>k&#x27;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/1.SparkSQL%E7%AE%80%E4%BB%8B/#more" rel="contents">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark%20sql/2.DataFrame%E7%BC%96%E7%A8%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1222,7 +1206,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1290,7 +1274,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">530</span>
+          <span class="site-state-item-count">531</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
