@@ -196,6 +196,119 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">MapReduce简介</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-22 21:31:30" itemprop="dateCreated datePublished" datetime="2021-03-22T21:31:30+08:00">2021-03-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-29 17:13:29" itemprop="dateModified" datetime="2021-05-29T17:13:29+08:00">2021-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index"><span itemprop="name">hadoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/" class="post-meta-item leancloud_visitors" data-flag-title="MapReduce简介" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="MapReduce简介"><a href="#MapReduce简介" class="headerlink" title="MapReduce简介"></a>MapReduce简介</h2><h3 id="为什么要有MapReduce"><a href="#为什么要有MapReduce" class="headerlink" title="为什么要有MapReduce"></a>为什么要有MapReduce</h3><p>MapReduce也是来源于Google中的MapReduce，是为了解决PageRank(搜索排名)问题，由于网页过多，进行计算网页权重时需要大量的计算，MapReduce将大任务拆分成小任务，然后在进行汇总</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>MapReduce是Hadoop中的计算部分，将计算分为了两个阶段：Map阶段和Reduce阶段</p>
+<h4 id="Map阶段"><a href="#Map阶段" class="headerlink" title="Map阶段"></a>Map阶段</h4><p>Map阶段任务拆分并行处理输入数据</p>
+<ul>
+<li>Map阶段将任务拆分为MapTask，并行运行，相互不会影响</li>
+</ul>
+<h4 id="Reduce阶段"><a href="#Reduce阶段" class="headerlink" title="Reduce阶段"></a>Reduce阶段</h4><p>Reduce阶段对Map结果进行汇总</p>
+<ul>
+<li>Reduce阶段的ReduceTask也互不相干，数据来源是MapTask</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E5%88%86/MapReduce/1.MapReduce%E7%AE%80%E4%BB%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/%E6%80%BB%E5%BC%80/2.hadoop%E7%89%88%E6%9C%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1140,112 +1253,6 @@
   
 
     
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">系统资源命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-18 20:30:30" itemprop="dateCreated datePublished" datetime="2021-03-18T20:30:30+08:00">2021-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-22 11:32:46" itemprop="dateModified" datetime="2021-06-22T11:32:46+08:00">2021-06-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="系统资源命令" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="系统资源命令"><a href="#系统资源命令" class="headerlink" title="系统资源命令"></a>系统资源命令</h2><h3 id="系统资源查看"><a href="#系统资源查看" class="headerlink" title="系统资源查看"></a>系统资源查看</h3><h4 id="vmstat命令"><a href="#vmstat命令" class="headerlink" title="vmstat命令"></a>vmstat命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">vmstat [刷新延时 刷新次数]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用vmstat检测，每1秒刷新一次，一共刷新3次</span></span><br><span class="line">vmstat 1 3</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/linux/vmstat%E5%91%BD%E4%BB%A4%E7%BB%93%E6%9E%9C.png" alt="vmstat命令结果"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/linux/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%91%BD%E4%BB%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
 
   
   <nav class="pagination">
@@ -1317,7 +1324,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">532</span>
+          <span class="site-state-item-count">533</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

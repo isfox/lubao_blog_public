@@ -196,6 +196,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/20.MySQL%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/20.MySQL%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98/" class="post-title-link" itemprop="url">MySQL查询缓存</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-18 21:30:30" itemprop="dateCreated datePublished" datetime="2021-06-18T21:30:30+08:00">2021-06-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-16 16:25:55" itemprop="dateModified" datetime="2021-07-16T16:25:55+08:00">2021-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/20.MySQL%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL查询缓存" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/20.MySQL%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/20.MySQL%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="MySQL查询缓存"><a href="#MySQL查询缓存" class="headerlink" title="MySQL查询缓存"></a>MySQL查询缓存</h2><p>MySQL在查询的时候首先会查询缓存，如果缓存命中的话就直接返回结果，不需要解析sql语句，也不会生成执行计划，更不会执行；如果没有命中缓存，则再进行SQL解析以及进行查询，并将结果返回(也同时将结果放入到缓存中)</p>
+<img src="/images/MySQL/MySQL查询过程.png" alt="MySQL查询过程" style="zoom:50%;">
+
+<p><strong>缓存查找是利用对大小写敏感的哈希查找来实现的</strong>，Hash查找只能进行全值查找（sql完全一致），如果缓存命中，检查用户权限，如果权限允许，直接返回，查询不被解析，也不会生成查询计划，由于在缓存更新的时候会对数据加锁，所以对于读写比较频繁的系统，建议关闭缓存</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/20.MySQL%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/19.MySQL%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1171,117 +1278,6 @@
   
 
     
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/13.%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/JVM/13.%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">字节码文件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-16 18:58:40" itemprop="dateCreated datePublished" datetime="2021-06-16T18:58:40+08:00">2021-06-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-13 10:10:52" itemprop="dateModified" datetime="2021-07-13T10:10:52+08:00">2021-07-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/JVM/13.%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="字节码文件" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/JVM/13.%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/13.%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="字节码文件"><a href="#字节码文件" class="headerlink" title="字节码文件"></a>字节码文件</h2><p>字节码文件中包含的内容有包含类的版本信息、字段、方法以及接口等描述信息外，还有常量池表(Constant Pool Table)，包括各种字面量和对类型、域(Field)和方法的符号引用，指令代码行号表等信息</p>
-<ul>
-<li>java栈中：局部变量表、操作数栈</li>
-<li>java堆中</li>
-<li>常量池</li>
-<li>帧数据区、方法区的剩余情况</li>
-</ul>
-<h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ClassFile &#123;</span><br><span class="line">    u4             magic;<span class="regexp">//</span> 魔数，识别class文件格式 cafe babe</span><br><span class="line">    u2             minor_version; <span class="regexp">//</span> 副版本号</span><br><span class="line">    u2             major_version; <span class="regexp">//</span> 主版本号</span><br><span class="line">    u2             constant_pool_count; <span class="regexp">//</span>常量池计数器，计数从<span class="number">1</span>开始，记录常量池表中的数量，减一等于常量池表的长度</span><br><span class="line">    cp_info        constant_pool[constant_pool_count-<span class="number">1</span>]; <span class="regexp">//</span>常量池表，用于存放编译时期生成的各种字面量和符号引用，这部分内容将在类加载后进入方法区的运行时常量池中存放</span><br><span class="line">    u2             access_flags; <span class="regexp">//</span> 访问标识</span><br><span class="line">    u2             this_class; <span class="regexp">//</span> 类索引</span><br><span class="line">    u2             super_class; <span class="regexp">//</span> 父类索引</span><br><span class="line">    u2             interfaces_count; <span class="regexp">//</span> 接口计数器</span><br><span class="line">    u2             interfaces[interfaces_count]; <span class="regexp">//</span> 接口索引集合</span><br><span class="line">    u2             fields_count; <span class="regexp">//</span> 字段计数器</span><br><span class="line">    field_info     fields[fields_count]; <span class="regexp">//</span> 字段表</span><br><span class="line">    u2             methods_count; <span class="regexp">//</span> 方法计数器</span><br><span class="line">    method_info    methods[methods_count]; <span class="regexp">//</span> 方法表</span><br><span class="line">    u2             attributes_count; <span class="regexp">//</span> 属性计数器</span><br><span class="line">    attribute_info attributes[attributes_count]; <span class="regexp">//</span>属性表</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/JVM/13.%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
 
   
   <nav class="pagination">
@@ -1353,7 +1349,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">532</span>
+          <span class="site-state-item-count">533</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

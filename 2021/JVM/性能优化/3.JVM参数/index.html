@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="jic7QSLJ3G" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"isfox.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="JVM参数-X参数选项   非标准选项1234567891011121314151617181920212223242526272829303132333435363738394041424344454647# 使用java -X可以看到-X参数选项有哪些参数java -X    -Xmixed           混合模式执行（默认）    -Xint             仅解释模式执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM参数">
+<meta property="og:url" content="https://isfox.github.io/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.JVM%E5%8F%82%E6%95%B0/index.html">
+<meta property="og:site_name" content="小菜鸟">
+<meta property="og:description" content="JVM参数-X参数选项   非标准选项1234567891011121314151617181920212223242526272829303132333435363738394041424344454647# 使用java -X可以看到-X参数选项有哪些参数java -X    -Xmixed           混合模式执行（默认）    -Xint             仅解释模式执行">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-28T13:47:40.000Z">
+<meta property="article:modified_time" content="2021-07-28T07:19:44.153Z">
+<meta property="article:author" content="ZH">
+<meta property="article:tag" content="JVM">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://isfox.github.io/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.JVM%E5%8F%82%E6%95%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JVM参数 | 小菜鸟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小菜鸟</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/isfox" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.JVM%E5%8F%82%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JVM参数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-28 21:47:40 / 修改时间：15:19:44" itemprop="dateCreated datePublished" datetime="2021-07-28T21:47:40+08:00">2021-07-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.JVM%E5%8F%82%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="JVM参数" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.JVM%E5%8F%82%E6%95%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/3.JVM%E5%8F%82%E6%95%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="JVM参数"><a href="#JVM参数" class="headerlink" title="JVM参数"></a>JVM参数</h2><h3 id="X参数选项-非标准选项"><a href="#X参数选项-非标准选项" class="headerlink" title="-X参数选项   非标准选项"></a>-X参数选项   非标准选项</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用java -X可以看到-X参数选项有哪些参数</span></span><br><span class="line">java -X</span><br><span class="line">    -Xmixed           混合模式执行（默认）</span><br><span class="line">    -Xint             仅解释模式执行</span><br><span class="line">    -Xbootclasspath:&lt;用 : 分隔的目录和 zip/jar 文件&gt;</span><br><span class="line">                      设置引导类和资源的搜索路径</span><br><span class="line">    -Xbootclasspath/a:&lt;用 : 分隔的目录和 zip/jar 文件&gt;</span><br><span class="line">                      附加在引导类路径末尾</span><br><span class="line">    -Xbootclasspath/p:&lt;用 : 分隔的目录和 zip/jar 文件&gt;</span><br><span class="line">                      置于引导类路径之前</span><br><span class="line">    -Xdiag            显示附加诊断消息</span><br><span class="line">    -Xnoclassgc        禁用类垃圾收集</span><br><span class="line">    -Xincgc           启用增量垃圾收集</span><br><span class="line">    -Xloggc:&lt;file&gt;    将 GC 状态记录在文件中（带时间戳）</span><br><span class="line">    -Xbatch           禁用后台编译</span><br><span class="line">    -Xms&lt;size&gt;        设置初始 Java 堆大小,等价于-XX:InitialHeapSize</span><br><span class="line">    -Xmx&lt;size&gt;        设置最大 Java 堆大小,等价于-XX:MaxHeapSize</span><br><span class="line">    -Xss&lt;size&gt;        设置 Java 线程堆栈大小,等价于-XX:ThreadStackSize</span><br><span class="line">    -Xprof            输出 cpu 分析数据</span><br><span class="line">    -Xfuture          启用最严格的检查，预计会成为将来的默认值</span><br><span class="line">    -Xrs              减少 Java/VM 对操作系统信号的使用（请参阅文档）</span><br><span class="line">    -Xcheck:jni       对 JNI 函数执行其他检查</span><br><span class="line">    -Xshare:off       不尝试使用共享类数据</span><br><span class="line">    -Xshare:auto      在可能的情况下使用共享类数据（默认）</span><br><span class="line">    -Xshare:on        要求使用共享类数据，否则将失败。</span><br><span class="line">    -XshowSettings    显示所有设置并继续</span><br><span class="line">    -XshowSettings:system</span><br><span class="line">                      （仅限 Linux）显示系统或容器</span><br><span class="line">                      配置并继续</span><br><span class="line">    -XshowSettings:all</span><br><span class="line">                      显示所有设置并继续</span><br><span class="line">    -XshowSettings:vm 显示所有与 vm 相关的设置并继续</span><br><span class="line">    -XshowSettings:properties</span><br><span class="line">                      显示所有属性设置并继续</span><br><span class="line">    -XshowSettings:locale</span><br><span class="line">                      显示所有与区域设置相关的设置并继续</span><br><span class="line"></span><br><span class="line">-X 选项是非标准选项。如有更改，恕不另行通知。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">以下选项为 Mac OS X 特定的选项:</span><br><span class="line">    -XstartOnFirstThread</span><br><span class="line">                      在第一个 (AppKit) 线程上运行 main() 方法</span><br><span class="line">    -Xdock:name=&lt;应用程序名称&gt;&quot;</span><br><span class="line">                      覆盖停靠栏中显示的默认应用程序名称</span><br><span class="line">    -Xdock:icon=&lt;图标文件的路径&gt;</span><br><span class="line">                      覆盖停靠栏中显示的默认图标</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="XX参数选项-非标准化"><a href="#XX参数选项-非标准化" class="headerlink" title="-XX参数选项  非标准化"></a>-XX参数选项  非标准化</h3><p>有两种类型，分为Boolean类型和KV类型</p>
+<ul>
+<li>Boolean类型   -XX:+<option> 启用    -XX:-</option><option>  禁用</option></li>
+<li>KV类型  -XX:<option>=<value></value></option></li>
+</ul>
+<h3 id="常用JVM参数选项"><a href="#常用JVM参数选项" class="headerlink" title="常用JVM参数选项"></a>常用JVM参数选项</h3><h4 id="打印设置的XX选项及值"><a href="#打印设置的XX选项及值" class="headerlink" title="打印设置的XX选项及值"></a>打印设置的XX选项及值</h4><ul>
+<li><code>-XX:+PrintCommandLineFlags</code>  在程序运行前打印出用户手动设置或者JVM自动设置的XX选项</li>
+<li><code>-XX:+PrintFlagsInitial</code>  表示打印出所有XX选项的默认值</li>
+<li><code>-XX:+PrintFlagsFinal</code>  表示打印出XX选项在运行程序时生效的值</li>
+<li><code>-XX:+PrintVMOptions</code>  打印JVM参数</li>
+</ul>
+<h4 id="堆、栈、方法区的内存大小设置"><a href="#堆、栈、方法区的内存大小设置" class="headerlink" title="堆、栈、方法区的内存大小设置"></a>堆、栈、方法区的内存大小设置</h4><h5 id="堆设置"><a href="#堆设置" class="headerlink" title="堆设置"></a>堆设置</h5><ul>
+<li><code>Xms512m</code>  JVM初始堆内存，等价于-XX:InitialHeapSize</li>
+<li><code>Xmx512m</code>  JVM最大堆内存，等价于-XX:MaxHeapSize</li>
+<li><code>-Xmn256m</code>  年轻代大小(推荐为堆大小的3/8)，初始值和最大值都是该值，等价于<code>-XX:NewSize=256m</code>和<code>-XX:MaxNewSize=256m</code></li>
+<li><code>-XX:NewSize=128m</code>  年轻代初始值</li>
+<li><code>-XX:MaxNewSize=128m</code>  年轻代最大值</li>
+<li><code>-XX:SurvivorRatio=8</code>  年轻代中Eden区与一个Survivor区的比值，默认8，由于<code>-XX:+UseAdaptiveSizePolicy</code> 是默认打开的，所以需要显式设置才会生效，一般不需要设置</li>
+<li><code>-XX:+UseAdaptiveSizePolicy</code>  自动选择各区的大小比例，默认开启</li>
+<li><code>-XX:NewRatio=2</code>  老年代与年轻代的比值，默认2</li>
+<li><code>-XX:PretenureSizeThreadshold=1024</code>  让大于此阈值的对象直接分配在老年代，单位为字节，只对Serial/ParNew收集器有效</li>
+<li><code>-XX:MaxTenuringThreshold=15</code> 新生代每次MinorGC后，还存活的对象年龄+1，当对象的年龄大于该值时则进入老年代，默认15</li>
+<li><code>-XX:+PrintTenuringDistribution</code>  使JVM每次MinorGC后打印出当前使用的Survivor中对象的年龄分布</li>
+<li><code>-XX:TargetSurvivorRatio</code> MinorGC结束后Survivor区域中占用空间的期望比例</li>
+</ul>
+<h5 id="栈设置"><a href="#栈设置" class="headerlink" title="栈设置"></a>栈设置</h5><ul>
+<li><code>-Xss128k</code>  每个线程的栈大小，等价于-XX:ThreadStackSize</li>
+</ul>
+<h5 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h5><p>jdk8之前使用永久代，jdk8使用元空间</p>
+<h6 id="永久代"><a href="#永久代" class="headerlink" title="永久代"></a>永久代</h6><ul>
+<li><code>-XX:PermSize=256m</code>  永久代初始值</li>
+<li><code>-XX:MaxPermSize=256m</code>  永久代最大值 </li>
+</ul>
+<h6 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h6><ul>
+<li><code>-XX:MetaspaceSize</code>  初始空间大小</li>
+<li><code>-XX:MaxMetaspaceSize</code> 最大空间，默认没有限制</li>
+<li><code>-XX:+UseCompressedOops</code>  压缩对象指针</li>
+<li><code>-XX:+UseCompressedClassPointers</code> 压缩类指针</li>
+<li><code>-XX:CompressedClassSpaceSize</code>  设置Klass Metaspace大小，默认1G</li>
+</ul>
+<h5 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h5><ul>
+<li><code>-XX:MaxDirectMemorySize</code>  指定DirectMemory容量，若未指定，则默认与java堆最大值一致</li>
+</ul>
+<h4 id="OOM相关选项"><a href="#OOM相关选项" class="headerlink" title="OOM相关选项"></a>OOM相关选项</h4><ul>
+<li><code>-XX:+HeapDumpOnOutOfMemoryError</code>  在内存出现OOM的时候，把Heap转存Dump到文件中</li>
+<li><code>-XX:+HeapDumpBeforeFullGC</code>  在出现FullGC之前，生成Heap转储文件</li>
+<li><code>-XX:HeapDumpPath</code>  heap转储文件存储路径</li>
+<li><code>-XX:OnOutOfMemoryError</code>  指定一个可执行文件路径，当发生OOM时，执行该脚本</li>
+</ul>
+<h4 id="垃圾收集器相关选项"><a href="#垃圾收集器相关选项" class="headerlink" title="垃圾收集器相关选项"></a>垃圾收集器相关选项</h4><h5 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h5><p>在client模式下新生代使用Serial收集器，老年代使用Serial Old收集器</p>
+<ul>
+<li><code>-XX:UseSerialGC</code>  使用Serial收集器</li>
+</ul>
+<h5 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h5><ul>
+<li><code>-XX:+UseParNewGC</code>  新生代使用ParNew收集器</li>
+<li><code>-XX:ParallelGCThreads</code>  限制线程数量，默认是开启和CPU数据相同的线程数</li>
+</ul>
+<h5 id="Parallel收集器"><a href="#Parallel收集器" class="headerlink" title="Parallel收集器"></a>Parallel收集器</h5><ul>
+<li><code>-XX:+UseParallelGC</code>  指定新生代使用Parallel收集器，此时老年代会自动指定为Parallel Old收集器，jdk8默认开启</li>
+<li><code>-XX:+UseParallelOldGC</code>  指定老年代使用Parallel Old收集器，此时新生代会自动指定为Parallel收集器</li>
+<li><code>-XX:ParallelGCThreads</code>  年轻代并行收集器的线程数，CPU数量小于8时默认是开启和CPU数据相同的线程数，当CPU数量大于8时，ParallelGCThreads的值等于3+(5*CPU)/8</li>
+<li><code>-XX:MaxGCPauseMillis</code> 设置垃圾回收器最大停顿时间(STW时间)，单位毫秒，谨慎配置</li>
+<li><code>-XX:GCTimeRatio</code> 垃圾收集时间占总时间的比例(= 1/(N+1))，取值范围(0,100)，默认99</li>
+<li><code>-XX:+UseAdaptiveSizePolicy</code>  自适应调节策略</li>
+</ul>
+<h5 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h5><ul>
+<li><code>-XX:+UseConcMarkSweepGC</code>  指定使用CMS收集器，开启时<code>-XX:+UseParNewGC</code>也会自动开启，新生代使用ParNew，老年代使用CMS+Serial Old组合</li>
+<li><code>-XX:CMSInitialtingOccupanyFraction</code> 堆内存的阈值，一旦达到该阈值，开始回收，默认92%，通过该选项可以有效降低Full GC的次数</li>
+<li><code>-XX:+UseCMSCompactAtFullCollection</code>  在执行完Full GC后对内存空间进行压缩整理，避免内存碎片的产生，不过会导致STW时间变长</li>
+<li><code>-XX:CMSFullGCsBeforeCompaction</code>  执行多少次Full GC后对内存空间进行整理</li>
+<li><code>-XX:PapallelCMSThreads</code> CMS的线程数量，默认是(PapallelCMSThreads+3)/4</li>
+</ul>
+<h5 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h5><ul>
+<li><code>-XX:+UseG1GC</code> 使用G1收集器</li>
+<li><code>-XX:G1HeapRegionSize</code>  设置每个Region的大小，值是2的幂，范围1M到32M之间，默认是堆内存的1/2000</li>
+<li><code>-XX:MaxGCPauseMills</code>  最大GC停顿时间指标，默认200ms</li>
+<li><code>-XX:ParallelGCThread</code> STW时GC线程数的值，默认为8</li>
+<li><code>-XX:ConcGCThreads</code> 并发标记的线程数，推荐设置为ParallelGCThread的1/4左右</li>
+<li><code>-XX:InitiatingHeapOccupancyParcent</code> 触发并发GC周期的java堆占用率阈值，超过则触发GC，默认45</li>
+<li><code>-XX:G1NewSizePercent</code>  新生代占用整个堆内存的最小百分比，默认5%</li>
+<li><code>-XX:G1MaxNewSizePercent</code> 新生代占用整个堆内存的最大百分比，默认60%</li>
+<li><code>-XX:G1ReservePercent</code>  保留内存区域，防止Survivor的to区溢出</li>
+</ul>
+<h4 id="GC日志相关选项"><a href="#GC日志相关选项" class="headerlink" title="GC日志相关选项"></a>GC日志相关选项</h4><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JVM/" rel="tag"># JVM</a>
+          </div>
+
+        
+
+
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/25.%E4%BC%98%E5%8C%96%E5%99%A8/" rel="prev" title="优化器">
+      <i class="fa fa-chevron-left"></i> 优化器
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">JVM参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#X%E5%8F%82%E6%95%B0%E9%80%89%E9%A1%B9-%E9%9D%9E%E6%A0%87%E5%87%86%E9%80%89%E9%A1%B9"><span class="nav-number">1.1.</span> <span class="nav-text">-X参数选项   非标准选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XX%E5%8F%82%E6%95%B0%E9%80%89%E9%A1%B9-%E9%9D%9E%E6%A0%87%E5%87%86%E5%8C%96"><span class="nav-number">1.2.</span> <span class="nav-text">-XX参数选项  非标准化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8JVM%E5%8F%82%E6%95%B0%E9%80%89%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">常用JVM参数选项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E8%AE%BE%E7%BD%AE%E7%9A%84XX%E9%80%89%E9%A1%B9%E5%8F%8A%E5%80%BC"><span class="nav-number">1.3.1.</span> <span class="nav-text">打印设置的XX选项及值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E3%80%81%E6%A0%88%E3%80%81%E6%96%B9%E6%B3%95%E5%8C%BA%E7%9A%84%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.3.2.</span> <span class="nav-text">堆、栈、方法区的内存大小设置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A0%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">堆设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A0%88%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">栈设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">方法区</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E4%BB%A3"><span class="nav-number">1.3.2.3.1.</span> <span class="nav-text">永久代</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4"><span class="nav-number">1.3.2.3.2.</span> <span class="nav-text">元空间</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">直接内存</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OOM%E7%9B%B8%E5%85%B3%E9%80%89%E9%A1%B9"><span class="nav-number">1.3.3.</span> <span class="nav-text">OOM相关选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E7%9B%B8%E5%85%B3%E9%80%89%E9%A1%B9"><span class="nav-number">1.3.4.</span> <span class="nav-text">垃圾收集器相关选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Serial%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">Serial收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ParNew%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">ParNew收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Parallel%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">Parallel收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CMS%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">CMS收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#G1%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">1.3.4.5.</span> <span class="nav-text">G1收集器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GC%E6%97%A5%E5%BF%97%E7%9B%B8%E5%85%B3%E9%80%89%E9%A1%B9"><span class="nav-number">1.3.5.</span> <span class="nav-text">GC日志相关选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.3.6.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZH"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">ZH</p>
+  <div class="site-description" itemprop="description">java菜鸟号正在起航</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/isfox" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;isfox" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/SiXiangPiaoFuZhe" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;SiXiangPiaoFuZhe" rel="noopener" target="_blank"><i class="fa fa-git fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhanghe1996hy@163.com" title="E-Mail → mailto:zhanghe1996hy@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'MURUEmkUEoDdKOq3baW5Ofoh-gzGzoHsz',
+      appKey     : 'AsR88DCeCWHyTu5jFQkAA6g6',
+      placeholder: "来说一句吧",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
