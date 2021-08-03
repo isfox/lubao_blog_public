@@ -970,7 +970,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-15 17:27:55" itemprop="dateModified" datetime="2021-07-15T17:27:55+08:00">2021-07-15</time>
+                <time title="修改时间：2021-08-02 16:30:12" itemprop="dateModified" datetime="2021-08-02T16:30:12+08:00">2021-08-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1018,7 +1018,7 @@
 <p>MySQL中的锁</p>
 <p>按照类型上分为共享锁(读锁)、独占锁(写锁)、悲观锁(for update)、乐观锁(使用version，来进行CAS操作)；</p>
 <p>按照锁的粒度分为表锁、行锁和页锁</p>
-<p>按照算法可以分为Record Lock(单行记录)、Gap Lock(间隙锁，锁定一个范围，不包括锁定记录)、Next-Key Lock(Record Lock+Gap Lock，锁定一个范围，包括记录本身)</p>
+<p>按照算法可以分为Record Lock(单行记录)、Gap Lock(间隙锁，锁定一个范围，不包括锁定记录，间隙锁主要用于范围查询的时候，锁住查询的范围，并且间隙锁也是解决幻读的方案)、Next-Key Lock(Record Lock+Gap Lock，锁定一个范围，包括记录本身)</p>
 <h3 id="表锁-偏读"><a href="#表锁-偏读" class="headerlink" title="表锁(偏读)"></a>表锁(偏读)</h3><p>表锁开销小，加锁快；无死锁；锁的粒度大，并发小</p>
           <!--noindex-->
             <div class="post-button">

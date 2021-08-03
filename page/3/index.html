@@ -444,7 +444,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-21 15:34:58" itemprop="dateModified" datetime="2021-07-21T15:34:58+08:00">2021-07-21</time>
+                <time title="修改时间：2021-08-02 11:25:32" itemprop="dateModified" datetime="2021-08-02T11:25:32+08:00">2021-08-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -501,7 +501,7 @@
 <ul>
 <li><p><code>innodb_buffer_pool_size</code>  定义了Innodb所使用缓存池的大小，对其性能十分重要，必须足够大，但是过大时，使得Innodb 关闭时候需要更多时间把脏页从缓冲池中刷新到磁盘中</p>
 </li>
-<li><p><code>key_buffer_size</code>  定义了MyISAM所使用的缓存池的大小，由于数据是依赖存储操作系统缓存的，所以要为操作系统预留更大的内存空间</p>
+<li><p><code>key_buffer_size</code>  MyISAM为索引键设置缓冲区大小，使用时才真正分配，由于数据是依赖存储操作系统缓存的，所以要为操作系统预留更大的内存空间</p>
 <blockquote>
 <p>即使开发使用的表全部是Innodb表，也要为MyISAM预留内存，因为MySQL系统使用的表仍然是MyISAM表</p>
 </blockquote>

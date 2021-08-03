@@ -30,7 +30,7 @@
 <meta property="og:description" content="MySQL索引结构MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-树以及散列类型 MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-Tree索引、hash索引、full-text全文索引  Innodb中使用的是B+树索引 MyISAM中使用的是FullText全文索引， InnoDB在5.6之后支持，5.7之后使用ngram插件开">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-22T13:30:30.000Z">
-<meta property="article:modified_time" content="2021-07-26T09:20:00.516Z">
+<meta property="article:modified_time" content="2021-08-02T04:01:35.267Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-26 17:20:00" itemprop="dateModified" datetime="2021-07-26T17:20:00+08:00">2021-07-26</time>
+                <time title="修改时间：2021-08-02 12:01:35" itemprop="dateModified" datetime="2021-08-02T12:01:35+08:00">2021-08-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,6 +287,9 @@
 <p>MyISAM索引是在内存的一个公共缓存中管理的，这个缓存的大小可以通过key_buffer_size或者其他命名键缓存来定义。这是根据统计和规划的表索引的大小来设定缓存大小时主要的考虑因素</p>
 <h5 id="B-树的结构"><a href="#B-树的结构" class="headerlink" title="B-树的结构"></a>B-树的结构</h5><p>B-树中有两种节点类型：<strong>索引节点</strong>和<strong>叶子节点</strong>。叶子节点是用来存储数据的，而索引节点则用来告诉用户存储在叶子节点中的数据顺序，并帮助用户找到相应的数据。</p>
 <p> B-树的搜索，从根节点开始，对节点内的关键字有序进行二分查找，如果命中则结束，否则进入查询关键字所属范围的子节点，重复。直到所对应的子指针为空，或已经是叶子节点</p>
+<ul>
+<li>无法处理范围查询，只能定位到一个索引位置</li>
+</ul>
 <p>B-树是一种多路搜索树：</p>
 <ul>
 <li>定义任意非叶子节点最多有M个儿子，且M&gt;2</li>
@@ -325,6 +328,15 @@
 <p>使用B+树访问或者修改一条数据的 SQL 的时间复杂度都是<code>O(log n)</code>，也就是树的高度</p>
 <h4 id="hash索引"><a href="#hash索引" class="headerlink" title="hash索引"></a>hash索引</h4><p>散列表也可以成为hash表</p>
 <p>在默认MySQL的引擎索引中，只有MEMORY引擎支持散列数据结构，散列结构的强度可以表示为直接键查找的简单性，散列索引的相似度模式匹配查询比直接查询慢，Hash索引把数据以hash形式组织起来，检索时不需要类似B+树那样从根节点到叶子节点逐级查找，只需一次哈希算法即可,是无序的，因此当查找某一条记录的时候，速度非常快。但是因为hash结构，每个键只对应一个值，而且是散列的方式分布。所以它并不支持范围查找和排序等功能</p>
+<blockquote>
+<p>如果出现hash碰撞，则使用链地址法进行解决的，使用链表进行存储</p>
+</blockquote>
+<ul>
+<li>不支持范围查询，只支持等值查询</li>
+<li>无法避免数据的排序操作</li>
+<li>不支持部分索引列的匹配查找，因为hash索引始终使用索引列的全部内容进行计算哈希值</li>
+<li>当出现hash冲突时，必须遍历链表</li>
+</ul>
 <h5 id="散列表结构"><a href="#散列表结构" class="headerlink" title="散列表结构"></a>散列表结构</h5><p>散列表数据结构是一种很简单的概念，它将一种算法应用到给定值中以在底层数据存储系统中返回一个唯一的指针或位置。散列表的优点是始终以线性时间复杂度找到需要读取的行的位置，而不像B-树那样需要横跨多层节点来确定位置</p>
 <h4 id="R-树"><a href="#R-树" class="headerlink" title="R-树"></a>R-树</h4><p> R-树数据结构支持基于数据类型对几何数据进行管理。目前只有MyISAM使用R-树实现支持空间索引，使用空间索引也有很多限制，比如只支持唯一的NOT NULL列等</p>
 <h4 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h4><p>全文本结构也是一种MySQL采用的基本数据结构，只能添加在 char, varchar, text类型的字段，查询字段较大的字符串类型的字段时可以提高速率</p>
