@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-11 11:58:34" itemprop="dateModified" datetime="2021-04-11T11:58:34+08:00">2021-04-11</time>
+                <time title="修改时间：2021-08-04 14:24:02" itemprop="dateModified" datetime="2021-08-04T14:24:02+08:00">2021-08-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,7 +274,15 @@
           <h2 id="redis事务"><a href="#redis事务" class="headerlink" title="redis事务"></a>redis事务</h2><blockquote>
 <p>注意：我使用的版本是6.0.10，不同版本可能略有差别</p>
 </blockquote>
-<p>redis可以一次执行多条命令，一个事务中所有命令都会序列化，按顺序的串行化执行而不会被其他命令插入</p>
+<p>redis事务就是一组命令的集合，一个事务中所有命令都会序列化，按顺序的串行化执行而不会被其他命令插入</p>
+<ul>
+<li><p>Redis的事务仅仅是保证事务里的操作会被连续独占的执行，因为是单线程架构，在执行完事务内所有指令前是不可能再去同时执行其他客户端的请求的 </p>
+</li>
+<li><p>Redis的事务没有隔离级别的概念，因为事务提交前任何指令都不会被实际执行，也就不存在事务内的查询要看到事务里的更新，在事务外查询不能看到这种问题了</p>
+</li>
+<li><p>Redis的事务不保证原子性，也就是不保证所有指令同时成功或同时失败，只有决定是否开始执行全部指令的能力，没有执行到一半进行回滚的能力</p>
+</li>
+</ul>
 <h3 id="事务的常用命令"><a href="#事务的常用命令" class="headerlink" title="事务的常用命令"></a>事务的常用命令</h3><ul>
 <li>multi  标记一个事务块的开始</li>
 <li>exec  执行事务块的命令</li>
@@ -341,7 +349,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-11 11:57:53" itemprop="dateModified" datetime="2021-04-11T11:57:53+08:00">2021-04-11</time>
+                <time title="修改时间：2021-08-04 11:54:49" itemprop="dateModified" datetime="2021-08-04T11:54:49+08:00">2021-08-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -385,7 +393,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="redis持久化"><a href="#redis持久化" class="headerlink" title="redis持久化"></a>redis持久化</h2><p>redis持久化有两种方式RBD和AOF</p>
+          <h2 id="redis持久化"><a href="#redis持久化" class="headerlink" title="redis持久化"></a>redis持久化</h2><p>redis持久化有两种方式RDB和AOF</p>
 <blockquote>
 <p>注意：我使用的版本是6.0.10，不同版本可能略有差别</p>
 </blockquote>
