@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://zhhll.icu/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/15.MySQL%E6%97%A5%E5%BF%97/</loc>
+    <lastmod>2021-08-06</lastmod>
+  </url>
+  <url>
+    <loc>http://zhhll.icu/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/keepalived/1.keepalived/</loc>
+    <lastmod>2021-08-05</lastmod>
+  </url>
+  <url>
+    <loc>http://zhhll.icu/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/redis/14.lua%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2021-08-05</lastmod>
+  </url>
+  <url>
     <loc>http://zhhll.icu/2021/%E6%97%A5%E5%BF%97/log4j2/%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2021-08-04</lastmod>
   </url>
@@ -282,10 +294,6 @@
   </url>
   <url>
     <loc>http://zhhll.icu/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/18.MySQL%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/</loc>
-    <lastmod>2021-07-12</lastmod>
-  </url>
-  <url>
-    <loc>http://zhhll.icu/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/15.MySQL%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2021-07-12</lastmod>
   </url>
   <url>
@@ -2129,11 +2137,11 @@
     <lastmod>2020-08-16</lastmod>
   </url>
   <url>
-    <loc>http://zhhll.icu/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/</loc>
+    <loc>http://zhhll.icu/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</loc>
     <lastmod>2020-08-16</lastmod>
   </url>
   <url>
-    <loc>http://zhhll.icu/2020/windows/windows%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</loc>
+    <loc>http://zhhll.icu/2020/windows/windows%E4%B9%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/</loc>
     <lastmod>2020-08-16</lastmod>
   </url>
   <url>
