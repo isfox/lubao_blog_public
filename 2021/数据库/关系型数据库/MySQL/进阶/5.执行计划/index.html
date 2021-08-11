@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://isfox.github.io/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E4%B8%8D%E5%90%8C.png">
 <meta property="og:image" content="https://isfox.github.io/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E7%9B%B8%E5%90%8C%E4%B8%8D%E5%90%8C.png">
 <meta property="article:published_time" content="2021-03-06T08:50:30.000Z">
-<meta property="article:modified_time" content="2021-07-26T09:43:39.100Z">
+<meta property="article:modified_time" content="2021-08-11T08:38:01.896Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-26 17:43:39" itemprop="dateModified" datetime="2021-07-26T17:43:39+08:00">2021-07-26</time>
+                <time title="修改时间：2021-08-11 16:38:01" itemprop="dateModified" datetime="2021-08-11T16:38:01+08:00">2021-08-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -288,15 +288,13 @@
 
 <p>这写就是所打印出来的字段，接下里就一个个地分析一下是什么意思</p>
 <h3 id="id字段"><a href="#id字段" class="headerlink" title="id字段"></a>id字段</h3><p>表示的含义：select查询的序号，表示查询中执行select子句或者操作表的顺序</p>
+<p><strong>id值数字越大越先执行</strong></p>
 <p>id有三种情况</p>
-<p><strong>第一种情况：id相同</strong></p>
-<p><img src="/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E7%9B%B8%E5%90%8C.png" alt="id相同"></p>
+<h4 id="第一种情况：id相同"><a href="#第一种情况：id相同" class="headerlink" title="第一种情况：id相同"></a><strong>第一种情况：id相同</strong></h4><p><img src="/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E7%9B%B8%E5%90%8C.png" alt="id相同"></p>
 <p>id相同的情况下，是按照table的顺序从上到下开始操作的</p>
-<p><strong>第二种情况：id不同</strong></p>
-<p><img src="/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E4%B8%8D%E5%90%8C.png" alt="id不同"></p>
+<h4 id="第二种情况：id不同"><a href="#第二种情况：id不同" class="headerlink" title="第二种情况：id不同"></a><strong>第二种情况：id不同</strong></h4><p><img src="/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E4%B8%8D%E5%90%8C.png" alt="id不同"></p>
 <p>id不同的情况下，**<em>id越大优先级越高，id大的先被执行**</em></p>
-<p><strong>第三种情况：id相同和不同</strong></p>
-<p><img src="/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E7%9B%B8%E5%90%8C%E4%B8%8D%E5%90%8C.png" alt="id相同不同"></p>
+<h4 id="第三种情况：id相同和不同"><a href="#第三种情况：id相同和不同" class="headerlink" title="第三种情况：id相同和不同"></a><strong>第三种情况：id相同和不同</strong></h4><p><img src="/images/MySQL/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/id%E7%9B%B8%E5%90%8C%E4%B8%8D%E5%90%8C.png" alt="id相同不同"></p>
 <p>先执行id大的，id相同的顺序执行 </p>
 <h3 id="select-type字段"><a href="#select-type字段" class="headerlink" title="select_type字段"></a>select_type字段</h3><p>该字段来表示查询类型，用于区分普通查询、联合查询、子查询等复杂查询常用的有六种</p>
 <ul>
@@ -304,10 +302,12 @@
 <li>PRIMARY        如果包含子查询，该类型表示最外层查询</li>
 <li>SUBQUERY    如果包含子查询，该类型表示内层查询</li>
 <li>DERIVED        如果在from列表中包含了子查询会被标记为DERIVED，mysql会递归执行这些子查询，并将结果放在临时表中</li>
-<li>UNION           联合查询如果用来关联两个select的话为UNION，如果UNION包含在from子句中，则外层select为DERIVED</li>
+<li>UNION           联合查询如果用来关联两个或多个select的话为第二个以及之后的select被标记为UNION，如果UNION包含在from子句中，则外层select为DERIVED</li>
+<li>DEPENDENT UNION  UNION中第二个以及之后的select，依赖了外面的查询</li>
 <li>UNION RESULT   从UNION表获取结果的select</li>
 </ul>
 <h3 id="table字段"><a href="#table字段" class="headerlink" title="table字段"></a>table字段</h3><p>显示数据是哪张表的；如果显示为尖括号括起来的<derived n>就表示这个是临时表，后边的N就是执行计划中的id，表示结果来自于这个查询产生；如果是尖括号括起来的&lt;union M,N&gt;，与<derived n>类似，也是一个临时表，表示这个结果来自于union查询的id为M,N的结果集</derived></derived></p>
+<h3 id="partitions字段"><a href="#partitions字段" class="headerlink" title="partitions字段"></a>partitions字段</h3><p>匹配记录的分区，对于未分区的表，显示null</p>
 <h3 id="type字段"><a href="#type字段" class="headerlink" title="type字段"></a>type字段</h3><p>检索的类型</p>
 <p>从最好到最差依次为</p>
 <p>system&gt;const&gt;eq_ref&gt;ref&gt;range&gt;index&gt;ALL</p>
@@ -315,8 +315,8 @@
 <p>至少要达到range级别，最好能是ref</p>
 </blockquote>
 <ul>
-<li>system  表中只有一行数据</li>
-<li>const 通过一次索引就可以找到(如使用主键查询或unique索引)</li>
+<li>system  表中只有一行数据，属于const的特例</li>
+<li>const  使用主键查询或者unique索引的等值查询，最多只返回一条记录</li>
 <li>eq_ref   出现在连接查询中，唯一性索引扫描，对于每个索引键，表中只有一条与之匹配(如使用主键或者unique索引)</li>
 <li>ref        非唯一性索引扫描，匹配返回某个单独值得所有行</li>
 <li>range   检索指定范围的数据，使用索引，where语句中使用between…and、in、&lt;、&gt;等</li>
@@ -332,12 +332,13 @@
 
 <h3 id="ref字段"><a href="#ref字段" class="headerlink" title="ref字段"></a>ref字段</h3><p>显示索引的哪一列被使用了</p>
 <h3 id="rows字段"><a href="#rows字段" class="headerlink" title="rows字段"></a>rows字段</h3><p>估算出找到需要的数据需要读取的行数</p>
+<h3 id="filtered字段"><a href="#filtered字段" class="headerlink" title="filtered字段"></a>filtered字段</h3><p>表示符合查询条件的数据百分比，最大100，使用rows*filtered%可以获得和下一张表进行连接的行数</p>
 <h3 id="extra字段"><a href="#extra字段" class="headerlink" title="extra字段"></a>extra字段</h3><p>表示一些额外信息</p>
 <ul>
 <li>using filesort   文件排序，mysql无法利用索引来完成的排序，则使用文件排序(出现此种情况，最好进行优化)</li>
 <li>using temporary  使用了临时表保存中间结果，常见于排序和分组查询(出现此种情况，尽快优化，速度极慢)，使用group by分组查询时，最好按照索引顺序来进行分组</li>
 <li>using index  表示相应的select行使用了覆盖索引(覆盖索引为查询结果为索引列，不必读取数据行)，防止访问数据行，速度提升</li>
-<li>using where  查询时为找到可以使用的索引，使用where条件进行过滤，此时的type为all</li>
+<li>using where  不是读取表中的所有数据或者除了索引之外还使用了其他非索引列，使用where条件进行过滤</li>
 <li>using join buffer  在使用join进行链表查询的时候，如果表的连接条件没有用到索引，需要有一个缓冲区来存储中间结果</li>
 <li>impossible where   where条件总是false，无法查到数据</li>
 </ul>
@@ -427,7 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">执行计划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#id%E5%AD%97%E6%AE%B5"><span class="nav-number">1.1.</span> <span class="nav-text">id字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select-type%E5%AD%97%E6%AE%B5"><span class="nav-number">1.2.</span> <span class="nav-text">select_type字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#table%E5%AD%97%E6%AE%B5"><span class="nav-number">1.3.</span> <span class="nav-text">table字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#type%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.</span> <span class="nav-text">type字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#possible-keys%E5%AD%97%E6%AE%B5"><span class="nav-number">1.5.</span> <span class="nav-text">possible_keys字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key%E5%AD%97%E6%AE%B5"><span class="nav-number">1.6.</span> <span class="nav-text">key字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key-len%E5%AD%97%E6%AE%B5"><span class="nav-number">1.7.</span> <span class="nav-text">key_len字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ref%E5%AD%97%E6%AE%B5"><span class="nav-number">1.8.</span> <span class="nav-text">ref字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rows%E5%AD%97%E6%AE%B5"><span class="nav-number">1.9.</span> <span class="nav-text">rows字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#extra%E5%AD%97%E6%AE%B5"><span class="nav-number">1.10.</span> <span class="nav-text">extra字段</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">执行计划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#id%E5%AD%97%E6%AE%B5"><span class="nav-number">1.1.</span> <span class="nav-text">id字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%9Aid%E7%9B%B8%E5%90%8C"><span class="nav-number">1.1.1.</span> <span class="nav-text">第一种情况：id相同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%9Aid%E4%B8%8D%E5%90%8C"><span class="nav-number">1.1.2.</span> <span class="nav-text">第二种情况：id不同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%9Aid%E7%9B%B8%E5%90%8C%E5%92%8C%E4%B8%8D%E5%90%8C"><span class="nav-number">1.1.3.</span> <span class="nav-text">第三种情况：id相同和不同</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select-type%E5%AD%97%E6%AE%B5"><span class="nav-number">1.2.</span> <span class="nav-text">select_type字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#table%E5%AD%97%E6%AE%B5"><span class="nav-number">1.3.</span> <span class="nav-text">table字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#partitions%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.</span> <span class="nav-text">partitions字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#type%E5%AD%97%E6%AE%B5"><span class="nav-number">1.5.</span> <span class="nav-text">type字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#possible-keys%E5%AD%97%E6%AE%B5"><span class="nav-number">1.6.</span> <span class="nav-text">possible_keys字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key%E5%AD%97%E6%AE%B5"><span class="nav-number">1.7.</span> <span class="nav-text">key字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key-len%E5%AD%97%E6%AE%B5"><span class="nav-number">1.8.</span> <span class="nav-text">key_len字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ref%E5%AD%97%E6%AE%B5"><span class="nav-number">1.9.</span> <span class="nav-text">ref字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rows%E5%AD%97%E6%AE%B5"><span class="nav-number">1.10.</span> <span class="nav-text">rows字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filtered%E5%AD%97%E6%AE%B5"><span class="nav-number">1.11.</span> <span class="nav-text">filtered字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#extra%E5%AD%97%E6%AE%B5"><span class="nav-number">1.12.</span> <span class="nav-text">extra字段</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,20 +444,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">537</span>
+          <span class="site-state-item-count">539</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

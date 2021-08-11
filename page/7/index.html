@@ -196,6 +196,202 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/" class="post-title-link" itemprop="url">sqoop导出</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-07 21:31:30 / 修改时间：15:30:19" itemprop="dateCreated datePublished" datetime="2021-06-07T21:31:30+08:00">2021-06-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqoop/" itemprop="url" rel="index"><span itemprop="name">sqoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/" class="post-meta-item leancloud_visitors" data-flag-title="sqoop导出" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="sqoop导出"><a href="#sqoop导出" class="headerlink" title="sqoop导出"></a>sqoop导出</h2><p>sqoop导出是指从大数据集群中(hdfs/hive/hbase)中向关系型数据库传输数据，使用export</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sqoop export \</span><br><span class="line">--connect jdbc:mysql://localhost:3306/company \</span><br><span class="line">--username root \</span><br><span class="line">--password 123456 \</span><br><span class="line">--table staff \</span><br><span class="line">--num-mappers 1 \</span><br><span class="line">--export-dir /user/hive/warehouse/staff_hive \</span><br><span class="line">--input-fields-terminated-by &quot;\t&quot;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/3.sqoop%E5%AF%BC%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/3.sqoop%E5%AF%BC%E5%85%A5/" class="post-title-link" itemprop="url">sqoop导入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-07 20:31:30 / 修改时间：15:50:04" itemprop="dateCreated datePublished" datetime="2021-06-07T20:31:30+08:00">2021-06-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqoop/" itemprop="url" rel="index"><span itemprop="name">sqoop</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/3.sqoop%E5%AF%BC%E5%85%A5/" class="post-meta-item leancloud_visitors" data-flag-title="sqoop导入" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/3.sqoop%E5%AF%BC%E5%85%A5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/3.sqoop%E5%AF%BC%E5%85%A5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="sqoop导入"><a href="#sqoop导入" class="headerlink" title="sqoop导入"></a>sqoop导入</h2><p>sqoop导入是指从关系型数据库向大数据集群中(hdfs/hive/hbase)中传输数据，使用import</p>
+<p>可以使用多种方式来进行导入</p>
+<h3 id="全部导入到hdfs"><a href="#全部导入到hdfs" class="headerlink" title="全部导入到hdfs"></a>全部导入到hdfs</h3><p>可以将整张表数据进行导入到hdfs中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sqoop import \</span><br><span class="line">--connect jdbc:mysql://localhost:3306/company \</span><br><span class="line">--username root \</span><br><span class="line">--password 123456 \</span><br><span class="line">--table staff \</span><br><span class="line">--target-dir /user/sqoop/company \</span><br><span class="line">--delete-target-dir \</span><br><span class="line">--num-mappers 1 \</span><br><span class="line">--fields-terminated-by &quot;\t&quot;</span><br></pre></td></tr></table></figure>
+
+<p>将staff表中的数据全部导入到hdfs中/user/sqoop/company目录下，字段之间使用\t分隔</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/3.sqoop%E5%AF%BC%E5%85%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/1.sqoop%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1062,214 +1258,6 @@
   
 
     
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/Timer/1.Timer%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/Timer/1.Timer%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Timer的使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-01 23:02:30" itemprop="dateCreated datePublished" datetime="2021-06-01T23:02:30+08:00">2021-06-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-04 09:26:40" itemprop="dateModified" datetime="2021-06-04T09:26:40+08:00">2021-06-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">任务调度</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/Timer/1.Timer%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="Timer的使用" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/Timer/1.Timer%E7%9A%84%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/Timer/1.Timer%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Timer的使用"><a href="#Timer的使用" class="headerlink" title="Timer的使用"></a>Timer的使用</h2><p>Timer是java中提供的定时任务调度，</p>
-<p>在不使用第三方工具包的情况下可以使用Timer来实现定时器，不过Timer中提供的功能较少</p>
-<p>Timer中的方法并不多</p>
-<h3 id="TimerTask"><a href="#TimerTask" class="headerlink" title="TimerTask"></a>TimerTask</h3><p>TimerTask实现Runnable接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">TimerTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>虽然TimerTask类实现了Runnable接口，但是该类并没有作为一个线程来使用，run方法只是作为一个普通的方法进行调用的</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/Timer/1.Timer%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/lombok/1.lombok%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/lombok/1.lombok%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">lombok常用注解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-01 22:30:30 / 修改时间：17:54:04" itemprop="dateCreated datePublished" datetime="2021-06-01T22:30:30+08:00">2021-06-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/lombok/" itemprop="url" rel="index"><span itemprop="name">lombok</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/lombok/1.lombok%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="lombok常用注解" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/lombok/1.lombok%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/lombok/1.lombok%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><h3 id="lombok依赖"><a href="#lombok依赖" class="headerlink" title="lombok依赖"></a>lombok依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.16.18<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/lombok/1.lombok%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
 
   
   <nav class="pagination">
@@ -1341,20 +1329,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">537</span>
+          <span class="site-state-item-count">539</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

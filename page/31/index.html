@@ -196,6 +196,217 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/linux/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">linux网络命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-15 22:30:30" itemprop="dateCreated datePublished" datetime="2021-02-15T22:30:30+08:00">2021-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-20 15:14:18" itemprop="dateModified" datetime="2021-07-20T15:14:18+08:00">2021-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/linux/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="linux网络命令" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h2><h3 id="配置ip"><a href="#配置ip" class="headerlink" title="配置ip"></a>配置ip</h3><p>配置ip有两种方式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">方式一</span></span><br><span class="line"><span class="meta">#</span><span class="bash">setup可以使用配置工具进行配置</span></span><br><span class="line">setup</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">方式二 网卡配置文件的目录**/etc/sysconfig/network-scripts**</span></span><br><span class="line">/etc/sysconfig/network-scripts</span><br><span class="line"></span><br><span class="line">网卡的配置文件类型</span><br><span class="line"></span><br><span class="line">- ifconfig-ethX 有线网卡的配置文件 </span><br><span class="line">- ifconfig-ethX:X 有线网卡的虚拟网卡的配置文件</span><br><span class="line">- ifconfig-wlanX 无线网卡的配置文件</span><br><span class="line"></span><br><span class="line">网卡配置文件中各行代表的含义</span><br><span class="line"></span><br><span class="line">DEVICE——设备名 </span><br><span class="line">BOOTPROTO ——IP 地址的获取方式(静态 static 或者 dhcp)</span><br><span class="line">HWADDR ——MAC 地址</span><br><span class="line">ONBOOT ——开机启动</span><br><span class="line">IPADDR ——Ip 地址</span><br><span class="line">NETMASK——子网掩码</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用ifconfig来进行配置</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 ip 信息</span></span><br><span class="line">ifconfig</span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置 eth0 的 IP 信息</span></span><br><span class="line">ifconfig eth0 200.200.200.2 netmask 255.255.255.0</span><br><span class="line"><span class="meta">#</span><span class="bash"> 禁用网卡</span></span><br><span class="line">ifdown eth0 </span><br><span class="line"><span class="meta">#</span><span class="bash"> 启用网卡</span></span><br><span class="line">ifup eth0 </span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改网卡 eth0 的 MAC 地址</span></span><br><span class="line">ifconfig eth0 hw ether 00:11:22:33:44:55 </span><br></pre></td></tr></table></figure>
+
+<p>配置完之后重启网络服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/%E5%85%B3%E6%9C%BA%E5%92%8C%E9%87%8D%E5%90%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/linux/%E5%9F%BA%E7%A1%80/%E5%85%B3%E6%9C%BA%E5%92%8C%E9%87%8D%E5%90%AF/" class="post-title-link" itemprop="url">linux关机和重启</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-15 22:00:30" itemprop="dateCreated datePublished" datetime="2021-02-15T22:00:30+08:00">2021-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-19 12:08:55" itemprop="dateModified" datetime="2021-07-19T12:08:55+08:00">2021-07-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/linux/%E5%9F%BA%E7%A1%80/%E5%85%B3%E6%9C%BA%E5%92%8C%E9%87%8D%E5%90%AF/" class="post-meta-item leancloud_visitors" data-flag-title="linux关机和重启" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E5%85%B3%E6%9C%BA%E5%92%8C%E9%87%8D%E5%90%AF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%9F%BA%E7%A1%80/%E5%85%B3%E6%9C%BA%E5%92%8C%E9%87%8D%E5%90%AF/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="关机和重启"><a href="#关机和重启" class="headerlink" title="关机和重启"></a>关机和重启</h2><p>关机和重启之前最好先数据数据同步一下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sync</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">shutdown [选项] 时间</span></span><br><span class="line"><span class="meta">#</span><span class="bash">立即进入维护模式</span></span><br><span class="line">shutdown now</span><br><span class="line"><span class="meta">#</span><span class="bash">立即重启</span></span><br><span class="line">shutdown -r now</span><br><span class="line"><span class="meta">#</span><span class="bash">20:00 重新启动计算机</span></span><br><span class="line">shutdown -r 20:00&amp; </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">立即关机</span></span><br><span class="line">shutdown -h now</span><br><span class="line"><span class="meta">#</span><span class="bash"> 20:00 关闭计算机</span></span><br><span class="line">shutdown -h 20:00&amp;</span><br><span class="line"><span class="meta">#</span><span class="bash">取消重启</span></span><br><span class="line">shutdown -c</span><br><span class="line"><span class="meta">#</span><span class="bash"> 直接关机</span></span><br><span class="line">halt</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1019,304 +1230,6 @@
   
 
     
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E5%9F%BA%E7%A1%80/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">linux目录结构</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-02-14 17:05:30 / 修改时间：17:51:23" itemprop="dateCreated datePublished" datetime="2021-02-14T17:05:30+08:00">2021-02-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E5%9F%BA%E7%A1%80/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="linux目录结构" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%9F%BA%E7%A1%80/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="linux目录结构"><a href="#linux目录结构" class="headerlink" title="linux目录结构"></a>linux目录结构</h2><table>
-<thead>
-<tr>
-<th><strong>存放命令目录</strong></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>/bin/、/usr/bin/</td>
-<td>是普通用户和超级用户都可以使用的命令，/bin/是usr/bin/目录的软链接</td>
-</tr>
-<tr>
-<td>/sbin/、/usr/sbin/</td>
-<td>是超级用户可以使用的命令，/sbin/是usr/sbin/目录的软链接</td>
-</tr>
-<tr>
-<td><strong>系统启动目录</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>/boot/</td>
-<td>系统启动目录，保存与系统相关的文件，如内核文件和启动引导程序</td>
-</tr>
-<tr>
-<td><strong>硬件设备目录</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>/dev/</td>
-<td>硬件设备文件目录</td>
-</tr>
-<tr>
-<td><strong>配置文件目录</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>/etc/</td>
-<td>配置文件目录，系统内所有默认安装方式的服务配置文件都在此目录中</td>
-</tr>
-<tr>
-<td><strong>普通用户的家目录</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>/home/</td>
-<td>home目录中有用户</td>
-</tr>
-<tr>
-<td><strong>函数库目录</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>/lib/、/lib64/</td>
-<td>系统调用的函数库，lib64为64位的，分别是/usr/lib/和/usr/lib64/的软链接</td>
-</tr>
-<tr>
-<td><strong>备份恢复目录</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>/lost+found/</td>
-<td>系统意外崩溃产生的一些文件碎片，当系统启动时fsck工具会自动扫描并修复</td>
-</tr>
-<tr>
-<td><strong>挂载目录</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>/midea/</td>
-<td>挂光盘</td>
-</tr>
-<tr>
-<td>/misc/</td>
-<td>挂NFS服务</td>
-</tr>
-<tr>
-<td>/mnt/</td>
-<td>之前的挂载目录</td>
-</tr>
-<tr>
-<td><strong>第三方软件安装目录</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>/opt/</td>
-<td></td>
-</tr>
-<tr>
-<td><strong>系统软件资源目录</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>/usr/</td>
-<td></td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%A2%AB%E6%8B%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%A2%AB%E6%8B%92/" class="post-title-link" itemprop="url">使用ssh连接被拒</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-14 16:40:30" itemprop="dateCreated datePublished" datetime="2021-02-14T16:40:30+08:00">2021-02-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-19 14:24:37" itemprop="dateModified" datetime="2021-07-19T14:24:37+08:00">2021-07-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%A2%AB%E6%8B%92/" class="post-meta-item leancloud_visitors" data-flag-title="使用ssh连接被拒" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%A2%AB%E6%8B%92/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%A2%AB%E6%8B%92/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="使用ssh连接被拒"><a href="#使用ssh连接被拒" class="headerlink" title="使用ssh连接被拒"></a>使用ssh连接被拒</h2><p>在使用电脑连接虚拟机时，发现ssh连接被拒</p>
-<p>进入虚拟机Linux的 /etc/init.d目录下，查看sshd是否启动</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sshd status</span><br></pre></td></tr></table></figure>
-
-<p>发现是停止状态，重启一下即可</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sshd restart</span><br></pre></td></tr></table></figure>
-
-<p>也可以使用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service sshd start</span><br></pre></td></tr></table></figure>
-
-<p>查看sshd是否已是系统服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list |grep sshd</span><br></pre></td></tr></table></figure>
-
-<p>设置sshd服务自动启动</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --level 3 sshd on</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
 
   
   <nav class="pagination">
@@ -1388,20 +1301,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">537</span>
+          <span class="site-state-item-count">539</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
