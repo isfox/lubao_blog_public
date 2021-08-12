@@ -30,7 +30,7 @@
 <meta property="og:description" content="MySQL日志MySQL中有六种日志文件，分别是事务日志（分为重做日志(redo log)和回滚日志(undo log)）、二进制日志(bin log)、错误日志(error log)、慢查询日志(slow query log)、一般查询日志(general log)、中继日志(relay log)。 事务日志重做日志 redo log用于保证事务的持久性 InnoDB作为MySQL的存储引擎，数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-08T12:11:30.000Z">
-<meta property="article:modified_time" content="2021-08-06T10:21:00.395Z">
+<meta property="article:modified_time" content="2021-08-12T07:53:12.387Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-06 18:21:00" itemprop="dateModified" datetime="2021-08-06T18:21:00+08:00">2021-08-06</time>
+                <time title="修改时间：2021-08-12 15:53:12" itemprop="dateModified" datetime="2021-08-12T15:53:12+08:00">2021-08-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,10 +276,19 @@
 <h3 id="事务日志"><a href="#事务日志" class="headerlink" title="事务日志"></a>事务日志</h3><h4 id="重做日志-redo-log"><a href="#重做日志-redo-log" class="headerlink" title="重做日志 redo log"></a>重做日志 redo log</h4><p>用于保证事务的持久性</p>
 <p>InnoDB作为MySQL的存储引擎，数据是存放在磁盘中的，但如果每次读写数据都需要磁盘IO，效率会很低。为此，InnoDB提供了缓存(Buffer Pool)，Buffer Pool中包含了磁盘中部分数据页的映射，作为访问数据库的缓冲：当从数据库读取数据时，会首先从Buffer Pool中读取，如果Buffer Pool中没有，则从磁盘读取后放入Buffer Pool；当向数据库写入数据时，会首先写入Buffer Pool，Buffer Pool中修改的数据会定期刷新到磁盘中（这一过程称为刷脏）</p>
 <p>Buffer Pool的使用大大提高了读写数据的效率，但是也带了新的问题：如果MySQL宕机，而此时Buffer Pool中修改的数据还没有刷新到磁盘，就会导致数据的丢失，事务的持久性无法保证。</p>
-<p>于是，redo log被引入来解决这个问题：当数据修改时，除了修改Buffer Pool中的数据，还会在redo log记录这次操作；当事务提交时，会调用fsync接口对redo log进行刷盘。如果MySQL宕机，重启时可以读取redo log中的数据，对数据库进行恢复。redo log采用的是WAL（Write-ahead logging，预写式日志），所有修改先写入日志，再更新到Buffer Pool，保证了数据不会因MySQL宕机而丢失，从而满足了持久性要求</p>
+<p>于是，redo log被引入来解决这个问题：当数据修改时，除了修改Buffer Pool中的数据，还会在redo log记录这次操作；当事务提交时，会调用fsync接口对redo log进行刷盘。如果MySQL宕机，重启时可以读取redo log中的数据，对数据库进行恢复。redo log采用的是WAL（Write-ahead logging，预写式日志），所有修改先写入日志，再更新到磁盘，保证了数据不会因MySQL宕机而丢失，从而满足了持久性要求</p>
 <p>事务开始之后就产生redo log，redo log的落盘并不是随着事务的提交才写入的，而是在事务的执行过程中，便开始写入redo log文件中，当对应事务的脏页写入到磁盘之后，redo log的使命也就完成了，重做日志占用的空间就可以重用（被覆盖），在redo log中记录的是物理数据页面的修改信息</p>
+<blockquote>
+<p>redolog 是物理日志，记录的就是数据页变更</p>
+</blockquote>
 <a id="more"></a>
 
+<p>redo log分为两部分：内存中的日志缓冲(redo log buffer)，磁盘上的日志文件(redo log file)，先将记录写入redo log buffer，后续某个时间点在一次性将多个操作记录写到redo log file中，对于redo log buffer写入redo log file有三种选择</p>
+<ul>
+<li>0  <strong>延迟写</strong>   事务提交时不会将redo log buffer中日志写入到os buffer中，而是每秒写入os buffer并调用fsync()写入到redo log file中，如果系统崩溃，将丢失1秒的数据</li>
+<li>1 <strong>实时写，实时刷</strong>  事务每次提交都会将redo log buffer中的日志写入到os buffer并调用fsync()刷到redo log file中，虽然不会丢失数据，但是每次都写入磁盘，IO性能较差</li>
+<li>2 <strong>实时写，延迟刷</strong>  每次提交将redo log buffer中的日志写入os buffer，但是每秒调用一次fsync()将os buffer中的日志写入到redo log file中</li>
+</ul>
 <h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><p>默认是存储在data目录下的ib_logfile1和ib_logfile2文件中</p>
 <ul>
 <li>innodb_log_group_home_dir 指定日志文件组所在的路径，默认./ ，表示在数据库的数据目录下</li>
@@ -287,7 +296,7 @@
 </ul>
 <p>关于文件的大小和数量，由一下两个参数配置</p>
 <ul>
-<li>innodb_log_file_size 重做日志文件的大小</li>
+<li>innodb_log_file_size 重做日志文件的大小，redo log的文件大小是固定的，采用了循环写入的方式，当写到结尾时，会回到开头循环写入</li>
 <li>innodb_mirrored_log_groups 指定了日志镜像文件组的数量，默认1</li>
 </ul>
 <h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><ul>
@@ -295,7 +304,7 @@
 <li>防止在发生故障的时间点，尚有脏页未写入磁盘，在重启mysql服务的时候，根据redo log进行重做，从而达到事务的持久性这一特性</li>
 </ul>
 <h4 id="回滚日志-undo-log"><a href="#回滚日志-undo-log" class="headerlink" title="回滚日志 undo log"></a>回滚日志 undo log</h4><p>用于保证事务的原子性和隔离性</p>
-<p>事务开始之前，将当前的版本生成undo log，undo 也会产生 redo 来保证undo log的可靠性</p>
+<p>undo log主要记录数据的逻辑变化，比如一条insert语句，在undo log中对应一条delete语句，这样在发生错误时，就可以回滚到事务之前的数据状态</p>
 <p>当事务提交之后，undo log并不能立马被删除，而是放入待清理的链表，由purge线程判断是否由其他事务在使用undo段中表的上一个事务之前的版本信息，决定是否可以清理undo log的日志空间</p>
 <p>如果事务需要回滚，则直接利用undo log中的备份数据恢复到事务开始前的状态，根据undo log的内容做与之前相反的工作：对于每个insert，回滚时会执行delete；对于每个delete，回滚时会执行insert；对于每个update，回滚时会执行一个相反的update，把数据改回去</p>
 <h5 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h5><p>MySQL5.7之后的配置</p>
@@ -311,21 +320,24 @@
 <blockquote>
 <p>binlog是逻辑日志（记录的是sql语句)</p>
 </blockquote>
-<p>一开始binlog的记录还在内存中，那么<code>biglog</code>是什么时候刷到磁盘中的呢？<code>mysql</code>通过<code>sync_binlog</code>参数控制<code>biglog</code>的刷盘时机，取值范围是<code>0-N</code>：</p>
+<p>binlog在事务提交时才会记录，一开始binlog是记录在内存中，那么<code>biglog</code>是什么时候刷到磁盘中的呢？<code>mysql</code>通过<code>sync_binlog</code>参数控制<code>biglog</code>的刷盘时机，取值范围是<code>0-N</code>：</p>
 <ul>
-<li>0：不去强制要求，由系统自行判断何时写入磁盘；</li>
-<li>1：每次<code>commit</code>的时候都要将<code>binlog</code>写入磁盘；</li>
+<li>0：不去强制要求，由系统自行判断何时写入磁盘</li>
+<li>1：每次<code>commit</code>的时候都要将<code>binlog</code>写入磁盘</li>
 <li>N：每N个事务，才会将<code>binlog</code>写入磁盘</li>
 </ul>
 <h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><ul>
 <li>binlog的默认是保持时间由参数<code>expire_logs_days</code>配置，也就是说对于非活动的日志文件，在生成时间超过expire_logs_days配置的天数之后，会被自动删除</li>
 <li>配置文件的路径为<code>log_bin_basename</code>，binlog日志文件按照指定大小，当日志文件达到指定的最大的大小之后，进行滚动更新，生成新的日志文件</li>
-<li><code>max_binlog_size</code> 设置每个binlog文件的大小</li>
+<li><code>max_binlog_size</code> 设置每个binlog文件的大小，当文件大小达到指定值后，会生成新的文件进行存储</li>
 <li><code>binlog_format</code> 可以设置日志格式，Statement、Row、Mixed</li>
 <li>对于每个binlog日志文件，通过一个统一的index文件来组织</li>
 </ul>
 <h4 id="日志录入格式"><a href="#日志录入格式" class="headerlink" title="日志录入格式"></a>日志录入格式</h4><p>binlog录入有三种格式，Statement、Row、Mixed</p>
-<h5 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h5><p>每一条会修改数据的sql都会记录在binlog中</p>
+<h5 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h5><blockquote>
+<p>5.7.7之前的默认值</p>
+</blockquote>
+<p>基于sql语句的记录，每一条会修改数据的sql都会记录在binlog中</p>
 <p><strong>优点：</strong>不需要记录每一行的变化，减少了binlog日志量，节约了IO，提高性能。(相比row能节约多少性能与日志量，这个取决于应用的SQL情况，正常一条记录修改或者插入row格式所产生的日志量还小于Statement产生的日志量，但是考虑到如果带条件的update操作，以及整表删除，alter表等操作，ROW格式会产生大量日志，因此在考虑是否使用ROW格式日志时应该根据应用的实际情况，其所产生的日志量会增加多少，以及带来的IO性能问题)<br><strong>缺点：</strong>由于记录的只是执行语句，为了这些语句能在slave上正确运行，因此还必须记录每条语句在执行的时候的一些相关信息，以保证所有语句能在slave得到和在master端执行时候相同的结果。另外mysql的复制,像一些特定函数功能，slave可与master上要保持一致会有很多相关问题(如sleep()函数， last_insert_id()，以及user-defined functions(udf)会出现问题)<br>使用以下函数的语句也无法被复制：</p>
 <ul>
 <li>LOAD_FILE()</li>
@@ -334,7 +346,10 @@
 <li>FOUND_ROWS()</li>
 <li>SYSDATE() (除非启动时启用了 –sysdate-is-now 选项)</li>
 </ul>
-<h5 id="Row"><a href="#Row" class="headerlink" title="Row"></a>Row</h5><p>不记录sql语句上下文相关信息，仅保存哪条记录被修改</p>
+<h5 id="Row"><a href="#Row" class="headerlink" title="Row"></a>Row</h5><blockquote>
+<p>5.7.7之后的默认值</p>
+</blockquote>
+<p>基于行的记录，不记录sql语句上下文相关信息，仅保存哪条记录被修改</p>
 <p><strong>优点：</strong> binlog中可以不记录执行的sql语句的上下文相关的信息，仅需要记录那一条记录被修改成什么了。所以rowlevel的日志内容会非常清楚的记录下每一行数据修改的细节。而且不会出现某些特定情况下的存储过程，或function，以及trigger的调用和触发无法被正确复制的问题<br><strong>缺点：</strong>所有的执行的语句当记录到日志中的时候，都将以每行记录的修改来记录，这样可能会产生大量的日志内容,比如一条update语句，修改多条记录，则binlog中每一条修改都会有记录，这样造成binlog日志量会很大，特别是当执行alter table之类的语句的时候，由于表结构修改，每条记录都发生改变，那么该表每一条记录都会记录到日志中</p>
 <h5 id="Mixed"><a href="#Mixed" class="headerlink" title="Mixed"></a>Mixed</h5><p>以上两种level的混合使用，一般的语句修改使用statment格式保存binlog，如一些函数，statement无法完成主从复制的操作，则采用row格式保存binlog，MySQL会根据执行的每一条具体的sql语句来区分对待记录的日志形式，也就是在Statement和Row之间选择一种。新版本的MySQL中对row level模式也被做了优化，并不是所有的修改都会以row level来记录，像遇到表结构变更的时候就会以statement模式来记录。至于update或者delete等修改数据的语句，还是会记录所有行的变更</p>
 <h4 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h4><ul>
