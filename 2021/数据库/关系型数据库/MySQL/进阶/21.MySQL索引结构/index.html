@@ -30,7 +30,7 @@
 <meta property="og:description" content="MySQL索引结构MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-树以及散列类型 MySQL内置的存储引擎对各种索引技术有不同的实现方式，包括：B-树，B+树，R-Tree索引、hash索引、full-text全文索引  Innodb中使用的是B+树索引 MyISAM中使用的是FullText全文索引， InnoDB在5.6之后支持，5.7之后使用ngram插件开">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-22T13:30:30.000Z">
-<meta property="article:modified_time" content="2021-08-16T07:36:21.404Z">
+<meta property="article:modified_time" content="2021-08-20T09:56:21.927Z">
 <meta property="article:author" content="ZH">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-16 15:36:21" itemprop="dateModified" datetime="2021-08-16T15:36:21+08:00">2021-08-16</time>
+                <time title="修改时间：2021-08-20 17:56:21" itemprop="dateModified" datetime="2021-08-20T17:56:21+08:00">2021-08-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -306,13 +306,13 @@
 <blockquote>
 <p>InnoDB的pageSize可以通过命令<code>show variables like &#39;innodb_page_size&#39;</code>得到，默认值是16k</p>
 </blockquote>
-<h5 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h5><p>Innodb存储引擎表是索引组织表，即表中数据按主键顺序存放，而聚集索引就是按每张表的主键构造一颗B+树。并且叶节点存放整张表的行记录数据，<strong>每张表只能有一个聚簇索引（一个主键），对于聚簇索引，叶子结点即存储了真实的数据行</strong>，不再有另外单独的数据页，聚簇索引的另一个好处是它对于主键的排序查找和范围的速度非常快，叶节点的数据就是我们要找的数据，聚簇索引也被称为主键索引</p>
-<h5 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h5><p>表数据存储顺序与索引顺序无关。对于非聚簇索引，<strong>叶结点包含索引字段值以及主键索引值</strong>，该层紧邻数据页，其行数量与数据表行数据量一致<br>非聚簇索引的存在并不影响数据在聚簇索引中的组织，因此一个表可以有多个非聚簇索引。当通过非聚簇索引查找数据时，innodb会遍历非聚簇索引并通过叶级别的指针获得指向主键索引的主键。然后再通过主键索引找到一行完整的数据</p>
+<h5 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h5><p>Innodb存储引擎表是索引组织表，即表中数据按主键顺序存放，而聚集索引就是按每张表的主键构造一颗B+树。并且叶节点存放整张表的行记录数据，<strong>每张表只能有一个聚簇索引（一个主键），对于聚簇索引，叶子结点即存储了真实的数据行，索引和数据在一起存储</strong>，不再有另外单独的数据页，聚簇索引的另一个好处是它对于主键的排序查找和范围的速度非常快，叶节点的数据就是我们要找的数据，聚簇索引也被称为主键索引</p>
+<h5 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h5><p>表数据存储顺序与索引顺序无关。对于非聚簇索引，<strong>叶结点包含索引字段值以及主键索引值，并不包含数据</strong>，该层紧邻数据页，其行数量与数据表行数据量一致<br>非聚簇索引的存在并不影响数据在聚簇索引中的组织，因此一个表可以有多个非聚簇索引。当通过非聚簇索引查找数据时，innodb会遍历非聚簇索引并通过叶级别的指针获得指向主键索引的主键。然后再通过主键索引找到一行完整的数据</p>
 <p>非聚簇索引的<strong>叶子节点内容是主键的值</strong>，也被称为二级索引或非主键索引</p>
 <p>也就是说会先根据非主键索引扫描一棵索引树，得到id的值之后，再根据id的索引树搜索一次，这个过程称为回表</p>
 <h5 id="B-树的结构-1"><a href="#B-树的结构-1" class="headerlink" title="B+树的结构"></a>B+树的结构</h5><p>B+树是有序数组链表+平衡多叉树</p>
 <p>相对Hash索引，B+Tree在查找单条记录的速度比不上Hash索引，但是因为更适合排序等操作，所以它更受欢迎</p>
-<p>B+树的所有索引数据都在叶子节点上，并且增加了顺序访问指针，每个叶子节点都有指向相邻叶子节点的指针，这样可以提高区间效率，当进行范围查找时，如查找key为10到20之间的数据，找到10之后就可以顺着节点和指针顺序遍历查找此范围的所有数据节点</p>
+<p>B+树的所有索引数据都在叶子节点上，并且增加了顺序访问指针(双向链表)，每个叶子节点都有指向相邻叶子节点的指针，这样可以提高区间效率，当进行范围查找时，如查找key为10到20之间的数据，找到10之后就可以顺着节点和指针顺序遍历查找此范围的所有数据节点</p>
 <h5 id="为什么不使用B树做索引呢？"><a href="#为什么不使用B树做索引呢？" class="headerlink" title="为什么不使用B树做索引呢？"></a>为什么不使用B树做索引呢？</h5><p>先来看一下B树和B+树的区别</p>
 <h6 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h6><p>每个节点都存储key和data，所有节点组成这棵树，并且叶子节点指针为nul，叶子结点不包含任何关键字信息</p>
 <h6 id="B-树-2"><a href="#B-树-2" class="headerlink" title="B+树"></a>B+树</h6><p>所有的叶子结点中包含了全部关键字的信息，以及指向含有这些关键字记录的指针，且叶子结点本身依关键字的大小自小而大的顺序链接，所有的非终端结点可以看成是索引部分，结点中仅含有其子树根结点中最大（或最小）关键字</p>
@@ -320,9 +320,10 @@
 <p>B+搜索和B-搜索不同，区别是B+树只有达到叶子节点才命中（B-树可以在非叶子节点命中），其性能等价于关键字全集做一次二分搜索。</p>
 <p>B+树的特性：</p>
 <ul>
-<li>所有关键字都出现在叶子节点的链表中，叶子节点相当于存储数据的数据层</li>
+<li>所有关键字都出现在叶子节点中，且以链表形式关联，叶子节点相当于存储数据的数据层</li>
 <li>不可能在非叶子节点上命中</li>
 <li>非叶子节点相当于是叶子节点的索引，叶子节点相当于数据层</li>
+<li>叶子节点的值是有序的</li>
 </ul>
 <p>根据两种结构的特性可以看到，与B树相比，B+树的数据全部都在叶子节点中，非叶子节点不保存数据，非叶子节点占用的内容更少，同样大小的文件可以存放更多的非叶子节点，<strong>MySql 将数据按照页来存储，默认一页为 16kb，在查询时，将这个数据所在的页都加载到 pageCache 中，</strong>这样每页可以取到的索引数据就多，所以，所以在查找时IO次数会相对较少；而且在叶子节点之间又存在指针，所以在进行范围查找时也可以很快的将数据节点取到</p>
 <p>使用B+树访问或者修改一条数据的 SQL 的时间复杂度都是<code>O(log n)</code>，也就是树的高度</p>
@@ -451,7 +452,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">549</span>
+          <span class="site-state-item-count">552</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -464,7 +465,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
