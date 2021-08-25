@@ -196,6 +196,434 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/6.%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/JVM/6.%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8/" class="post-title-link" itemprop="url">程序计数器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-12 15:30:40 / 修改时间：16:15:57" itemprop="dateCreated datePublished" datetime="2021-06-12T15:30:40+08:00">2021-06-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/6.%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="程序计数器" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/6.%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/6.%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h2><p>程序计数器(Program Counter Register)是用来存储指向下一条指令的地址，也就是即将要执行的指令代码，有执行引擎来读取下一条指令，每个线程都有自己的一个程序计数器，程序计数器的生命周期与线程的一致，在任何时间同一个线程只会执行一个方法，也就是当前方法，程序计数器会存储当前线程正在执行方法的JVM指令地址，如果执行的是native方法，在指令地址是undefined</p>
+<blockquote>
+<p>程序计数器是JVM规范中唯一一个不会出现OOM的区域，且也不存在垃圾回收</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/JVM/6.%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/3.%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/JVM/3.%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" class="post-title-link" itemprop="url">类加载器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-11 20:37:40" itemprop="dateCreated datePublished" datetime="2021-06-11T20:37:40+08:00">2021-06-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-19 09:59:20" itemprop="dateModified" datetime="2021-07-19T09:59:20+08:00">2021-07-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/3.%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="类加载器" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/3.%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/3.%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>源代码经过编译器编译之后生成了一个字节码文件(class文件)，字节码文件中存储的是<strong>jvm指令</strong>，而不是机器指令</p>
+<p>类加载器子系统负责从文件系统或者网络中加载class文件，class文件在文件开头有特定的文件标识，将class字节码文件在类装载器子系统(Class Loader SubSystem)中有三个阶段</p>
+<ul>
+<li>1.加载  到内存中需要用到类加载器</li>
+<li>2.链接  链接中包含 验证、准备和解析</li>
+<li>3.初始化</li>
+</ul>
+<h3 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h3><p>ClassLoader只负责class文件的加载，将java类的字节码文件加载到机器内存，是否可以运行是由Execution Engine决定，加载的类信息存放于一块称为方法区的内存空间。除了类的信息外，方法区中还会存放运行时常量池信息(包括字符串字面量和数字常量，是class文件中常量池部分的内存映射)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/JVM/3.%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/2.%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/2.%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">监控工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-09 21:47:40" itemprop="dateCreated datePublished" datetime="2021-06-09T21:47:40+08:00">2021-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-29 11:09:55" itemprop="dateModified" datetime="2021-07-29T11:09:55+08:00">2021-07-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/2.%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/" class="post-meta-item leancloud_visitors" data-flag-title="监控工具" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/2.%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/2.%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="监控工具"><a href="#监控工具" class="headerlink" title="监控工具"></a>监控工具</h2><h3 id="jvm自带的命令"><a href="#jvm自带的命令" class="headerlink" title="jvm自带的命令"></a>jvm自带的命令</h3><h4 id="jps命令"><a href="#jps命令" class="headerlink" title="jps命令"></a>jps命令</h4><p>jps可以查看正在运行的java进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jps [-q] [-mlvV] [&lt;hostid&gt;]</span><br><span class="line"></span><br><span class="line">-q  仅显示LVMID(local virtual machine id)，本地虚拟机唯一id，不显示主类的名称</span><br><span class="line">-l  输出应用程序主类的全类名或jar包的完整路径</span><br><span class="line">-m  输出虚拟机进程启动时传递给主类main()的参数</span><br><span class="line">-v  列出虚拟机进程启动时的JVM参数</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果java程序启动 <code>-XX:-UsePerfData</code>，jps将无法探知到该java进程</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/2.%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/2.JVM%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/JVM/2.JVM%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="post-title-link" itemprop="url">JVM生命周期</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-09 20:37:40" itemprop="dateCreated datePublished" datetime="2021-06-09T20:37:40+08:00">2021-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-11 10:07:23" itemprop="dateModified" datetime="2021-06-11T10:07:23+08:00">2021-06-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/2.JVM%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="post-meta-item leancloud_visitors" data-flag-title="JVM生命周期" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/2.JVM%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/2.JVM%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="JVM生命周期"><a href="#JVM生命周期" class="headerlink" title="JVM生命周期"></a>JVM生命周期</h2><p>JVM的生命周期分为启动、执行和退出</p>
+<h3 id="JVM启动"><a href="#JVM启动" class="headerlink" title="JVM启动"></a>JVM启动</h3><p>JVM启动是通过引导类加载器(bootstrap class loader)创建一个初始类来完成的，这个类是由虚拟机的具体实现指定的</p>
+<h3 id="JVM执行"><a href="#JVM执行" class="headerlink" title="JVM执行"></a>JVM执行</h3><p>java虚拟机的任务就是执行java程序，程序执行时运行，程序结束时停止，在执行程序时实际上执行的是java虚拟机进程</p>
+<h3 id="JVM退出"><a href="#JVM退出" class="headerlink" title="JVM退出"></a>JVM退出</h3><p>JVM退出会有以下几种情况</p>
+<ul>
+<li>程序正常执行结束</li>
+<li>程序在执行过程中遇到了异常或错误而异常终止</li>
+<li>由于操作系统出现错误导致java虚拟机进程终止</li>
+<li>某线程调用Runtime类或秀禾System类的exit方法，或Runtime类的halt方法，并且java安全管理器也允许这次exit或halt操作</li>
+<li>JNI(Java Native Interface)规范描述了用JNI Invocation API来加载或卸载java虚拟机时，java虚拟机的退出情况</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/Git/5.Git%E4%BF%AE%E6%94%B9%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -799,380 +1227,10 @@
   
 
     
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E8%BF%9B%E9%98%B6/1.linux%E4%B8%AD%E7%9A%84inode%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E8%BF%9B%E9%98%B6/1.linux%E4%B8%AD%E7%9A%84inode%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">linux中的inode对象</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-08 20:00:30 / 修改时间：10:57:01" itemprop="dateCreated datePublished" datetime="2021-06-08T20:00:30+08:00">2021-06-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E8%BF%9B%E9%98%B6/1.linux%E4%B8%AD%E7%9A%84inode%E5%AF%B9%E8%B1%A1/" class="post-meta-item leancloud_visitors" data-flag-title="linux中的inode对象" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E8%BF%9B%E9%98%B6/1.linux%E4%B8%AD%E7%9A%84inode%E5%AF%B9%E8%B1%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E8%BF%9B%E9%98%B6/1.linux%E4%B8%AD%E7%9A%84inode%E5%AF%B9%E8%B1%A1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="linux中的inode对象"><a href="#linux中的inode对象" class="headerlink" title="linux中的inode对象"></a>linux中的inode对象</h2><p>inode 是 UNIX/Linux 操作系统中的一种数据结构,其本质是结构体,它包含了与文件系统中各个文件相关的一些重要信息,例如文件及目录的基本信息,包含时间、档名、使用者及群组等。在 UNIX/Linux中创建文件系统时,同时将会创建大量的 inode 。通常,文件系统磁盘空间中大约百分之一空间分配给了 inode 表。在Linux系统中,内核为每一个新创建的文件分配一个Inode(索引结点),每个文件都有一个唯一的inode号,我们可以将inode简单理解成一个指针,它永远指向本文件的具体存储位置。文件属性保存在索引结点里,在访问文件时,索引结点被复制到内存在,从而实现文件的快速访问。系统是通过索引节点(而不是文件名)来定位每一个文件</p>
-<p>Block 是记录文件内容数据的区域,至于 inode 则是记录 该文件的相关属性,以及文件内容放置在哪一个 Block 之内 的信息</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E6%80%A7%E8%83%BD/2.%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E6%80%A7%E8%83%BD/2.%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0/" class="post-title-link" itemprop="url">设置网络参数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-08 19:46:30 / 修改时间：16:06:20" itemprop="dateCreated datePublished" datetime="2021-06-08T19:46:30+08:00">2021-06-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E6%80%A7%E8%83%BD/2.%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="设置网络参数" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E6%80%A7%E8%83%BD/2.%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E6%80%A7%E8%83%BD/2.%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="设置网络参数"><a href="#设置网络参数" class="headerlink" title="设置网络参数"></a>设置网络参数</h2><p>调整/etc/sysctl.conf 文件中的相关参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#当并发请求数目超过了1000之后，服务器自身可能会认为是收到了syn泛洪攻击，但对于高并发系统，要禁用此设置</span><br><span class="line">net.ipv4.tcp_syncookies &#x3D; 0</span><br><span class="line"> </span><br><span class="line">#参数决定了SYN_RECV状态队列的数量，一般默认值为512或者1024，即超过这个数量，系统将不再接受新的TCP连接请求，一定程度上可以防止系统资源耗尽。可根据情况增加该值以接受更多的连接请求</span><br><span class="line">net.ipv4.tcp_max_syn_backlog</span><br><span class="line"> </span><br><span class="line">#参数决定是否加速TIME_WAIT的sockets的回收，默认为0</span><br><span class="line">net.ipv4.tcp_tw_recycle</span><br><span class="line"></span><br><span class="line">#参数决定是否可将TIME_WAIT状态的sockets用于新的TCP连接，默认为0</span><br><span class="line">net.ipv4.tcp_tw_reuse</span><br><span class="line">  </span><br><span class="line">#参数决定TIME_WAIT状态的sockets总数量，可根据连接数和系统资源需要进行设置</span><br><span class="line">net.ipv4.tcp_max_tw_buckets</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E6%80%A7%E8%83%BD/1.%E8%AE%BE%E7%BD%AEulimit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/linux/%E6%80%A7%E8%83%BD/1.%E8%AE%BE%E7%BD%AEulimit/" class="post-title-link" itemprop="url">设置ulimit</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-08 19:46:30 / 修改时间：16:02:08" itemprop="dateCreated datePublished" datetime="2021-06-08T19:46:30+08:00">2021-06-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/linux/%E6%80%A7%E8%83%BD/1.%E8%AE%BE%E7%BD%AEulimit/" class="post-meta-item leancloud_visitors" data-flag-title="设置ulimit" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/linux/%E6%80%A7%E8%83%BD/1.%E8%AE%BE%E7%BD%AEulimit/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E6%80%A7%E8%83%BD/1.%E8%AE%BE%E7%BD%AEulimit/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="设置ulimit"><a href="#设置ulimit" class="headerlink" title="设置ulimit"></a>设置ulimit</h2><p>centos服务器设置ulimit，ulimit是指服务器允许的最大打开文件数目</p>
-<p>配置文件在/etc/security/limits.conf</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/" class="post-title-link" itemprop="url">sqoop导出</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-07 21:31:30 / 修改时间：15:30:19" itemprop="dateCreated datePublished" datetime="2021-06-07T21:31:30+08:00">2021-06-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sqoop/" itemprop="url" rel="index"><span itemprop="name">sqoop</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/" class="post-meta-item leancloud_visitors" data-flag-title="sqoop导出" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%A7%E6%95%B0%E6%8D%AE/sqoop/4.sqoop%E5%AF%BC%E5%87%BA/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="sqoop导出"><a href="#sqoop导出" class="headerlink" title="sqoop导出"></a>sqoop导出</h2><p>sqoop导出是指从大数据集群中(hdfs/hive/hbase)中向关系型数据库传输数据，使用export</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sqoop export \</span><br><span class="line">--connect jdbc:mysql://localhost:3306/company \</span><br><span class="line">--username root \</span><br><span class="line">--password 123456 \</span><br><span class="line">--table staff \</span><br><span class="line">--num-mappers 1 \</span><br><span class="line">--export-dir /user/hive/warehouse/staff_hive \</span><br><span class="line">--input-fields-terminated-by &quot;\t&quot;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1240,7 +1298,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">557</span>
+          <span class="site-state-item-count">561</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1253,7 +1311,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

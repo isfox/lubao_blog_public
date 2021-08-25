@@ -193,6 +193,237 @@
             
   	
   	
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/linux/%E5%9F%BA%E7%A1%80/%E9%98%B2%E7%81%AB%E5%A2%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/linux/%E5%9F%BA%E7%A1%80/%E9%98%B2%E7%81%AB%E5%A2%99/" class="post-title-link" itemprop="url">防火墙</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-22 20:13:30 / 修改时间：15:45:05" itemprop="dateCreated datePublished" datetime="2021-07-22T20:13:30+08:00">2021-07-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/linux/%E5%9F%BA%E7%A1%80/%E9%98%B2%E7%81%AB%E5%A2%99/" class="post-meta-item leancloud_visitors" data-flag-title="防火墙" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E9%98%B2%E7%81%AB%E5%A2%99/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/linux/%E5%9F%BA%E7%A1%80/%E9%98%B2%E7%81%AB%E5%A2%99/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>iptables 是建立在 netfilter 架构基础上的一个包过滤管理工具。<br>用户通过 /sbin/iptables 命令来管理 iptables，和 route 命令相同，iptables 命令的效果在重新启动以后就不再有效。</p>
+<p>可以使用 /etc/rc.d/init.d/iptables save 将当前 iptables 规则写到 /etc/sysconfig/iptables 文件中，那么每次开机时/etc/rc.d/init.d/iptables start 命令会使 /etc/sysconfig/iptables 中的规则生效</p>
+<h3 id="iptables构成"><a href="#iptables构成" class="headerlink" title="iptables构成"></a>iptables构成</h3><p>iptables 是由几张表所组成，每张表又由几条链组成，每张表负责不同的封包处理机制，每条链负责不同的封包走向，具体采取的策略由链里的规则设定</p>
+<ul>
+<li>filter 表: 用于过滤封包<ul>
+<li>INPUT 链： 存在于 filter 表，主要用于处理进入本机的封包<ul>
+<li>OUTPUT 链： 存在于 filter 表,主要用于处理离开本机的封包</li>
+<li>FORWARD 链: 存在于 fileter 表，主要用于处理穿过本机的封包 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Nat 表 : 用于做地址转换<ul>
+<li>PREROUTING 链: 存在于 nat 表，主要用于修改目的地址(DNAT)</li>
+<li>POSTROUTING 链: 存在于 nat 表，主要用于修改来源地址(SNAT)</li>
+</ul>
+</li>
+<li>mangle 表： 允许改变包的内容来进一步矫正包 </li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/linux/%E5%9F%BA%E7%A1%80/%E9%98%B2%E7%81%AB%E5%A2%99/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+    	  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/1.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="ZH">
+      <meta itemprop="description" content="java菜鸟号正在起航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小菜鸟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/1.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">性能优化的步骤</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-21 20:47:40" itemprop="dateCreated datePublished" datetime="2021-07-21T20:47:40+08:00">2021-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-23 10:35:04" itemprop="dateModified" datetime="2021-07-23T10:35:04+08:00">2021-07-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/1.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/" class="post-meta-item leancloud_visitors" data-flag-title="性能优化的步骤" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/1.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/JVM/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/1.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%AD%A5%E9%AA%A4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="性能优化的步骤"><a href="#性能优化的步骤" class="headerlink" title="性能优化的步骤"></a>性能优化的步骤</h2><h3 id="一、发现问题-性能监控"><a href="#一、发现问题-性能监控" class="headerlink" title="一、发现问题(性能监控)"></a>一、发现问题(性能监控)</h3><p>可能存在的问题：GC频繁、cpu load过高、OOM、内存泄漏、死锁、程序响应时间过长</p>
+<h3 id="二、排查问题-性能分析"><a href="#二、排查问题-性能分析" class="headerlink" title="二、排查问题(性能分析)"></a>二、排查问题(性能分析)</h3><p>分析方式或工具</p>
+<ul>
+<li>打印GC日志，通过GCviewer或者<a target="_blank" rel="noopener" href="http://gceasy.io/">http://gceasy.io</a>来分析日志信息</li>
+<li>命令行工具，如jstack、jmap、jinfo等</li>
+<li>dump出堆文件，使用内存分析工具分析文件</li>
+<li>使用阿里Arthas或jconsole、JVisualVM来实时查看JVM状态</li>
+<li>jstack查看堆栈信息</li>
+</ul>
+<h3 id="三、解决问题-性能调优"><a href="#三、解决问题-性能调优" class="headerlink" title="三、解决问题(性能调优)"></a>三、解决问题(性能调优)</h3><p>解决的大致方向如下</p>
+<ul>
+<li>适当增加内存，根据业务背景选择垃圾回收器</li>
+<li>优化代码，控制内存使用</li>
+<li>增加机器，分散节点压力</li>
+<li>合理设置线程池线程数量</li>
+<li>使用中间件提高程序效率，比如缓存，消息列队等</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+  	
+  	
     	  
   
   
@@ -600,398 +831,10 @@
   
 
     
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%A1%86%E6%9E%B6/springmvc/9.%E8%8E%B7%E5%8F%96request/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%A1%86%E6%9E%B6/springmvc/9.%E8%8E%B7%E5%8F%96request/" class="post-title-link" itemprop="url">获取request</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-07-09 20:44:23 / 修改时间：11:55:10" itemprop="dateCreated datePublished" datetime="2021-07-09T20:44:23+08:00">2021-07-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springmvc/" itemprop="url" rel="index"><span itemprop="name">springmvc</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E6%A1%86%E6%9E%B6/springmvc/9.%E8%8E%B7%E5%8F%96request/" class="post-meta-item leancloud_visitors" data-flag-title="获取request" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E6%A1%86%E6%9E%B6/springmvc/9.%E8%8E%B7%E5%8F%96request/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%A1%86%E6%9E%B6/springmvc/9.%E8%8E%B7%E5%8F%96request/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="获取request"><a href="#获取request" class="headerlink" title="获取request"></a>获取request</h2><p>有时候需要在处理业务的时候用到request对象，可以使用该方法获取</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HttpServletRequest request = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getRequest();</span><br></pre></td></tr></table></figure>
-
-<p>使用RequestContextHolder.currentRequestAttributes()获取的RequestAttributes对象是线程局部变量（ThreadLocal），request对象也是线程局部变量</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/%E4%BD%BF%E7%94%A8/1.session%E5%85%B1%E4%BA%AB%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/%E4%BD%BF%E7%94%A8/1.session%E5%85%B1%E4%BA%AB%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">session共享配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-07-09 20:34:19 / 修改时间：11:16:22" itemprop="dateCreated datePublished" datetime="2021-07-09T20:34:19+08:00">2021-07-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index"><span itemprop="name">tomcat</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/%E4%BD%BF%E7%94%A8/1.session%E5%85%B1%E4%BA%AB%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="session共享配置" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/%E4%BD%BF%E7%94%A8/1.session%E5%85%B1%E4%BA%AB%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%9C%8D%E5%8A%A1%E5%99%A8/tomcat/%E4%BD%BF%E7%94%A8/1.session%E5%85%B1%E4%BA%AB%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="session共享配置"><a href="#session共享配置" class="headerlink" title="session共享配置"></a>session共享配置</h2><p>在server.xml中进行配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Cluster</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.ha.tcp.SimpleTcpCluster&quot;</span> <span class="attr">channelSendOptions</span>=<span class="string">&quot;8&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Manager</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.ha.session.DeltaManager&quot;</span> <span class="attr">expireSessionsOnShutdown</span>=<span class="string">&quot;false&quot;</span> <span class="attr">otifyListenersOnReplication</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Channel</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.tribes.group.GroupChannel&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Membership</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.tribes.membership.McastService&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">address</span>=<span class="string">&quot;192.168.1.3&quot;</span> <span class="attr">port</span>=<span class="string">&quot;45564&quot;</span> <span class="attr">frequency</span>=<span class="string">&quot;500&quot;</span> <span class="attr">dropTime</span>=<span class="string">&quot;3000&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Receiver</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.tribes.transport.nio.NioReceiver&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">address</span>=<span class="string">&quot;auto&quot;</span> <span class="attr">port</span>=<span class="string">&quot;4000&quot;</span> <span class="attr">autoBind</span>=<span class="string">&quot;100&quot;</span> <span class="attr">selectorTimeout</span>=<span class="string">&quot;5000&quot;</span> <span class="attr">maxThreads</span>=<span class="string">&quot;6&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Sender</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.tribes.transport.ReplicationTransmitter&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Transport</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.tribes.transport.nio.PooledParallelSender&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Sender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Interceptor</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.tribes.group.interceptors.TcpFailureDetector&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Interceptor</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.tribes.group.interceptors.MessageDispatch15Interceptor&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Channel</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.ha.tcp.ReplicationValve&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">filter</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.ha.session.JvmRouteBinderValve&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">Deployer</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.ha.deploy.FarmWarDeployer&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">tempDir</span>=<span class="string">&quot;/tmp/war-temp/&quot;</span> <span class="attr">deployDir</span>=<span class="string">&quot;/tmp/war-deploy/&quot;</span> <span class="attr">watchDir</span>=<span class="string">&quot;/tmp/war-listen/&quot;</span> <span class="attr">watchEnabled</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ClusterListener</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.ha.session.ClusterSessionListener&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">Cluster</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/23.Innodb%E7%B4%A2%E5%BC%95%E9%A1%B5%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/23.Innodb%E7%B4%A2%E5%BC%95%E9%A1%B5%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">Innodb索引页文件结构</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-07-08 21:30:30 / 修改时间：14:52:39" itemprop="dateCreated datePublished" datetime="2021-07-08T21:30:30+08:00">2021-07-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/23.Innodb%E7%B4%A2%E5%BC%95%E9%A1%B5%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="Innodb索引页文件结构" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/23.Innodb%E7%B4%A2%E5%BC%95%E9%A1%B5%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E8%BF%9B%E9%98%B6/23.Innodb%E7%B4%A2%E5%BC%95%E9%A1%B5%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Innodb索引页文件结构"><a href="#Innodb索引页文件结构" class="headerlink" title="Innodb索引页文件结构"></a>Innodb索引页文件结构</h2><p>FIL Header：</p>
-<ul>
-<li><strong>checksum</strong>：4个字节32位checksum保存在header中。</li>
-<li><strong>Offset</strong>：Page Number，page初始化时就被保存在header中。</li>
-<li><strong>Previous/Next Page</strong>：指向前/后一页的指针，被保存在header中，允许构建成双向链表，从而连接所有相同等级的页。</li>
-<li><strong>page type</strong>：保存在header中，为了解析page数据，这个字段是必须的。</li>
-<li><strong>space ID</strong>：保存在header中，space的32位整型唯一编号。</li>
-<li><strong>Old-style Checksum</strong>：老格式32位checksum被保存在trailer中，不过已经被废弃，这块空间被申明为一些指针。</li>
-<li><strong>LSN</strong>：log sequence number。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-  	
-    	  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://isfox.github.io/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="ZH">
-      <meta itemprop="description" content="java菜鸟号正在起航">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小菜鸟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/" class="post-title-link" itemprop="url">JMM</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-29 22:11:23 / 修改时间：22:36:17" itemprop="dateCreated datePublished" datetime="2021-06-29T22:11:23+08:00">2021-06-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/" class="post-meta-item leancloud_visitors" data-flag-title="JMM" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/%E5%A4%9A%E7%BA%BF%E7%A8%8B/14.JMM/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h2><p>JMM(Java Memony Mode)java内存模型，JMM描述了java线程如何通过内存进行交互，java程序中各种变量(线程共享变量)的访问规则，以及在jvm中将变量存储到内存和从内存中读取出变量的底层细节</p>
-<ul>
-<li>所有变量都存储在主内存</li>
-<li>每个线程都有自己独立的工作内存，里面保存该线程使用到的变量的副本</li>
-</ul>
-<p>有两条规定</p>
-<ul>
-<li>线程对共享变量的所有操作都必须在自己的工作内存中进行，不能直接从主内存中读写</li>
-<li>不同线程之间无法直接访问其他线程工作内存中的变量，线程间变量值的传递需要通过主内存来完成</li>
-</ul>
-<p>happens-before</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1059,7 +902,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">557</span>
+          <span class="site-state-item-count">561</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1072,7 +915,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
